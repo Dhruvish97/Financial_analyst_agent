@@ -1,0 +1,86 @@
+import { StockHolding } from "@/types/portfolio";
+
+export const STOCK_PORTFOLIO: StockHolding[] = [
+  {
+    ticker: "NVDA",
+    company: "NVIDIA Corporation",
+    sector: "Semiconductors",
+    allocation: 18,
+    rationale: "Market leader in AI/ML chips with dominant data center GPU share. Earnings and forward guidance consistently beat expectations through 2024-2025 as AI infrastructure spend accelerates.",
+    color: "#76b900",
+  },
+  {
+    ticker: "MSFT",
+    company: "Microsoft Corporation",
+    sector: "Cloud & Software",
+    allocation: 15,
+    rationale: "Azure cloud and deep AI integration via Copilot/OpenAI positions it as an enterprise compounder with durable, high-margin revenue growth over the next decade.",
+    color: "#00a4ef",
+  },
+  {
+    ticker: "GOOGL",
+    company: "Alphabet Inc.",
+    sector: "Internet & AI",
+    allocation: 12,
+    rationale: "Deep AI research moat with Gemini, dominant ad revenue, and Google Cloud growth make it a high-quality value-growth hybrid trading at a discount to peers.",
+    color: "#4285f4",
+  },
+  {
+    ticker: "AMZN",
+    company: "Amazon.com Inc.",
+    sector: "Cloud & E-Commerce",
+    allocation: 10,
+    rationale: "AWS maintains the largest cloud market share; advertising segment and AI infrastructure investment drive multi-year margin expansion from historically low levels.",
+    color: "#ff9900",
+  },
+  {
+    ticker: "META",
+    company: "Meta Platforms Inc.",
+    sector: "Social Media & AI",
+    allocation: 8,
+    rationale: "Massive ad revenue recovery, Reality Labs long-term optionality, and aggressive AI product rollout across WhatsApp and Instagram with industry-leading efficiency.",
+    color: "#0866ff",
+  },
+  {
+    ticker: "AVGO",
+    company: "Broadcom Inc.",
+    sector: "Semiconductors",
+    allocation: 8,
+    rationale: "Custom AI ASIC chips for hyperscalers (Google XPU, Meta MTIA) and the VMware acquisition create a rare diversified semiconductor-software hybrid with pricing power.",
+    color: "#cc0000",
+  },
+  {
+    ticker: "TSLA",
+    company: "Tesla Inc.",
+    sector: "EV & Robotics",
+    allocation: 7,
+    rationale: "EV market normalization priced in; FSD licensing, Optimus robotics, and energy storage revenue represent asymmetric upside catalysts into 2026.",
+    color: "#e82127",
+  },
+  {
+    ticker: "XBI",
+    company: "SPDR S&P Biotech ETF",
+    sector: "Biotech",
+    allocation: 8,
+    rationale: "Diversified exposure to high-growth biotech with FDA approval catalysts; provides meaningful sector diversification away from pure technology concentration.",
+    color: "#00c49f",
+  },
+  {
+    ticker: "QQQ",
+    company: "Invesco QQQ Trust",
+    sector: "ETF – Nasdaq 100",
+    allocation: 8,
+    rationale: "Broad Nasdaq-100 ETF exposure acts as a portfolio stabilizer while maintaining technology sector beta across 100 of the largest non-financial growth companies.",
+    color: "#8884d8",
+  },
+  {
+    ticker: "VUG",
+    company: "Vanguard Growth ETF",
+    sector: "ETF – Large Cap Growth",
+    allocation: 6,
+    rationale: "Low-cost large-cap growth diversification covering non-Nasdaq growth equities. Smooths single-stock concentration risk while maintaining upside exposure.",
+    color: "#82ca9d",
+  },
+];
+
+export const STOCK_TICKERS = STOCK_PORTFOLIO.map((s) => s.ticker);
