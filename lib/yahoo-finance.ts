@@ -24,6 +24,9 @@ export async function fetchQuotes(tickers: string[]): Promise<PriceMap> {
         beta: q.beta ?? null,
         fiftyTwoWeekLow: q.fiftyTwoWeekLow ?? null,
         fiftyTwoWeekHigh: q.fiftyTwoWeekHigh ?? null,
+        earningsDate: q.earningsTimestamp
+          ? q.earningsTimestamp.toISOString().split("T")[0]
+          : null,
       };
     } else {
       acc[ticker] = {
@@ -38,6 +41,7 @@ export async function fetchQuotes(tickers: string[]): Promise<PriceMap> {
         beta: null,
         fiftyTwoWeekLow: null,
         fiftyTwoWeekHigh: null,
+        earningsDate: null,
         error: "fetch_failed",
       };
     }

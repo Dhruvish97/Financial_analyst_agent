@@ -63,6 +63,7 @@ export interface LivePrice {
   beta: number | null;
   fiftyTwoWeekLow: number | null;
   fiftyTwoWeekHigh: number | null;
+  earningsDate: string | null; // ISO date "YYYY-MM-DD", null if unavailable
   error?: string;
 }
 

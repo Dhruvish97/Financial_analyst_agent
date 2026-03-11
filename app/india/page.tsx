@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useIndiaPrices } from "@/hooks/useIndiaPrices";
 import { useRSI } from "@/hooks/useRSI";
 import { INDIA_STOCKS, INDIA_SECTORS, INDIA_TICKERS } from "@/constants/india-stocks";
+import { StockPriceChart } from "@/components/ui/StockPriceChart";
 
 // ── Formatters ────────────────────────────────────────────────────────────────
 
@@ -29,6 +30,23 @@ function fmtCap(v: number | null): string {
 function fmtPE(v: number | null): string {
   if (v === null || v === undefined) return "—";
   return `${v.toFixed(1)}x`;
+}
+
+// ── Earnings Badge ────────────────────────────────────────────────────────────
+
+function EarningsBadge({ earningsDate }: { earningsDate: string | null | undefined }) {
+  if (!earningsDate) return null;
+  const diffDays = Math.round((new Date(earningsDate + "T12:00:00Z").getTime() - Date.now()) / 86400000);
+  if (diffDays < 0 || diffDays > 45) return null;
+  const cls =
+    diffDays <= 7  ? "bg-red-900/60 border-red-700 text-red-300" :
+    diffDays <= 21 ? "bg-orange-900/60 border-orange-700 text-orange-300" :
+                    "bg-yellow-900/60 border-yellow-800 text-yellow-300";
+  return (
+    <span className={`text-[9px] font-mono font-semibold px-1.5 py-0.5 rounded border ${cls} block mt-0.5 whitespace-nowrap`}>
+      📅 Earnings in {diffDays}d
+    </span>
+  );
 }
 
 // ── RSI Badge ─────────────────────────────────────────────────────────────────
@@ -232,7 +250,7 @@ export default function IndiaPage() {
               </button>
             )}
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-3">
             {INDIA_SECTORS.map((sector) => (
               <SectorCard
                 key={sector.id}
@@ -290,7 +308,7 @@ export default function IndiaPage() {
                 Top {filteredStocks.length} Stocks — 2–3 Year Horizon
               </h2>
               <p className="text-gray-500 text-xs mt-0.5">
-                {activeSector ? `Filtered by sector · ` : ""}Click any row to see thesis &amp; catalysts
+                {activeSector ? `Filtered by sector · ` : ""}Click any row to see thesis, catalysts &amp; price chart
               </p>
             </div>
             <div className="flex gap-2 text-xs text-gray-600">
@@ -333,7 +351,10 @@ export default function IndiaPage() {
                         <td className="px-3 py-3">
                           <div className="flex items-center gap-1.5">
                             <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: stock.color }} />
-                            <span className="font-mono font-bold text-white text-xs">{stock.displayTicker}</span>
+                            <div>
+                              <span className="font-mono font-bold text-white text-xs">{stock.displayTicker}</span>
+                              <EarningsBadge earningsDate={lp?.earningsDate} />
+                            </div>
                           </div>
                         </td>
 
@@ -405,7 +426,7 @@ export default function IndiaPage() {
                       {isExpanded && (
                         <tr key={`${stock.ticker}-detail`} className="border-b border-gray-800/50 bg-gray-800/20">
                           <td colSpan={12} className="px-6 py-4">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                               <div>
                                 <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-2">
                                   2–3 Year Investment Thesis
@@ -425,6 +446,12 @@ export default function IndiaPage() {
                                 </ul>
                               </div>
                             </div>
+                            <StockPriceChart
+                              ticker={stock.ticker}
+                              name={stock.name}
+                              color={stock.color}
+                              currency="INR"
+                            />
                           </td>
                         </tr>
                       )}

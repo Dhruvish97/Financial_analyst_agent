@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useMemo } from "react";
+import { useEffect, useRef, useMemo, useState } from "react";
 import { PortfolioDefinition, PriceMap, RSIMap } from "@/types/portfolio";
 // eslint-disable-next-line @typescript-eslint/no-deprecated
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid } from "recharts";
 import { useRSI } from "@/hooks/useRSI";
+import { StockPriceChart } from "@/components/ui/StockPriceChart";
 
 // ── Formatters ────────────────────────────────────────────────────────────────
 
@@ -47,6 +48,34 @@ function RSIBadge({ rsi }: { rsi: number | null | undefined }) {
     <span className={`text-[10px] font-mono font-bold px-1.5 py-0.5 rounded border ${cls}`}
       title={`RSI: ${rsi} — ${rsi >= 70 ? "Overbought" : rsi <= 30 ? "Oversold" : "Neutral"}`}>
       {rsi} {label}
+    </span>
+  );
+}
+
+// ── Earnings badge ────────────────────────────────────────────────────────────
+
+function EarningsBadge({ earningsDate }: { earningsDate: string | null | undefined }) {
+  if (!earningsDate) return null;
+  const diffDays = Math.ceil(
+    (new Date(earningsDate + "T12:00:00Z").getTime() - Date.now()) / 86_400_000
+  );
+  if (diffDays < 0 || diffDays > 45) return null;
+
+  const cls =
+    diffDays <= 7  ? "bg-red-900/60 text-red-300 border-red-700" :
+    diffDays <= 21 ? "bg-orange-900/60 text-orange-300 border-orange-700" :
+                     "bg-yellow-900/60 text-yellow-300 border-yellow-700";
+  const label =
+    diffDays === 0 ? "Earnings today" :
+    diffDays === 1 ? "Earnings tomorrow" :
+                     `Earnings in ${diffDays}d`;
+
+  return (
+    <span
+      className={`text-[9px] font-mono font-bold px-1.5 py-0.5 rounded border ${cls} whitespace-nowrap`}
+      title={`Next earnings: ${earningsDate}`}
+    >
+      📅 {label}
     </span>
   );
 }
@@ -119,6 +148,17 @@ function generateHealthSummary(
     bullets.push(`${oversold.map((h) => h.ticker).join(", ")} ${oversold.length === 1 ? "is" : "are"} oversold (RSI ≤ 30) — potential value entry opportunity.`);
   }
 
+  // Upcoming earnings warning
+  const earningsImminent = portfolio.holdings.filter((h) => {
+    const ed = prices[h.ticker]?.earningsDate;
+    if (!ed) return false;
+    const days = Math.ceil((new Date(ed + "T12:00:00Z").getTime() - Date.now()) / 86_400_000);
+    return days >= 0 && days <= 14;
+  });
+  if (earningsImminent.length > 0) {
+    bullets.push(`${earningsImminent.map((h) => h.ticker).join(", ")} ${earningsImminent.length === 1 ? "reports" : "report"} earnings within 14 days — expect elevated volatility.`);
+  }
+
   // Daily performance
   let weightedChange = 0;
   let priceCount = 0;
@@ -188,6 +228,7 @@ export function PortfolioDetailModal({ portfolio, prices, loadingPrices, onClose
   const modalRef = useRef<HTMLDivElement>(null);
   const tickers = useMemo(() => portfolio.holdings.map((h) => h.ticker), [portfolio]);
   const { rsi, loadingRSI } = useRSI(tickers);
+  const [chartTicker, setChartTicker] = useState<string | null>(null);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
@@ -292,9 +333,12 @@ export function PortfolioDetailModal({ portfolio, prices, loadingPrices, onClose
 
           {/* ── Holdings table ────────────────────────────────────────── */}
           <div>
-            <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">
-              Holdings — Live Data
-            </h3>
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                Holdings — Live Data
+              </h3>
+              <p className="text-[10px] text-gray-600">Click any row to view price chart</p>
+            </div>
             <div className="overflow-x-auto rounded-xl border border-gray-800">
               <table className="w-full text-sm" aria-label={`${portfolio.name} holdings`}>
                 <thead>
@@ -310,69 +354,97 @@ export function PortfolioDetailModal({ portfolio, prices, loadingPrices, onClose
                   {portfolio.holdings.map((h, i) => {
                     const lp = prices[h.ticker];
                     const isUp = (lp?.changePercent ?? 0) >= 0;
+                    const isChartOpen = chartTicker === h.ticker;
+
                     return (
-                      <tr key={h.ticker} className={`border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors ${i % 2 === 0 ? "" : "bg-gray-800/10"}`}>
-                        {/* Ticker */}
-                        <td className="px-3 py-2.5">
-                          <div className="flex items-center gap-1.5">
-                            <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: h.color }} />
-                            <span className="font-mono font-bold text-white text-xs">{h.ticker}</span>
-                          </div>
-                        </td>
-                        {/* Name */}
-                        <td className="px-3 py-2.5 text-gray-300 text-xs max-w-32 truncate">{h.name}</td>
-                        {/* Type */}
-                        <td className="px-3 py-2.5">
-                          <span className={`text-[10px] px-1.5 py-0.5 rounded-full border ${TYPE_BADGE[h.type] ?? "text-gray-400"}`}>
-                            {h.type.toUpperCase()}
-                          </span>
-                        </td>
-                        {/* Alloc */}
-                        <td className="px-3 py-2.5 text-right font-mono text-xs text-gray-300">
-                          <div className="flex items-center justify-end gap-1.5">
-                            <div className="w-12 bg-gray-800 rounded-full h-1.5 hidden sm:block">
-                              <div className="h-1.5 rounded-full" style={{ width: `${h.allocation}%`, backgroundColor: h.color }} />
+                      <>
+                        <tr
+                          key={h.ticker}
+                          onClick={() => setChartTicker(isChartOpen ? null : h.ticker)}
+                          className={`border-b border-gray-800/50 cursor-pointer transition-colors ${
+                            i % 2 === 0 ? "" : "bg-gray-800/10"
+                          } ${isChartOpen ? "bg-gray-800/40" : "hover:bg-gray-800/30"}`}
+                        >
+                          {/* Ticker */}
+                          <td className="px-3 py-2.5">
+                            <div className="flex flex-col gap-1">
+                              <div className="flex items-center gap-1.5">
+                                <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: h.color }} />
+                                <span className="font-mono font-bold text-white text-xs">{h.ticker}</span>
+                                <span className="text-gray-600 text-[10px]">{isChartOpen ? "▲" : "▼"}</span>
+                              </div>
+                              <EarningsBadge earningsDate={lp?.earningsDate} />
                             </div>
-                            {h.allocation}%
-                          </div>
-                        </td>
-                        {/* Price */}
-                        <td className="px-3 py-2.5 text-right font-mono text-xs text-white">
-                          {loadingPrices ? <span className="animate-pulse text-gray-600">…</span> : fmt(lp?.price ?? null)}
-                        </td>
-                        {/* 24h */}
-                        <td className="px-3 py-2.5 text-right font-mono text-xs">
-                          {loadingPrices ? <span className="animate-pulse text-gray-600">…</span> : (
-                            <span className={lp?.changePercent == null ? "text-gray-600" : isUp ? "text-green-400" : "text-red-400"}>
-                              {fmtPct(lp?.changePercent ?? null)}
+                          </td>
+                          {/* Name */}
+                          <td className="px-3 py-2.5 text-gray-300 text-xs max-w-32 truncate">{h.name}</td>
+                          {/* Type */}
+                          <td className="px-3 py-2.5">
+                            <span className={`text-[10px] px-1.5 py-0.5 rounded-full border ${TYPE_BADGE[h.type] ?? "text-gray-400"}`}>
+                              {h.type.toUpperCase()}
                             </span>
-                          )}
-                        </td>
-                        {/* RSI */}
-                        <td className="px-3 py-2.5">
-                          {loadingRSI ? <span className="animate-pulse text-gray-600 text-xs">…</span> : (
-                            <RSIBadge rsi={rsi[h.ticker]} />
-                          )}
-                        </td>
-                        {/* P/E */}
-                        <td className="px-3 py-2.5 text-right font-mono text-xs text-gray-400">
-                          {loadingPrices ? <span className="animate-pulse text-gray-600">…</span> : fmtPE(lp?.trailingPE ?? null)}
-                        </td>
-                        {/* 52-week range */}
-                        <td className="px-3 py-2.5 min-w-36">
-                          {loadingPrices ? <span className="animate-pulse text-gray-600 text-xs">…</span> : (
-                            <WeekRangeBar
-                              low={lp?.fiftyTwoWeekLow ?? null}
-                              high={lp?.fiftyTwoWeekHigh ?? null}
-                              price={lp?.price ?? null}
-                            />
-                          )}
-                        </td>
-                        {/* Mkt Cap */}
-                        <td className="px-3 py-2.5 text-right font-mono text-xs text-gray-500">
-                          {loadingPrices ? <span className="animate-pulse text-gray-600">…</span> : fmtCap(lp?.marketCap ?? null)}
-                        </td>
-                      </tr>
+                          </td>
+                          {/* Alloc */}
+                          <td className="px-3 py-2.5 text-right font-mono text-xs text-gray-300">
+                            <div className="flex items-center justify-end gap-1.5">
+                              <div className="w-12 bg-gray-800 rounded-full h-1.5 hidden sm:block">
+                                <div className="h-1.5 rounded-full" style={{ width: `${h.allocation}%`, backgroundColor: h.color }} />
+                              </div>
+                              {h.allocation}%
+                            </div>
+                          </td>
+                          {/* Price */}
+                          <td className="px-3 py-2.5 text-right font-mono text-xs text-white">
+                            {loadingPrices ? <span className="animate-pulse text-gray-600">…</span> : fmt(lp?.price ?? null)}
+                          </td>
+                          {/* 24h */}
+                          <td className="px-3 py-2.5 text-right font-mono text-xs">
+                            {loadingPrices ? <span className="animate-pulse text-gray-600">…</span> : (
+                              <span className={lp?.changePercent == null ? "text-gray-600" : isUp ? "text-green-400" : "text-red-400"}>
+                                {fmtPct(lp?.changePercent ?? null)}
+                              </span>
+                            )}
+                          </td>
+                          {/* RSI */}
+                          <td className="px-3 py-2.5">
+                            {loadingRSI ? <span className="animate-pulse text-gray-600 text-xs">…</span> : (
+                              <RSIBadge rsi={rsi[h.ticker]} />
+                            )}
+                          </td>
+                          {/* P/E */}
+                          <td className="px-3 py-2.5 text-right font-mono text-xs text-gray-400">
+                            {loadingPrices ? <span className="animate-pulse text-gray-600">…</span> : fmtPE(lp?.trailingPE ?? null)}
+                          </td>
+                          {/* 52-week range */}
+                          <td className="px-3 py-2.5 min-w-36">
+                            {loadingPrices ? <span className="animate-pulse text-gray-600 text-xs">…</span> : (
+                              <WeekRangeBar
+                                low={lp?.fiftyTwoWeekLow ?? null}
+                                high={lp?.fiftyTwoWeekHigh ?? null}
+                                price={lp?.price ?? null}
+                              />
+                            )}
+                          </td>
+                          {/* Mkt Cap */}
+                          <td className="px-3 py-2.5 text-right font-mono text-xs text-gray-500">
+                            {loadingPrices ? <span className="animate-pulse text-gray-600">…</span> : fmtCap(lp?.marketCap ?? null)}
+                          </td>
+                        </tr>
+
+                        {/* ── Expanded price chart row ── */}
+                        {isChartOpen && (
+                          <tr key={`${h.ticker}-chart`} className="border-b border-gray-800/50 bg-gray-900/40">
+                            <td colSpan={10} className="px-4 py-3">
+                              <StockPriceChart
+                                ticker={h.ticker}
+                                name={h.name}
+                                color={h.color}
+                                currency="USD"
+                              />
+                            </td>
+                          </tr>
+                        )}
+                      </>
                     );
                   })}
                 </tbody>
