@@ -51,7 +51,7 @@ export async function fetchQuotes(tickers: string[]): Promise<PriceMap> {
 
 // ── RSI calculation ──────────────────────────────────────────────────────────
 
-function calcRSI(closes: number[], period = 14): number | null {
+export function calcRSI(closes: number[], period = 14): number | null {
   if (closes.length < period + 1) return null;
   let gains = 0;
   let losses = 0;
