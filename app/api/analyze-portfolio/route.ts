@@ -60,7 +60,7 @@ export async function POST(req: NextRequest) {
     const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
     const message = await client.messages.create({
-      model: "claude-sonnet-4-6",
+      model: "claude-3-5-sonnet-20241022",
       max_tokens: 2048,
       messages: [
         {
@@ -109,9 +109,10 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ holdings: sanitised });
   } catch (err) {
-    console.error("[analyze-portfolio] Claude API error:", err);
+    const message = err instanceof Error ? err.message : String(err);
+    console.error("[analyze-portfolio] Claude API error:", message);
     return NextResponse.json(
-      { error: "Failed to analyze image. Please try again." },
+      { error: `Failed to analyze image: ${message}` },
       { status: 500 }
     );
   }
