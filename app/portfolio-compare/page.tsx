@@ -290,7 +290,6 @@ function AllocationRow({ alloc, target }: { alloc: import("@/lib/portfolio-analy
 
 function RecommendationCard({ rec }: { rec: import("@/lib/portfolio-analysis").Recommendation }) {
   const isBuy = rec.action === "BUY";
-  const isSell = rec.action === "SELL";
   const priorityCls =
     rec.priority === "high" ? "border-red-800 bg-red-900/10" :
     rec.priority === "medium" ? "border-yellow-800 bg-yellow-900/10" :
@@ -320,28 +319,38 @@ function RecommendationCard({ rec }: { rec: import("@/lib/portfolio-analysis").R
 
       <p className="text-gray-400 text-xs leading-relaxed mb-3">{rec.reason}</p>
 
-      <div className="flex flex-wrap gap-1.5">
-        {isSell && rec.existingTickers.length > 0 && (
-          <>
-            <span className="text-[9px] text-gray-600 self-center">Trim:</span>
-            {rec.existingTickers.map((t) => (
-              <span key={t} className="text-[10px] font-mono font-bold bg-red-900/30 border border-red-800 text-red-300 px-1.5 py-0.5 rounded">
-                {t}
+      {/* Per-ticker share breakdown */}
+      {rec.tickerBreakdown.length > 0 && (
+        <div className="mt-2 space-y-1.5">
+          <span className="text-[9px] text-gray-600 uppercase tracking-wider">
+            {isBuy ? "Buy" : "Sell"} breakdown:
+          </span>
+          {rec.tickerBreakdown.map((t) => (
+            <div key={t.ticker} className={`flex items-center justify-between rounded-lg px-2.5 py-1.5 ${isBuy ? "bg-green-900/20 border border-green-900" : "bg-red-900/20 border border-red-900"}`}>
+              <span className={`font-mono font-bold text-xs ${isBuy ? "text-green-300" : "text-red-300"}`}>
+                {t.ticker}
               </span>
-            ))}
-          </>
-        )}
-        {isBuy && rec.tickers.length > 0 && (
-          <>
-            <span className="text-[9px] text-gray-600 self-center">Consider:</span>
-            {rec.tickers.map((t) => (
-              <span key={t} className="text-[10px] font-mono font-bold bg-green-900/30 border border-green-800 text-green-300 px-1.5 py-0.5 rounded">
-                {t}
-              </span>
-            ))}
-          </>
-        )}
-      </div>
+              <div className="flex items-center gap-2 text-[10px] font-mono text-right">
+                {t.shares !== null ? (
+                  <>
+                    <span className={`font-bold ${isBuy ? "text-green-400" : "text-red-400"}`}>
+                      {isBuy ? "+" : "-"}{t.shares} shares
+                    </span>
+                    {t.price !== null && (
+                      <span className="text-gray-600">@ ${t.price.toFixed(2)}</span>
+                    )}
+                  </>
+                ) : (
+                  <span className="text-gray-500">≈ ${t.dollarAmount.toLocaleString()} <span className="text-gray-700">(check price)</span></span>
+                )}
+                <span className={`${isBuy ? "text-green-600" : "text-red-600"}`}>
+                  = ${t.dollarAmount.toLocaleString()}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -360,13 +369,29 @@ function AnalysisResults({
 
   return (
     <div className="space-y-8">
+      <style>{`
+        @media print {
+          nav, .print-hide { display: none !important; }
+          body { background: #030712 !important; }
+          @page { margin: 1.5cm; }
+        }
+      `}</style>
       {/* Summary header */}
       <div className="rounded-2xl border border-gray-700 bg-gray-900 p-6">
         <div className="flex items-start gap-5 flex-wrap">
           <ScoreBadge score={analysis.overallScore} style={target.style} />
           <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2 mb-1">
+            <div className="flex items-center justify-between gap-2 mb-1 flex-wrap">
               <span className="text-white font-bold text-lg">{target.icon} {target.label} Alignment</span>
+              <button
+                onClick={() => window.print()}
+                className="print-hide flex items-center gap-1.5 text-xs font-medium border border-gray-600 hover:border-gray-400 text-gray-400 hover:text-white rounded-lg px-3 py-1.5 transition-colors"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                Download PDF
+              </button>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">{analysis.summary}</p>
             <div className="flex flex-wrap gap-3 mt-3 text-xs text-gray-500 font-mono">
@@ -455,7 +480,7 @@ function AnalysisResults({
 
       <button
         onClick={onReset}
-        className="text-xs text-gray-500 hover:text-white transition-colors border border-gray-700 hover:border-gray-500 rounded-lg px-4 py-2"
+        className="print-hide text-xs text-gray-500 hover:text-white transition-colors border border-gray-700 hover:border-gray-500 rounded-lg px-4 py-2"
       >
         ← Start over
       </button>
@@ -511,7 +536,7 @@ export default function PortfolioComparePage() {
         </div>
 
         {/* Step indicator */}
-        <div className="flex items-center gap-3 mb-8">
+        <div className="print-hide flex items-center gap-3 mb-8">
           <StepDot n={1} active={step === 1} done={step > 1} />
           <div className="flex-1 h-px bg-gray-800 max-w-12" />
           <StepDot n={2} active={step === 2} done={step > 2} />

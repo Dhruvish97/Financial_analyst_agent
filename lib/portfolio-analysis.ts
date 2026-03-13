@@ -25,6 +25,13 @@ export interface SectorAllocation {
   status: "overweight" | "underweight" | "on-target";
 }
 
+export interface TickerAction {
+  ticker: string;
+  shares: number | null;   // null if price unavailable
+  price: number | null;
+  dollarAmount: number;
+}
+
 export interface Recommendation {
   action: "BUY" | "SELL" | "HOLD";
   sector: string;
@@ -33,6 +40,7 @@ export interface Recommendation {
   amount: number;          // $ to buy or sell (positive)
   reason: string;
   priority: "high" | "medium" | "low";
+  tickerBreakdown: TickerAction[]; // per-ticker share/dollar breakdown
 }
 
 export interface PortfolioAnalysis {
@@ -254,36 +262,68 @@ export function generateRecommendations(
     tickersBySector[h.sector].push(h.ticker);
   }
 
+  // Build ticker→holding map for price lookups
+  const holdingByTicker: Record<string, EnrichedHolding> = {};
+  for (const h of holdings) holdingByTicker[h.ticker] = h;
+
   for (const alloc of allocations) {
     const sectorTarget = target.sectors.find((s) => s.sector === alloc.sector);
     const existingTickers = tickersBySector[alloc.sector] ?? [];
     const dollarGap = Math.abs(alloc.currentValue - alloc.targetValue);
 
     if (alloc.status === "overweight" && alloc.gapPct > 3) {
-      // Too much in this sector — suggest trimming
-      const sellTickers = existingTickers.length > 0 ? existingTickers : [];
+      // Too much in this sector — suggest trimming proportionally across holdings
+      const sectorHoldings = holdings.filter((h) => h.sector === alloc.sector);
+      const totalSectorVal = sectorHoldings.reduce((s, h) => s + h.computedValue, 0);
+      const tickerBreakdown: TickerAction[] = sectorHoldings.map((h) => {
+        const proportion = totalSectorVal > 0 ? h.computedValue / totalSectorVal : 0;
+        const dollars = proportion * dollarGap;
+        const shares = h.price !== null && h.price > 0 ? dollars / h.price : null;
+        return {
+          ticker: h.ticker,
+          shares: shares !== null ? Math.round(shares * 100) / 100 : null,
+          price: h.price,
+          dollarAmount: Math.round(dollars),
+        };
+      });
+
       recs.push({
         action: "SELL",
         sector: alloc.sector,
-        tickers: sellTickers,
+        tickers: existingTickers,
         existingTickers,
         amount: Math.round(dollarGap),
         reason: `${alloc.sector} is ${alloc.gapPct.toFixed(1)}% overweight (${alloc.currentPct.toFixed(1)}% vs ${alloc.targetPct}% target). Trim to rebalance.`,
         priority: alloc.gapPct > 15 ? "high" : alloc.gapPct > 8 ? "medium" : "low",
+        tickerBreakdown,
       });
     } else if (alloc.status === "underweight" && alloc.gapPct < -3) {
       // Not enough in this sector — suggest buying
       const buySuggestions = sectorTarget?.suggestedBuys ?? [];
-      // Prioritise tickers user doesn't already own
       const newTickers = buySuggestions.filter((t) => !existingTickers.includes(t));
+      const buyTickers = (newTickers.length > 0 ? newTickers : buySuggestions).slice(0, 3);
+      const perTickerDollars = buyTickers.length > 0 ? dollarGap / buyTickers.length : dollarGap;
+      const tickerBreakdown: TickerAction[] = buyTickers.map((t) => {
+        const existing = holdingByTicker[t];
+        const price = existing?.price ?? null;
+        const shares = price !== null && price > 0 ? perTickerDollars / price : null;
+        return {
+          ticker: t,
+          shares: shares !== null ? Math.round(shares * 100) / 100 : null,
+          price,
+          dollarAmount: Math.round(perTickerDollars),
+        };
+      });
+
       recs.push({
         action: "BUY",
         sector: alloc.sector,
-        tickers: newTickers.length > 0 ? newTickers.slice(0, 3) : buySuggestions.slice(0, 3),
+        tickers: buyTickers,
         existingTickers,
         amount: Math.round(dollarGap),
         reason: `${alloc.sector} is ${Math.abs(alloc.gapPct).toFixed(1)}% underweight (${alloc.currentPct.toFixed(1)}% vs ${alloc.targetPct}% target). Add exposure.`,
         priority: Math.abs(alloc.gapPct) > 15 ? "high" : Math.abs(alloc.gapPct) > 8 ? "medium" : "low",
+        tickerBreakdown,
       });
     }
   }
