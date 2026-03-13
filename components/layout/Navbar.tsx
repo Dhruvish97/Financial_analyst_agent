@@ -7,6 +7,7 @@ const navLinks = [
   { href: "/stocks", label: "Stocks" },
   { href: "/crypto", label: "Crypto" },
   { href: "/india", label: "🇮🇳 India" },
+  { href: "/portfolio-compare", label: "🧠 Advisor" },
 ];
 
 export function Navbar() {
