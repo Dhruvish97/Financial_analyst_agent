@@ -340,9 +340,7 @@ function RecommendationCard({ rec }: { rec: import("@/lib/portfolio-analysis").R
                       <span className="text-gray-600">@ ${t.price.toFixed(2)}</span>
                     )}
                   </>
-                ) : (
-                  <span className="text-gray-500">≈ ${t.dollarAmount.toLocaleString()} <span className="text-gray-700">(check price)</span></span>
-                )}
+                ) : null}
                 <span className={`${isBuy ? "text-green-600" : "text-red-600"}`}>
                   = ${t.dollarAmount.toLocaleString()}
                 </span>
