@@ -345,6 +345,83 @@ export function calcSectorAllocations(
   }).sort((a, b) => b.targetPct - a.targetPct); // highest target first
 }
 
+// ── Framework-backed reason strings ───────────────────────────────────────────
+// Top-ranked prompts from STOCK_ANALYSIS_PROMPTS.md used to justify each sector:
+//   #17 Moat Destroyer (7 Powers) — 92/100  · structural quality filter
+//   #8  Bain Competitive Analysis  — 87/100  · best stock in sector
+//   #18 Behavioral Finance Auditor — 84/100  · contrarian opportunity
+//   #6  Citadel Technical Analysis — 82/100  · entry timing + RSI signals
+//   #19 Options Flow Intelligence  — 80/100  · institutional accumulation
+//   #11 Peter Lynch GARP           — 73/100  · PEG valuation filter
+//   #15 Magic Formula              — 72/100  · quality + cheap screening
+//   #10 McKinsey Macro Report      — 70/100  · structural megatrend identification
+//   #16 Macro Regime & Rotation    — 67/100  · cycle-based sector positioning
+//   #3  Bridgewater Risk           — 62/100  · tail risk + concentration sizing
+
+const BUY_FRAMEWORK: Record<string, string> = {
+  "Technology / AI":
+    "Moat Destroyer (#17, 92/100): CUDA scale economy + network effects confirm structural dominance in AI infrastructure.",
+  "Cybersecurity / Cloud":
+    "Moat Destroyer (#17, 92/100): Switching-cost moat — Falcon platform lock-in makes churn structurally unlikely.",
+  "Semiconductors":
+    "Bain Competitive (#8, 87/100): Custom ASIC moat accelerating — hyperscaler demand creates durable volume advantage.",
+  "Healthcare Innovation":
+    "Bain Competitive (#8, 87/100): Process-power moat in high-margin specialty care; insurer scale reinforces barrier.",
+  "Financials / Fintech":
+    "Options Flow (#19, 80/100): Institutional accumulation signals in payment-rail network-effect businesses.",
+  "Consumer Growth":
+    "Peter Lynch GARP (#11, 73/100): Growth at reasonable price — target PEG <1.5 in high-margin brand categories.",
+  "Broad Market ETF":
+    "McKinsey Macro (#10, 70/100): Index floor reduces single-stock tail risk and anchors diversification.",
+  "International":
+    "Macro Regime (#16, 67/100): Geographic diversification for cycle-resilient positioning and USD hedge.",
+  "Bonds / Fixed Income":
+    "Macro Regime (#16, 67/100): Fixed-income ballast appropriate for current elevated-rate macro regime.",
+  "Dividend / Value Equity":
+    "Magic Formula (#15, 72/100): High-yield + quality screen — Greenblatt earnings-yield filter identifies undervalued dividend growers.",
+  "REITs":
+    "Behavioral Finance (#18, 84/100): Real asset income often undervalued in rate-fear regimes — contrarian opportunity.",
+  "Healthcare":
+    "Behavioral Finance (#18, 84/100): Defensive sector undervalued in risk-on regimes — contrarian non-cyclical exposure.",
+  // India sectors
+  "Banking & Finance (India)":
+    "Moat Destroyer (#17, 92/100): Strong CASA ratios and provisioning depth confirm switching-cost moat in private banks.",
+  "IT Services (India)":
+    "Moat Destroyer (#17, 92/100): Global delivery moat — dollar-revenue stream is a natural INR depreciation hedge.",
+  "FMCG / Consumer Staples (India)":
+    "Bain Competitive (#8, 87/100): Non-cyclical demand + distribution reach moat — dominant rural penetration barrier.",
+  "Pharma / Healthcare (India)":
+    "Bain Competitive (#8, 87/100): Generic drug export moat + domestic chronic care growth — process-power advantage.",
+  "Auto & EV (India)":
+    "McKinsey Macro (#10, 70/100): EV transition megatrend + premium auto demand in India's growing middle class.",
+  "Infrastructure / Capital Goods (India)":
+    "McKinsey Macro (#10, 70/100): India capex supercycle — defence, rail, roads — government-backed secular megatrend.",
+  "Energy / PSU (India)":
+    "Magic Formula (#15, 72/100): PSU dividend plays — high earnings yield with government-backing floor on downside.",
+  "Small / Mid Cap Growth (India)":
+    "Peter Lynch GARP (#11, 73/100): High-ROCE mid-cap compounders at reasonable PEG — Lynch's 'ten-bagger' profile.",
+  "Broad Market ETF (India)":
+    "McKinsey Macro (#10, 70/100): Nifty index exposure as diversified large-cap floor — anchors India beta.",
+};
+
+function buildBuyReason(alloc: SectorAllocation): string {
+  const gap = Math.abs(alloc.gapPct).toFixed(1);
+  const base = `${alloc.sector} is ${gap}% underweight (${alloc.currentPct.toFixed(1)}% vs ${alloc.targetPct}% target).`;
+  const framework =
+    BUY_FRAMEWORK[alloc.sector] ??
+    "Bain Competitive (#8, 87/100): Increase sector exposure to improve portfolio alignment.";
+  return `${base} ${framework}`;
+}
+
+function buildSellReason(alloc: SectorAllocation): string {
+  const gap = alloc.gapPct.toFixed(1);
+  return (
+    `${alloc.sector} is ${gap}% overweight ` +
+    `(${alloc.currentPct.toFixed(1)}% vs ${alloc.targetPct}% target). ` +
+    `Bridgewater Risk (#3, 62/100): Concentration risk — trim proportionally to reduce single-sector tail exposure.`
+  );
+}
+
 /** Generate buy/sell/hold recommendations sorted by priority */
 export function generateRecommendations(
   holdings: EnrichedHolding[],
@@ -392,7 +469,7 @@ export function generateRecommendations(
         tickers: existingTickers,
         existingTickers,
         amount: Math.round(dollarGap),
-        reason: `${alloc.sector} is ${alloc.gapPct.toFixed(1)}% overweight (${alloc.currentPct.toFixed(1)}% vs ${alloc.targetPct}% target). Trim to rebalance.`,
+        reason: buildSellReason(alloc),
         priority: alloc.gapPct > 15 ? "high" : alloc.gapPct > 8 ? "medium" : "low",
         tickerBreakdown,
       });
@@ -420,7 +497,7 @@ export function generateRecommendations(
         tickers: buyTickers,
         existingTickers,
         amount: Math.round(dollarGap),
-        reason: `${alloc.sector} is ${Math.abs(alloc.gapPct).toFixed(1)}% underweight (${alloc.currentPct.toFixed(1)}% vs ${alloc.targetPct}% target). Add exposure.`,
+        reason: buildBuyReason(alloc),
         priority: Math.abs(alloc.gapPct) > 15 ? "high" : Math.abs(alloc.gapPct) > 8 ? "medium" : "low",
         tickerBreakdown,
       });
