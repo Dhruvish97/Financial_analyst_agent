@@ -21,6 +21,11 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Missing ticker" }, { status: 400 });
   }
 
+  // Validate ticker: 1–12 uppercase alphanumeric chars, dots, hyphens (e.g. BRK.B, BTC-USD)
+  if (!/^[A-Za-z0-9.\-]{1,12}$/.test(ticker)) {
+    return NextResponse.json({ error: "Invalid ticker" }, { status: 400 });
+  }
+
   const config = PERIOD_CONFIG[periodKey] ?? PERIOD_CONFIG["3m"];
   const period1 = new Date(Date.now() - config.days * 24 * 60 * 60 * 1000);
 

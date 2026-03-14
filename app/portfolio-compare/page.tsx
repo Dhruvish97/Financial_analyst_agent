@@ -407,8 +407,8 @@ function AnalysisResults({
           <h3 className="text-sm font-bold text-gray-300 uppercase tracking-wider mb-3">
             Detected Holdings ({analysis.holdings.length})
           </h3>
-          <div className="rounded-xl border border-gray-800 overflow-hidden">
-            <table className="w-full text-xs">
+          <div className="rounded-xl border border-gray-800 overflow-x-auto">
+            <table className="w-full text-xs min-w-[480px]">
               <thead>
                 <tr className="bg-gray-800/50 border-b border-gray-800">
                   {["Ticker", "Sector", "Qty", "Price", "Value", "%"].map((h) => (

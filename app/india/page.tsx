@@ -403,7 +403,7 @@ export default function IndiaPage() {
                         </td>
 
                         {/* 52-Wk Range */}
-                        <td className="px-3 py-3 min-w-36">
+                        <td className="px-3 py-3 w-36">
                           {loading ? <span className="animate-pulse text-gray-600 text-xs">…</span> : (
                             <WeekBar low={lp?.fiftyTwoWeekLow ?? null} high={lp?.fiftyTwoWeekHigh ?? null} price={lp?.price ?? null} />
                           )}

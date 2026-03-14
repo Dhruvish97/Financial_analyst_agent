@@ -49,6 +49,14 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const MAX_BYTES = 10 * 1024 * 1024; // 10 MB
+    if (file.size > MAX_BYTES) {
+      return NextResponse.json(
+        { error: "Image too large. Please use a screenshot under 10 MB." },
+        { status: 400 }
+      );
+    }
+
     const bytes = await file.arrayBuffer();
     imageBase64 = Buffer.from(bytes).toString("base64");
     mediaType = file.type as typeof mediaType;
