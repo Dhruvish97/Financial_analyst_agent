@@ -21,13 +21,15 @@ export function Navbar() {
   return (
     <>
       <nav
-        className="fixed top-0 left-0 right-0 z-50 h-16 bg-gray-900 border-b border-gray-800 flex items-center px-4 sm:px-6"
+        className="fixed top-0 left-0 right-0 z-50 h-16 bg-gray-900 flex items-center px-4 sm:px-6"
         aria-label="Main navigation"
       >
+        {/* Gradient bottom border */}
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-green-500/50 to-blue-500/40 pointer-events-none" />
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 mr-6 shrink-0" aria-label="Financial Analyst Agent home">
           <div
-            className="w-8 h-8 rounded-lg bg-green-500 flex items-center justify-center text-gray-950 font-bold text-sm shrink-0"
+            className="w-8 h-8 rounded-lg bg-green-500 flex items-center justify-center text-gray-950 font-bold text-sm shrink-0 animate-glow-pulse"
             aria-hidden="true"
           >
             FA
