@@ -5,6 +5,7 @@ import {
   PORTFOLIO_TARGETS,
   PortfolioStyle,
   PortfolioTarget,
+  Market,
 } from "@/constants/portfolio-targets";
 import {
   DetectedHolding,
@@ -37,73 +38,106 @@ function StepDot({ n, active, done }: { n: number; active: boolean; done: boolea
 
 // ── Step 1: Portfolio style selector ─────────────────────────────────────────
 
+const MARKET_STYLES: Record<Market, PortfolioStyle[]> = {
+  us: ["conservative", "aggressive"],
+  india: ["india-conservative", "india-aggressive"],
+};
+
 function StyleSelector({
   selected,
   onSelect,
+  market,
+  onMarketChange,
 }: {
   selected: PortfolioStyle | null;
   onSelect: (s: PortfolioStyle) => void;
+  market: Market;
+  onMarketChange: (m: Market) => void;
 }) {
+  const styles = MARKET_STYLES[market];
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-      {(["conservative", "aggressive"] as PortfolioStyle[]).map((style) => {
-        const t = PORTFOLIO_TARGETS[style];
-        const isSelected = selected === style;
-        return (
+    <div className="space-y-5">
+      {/* Market toggle */}
+      <div className="flex items-center gap-2 p-1 bg-gray-800 rounded-xl w-fit">
+        {(["us", "india"] as Market[]).map((m) => (
           <button
-            key={style}
-            onClick={() => onSelect(style)}
-            className={`text-left rounded-2xl border-2 p-6 transition-all duration-200 hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 ${
-              isSelected
-                ? style === "conservative"
-                  ? "border-green-500 bg-green-500/10"
-                  : "border-amber-500 bg-amber-500/10"
-                : "border-gray-700 bg-gray-900 hover:border-gray-500"
+            key={m}
+            onClick={() => onMarketChange(m)}
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+              market === m
+                ? "bg-gray-700 text-white shadow"
+                : "text-gray-500 hover:text-gray-300"
             }`}
           >
-            <div className="flex items-start justify-between mb-4">
-              <span className="text-4xl">{t.icon}</span>
-              {isSelected && (
-                <span
-                  className={`text-xs font-bold px-2 py-0.5 rounded-full ${
-                    style === "conservative"
-                      ? "bg-green-500/20 text-green-400 border border-green-700"
-                      : "bg-amber-500/20 text-amber-400 border border-amber-700"
-                  }`}
-                >
-                  Selected
-                </span>
-              )}
-            </div>
-            <h3 className={`text-xl font-bold mb-1 ${isSelected ? (style === "conservative" ? "text-green-400" : "text-amber-400") : "text-white"}`}>
-              {t.label}
-            </h3>
-            <p className="text-gray-400 text-sm font-medium mb-3">{t.tagline}</p>
-            <p className="text-gray-500 text-xs leading-relaxed mb-4">{t.description}</p>
-            <div className="flex flex-wrap gap-2">
-              <span className="text-[10px] font-mono bg-gray-800 border border-gray-700 text-gray-400 px-2 py-0.5 rounded-full">
-                Risk: {t.riskLevel}
-              </span>
-              <span className="text-[10px] font-mono bg-gray-800 border border-gray-700 text-gray-400 px-2 py-0.5 rounded-full">
-                Horizon: {t.timeHorizon}
-              </span>
-            </div>
-            {/* Sector breakdown mini-preview */}
-            <div className="mt-4 space-y-1.5">
-              {t.sectors.slice(0, 4).map((s) => (
-                <div key={s.sector} className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: s.color }} />
-                  <span className="text-[10px] text-gray-500 flex-1 truncate">{s.sector}</span>
-                  <span className="text-[10px] font-mono text-gray-400">{s.targetPct}%</span>
-                </div>
-              ))}
-              {t.sectors.length > 4 && (
-                <p className="text-[10px] text-gray-600 pl-4">+ {t.sectors.length - 4} more sectors</p>
-              )}
-            </div>
+            {m === "us" ? "🇺🇸 US Market" : "🇮🇳 India Market"}
           </button>
-        );
-      })}
+        ))}
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {styles.map((style) => {
+          const t = PORTFOLIO_TARGETS[style];
+          const isSelected = selected === style;
+          const isConservative = style.includes("conservative");
+          return (
+            <button
+              key={style}
+              onClick={() => onSelect(style)}
+              className={`text-left rounded-2xl border-2 p-6 transition-all duration-200 hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 ${
+                isSelected
+                  ? isConservative
+                    ? "border-green-500 bg-green-500/10"
+                    : "border-amber-500 bg-amber-500/10"
+                  : "border-gray-700 bg-gray-900 hover:border-gray-500"
+              }`}
+            >
+              <div className="flex items-start justify-between mb-4">
+                <span className="text-4xl">{t.icon}</span>
+                {isSelected && (
+                  <span
+                    className={`text-xs font-bold px-2 py-0.5 rounded-full ${
+                      isConservative
+                        ? "bg-green-500/20 text-green-400 border border-green-700"
+                        : "bg-amber-500/20 text-amber-400 border border-amber-700"
+                    }`}
+                  >
+                    Selected
+                  </span>
+                )}
+              </div>
+              <h3 className={`text-xl font-bold mb-1 ${isSelected ? (isConservative ? "text-green-400" : "text-amber-400") : "text-white"}`}>
+                {t.label}
+              </h3>
+              <p className="text-gray-400 text-sm font-medium mb-3">{t.tagline}</p>
+              <p className="text-gray-500 text-xs leading-relaxed mb-4">{t.description}</p>
+              <div className="flex flex-wrap gap-2">
+                <span className="text-[10px] font-mono bg-gray-800 border border-gray-700 text-gray-400 px-2 py-0.5 rounded-full">
+                  Risk: {t.riskLevel}
+                </span>
+                <span className="text-[10px] font-mono bg-gray-800 border border-gray-700 text-gray-400 px-2 py-0.5 rounded-full">
+                  Horizon: {t.timeHorizon}
+                </span>
+                <span className="text-[10px] font-mono bg-gray-800 border border-gray-700 text-gray-400 px-2 py-0.5 rounded-full">
+                  {t.currency === "INR" ? "₹ INR" : "$ USD"}
+                </span>
+              </div>
+              {/* Sector breakdown mini-preview */}
+              <div className="mt-4 space-y-1.5">
+                {t.sectors.slice(0, 4).map((s) => (
+                  <div key={s.sector} className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: s.color }} />
+                    <span className="text-[10px] text-gray-500 flex-1 truncate">{s.sector}</span>
+                    <span className="text-[10px] font-mono text-gray-400">{s.targetPct}%</span>
+                  </div>
+                ))}
+                {t.sectors.length > 4 && (
+                  <p className="text-[10px] text-gray-600 pl-4">+ {t.sectors.length - 4} more sectors</p>
+                )}
+              </div>
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
@@ -288,7 +322,12 @@ function AllocationRow({ alloc, target }: { alloc: import("@/lib/portfolio-analy
   );
 }
 
-function RecommendationCard({ rec }: { rec: import("@/lib/portfolio-analysis").Recommendation }) {
+function fmtAmount(value: number, currency: "USD" | "INR"): string {
+  if (currency === "INR") return `₹${value.toLocaleString("en-IN")}`;
+  return `$${value.toLocaleString()}`;
+}
+
+function RecommendationCard({ rec, currency }: { rec: import("@/lib/portfolio-analysis").Recommendation; currency: "USD" | "INR" }) {
   const isBuy = rec.action === "BUY";
   const priorityCls =
     rec.priority === "high" ? "border-red-800 bg-red-900/10" :
@@ -313,7 +352,7 @@ function RecommendationCard({ rec }: { rec: import("@/lib/portfolio-analysis").R
           )}
         </div>
         <span className={`font-mono text-sm font-bold shrink-0 ${isBuy ? "text-green-400" : "text-red-400"}`}>
-          {isBuy ? "+" : "-"}${rec.amount.toLocaleString()}
+          {isBuy ? "+" : "-"}{fmtAmount(rec.amount, currency)}
         </span>
       </div>
 
@@ -337,12 +376,12 @@ function RecommendationCard({ rec }: { rec: import("@/lib/portfolio-analysis").R
                       {isBuy ? "+" : "-"}{t.shares} shares
                     </span>
                     {t.price !== null && (
-                      <span className="text-gray-600">@ ${t.price.toFixed(2)}</span>
+                      <span className="text-gray-600">@ {fmtAmount(t.price, currency)}</span>
                     )}
                   </>
                 ) : null}
                 <span className={`${isBuy ? "text-green-600" : "text-red-600"}`}>
-                  = ${t.dollarAmount.toLocaleString()}
+                  = {fmtAmount(t.dollarAmount, currency)}
                 </span>
               </div>
             </div>
@@ -362,6 +401,7 @@ function AnalysisResults({
   target: PortfolioTarget;
   onReset: () => void;
 }) {
+  const currency = analysis.currency;
   const sells = analysis.recommendations.filter((r) => r.action === "SELL");
   const buys = analysis.recommendations.filter((r) => r.action === "BUY");
 
@@ -393,7 +433,7 @@ function AnalysisResults({
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">{analysis.summary}</p>
             <div className="flex flex-wrap gap-3 mt-3 text-xs text-gray-500 font-mono">
-              <span>Total: <span className="text-white font-bold">${analysis.totalValue.toLocaleString("en-US", { maximumFractionDigits: 0 })}</span></span>
+              <span>Total: <span className="text-white font-bold">{currency === "INR" ? `₹${analysis.totalValue.toLocaleString("en-IN", { maximumFractionDigits: 0 })}` : `$${analysis.totalValue.toLocaleString("en-US", { maximumFractionDigits: 0 })}`}</span></span>
               <span>Holdings: <span className="text-white font-bold">{analysis.holdings.length}</span></span>
               <span>Actions: <span className="text-red-400 font-bold">{sells.length} SELL</span> · <span className="text-green-400 font-bold">{buys.length} BUY</span></span>
             </div>
@@ -423,10 +463,10 @@ function AnalysisResults({
                     <td className="px-3 py-2 text-gray-500 max-w-28 truncate">{h.sector}</td>
                     <td className="px-3 py-2 font-mono text-gray-400">{h.quantity.toFixed(2)}</td>
                     <td className="px-3 py-2 font-mono text-gray-400">
-                      {h.price !== null ? `$${h.price.toFixed(2)}` : "—"}
+                      {h.price !== null ? fmtAmount(h.price, currency) : "—"}
                     </td>
                     <td className="px-3 py-2 font-mono text-white">
-                      ${h.computedValue.toLocaleString("en-US", { maximumFractionDigits: 0 })}
+                      {fmtAmount(h.computedValue, currency)}
                     </td>
                     <td className="px-3 py-2 font-mono text-gray-500">
                       {analysis.totalValue > 0
@@ -467,11 +507,11 @@ function AnalysisResults({
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {analysis.recommendations.map((rec, i) => (
-              <RecommendationCard key={i} rec={rec} />
+              <RecommendationCard key={i} rec={rec} currency={currency} />
             ))}
           </div>
           <p className="text-gray-700 text-xs mt-4">
-            Dollar amounts are estimates based on your current portfolio size. Not financial advice.
+            Amounts are estimates based on your current portfolio size. Not financial advice.
           </p>
         </div>
       )}
@@ -490,8 +530,14 @@ function AnalysisResults({
 
 export default function PortfolioComparePage() {
   const [step, setStep] = useState<1 | 2 | 3>(1);
+  const [market, setMarket] = useState<Market>("us");
   const [style, setStyle] = useState<PortfolioStyle | null>(null);
   const [analysis, setAnalysis] = useState<PortfolioAnalysis | null>(null);
+
+  const handleMarketChange = (m: Market) => {
+    setMarket(m);
+    setStyle(null);
+  };
 
   const handleStyleSelect = (s: PortfolioStyle) => {
     setStyle(s);
@@ -549,7 +595,7 @@ export default function PortfolioComparePage() {
             <p className="text-gray-500 text-sm mb-6">
               This determines your target sector allocation and which positions to recommend.
             </p>
-            <StyleSelector selected={style} onSelect={handleStyleSelect} />
+            <StyleSelector selected={style} onSelect={handleStyleSelect} market={market} onMarketChange={handleMarketChange} />
           </div>
         )}
 

@@ -46,6 +46,7 @@ export interface Recommendation {
 export interface PortfolioAnalysis {
   holdings: EnrichedHolding[];
   totalValue: number;
+  currency: "USD" | "INR";
   sectorAllocations: SectorAllocation[];
   recommendations: Recommendation[];
   overallScore: number;    // 0–100: how close to target
@@ -174,6 +175,104 @@ export const TICKER_SECTOR: Record<string, string> = {
   AMT: "REITs",
   PLD: "REITs",
   EQIX: "REITs",
+
+  // ── India: Banking & Finance ──
+  HDFCBANK: "Banking & Finance (India)",
+  ICICIBANK: "Banking & Finance (India)",
+  KOTAKBANK: "Banking & Finance (India)",
+  SBIN: "Banking & Finance (India)",
+  AXISBANK: "Banking & Finance (India)",
+  INDUSINDBK: "Banking & Finance (India)",
+  BAJFINANCE: "Banking & Finance (India)",
+  BAJAJFINSV: "Banking & Finance (India)",
+  BANKBARODA: "Banking & Finance (India)",
+  CANBK: "Banking & Finance (India)",
+  FEDERALBNK: "Banking & Finance (India)",
+  IDFCFIRSTB: "Banking & Finance (India)",
+  PNB: "Banking & Finance (India)",
+
+  // ── India: IT Services ──
+  TCS: "IT Services (India)",
+  INFY: "IT Services (India)",
+  WIPRO: "IT Services (India)",
+  HCLTECH: "IT Services (India)",
+  TECHM: "IT Services (India)",
+  LTIM: "IT Services (India)",
+  COFORGE: "IT Services (India)",
+  PERSISTENT: "IT Services (India)",
+  MPHASIS: "IT Services (India)",
+  OFSS: "IT Services (India)",
+  KPITTECH: "Small / Mid Cap Growth (India)",
+  TATAELXSI: "Small / Mid Cap Growth (India)",
+  HAPPSTMNDS: "Small / Mid Cap Growth (India)",
+  LTTS: "Small / Mid Cap Growth (India)",
+
+  // ── India: FMCG / Consumer Staples ──
+  HINDUNILVR: "FMCG / Consumer Staples (India)",
+  ITC: "FMCG / Consumer Staples (India)",
+  NESTLEIND: "FMCG / Consumer Staples (India)",
+  BRITANNIA: "FMCG / Consumer Staples (India)",
+  DABUR: "FMCG / Consumer Staples (India)",
+  MARICO: "FMCG / Consumer Staples (India)",
+  GODREJCP: "FMCG / Consumer Staples (India)",
+  COLPAL: "FMCG / Consumer Staples (India)",
+  EMAMILTD: "FMCG / Consumer Staples (India)",
+  TATACONSUM: "FMCG / Consumer Staples (India)",
+
+  // ── India: Pharma / Healthcare ──
+  SUNPHARMA: "Pharma / Healthcare (India)",
+  DRREDDY: "Pharma / Healthcare (India)",
+  CIPLA: "Pharma / Healthcare (India)",
+  DIVISLAB: "Pharma / Healthcare (India)",
+  LUPIN: "Pharma / Healthcare (India)",
+  AUROPHARMA: "Pharma / Healthcare (India)",
+  APOLLOHOSP: "Pharma / Healthcare (India)",
+  MAXHEALTH: "Pharma / Healthcare (India)",
+  FORTIS: "Pharma / Healthcare (India)",
+  ALKEM: "Pharma / Healthcare (India)",
+
+  // ── India: Auto & EV ──
+  TATAMOTORS: "Auto & EV (India)",
+  MARUTI: "Auto & EV (India)",
+  "M&M": "Auto & EV (India)",
+  "BAJAJ-AUTO": "Auto & EV (India)",
+  HEROMOTOCO: "Auto & EV (India)",
+  EICHERMOT: "Auto & EV (India)",
+  ASHOKLEY: "Auto & EV (India)",
+  TVSMOTOR: "Auto & EV (India)",
+
+  // ── India: Infrastructure / Capital Goods ──
+  LT: "Infrastructure / Capital Goods (India)",
+  BEL: "Infrastructure / Capital Goods (India)",
+  BHEL: "Infrastructure / Capital Goods (India)",
+  SIEMENS: "Infrastructure / Capital Goods (India)",
+  ABB: "Infrastructure / Capital Goods (India)",
+  CUMMINSIND: "Infrastructure / Capital Goods (India)",
+  THERMAX: "Infrastructure / Capital Goods (India)",
+  ADANIPORTS: "Infrastructure / Capital Goods (India)",
+
+  // ── India: Energy / PSU ──
+  RELIANCE: "Energy / PSU (India)",
+  ONGC: "Energy / PSU (India)",
+  NTPC: "Energy / PSU (India)",
+  BPCL: "Energy / PSU (India)",
+  IOC: "Energy / PSU (India)",
+  COALINDIA: "Energy / PSU (India)",
+  ADANIENT: "Energy / PSU (India)",
+  POWERGRID: "Energy / PSU (India)",
+  GAIL: "Energy / PSU (India)",
+
+  // ── India: Small / Mid Cap Growth ──
+  POLYCAB: "Small / Mid Cap Growth (India)",
+  PAGEIND: "Small / Mid Cap Growth (India)",
+  DIXONTECH: "Small / Mid Cap Growth (India)",
+
+  // ── India: Broad Market ETF ──
+  NIFTYBEES: "Broad Market ETF (India)",
+  JUNIORBEES: "Broad Market ETF (India)",
+  GOLDBEES: "Broad Market ETF (India)",
+  BANKBEES: "Broad Market ETF (India)",
+  ICICIB22: "Broad Market ETF (India)",
 };
 
 // ── Core Analysis Functions ───────────────────────────────────────────────────
@@ -370,5 +469,5 @@ export function analysePortfolio(
       : `Your portfolio needs significant rebalancing (${overallScore}/100). ` +
         `${overweightCount} sector(s) are overweight and ${underweightCount} are underweight.`;
 
-  return { holdings, totalValue, sectorAllocations, recommendations, overallScore, summary };
+  return { holdings, totalValue, currency: target.currency, sectorAllocations, recommendations, overallScore, summary };
 }
