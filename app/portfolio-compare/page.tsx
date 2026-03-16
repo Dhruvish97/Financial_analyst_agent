@@ -200,7 +200,7 @@ function ImageUploader({
     [processFile]
   );
 
-  const accentColor = style === "conservative" ? "border-green-500 bg-green-500/5" : "border-amber-500 bg-amber-500/5";
+  const accentColor = style.includes("conservative") ? "border-green-500 bg-green-500/5" : "border-amber-500 bg-amber-500/5";
 
   return (
     <div className="space-y-5">
@@ -565,13 +565,19 @@ export default function PortfolioComparePage() {
       <div className="max-w-6xl mx-auto px-4 py-10">
 
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-8 animate-fade-in-up relative">
+          {/* Ambient glow */}
+          <div className="absolute -top-12 -left-12 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl pointer-events-none" />
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-orange-400 text-xs font-mono font-semibold uppercase tracking-widest">
+            <span className="w-5 h-px bg-gradient-to-r from-purple-400 to-blue-500" />
+            <span className="text-purple-400 text-xs font-mono font-semibold uppercase tracking-widest">
               AI-Powered · Claude Vision
             </span>
           </div>
-          <h1 className="text-3xl font-bold text-white tracking-tight">Portfolio Advisor</h1>
+          <h1 className="text-3xl font-bold tracking-tight">
+            <span className="text-white">Portfolio </span>
+            <span className="bg-gradient-to-r from-purple-400 via-blue-300 to-indigo-400 bg-clip-text text-transparent">Advisor</span>
+          </h1>
           <p className="text-gray-400 mt-1 text-sm max-w-2xl">
             Upload a screenshot of your brokerage portfolio. Claude AI extracts your holdings,
             maps them to sectors, and gives you specific rebalancing recommendations aligned
@@ -580,17 +586,17 @@ export default function PortfolioComparePage() {
         </div>
 
         {/* Step indicator */}
-        <div className="print-hide flex items-center gap-3 mb-8">
+        <div className="print-hide flex items-center gap-3 mb-8 animate-fade-in-up-1">
           <StepDot n={1} active={step === 1} done={step > 1} />
-          <div className="flex-1 h-px bg-gray-800 max-w-12" />
+          <div className={`flex-1 h-px max-w-16 transition-colors duration-500 ${step > 1 ? "bg-green-500" : "bg-gray-800"}`} />
           <StepDot n={2} active={step === 2} done={step > 2} />
-          <div className="flex-1 h-px bg-gray-800 max-w-12" />
+          <div className={`flex-1 h-px max-w-16 transition-colors duration-500 ${step > 2 ? "bg-green-500" : "bg-gray-800"}`} />
           <StepDot n={3} active={step === 3} done={false} />
         </div>
 
         {/* Step content */}
         {step === 1 && (
-          <div>
+          <div className="animate-fade-in-up-2">
             <h2 className="text-lg font-bold text-white mb-1">Choose your investment style</h2>
             <p className="text-gray-500 text-sm mb-6">
               This determines your target sector allocation and which positions to recommend.

@@ -174,15 +174,21 @@ export default function IndiaPage() {
       <div className="max-w-7xl mx-auto px-4 py-10">
 
         {/* ── Header ──────────────────────────────────────────────── */}
-        <div className="mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div className="mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4 animate-fade-in-up relative">
+          {/* Ambient glow */}
+          <div className="absolute -top-12 -left-12 w-64 h-64 bg-orange-500/5 rounded-full blur-3xl pointer-events-none" />
           <div>
             <div className="flex items-center gap-2 mb-2">
               <span className="text-2xl" aria-hidden="true">🇮🇳</span>
+              <span className="w-5 h-px bg-gradient-to-r from-orange-400 to-orange-600" />
               <span className="text-orange-400 text-xs font-mono font-semibold uppercase tracking-widest">
                 NSE · BSE · Indian Equities
               </span>
             </div>
-            <h1 className="text-3xl font-bold text-white tracking-tight">India Market</h1>
+            <h1 className="text-3xl font-bold tracking-tight">
+              <span className="text-white">India </span>
+              <span className="bg-gradient-to-r from-orange-400 via-amber-300 to-yellow-400 bg-clip-text text-transparent">Market</span>
+            </h1>
             <p className="text-gray-400 mt-1 text-sm max-w-xl">
               Top booming sectors and 10 high-conviction stocks for a 2–3 year holding period.
               Researched using Goldman Sachs, Morgan Stanley, Bain &amp; McKinsey frameworks.
@@ -206,12 +212,17 @@ export default function IndiaPage() {
         </div>
 
         {/* ── Index strip ─────────────────────────────────────────── */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8 animate-fade-in-up-1">
           {[
             { label: "NIFTY 50", lp: nifty },
             { label: "SENSEX", lp: sensex },
-          ].map(({ label, lp }) => (
-            <div key={label} className="bg-gray-900 border border-gray-800 rounded-xl p-3">
+          ].map(({ label, lp }) => {
+            const loaded = !loading && !!lp?.price;
+            const isUp = (lp?.changePercent ?? 0) >= 0;
+            return (
+            <div key={label} className={`bg-gray-900 border border-gray-800 rounded-xl p-3 border-l-2 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg ${
+              !loaded ? "border-l-gray-700" : isUp ? "border-l-green-500 hover:shadow-green-950/60" : "border-l-red-500 hover:shadow-red-950/60"
+            }`}>
               <p className="text-gray-500 text-xs font-medium">{label}</p>
               {loading || !lp?.price ? (
                 <p className="text-gray-700 font-mono text-xl animate-pulse mt-0.5">—</p>
@@ -226,7 +237,7 @@ export default function IndiaPage() {
                 </>
               )}
             </div>
-          ))}
+          ); })}
           <div className="bg-gray-900 border border-gray-800 rounded-xl p-3 col-span-2 sm:col-span-2">
             <p className="text-gray-500 text-xs font-medium mb-2">Research Frameworks Applied</p>
             <div className="flex flex-wrap gap-1.5">
@@ -238,7 +249,7 @@ export default function IndiaPage() {
         </div>
 
         {/* ── Sector Cards ─────────────────────────────────────────── */}
-        <div className="mb-8">
+        <div className="mb-8 animate-fade-in-up-2">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-bold text-white">Top Booming Sectors</h2>
             {activeSector && (
@@ -301,7 +312,7 @@ export default function IndiaPage() {
         </div>
 
         {/* ── Top 10 Stocks Table ──────────────────────────────────── */}
-        <div>
+        <div className="animate-fade-in-up-3">
           <div className="flex items-center justify-between mb-4">
             <div>
               <h2 className="text-lg font-bold text-white">
