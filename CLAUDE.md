@@ -145,3 +145,133 @@ npm run build        # production build validation
 npx vercel --prod --yes  # deploy to Vercel (ask user first)
 git push             # push to GitHub
 ```
+
+---
+
+## Workflow Orchestration
+
+### 1. Plan Node Default
+- Enter plan mode for ANY non-trivial task (3+ steps or architectural decisions)
+- If something goes sideways, STOP and re-plan immediately — don't keep pushing
+- Use plan mode for verification steps, not just building
+- Write detailed specs upfront to reduce ambiguity
+
+### 2. Subagent Strategy
+- Use subagents liberally to keep main context window clean
+- Offload research, exploration, and parallel analysis to subagents
+- For complex problems, throw more compute at it via subagents
+- One task per subagent for focused execution
+
+### 3. Self-Improvement Loop
+- After ANY correction from the user: update `tasks/lessons.md` with the pattern
+- Write rules for yourself that prevent the same mistake
+- Ruthlessly iterate on these lessons until mistake rate drops
+- Review lessons at session start for relevant project
+
+### 4. Verification Before Done
+- Never mark a task complete without proving it works
+- Diff behavior between main and your changes when relevant
+- Ask yourself: "Would a staff engineer approve this?"
+- Run tests, check logs, demonstrate correctness
+
+### 5. Demand Elegance (Balanced)
+- For non-trivial changes: pause and ask "is there a more elegant way?"
+- If a fix feels hacky: "Knowing everything I know now, implement the elegant solution"
+- Skip this for simple, obvious fixes — don't over-engineer
+- Challenge your own work before presenting it
+
+### 6. Autonomous Bug Fixing
+- When given a bug report: just fix it. Don't ask for hand-holding
+- Point at logs, errors, failing tests — then resolve them
+- Zero context switching required from the user
+- Go fix failing CI tests without being told how
+
+---
+
+## Task Management
+
+1. **Plan First**: Write plan to `tasks/todo.md` with checkable items
+2. **Verify Plan**: Check in before starting implementation
+3. **Track Progress**: Mark items complete as you go
+4. **Explain Changes**: High-level summary at each step
+5. **Document Results**: Add review section to `tasks/todo.md`
+6. **Capture Lessons**: Update `tasks/lessons.md` after corrections
+
+---
+
+## Core Principles
+
+- **Simplicity First**: Make every change as simple as possible. Impact minimal code.
+- **No Laziness**: Find root causes. No temporary fixes. Senior developer standards.
+- **Minimal Impact**: Changes should only touch what's necessary. Avoid introducing bugs.
+
+---
+
+## Weekly Research Trigger
+
+When the user says any of the following (or anything similar):
+- "trigger the weekly research"
+- "run the weekly research"
+- "run research update"
+- "do the weekly research"
+- "update the research"
+
+**Execute this exact sequence without asking for confirmation:**
+
+### Step 1 — Collect live market data
+Run `npm run research` — this fetches live quotes for all tickers and saves
+`.research-snapshot.json`. Read that file after it completes.
+
+### Step 2 — Web-search for recent news (run these in parallel)
+Search for the following to get current intelligence beyond the snapshot prices:
+- Recent earnings results for: NVDA, META, GOOGL, MSFT, AMZN, AVGO, PLTR, TSLA, CRM, NET
+- India macro: RBI policy, NIFTY outlook, IT sector, HDFCBANK, BAJFINANCE, HCLTECH news
+- US macro: Fed policy, AI capex cycle, hyperscaler earnings, S&P 500 trend
+- India sectors: Banking NIM trends, IT deal wins, Defence PLI, Renewable energy bids
+
+### Step 3 — Read current constants
+Read these three files to understand what's already written:
+- `constants/portfolio-stocks.ts`
+- `constants/india-stocks.ts`
+- `constants/portfolio-targets.ts`
+
+### Step 4 — Update constants using research frameworks
+Apply the backtested framework sequence (see STOCK_ANALYSIS_PROMPTS.md):
+- **#17 Moat Destroyer (7 Powers)** — confirm each holding still scores ≥3/7
+- **#8 Bain Competitive Analysis** — sector winner still leading?
+- **#18 Behavioral Finance Bias Auditor** — any contrarian opportunities from sentiment?
+- **#10 McKinsey Macro** — megatrend alignment still intact?
+
+Update the following fields with fresh, specific analysis (numbers, dates, recent events):
+- `rationale` — every US and India stock
+- `catalysts` — every US and India stock (3–5 catalysts with timeframes)
+- `outlook` — every India sector card
+- `drivers` — every India sector card
+
+**Rules for updates:**
+- Never change: tickers, names, colors, allocations (unless conviction has materially changed — flag it)
+- Be specific: reference actual P/E ratios, earnings figures, policy dates, product launches
+- Do not copy-paste the old rationale — rewrite it with current intelligence
+- Stamp the month/year in the file header comment (e.g. "March 2026 market refresh → April 2026 market refresh")
+
+### Step 5 — Validate, test, build
+```bash
+npm test          # must pass 138+ tests
+npm run build     # must compile with zero errors
+```
+Fix any failures before proceeding.
+
+### Step 6 — Commit, push, deploy
+```bash
+git add constants/portfolio-stocks.ts constants/india-stocks.ts
+git commit -m "research: weekly market refresh YYYY-MM-DD"
+git push
+npx vercel --prod --yes
+```
+
+### What to report back
+After completing, summarize:
+- Key market changes found (price moves, earnings surprises, macro shifts)
+- Which stocks had rationale meaningfully updated and why
+- Any conviction changes flagged (allocation recommendations if relevant)
+- Deployment URL confirmation
