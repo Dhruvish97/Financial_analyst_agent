@@ -14,47 +14,52 @@ const donutData = CRYPTO_PORTFOLIO.map((c) => ({
   color: c.color,
 }));
 
+const btcDominance = CRYPTO_PORTFOLIO.find((c) => c.displayTicker === "BTC")?.allocation ?? 40;
+
 export default function CryptoPage() {
   return (
-    <div className="max-w-7xl mx-auto px-6 py-10">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+
       {/* Header */}
-      <div className="mb-8 animate-fade-in-up relative">
-        {/* Ambient glow */}
-        <div className="absolute -top-12 -left-12 w-64 h-64 bg-orange-500/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="flex items-center gap-2 mb-2">
-          <span className="w-5 h-px bg-gradient-to-r from-orange-400 to-orange-600" />
-          <p className="text-orange-400 text-xs font-mono font-semibold uppercase tracking-widest">
+      <div className="mb-8 animate-fade-in-up">
+        <div className="flex items-center gap-2.5 mb-3">
+          <div className="w-1 h-5 rounded-full" style={{ background: "linear-gradient(180deg, #ff6b2b, #fbbf24)" }} />
+          <span className="text-[11px] font-mono font-bold uppercase tracking-[0.2em]" style={{ color: "#ff6b2b" }}>
             Digital Assets
-          </p>
+          </span>
         </div>
-        <h1 className="text-3xl font-bold mb-3">
+        <h1 className="text-3xl sm:text-4xl font-black tracking-tight mb-3">
           <span className="text-white">Crypto </span>
-          <span className="bg-gradient-to-r from-orange-400 via-amber-300 to-yellow-400 bg-clip-text text-transparent">Portfolio</span>
+          <span className="text-gradient-orange">Portfolio</span>
         </h1>
-        <p className="text-gray-400 max-w-2xl">
+        <p className="text-sm max-w-2xl" style={{ color: "rgba(255,255,255,0.4)" }}>
           A moderately aggressive digital assets portfolio anchored in Bitcoin and Ethereum,
           with selective exposure to high-upside Layer 1 protocols and DeFi infrastructure.
         </p>
       </div>
 
       {/* Stats + Chart Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8 animate-fade-in-up-1">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-8 animate-fade-in-up-1">
         <div className="lg:col-span-2 grid grid-cols-3 gap-4">
-          <div className="bg-gray-900 rounded-xl border border-gray-800 p-4 relative overflow-hidden border-l-2 border-l-orange-500">
-            <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-orange-500/60 to-transparent" />
-            <p className="text-gray-500 text-xs uppercase tracking-wider">Holdings</p>
-            <p className="text-orange-400 text-2xl font-bold font-mono mt-1">{CRYPTO_PORTFOLIO.length}</p>
-          </div>
-          <div className="bg-gray-900 rounded-xl border border-gray-800 p-4 relative overflow-hidden border-l-2 border-l-amber-500">
-            <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-amber-500/60 to-transparent" />
-            <p className="text-gray-500 text-xs uppercase tracking-wider">Strategy</p>
-            <p className="text-amber-400 text-lg font-bold mt-1">Mod. Aggressive</p>
-          </div>
-          <div className="bg-gray-900 rounded-xl border border-gray-800 p-4 relative overflow-hidden border-l-2 border-l-yellow-500">
-            <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent" />
-            <p className="text-gray-500 text-xs uppercase tracking-wider">BTC Dominance</p>
-            <p className="text-yellow-400 text-2xl font-bold mt-1 font-mono">40%</p>
-          </div>
+          {[
+            { label: "Holdings",     value: CRYPTO_PORTFOLIO.length.toString(), color: "#ff6b2b" },
+            { label: "Strategy",     value: "Mod. Aggressive",                  color: "#fbbf24", small: true },
+            { label: "BTC Weight",   value: `${btcDominance}%`,                 color: "#f59e0b" },
+          ].map(({ label, value, color, small }) => (
+            <div
+              key={label}
+              className="rounded-xl p-4 relative overflow-hidden"
+              style={{ background: `${color}08`, border: `1px solid ${color}20` }}
+            >
+              <div className="absolute top-0 left-0 right-0 h-[2px]" style={{ background: `linear-gradient(90deg, transparent, ${color}60, transparent)` }} />
+              <p className="text-[10px] font-mono font-bold uppercase tracking-[0.12em] mb-1.5" style={{ color: `${color}80` }}>
+                {label}
+              </p>
+              <p className={`font-black font-mono tabular-nums leading-none ${small ? "text-lg" : "text-2xl"}`} style={{ color }}>
+                {value}
+              </p>
+            </div>
+          ))}
         </div>
         <div>
           <AllocationDonut data={donutData} title="Crypto" />

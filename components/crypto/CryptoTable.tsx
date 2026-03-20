@@ -13,29 +13,35 @@ export function CryptoTable() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-4">
-        <p className="text-gray-500 text-sm">
-          Moderately aggressive crypto portfolio · 6 holdings
+      <div className="flex items-center justify-between mb-5">
+        <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
+          Moderately aggressive · <span className="font-mono">{CRYPTO_PORTFOLIO.length}</span> holdings
         </p>
         {lastUpdated && (
-          <p className="text-gray-600 text-xs font-mono">
+          <p className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>
             Updated {lastUpdated.toLocaleTimeString()}
           </p>
         )}
       </div>
 
-      <div className="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden">
+      <div
+        className="rounded-2xl overflow-hidden"
+        style={{ border: "1px solid rgba(255,255,255,0.07)", background: "rgba(255,255,255,0.02)" }}
+      >
         <div className="overflow-x-auto">
           <table className="w-full text-sm" aria-label="Crypto portfolio holdings with live prices">
             <thead>
-              <tr className="border-b border-gray-800">
-                <th scope="col" className="text-left px-4 py-3 text-gray-500 font-medium text-xs uppercase tracking-wider w-8">#</th>
-                <th scope="col" className="text-left px-4 py-3 text-gray-500 font-medium text-xs uppercase tracking-wider">Asset</th>
-                <th scope="col" className="text-left px-4 py-3 text-gray-500 font-medium text-xs uppercase tracking-wider">Name</th>
-                <th scope="col" className="text-right px-4 py-3 text-gray-500 font-medium text-xs uppercase tracking-wider">Alloc.</th>
-                <th scope="col" className="text-right px-4 py-3 text-gray-500 font-medium text-xs uppercase tracking-wider">Price</th>
-                <th scope="col" className="text-right px-4 py-3 text-gray-500 font-medium text-xs uppercase tracking-wider">24h Change</th>
-                <th scope="col" className="text-right px-4 py-3 text-gray-500 font-medium text-xs uppercase tracking-wider hidden lg:table-cell">Mkt Cap</th>
+              <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.06)", background: "rgba(255,255,255,0.025)" }}>
+                {["#", "Asset", "Name", "Allocation", "Price", "24h", "Mkt Cap"].map((h) => (
+                  <th
+                    key={h}
+                    scope="col"
+                    className="text-left px-4 py-3 text-[10px] font-bold uppercase tracking-[0.12em] whitespace-nowrap"
+                    style={{ color: "rgba(255,255,255,0.3)" }}
+                  >
+                    {h}
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>
@@ -44,55 +50,83 @@ export function CryptoTable() {
                 return (
                   <tr
                     key={coin.ticker}
-                    className="border-b border-gray-800/50 hover:bg-gray-800/40 transition-colors"
+                    className="transition-colors"
+                    style={{ borderBottom: "1px solid rgba(255,255,255,0.04)" }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.03)";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.background = "";
+                    }}
                   >
-                    <td className="px-4 py-4 text-gray-600 font-mono text-xs">{idx + 1}</td>
+                    {/* # */}
+                    <td className="px-4 py-4 font-mono text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
+                      {idx + 1}
+                    </td>
+
+                    {/* Asset ticker with left color stripe */}
                     <td className="px-4 py-4">
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2.5">
                         <div
-                          className="w-2 h-2 rounded-full flex-shrink-0"
+                          className="w-1 h-8 rounded-full shrink-0"
                           style={{ backgroundColor: coin.color }}
                         />
-                        <span className="font-mono font-bold text-blue-400">{coin.displayTicker}</span>
+                        <span
+                          className="font-mono font-bold text-sm"
+                          style={{ color: coin.color }}
+                        >
+                          {coin.displayTicker}
+                        </span>
                       </div>
                     </td>
+
+                    {/* Name + rationale */}
                     <td className="px-4 py-4">
-                      <div>
-                        <p className="text-white font-medium">{coin.name}</p>
-                        <p className="text-gray-500 text-xs mt-0.5 max-w-xs line-clamp-1 hidden sm:block">
-                          {coin.rationale}
-                        </p>
-                      </div>
+                      <p className="text-white font-semibold text-sm">{coin.name}</p>
+                      <p
+                        className="text-xs mt-0.5 max-w-xs line-clamp-1 hidden sm:block"
+                        style={{ color: "rgba(255,255,255,0.35)" }}
+                      >
+                        {coin.rationale}
+                      </p>
                     </td>
-                    <td className="px-4 py-4 text-right">
-                      <div className="flex flex-col items-end gap-1">
-                        <span className="text-white font-mono font-semibold">{coin.allocation}%</span>
-                        <div className="w-16 h-1 bg-gray-800 rounded-full overflow-hidden">
+
+                    {/* Allocation with vivid gradient bar */}
+                    <td className="px-4 py-4">
+                      <div className="flex flex-col items-start gap-1.5">
+                        <span className="font-mono font-bold text-white text-sm">{coin.allocation}%</span>
+                        <div
+                          className="h-1.5 rounded-full overflow-hidden"
+                          style={{ width: "64px", background: "rgba(255,255,255,0.07)" }}
+                        >
                           <div
-                            className="h-full rounded-full"
+                            className="h-full rounded-full transition-all duration-700"
                             style={{
                               width: `${(coin.allocation / MAX_ALLOCATION) * 100}%`,
-                              backgroundColor: coin.color,
+                              background: `linear-gradient(90deg, ${coin.color}cc, ${coin.color})`,
                             }}
                           />
                         </div>
                       </div>
                     </td>
+
+                    {/* Price */}
                     <td className="px-4 py-4 text-right">
                       {loading ? (
-                        <LoadingSkeleton className="h-4 w-24 ml-auto" />
+                        <LoadingSkeleton className="h-5 w-24 ml-auto" />
                       ) : (
                         <PriceDisplay price={liveData?.price ?? null} isCrypto />
                       )}
                     </td>
+
+                    {/* 24h change */}
                     <td className="px-4 py-4 text-right">
-                      <ChangeIndicator
-                        changePercent={liveData?.changePercent ?? null}
-                        loading={loading}
-                      />
+                      <ChangeIndicator changePercent={liveData?.changePercent ?? null} loading={loading} />
                     </td>
+
+                    {/* Mkt cap */}
                     <td className="px-4 py-4 text-right hidden lg:table-cell">
-                      <span className="text-gray-400 font-mono text-xs">
+                      <span className="font-mono text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
                         {loading ? (
                           <LoadingSkeleton className="h-4 w-16 ml-auto" />
                         ) : (
@@ -108,7 +142,7 @@ export function CryptoTable() {
         </div>
       </div>
 
-      <p className="text-gray-600 text-xs mt-3 text-center">
+      <p className="text-[11px] mt-3 text-center" style={{ color: "rgba(255,255,255,0.2)" }}>
         Prices refresh every 60 seconds · Crypto markets trade 24/7
       </p>
     </div>

@@ -12,31 +12,31 @@ describe("ChangeIndicator", () => {
     expect(screen.getByText("—")).toBeInTheDocument();
   });
 
-  it("shows upward arrow for positive change", () => {
+  it("shows upward triangle for positive change", () => {
     render(<ChangeIndicator changePercent={2.5} />);
-    expect(screen.getByText("↑")).toBeInTheDocument();
+    expect(screen.getByText("▲")).toBeInTheDocument();
     expect(screen.getByText("2.50%")).toBeInTheDocument();
   });
 
-  it("shows downward arrow for negative change", () => {
+  it("shows downward triangle for negative change", () => {
     render(<ChangeIndicator changePercent={-1.75} />);
-    expect(screen.getByText("↓")).toBeInTheDocument();
+    expect(screen.getByText("▼")).toBeInTheDocument();
     expect(screen.getByText("1.75%")).toBeInTheDocument();
   });
 
-  it("shows upward arrow for zero change", () => {
+  it("shows upward triangle for zero change", () => {
     render(<ChangeIndicator changePercent={0} />);
-    expect(screen.getByText("↑")).toBeInTheDocument();
+    expect(screen.getByText("▲")).toBeInTheDocument();
     expect(screen.getByText("0.00%")).toBeInTheDocument();
   });
 
-  it("applies green color for positive change", () => {
+  it("applies mint color style for positive change", () => {
     const { container } = render(<ChangeIndicator changePercent={5} />);
-    expect(container.firstChild).toHaveClass("text-green-400");
+    expect(container.firstChild).toHaveStyle({ color: "rgb(0, 229, 160)" });
   });
 
-  it("applies red color for negative change", () => {
+  it("applies rose color style for negative change", () => {
     const { container } = render(<ChangeIndicator changePercent={-5} />);
-    expect(container.firstChild).toHaveClass("text-red-400");
+    expect(container.firstChild).toHaveStyle({ color: "rgb(255, 77, 106)" });
   });
 });

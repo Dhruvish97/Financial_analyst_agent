@@ -19,17 +19,21 @@ function StepDot({ n, active, done }: { n: number; active: boolean; done: boolea
   return (
     <div className="flex items-center gap-2">
       <div
-        className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold border-2 transition-colors ${
+        className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all"
+        style={
           done
-            ? "bg-green-500 border-green-500 text-gray-950"
+            ? { background: "#00e5a0", color: "#07060f", border: "2px solid #00e5a0", boxShadow: "0 0 12px rgba(0,229,160,0.4)" }
             : active
-            ? "bg-transparent border-white text-white"
-            : "bg-transparent border-gray-700 text-gray-600"
-        }`}
+            ? { background: "transparent", color: "#a78bfa", border: "2px solid #a78bfa", boxShadow: "0 0 12px rgba(167,139,250,0.3)" }
+            : { background: "transparent", color: "rgba(255,255,255,0.2)", border: "2px solid rgba(255,255,255,0.1)" }
+        }
       >
         {done ? "✓" : n}
       </div>
-      <span className={`text-xs font-medium hidden sm:block ${active ? "text-white" : done ? "text-green-400" : "text-gray-600"}`}>
+      <span
+        className="text-xs font-medium hidden sm:block"
+        style={{ color: done ? "#00e5a0" : active ? "#a78bfa" : "rgba(255,255,255,0.25)" }}
+      >
         {n === 1 ? "Style" : n === 2 ? "Upload" : "Analysis"}
       </span>
     </div>
@@ -58,16 +62,17 @@ function StyleSelector({
   return (
     <div className="space-y-5">
       {/* Market toggle */}
-      <div className="flex items-center gap-2 p-1 bg-gray-800 rounded-xl w-fit">
+      <div className="flex items-center gap-1 p-1 rounded-xl w-fit" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
         {(["us", "india"] as Market[]).map((m) => (
           <button
             key={m}
             onClick={() => onMarketChange(m)}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+            className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all"
+            style={
               market === m
-                ? "bg-gray-700 text-white shadow"
-                : "text-gray-500 hover:text-gray-300"
-            }`}
+                ? { background: "rgba(167,139,250,0.15)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.3)" }
+                : { color: "rgba(255,255,255,0.35)", border: "1px solid transparent" }
+            }
           >
             {m === "us" ? "🇺🇸 US Market" : "🇮🇳 India Market"}
           </button>
@@ -79,59 +84,70 @@ function StyleSelector({
           const t = PORTFOLIO_TARGETS[style];
           const isSelected = selected === style;
           const isConservative = style.includes("conservative");
+          const accent = isConservative ? "#00e5a0" : "#fb923c";
+
           return (
             <button
               key={style}
               onClick={() => onSelect(style)}
-              className={`text-left rounded-2xl border-2 p-6 transition-all duration-200 hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 ${
-                isSelected
-                  ? isConservative
-                    ? "border-green-500 bg-green-500/10"
-                    : "border-amber-500 bg-amber-500/10"
-                  : "border-gray-700 bg-gray-900 hover:border-gray-500"
-              }`}
+              className="text-left rounded-2xl p-6 transition-all duration-200 hover:scale-[1.01] focus-visible:outline-none relative overflow-hidden"
+              style={{
+                background: isSelected
+                  ? `rgba(${isConservative ? "0,229,160" : "251,146,60"},0.08)`
+                  : "rgba(255,255,255,0.03)",
+                border: isSelected
+                  ? `1px solid ${accent}50`
+                  : "1px solid rgba(255,255,255,0.08)",
+                boxShadow: isSelected ? `0 0 24px ${accent}12` : "none",
+              }}
             >
+              {isSelected && (
+                <div className="absolute top-0 left-0 right-0 h-[2px]" style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }} />
+              )}
               <div className="flex items-start justify-between mb-4">
                 <span className="text-4xl">{t.icon}</span>
                 {isSelected && (
                   <span
-                    className={`text-xs font-bold px-2 py-0.5 rounded-full ${
-                      isConservative
-                        ? "bg-green-500/20 text-green-400 border border-green-700"
-                        : "bg-amber-500/20 text-amber-400 border border-amber-700"
-                    }`}
+                    className="text-xs font-bold px-2 py-0.5 rounded-full"
+                    style={{ color: accent, background: `${accent}18`, border: `1px solid ${accent}35` }}
                   >
-                    Selected
+                    Selected ✓
                   </span>
                 )}
               </div>
-              <h3 className={`text-xl font-bold mb-1 ${isSelected ? (isConservative ? "text-green-400" : "text-amber-400") : "text-white"}`}>
+              <h3
+                className="text-xl font-bold mb-1"
+                style={{ color: isSelected ? accent : "rgba(255,255,255,0.9)" }}
+              >
                 {t.label}
               </h3>
-              <p className="text-gray-400 text-sm font-medium mb-3">{t.tagline}</p>
-              <p className="text-gray-500 text-xs leading-relaxed mb-4">{t.description}</p>
+              <p className="text-sm font-medium mb-3" style={{ color: "rgba(255,255,255,0.45)" }}>{t.tagline}</p>
+              <p className="text-xs leading-relaxed mb-4" style={{ color: "rgba(255,255,255,0.35)" }}>{t.description}</p>
               <div className="flex flex-wrap gap-2">
-                <span className="text-[10px] font-mono bg-gray-800 border border-gray-700 text-gray-400 px-2 py-0.5 rounded-full">
-                  Risk: {t.riskLevel}
-                </span>
-                <span className="text-[10px] font-mono bg-gray-800 border border-gray-700 text-gray-400 px-2 py-0.5 rounded-full">
-                  Horizon: {t.timeHorizon}
-                </span>
-                <span className="text-[10px] font-mono bg-gray-800 border border-gray-700 text-gray-400 px-2 py-0.5 rounded-full">
-                  {t.currency === "INR" ? "₹ INR" : "$ USD"}
-                </span>
+                {[
+                  { label: `Risk: ${t.riskLevel}` },
+                  { label: `Horizon: ${t.timeHorizon}` },
+                  { label: t.currency === "INR" ? "₹ INR" : "$ USD" },
+                ].map(({ label }) => (
+                  <span
+                    key={label}
+                    className="text-[10px] font-mono px-2 py-0.5 rounded-full"
+                    style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.4)" }}
+                  >
+                    {label}
+                  </span>
+                ))}
               </div>
-              {/* Sector breakdown mini-preview */}
               <div className="mt-4 space-y-1.5">
                 {t.sectors.slice(0, 4).map((s) => (
                   <div key={s.sector} className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: s.color }} />
-                    <span className="text-[10px] text-gray-500 flex-1 truncate">{s.sector}</span>
-                    <span className="text-[10px] font-mono text-gray-400">{s.targetPct}%</span>
+                    <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: s.color }} />
+                    <span className="text-[10px] flex-1 truncate" style={{ color: "rgba(255,255,255,0.4)" }}>{s.sector}</span>
+                    <span className="text-[10px] font-mono" style={{ color: "rgba(255,255,255,0.5)" }}>{s.targetPct}%</span>
                   </div>
                 ))}
                 {t.sectors.length > 4 && (
-                  <p className="text-[10px] text-gray-600 pl-4">+ {t.sectors.length - 4} more sectors</p>
+                  <p className="text-[10px] pl-3.5" style={{ color: "rgba(255,255,255,0.2)" }}>+ {t.sectors.length - 4} more sectors</p>
                 )}
               </div>
             </button>
@@ -200,8 +216,6 @@ function ImageUploader({
     [processFile]
   );
 
-  const accentColor = style.includes("conservative") ? "border-green-500 bg-green-500/5" : "border-amber-500 bg-amber-500/5";
-
   return (
     <div className="space-y-5">
       {/* Drop zone */}
@@ -210,10 +224,15 @@ function ImageUploader({
         onDragOver={(e) => { e.preventDefault(); setDragging(true); }}
         onDragLeave={() => setDragging(false)}
         onClick={() => fileRef.current?.click()}
-        className={`relative rounded-2xl border-2 border-dashed cursor-pointer transition-all duration-200 p-10 text-center ${
-          dragging ? accentColor : "border-gray-700 bg-gray-900 hover:border-gray-500"
-        }`}
+        className="relative rounded-2xl border-2 border-dashed cursor-pointer transition-all duration-200 p-10 text-center"
+        style={{
+          borderColor: dragging ? "#a78bfa" : "rgba(255,255,255,0.1)",
+          background: dragging ? "rgba(167,139,250,0.06)" : "rgba(255,255,255,0.02)",
+        }}
       >
+        {dragging && (
+          <div className="absolute top-0 left-0 right-0 h-[2px] rounded-t-2xl" style={{ background: "linear-gradient(90deg, transparent, #a78bfa, transparent)" }} />
+        )}
         <input
           ref={fileRef}
           type="file"
@@ -223,27 +242,30 @@ function ImageUploader({
         />
         {loading ? (
           <div className="flex flex-col items-center gap-3">
-            <div className="w-10 h-10 border-2 border-white/20 border-t-white rounded-full animate-spin" />
-            <p className="text-gray-400 text-sm">Analyzing with Claude AI…</p>
-            <p className="text-gray-600 text-xs">Extracting tickers, quantities, and prices</p>
+            <div className="w-10 h-10 border-2 rounded-full animate-spin" style={{ borderColor: "rgba(167,139,250,0.2)", borderTopColor: "#a78bfa" }} />
+            <p className="text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>Analyzing with Claude AI…</p>
+            <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Extracting tickers, quantities, and prices</p>
           </div>
         ) : preview ? (
           <div className="flex flex-col items-center gap-3">
-            <img src={preview} alt="Portfolio preview" className="max-h-40 rounded-lg object-contain border border-gray-700" />
-            <p className="text-gray-400 text-xs">{fileName} · Click to replace</p>
+            <img src={preview} alt="Portfolio preview" className="max-h-40 rounded-lg object-contain" style={{ border: "1px solid rgba(255,255,255,0.1)" }} />
+            <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>{fileName} · Click to replace</p>
           </div>
         ) : (
           <div className="flex flex-col items-center gap-3">
-            <div className="w-14 h-14 rounded-2xl bg-gray-800 border border-gray-700 flex items-center justify-center text-2xl">
+            <div
+              className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl"
+              style={{ background: "rgba(167,139,250,0.08)", border: "1px solid rgba(167,139,250,0.2)" }}
+            >
               📸
             </div>
             <div>
               <p className="text-white font-semibold text-sm">Drop your portfolio screenshot here</p>
-              <p className="text-gray-500 text-xs mt-1">or click to browse · PNG, JPG, WebP supported</p>
+              <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>or click to browse · PNG, JPG, WebP supported</p>
             </div>
             <div className="flex gap-3 mt-2">
-              {["Stock list view", "Pie chart view", "Mobile app screenshot"].map((t) => (
-                <span key={t} className="text-[10px] bg-gray-800 border border-gray-700 text-gray-500 px-2 py-0.5 rounded-full">{t}</span>
+              {["Stock list view", "Pie chart view", "Mobile screenshot"].map((t) => (
+                <span key={t} className="text-[10px] px-2 py-0.5 rounded-full" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.35)" }}>{t}</span>
               ))}
             </div>
           </div>
@@ -251,12 +273,12 @@ function ImageUploader({
       </div>
 
       {error && (
-        <div className="rounded-xl border border-red-800 bg-red-900/20 p-4 text-red-400 text-sm">
+        <div className="rounded-xl p-4 text-sm" style={{ color: "#ff4d6a", background: "rgba(255,77,106,0.08)", border: "1px solid rgba(255,77,106,0.2)" }}>
           {error}
         </div>
       )}
 
-      <p className="text-gray-600 text-xs text-center">
+      <p className="text-xs text-center" style={{ color: "rgba(255,255,255,0.2)" }}>
         Your screenshot is sent to Claude AI for analysis and is never stored.
       </p>
     </div>
@@ -265,21 +287,23 @@ function ImageUploader({
 
 // ── Step 3: Analysis results ───────────────────────────────────────────────────
 
-function ScoreBadge({ score, style }: { score: number; style: PortfolioStyle }) {
+function ScoreBadge({ score }: { score: number }) {
   const color =
-    score >= 80 ? "text-green-400 border-green-700 bg-green-900/20" :
-    score >= 60 ? "text-yellow-400 border-yellow-700 bg-yellow-900/20" :
-                  "text-red-400 border-red-700 bg-red-900/20";
+    score >= 80 ? { ring: "#00e5a0", text: "#00e5a0", bg: "rgba(0,229,160,0.08)" } :
+    score >= 60 ? { ring: "#fbbf24", text: "#fbbf24", bg: "rgba(251,191,36,0.08)" } :
+                  { ring: "#ff4d6a", text: "#ff4d6a", bg: "rgba(255,77,106,0.08)" };
   return (
-    <div className={`inline-flex flex-col items-center justify-center w-20 h-20 rounded-full border-2 ${color}`}>
-      <span className="text-2xl font-bold font-mono">{score}</span>
-      <span className="text-[9px] uppercase tracking-widest">/ 100</span>
+    <div
+      className="inline-flex flex-col items-center justify-center w-20 h-20 rounded-full"
+      style={{ border: `2px solid ${color.ring}`, background: color.bg, boxShadow: `0 0 20px ${color.ring}25` }}
+    >
+      <span className="text-2xl font-bold font-mono" style={{ color: color.text }}>{score}</span>
+      <span className="text-[9px] uppercase tracking-widest" style={{ color: `${color.text}80` }}>/ 100</span>
     </div>
   );
 }
 
 function AllocationRow({ alloc, target }: { alloc: import("@/lib/portfolio-analysis").SectorAllocation; target: PortfolioTarget }) {
-  const sectorTarget = target.sectors.find((s) => s.sector === alloc.sector);
   const maxPct = Math.max(alloc.currentPct, alloc.targetPct, 5);
   const isOver = alloc.status === "overweight";
   const isUnder = alloc.status === "underweight";
@@ -288,34 +312,29 @@ function AllocationRow({ alloc, target }: { alloc: import("@/lib/portfolio-analy
     <div className="space-y-1">
       <div className="flex items-center justify-between text-xs">
         <div className="flex items-center gap-2 min-w-0">
-          <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: alloc.color }} />
-          <span className="text-gray-300 truncate">{alloc.sector}</span>
-          {isOver && <span className="text-red-400 text-[9px] font-bold uppercase tracking-wide shrink-0">▲ Over</span>}
-          {isUnder && alloc.targetPct > 0 && <span className="text-amber-400 text-[9px] font-bold uppercase tracking-wide shrink-0">▼ Under</span>}
+          <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: alloc.color }} />
+          <span className="truncate" style={{ color: "rgba(255,255,255,0.65)" }}>{alloc.sector}</span>
+          {isOver && <span className="text-[9px] font-bold uppercase tracking-wide shrink-0" style={{ color: "#ff4d6a" }}>▲ Over</span>}
+          {isUnder && alloc.targetPct > 0 && <span className="text-[9px] font-bold uppercase tracking-wide shrink-0" style={{ color: "#fbbf24" }}>▼ Under</span>}
         </div>
-        <div className="flex items-center gap-3 shrink-0 ml-3">
-          <span className="text-gray-500 font-mono">
-            {alloc.currentPct.toFixed(1)}%
-            <span className="text-gray-700"> / </span>
-            <span style={{ color: alloc.color }}>{alloc.targetPct}%</span>
-          </span>
+        <div className="flex items-center gap-2 shrink-0 ml-3 font-mono text-xs">
+          <span style={{ color: "rgba(255,255,255,0.4)" }}>{alloc.currentPct.toFixed(1)}%</span>
+          <span style={{ color: "rgba(255,255,255,0.15)" }}>/</span>
+          <span style={{ color: alloc.color }}>{alloc.targetPct}%</span>
         </div>
       </div>
-      {/* Dual bar: current vs target */}
-      <div className="relative h-3 rounded-full bg-gray-800 overflow-hidden">
-        {/* Target bar (ghost) */}
+      <div className="relative h-2.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.05)" }}>
         <div
-          className="absolute inset-y-0 left-0 rounded-full opacity-25"
-          style={{ width: `${(alloc.targetPct / maxPct) * 100}%`, backgroundColor: alloc.color }}
+          className="absolute inset-y-0 left-0 rounded-full"
+          style={{ width: `${(alloc.targetPct / maxPct) * 100}%`, backgroundColor: alloc.color, opacity: 0.2 }}
         />
-        {/* Current bar */}
         <div
           className="absolute inset-y-0 left-0 rounded-full"
           style={{ width: `${Math.min(100, (alloc.currentPct / maxPct) * 100)}%`, backgroundColor: alloc.color, opacity: 0.85 }}
         />
       </div>
-      <div className="flex justify-between text-[9px] text-gray-700">
-        <span>Your: {alloc.currentPct.toFixed(1)}%</span>
+      <div className="flex justify-between text-[9px]" style={{ color: "rgba(255,255,255,0.2)" }}>
+        <span>Yours: {alloc.currentPct.toFixed(1)}%</span>
         <span>Target: {alloc.targetPct}%</span>
       </div>
     </div>
@@ -329,58 +348,66 @@ function fmtAmount(value: number, currency: "USD" | "INR"): string {
 
 function RecommendationCard({ rec, currency }: { rec: import("@/lib/portfolio-analysis").Recommendation; currency: "USD" | "INR" }) {
   const isBuy = rec.action === "BUY";
-  const priorityCls =
-    rec.priority === "high" ? "border-red-800 bg-red-900/10" :
-    rec.priority === "medium" ? "border-yellow-800 bg-yellow-900/10" :
-    "border-gray-700 bg-gray-900";
-  const actionCls = isBuy
-    ? "bg-green-500/20 text-green-400 border-green-700"
-    : "bg-red-500/20 text-red-400 border-red-700";
+  const accentColor = isBuy ? "#00e5a0" : "#ff4d6a";
+  const priorityBg =
+    rec.priority === "high" ? "rgba(255,77,106,0.06)" :
+    rec.priority === "medium" ? "rgba(251,191,36,0.06)" :
+    "rgba(255,255,255,0.02)";
+  const priorityBorder =
+    rec.priority === "high" ? "rgba(255,77,106,0.2)" :
+    rec.priority === "medium" ? "rgba(251,191,36,0.15)" :
+    "rgba(255,255,255,0.07)";
 
   return (
-    <div className={`rounded-xl border p-4 ${priorityCls}`}>
+    <div className="rounded-xl p-4" style={{ background: priorityBg, border: `1px solid ${priorityBorder}` }}>
       <div className="flex items-start justify-between gap-3 mb-2">
         <div className="flex items-center gap-2 flex-wrap">
-          <span className={`text-xs font-bold px-2 py-0.5 rounded border ${actionCls}`}>
+          <span
+            className="text-xs font-bold px-2 py-0.5 rounded"
+            style={{ color: accentColor, background: `${accentColor}15`, border: `1px solid ${accentColor}30` }}
+          >
             {rec.action}
           </span>
-          <span className="text-gray-300 text-xs font-semibold">{rec.sector}</span>
+          <span className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.8)" }}>{rec.sector}</span>
           {rec.priority === "high" && (
-            <span className="text-[9px] font-bold text-red-400 uppercase tracking-wider border border-red-800 bg-red-900/20 px-1.5 py-0.5 rounded">
+            <span className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded" style={{ color: "#ff4d6a", background: "rgba(255,77,106,0.1)", border: "1px solid rgba(255,77,106,0.2)" }}>
               High Priority
             </span>
           )}
         </div>
-        <span className={`font-mono text-sm font-bold shrink-0 ${isBuy ? "text-green-400" : "text-red-400"}`}>
+        <span className="font-mono text-sm font-bold shrink-0" style={{ color: accentColor }}>
           {isBuy ? "+" : "-"}{fmtAmount(rec.amount, currency)}
         </span>
       </div>
 
-      <p className="text-gray-400 text-xs leading-relaxed mb-3">{rec.reason}</p>
+      <p className="text-xs leading-relaxed mb-3" style={{ color: "rgba(255,255,255,0.45)" }}>{rec.reason}</p>
 
-      {/* Per-ticker share breakdown */}
       {rec.tickerBreakdown.length > 0 && (
         <div className="mt-2 space-y-1.5">
-          <span className="text-[9px] text-gray-600 uppercase tracking-wider">
+          <span className="text-[9px] uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.25)" }}>
             {isBuy ? "Buy" : "Sell"} breakdown:
           </span>
           {rec.tickerBreakdown.map((t) => (
-            <div key={t.ticker} className={`flex items-center justify-between rounded-lg px-2.5 py-1.5 ${isBuy ? "bg-green-900/20 border border-green-900" : "bg-red-900/20 border border-red-900"}`}>
-              <span className={`font-mono font-bold text-xs ${isBuy ? "text-green-300" : "text-red-300"}`}>
+            <div
+              key={t.ticker}
+              className="flex items-center justify-between rounded-lg px-2.5 py-1.5"
+              style={{ background: `${accentColor}0a`, border: `1px solid ${accentColor}18` }}
+            >
+              <span className="font-mono font-bold text-xs" style={{ color: accentColor }}>
                 {t.ticker}
               </span>
-              <div className="flex items-center gap-2 text-[10px] font-mono text-right">
+              <div className="flex items-center gap-2 text-[10px] font-mono">
                 {t.shares !== null ? (
                   <>
-                    <span className={`font-bold ${isBuy ? "text-green-400" : "text-red-400"}`}>
+                    <span className="font-bold" style={{ color: accentColor }}>
                       {isBuy ? "+" : "-"}{t.shares} shares
                     </span>
                     {t.price !== null && (
-                      <span className="text-gray-600">@ {fmtAmount(t.price, currency)}</span>
+                      <span style={{ color: "rgba(255,255,255,0.3)" }}>@ {fmtAmount(t.price, currency)}</span>
                     )}
                   </>
                 ) : null}
-                <span className={`${isBuy ? "text-green-600" : "text-red-600"}`}>
+                <span style={{ color: `${accentColor}80` }}>
                   = {fmtAmount(t.dollarAmount, currency)}
                 </span>
               </div>
@@ -410,20 +437,22 @@ function AnalysisResults({
       <style>{`
         @media print {
           nav, .print-hide { display: none !important; }
-          body { background: #030712 !important; }
           @page { margin: 1.5cm; }
         }
       `}</style>
+
       {/* Summary header */}
-      <div className="rounded-2xl border border-gray-700 bg-gray-900 p-6">
+      <div className="rounded-2xl p-6 relative overflow-hidden" style={{ background: "rgba(167,139,250,0.05)", border: "1px solid rgba(167,139,250,0.18)" }}>
+        <div className="absolute top-0 left-0 right-0 h-[2px]" style={{ background: "linear-gradient(90deg, transparent, #a78bfa, transparent)" }} />
         <div className="flex items-start gap-5 flex-wrap">
-          <ScoreBadge score={analysis.overallScore} style={target.style} />
+          <ScoreBadge score={analysis.overallScore} />
           <div className="flex-1 min-w-0">
-            <div className="flex items-center justify-between gap-2 mb-1 flex-wrap">
+            <div className="flex items-center justify-between gap-2 mb-2 flex-wrap">
               <span className="text-white font-bold text-lg">{target.icon} {target.label} Alignment</span>
               <button
                 onClick={() => window.print()}
-                className="print-hide flex items-center gap-1.5 text-xs font-medium border border-gray-600 hover:border-gray-400 text-gray-400 hover:text-white rounded-lg px-3 py-1.5 transition-colors"
+                className="print-hide flex items-center gap-1.5 text-xs font-medium rounded-lg px-3 py-1.5 transition-all"
+                style={{ color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.03)" }}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
@@ -431,11 +460,11 @@ function AnalysisResults({
                 Download PDF
               </button>
             </div>
-            <p className="text-gray-400 text-sm leading-relaxed">{analysis.summary}</p>
-            <div className="flex flex-wrap gap-3 mt-3 text-xs text-gray-500 font-mono">
+            <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>{analysis.summary}</p>
+            <div className="flex flex-wrap gap-3 mt-3 text-xs font-mono" style={{ color: "rgba(255,255,255,0.35)" }}>
               <span>Total: <span className="text-white font-bold">{currency === "INR" ? `₹${analysis.totalValue.toLocaleString("en-IN", { maximumFractionDigits: 0 })}` : `$${analysis.totalValue.toLocaleString("en-US", { maximumFractionDigits: 0 })}`}</span></span>
               <span>Holdings: <span className="text-white font-bold">{analysis.holdings.length}</span></span>
-              <span>Actions: <span className="text-red-400 font-bold">{sells.length} SELL</span> · <span className="text-green-400 font-bold">{buys.length} BUY</span></span>
+              <span>Actions: <span className="font-bold" style={{ color: "#ff4d6a" }}>{sells.length} SELL</span> · <span className="font-bold" style={{ color: "#00e5a0" }}>{buys.length} BUY</span></span>
             </div>
           </div>
         </div>
@@ -444,31 +473,34 @@ function AnalysisResults({
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
         {/* Left: Detected holdings */}
         <div>
-          <h3 className="text-sm font-bold text-gray-300 uppercase tracking-wider mb-3">
-            Detected Holdings ({analysis.holdings.length})
-          </h3>
-          <div className="rounded-xl border border-gray-800 overflow-x-auto">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-1 h-4 rounded-full" style={{ background: "#a78bfa" }} />
+            <h3 className="text-sm font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.6)" }}>
+              Detected Holdings ({analysis.holdings.length})
+            </h3>
+          </div>
+          <div className="rounded-xl overflow-x-auto" style={{ border: "1px solid rgba(255,255,255,0.07)" }}>
             <table className="w-full text-xs min-w-[480px]">
               <thead>
-                <tr className="bg-gray-800/50 border-b border-gray-800">
+                <tr style={{ background: "rgba(255,255,255,0.02)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
                   {["Ticker", "Sector", "Qty", "Price", "Value", "%"].map((h) => (
-                    <th key={h} className="text-left text-[10px] text-gray-500 uppercase tracking-wider px-3 py-2 font-semibold">{h}</th>
+                    <th key={h} className="text-left text-[10px] uppercase tracking-wider px-3 py-2.5 font-bold" style={{ color: "rgba(255,255,255,0.3)" }}>{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {analysis.holdings.map((h, i) => (
-                  <tr key={h.ticker + i} className={`border-b border-gray-800/50 ${i % 2 === 0 ? "" : "bg-gray-800/10"}`}>
-                    <td className="px-3 py-2 font-mono font-bold text-white">{h.ticker}</td>
-                    <td className="px-3 py-2 text-gray-500 max-w-28 truncate">{h.sector}</td>
-                    <td className="px-3 py-2 font-mono text-gray-400">{h.quantity.toFixed(2)}</td>
-                    <td className="px-3 py-2 font-mono text-gray-400">
+                  <tr key={h.ticker + i} style={{ borderBottom: "1px solid rgba(255,255,255,0.04)", background: i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.01)" }}>
+                    <td className="px-3 py-2.5 font-mono font-bold text-white">{h.ticker}</td>
+                    <td className="px-3 py-2.5 max-w-28 truncate" style={{ color: "rgba(255,255,255,0.4)" }}>{h.sector}</td>
+                    <td className="px-3 py-2.5 font-mono" style={{ color: "rgba(255,255,255,0.4)" }}>{h.quantity.toFixed(2)}</td>
+                    <td className="px-3 py-2.5 font-mono" style={{ color: "rgba(255,255,255,0.4)" }}>
                       {h.price !== null ? fmtAmount(h.price, currency) : "—"}
                     </td>
-                    <td className="px-3 py-2 font-mono text-white">
+                    <td className="px-3 py-2.5 font-mono text-white">
                       {fmtAmount(h.computedValue, currency)}
                     </td>
-                    <td className="px-3 py-2 font-mono text-gray-500">
+                    <td className="px-3 py-2.5 font-mono" style={{ color: "rgba(255,255,255,0.4)" }}>
                       {analysis.totalValue > 0
                         ? ((h.computedValue / analysis.totalValue) * 100).toFixed(1) + "%"
                         : "—"}
@@ -480,15 +512,22 @@ function AnalysisResults({
           </div>
         </div>
 
-        {/* Right: Sector allocation comparison */}
+        {/* Right: Sector allocation */}
         <div>
-          <h3 className="text-sm font-bold text-gray-300 uppercase tracking-wider mb-3">
-            Sector Allocation vs Target
-          </h3>
-          <div className="rounded-xl border border-gray-800 bg-gray-900 p-5 space-y-5">
-            <div className="flex gap-4 text-[10px] text-gray-600 mb-1">
-              <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-2 rounded-sm bg-gray-500 opacity-50" />Target (ghost)</span>
-              <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-2 rounded-sm bg-gray-500" />Yours (solid)</span>
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-1 h-4 rounded-full" style={{ background: "#a78bfa" }} />
+            <h3 className="text-sm font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.6)" }}>
+              Sector Allocation vs Target
+            </h3>
+          </div>
+          <div className="rounded-xl p-5 space-y-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.07)" }}>
+            <div className="flex gap-4 text-[10px] mb-1" style={{ color: "rgba(255,255,255,0.25)" }}>
+              <span className="flex items-center gap-1.5">
+                <span className="inline-block w-3 h-2 rounded-sm" style={{ background: "rgba(255,255,255,0.2)" }} />Target (ghost)
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="inline-block w-3 h-2 rounded-sm" style={{ background: "rgba(255,255,255,0.5)" }} />Yours (solid)
+              </span>
             </div>
             {analysis.sectorAllocations
               .filter((a) => a.targetPct > 0 || a.currentPct > 0)
@@ -502,15 +541,18 @@ function AnalysisResults({
       {/* Recommendations */}
       {analysis.recommendations.length > 0 && (
         <div>
-          <h3 className="text-sm font-bold text-gray-300 uppercase tracking-wider mb-3">
-            Rebalancing Recommendations
-          </h3>
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-1 h-4 rounded-full" style={{ background: "#a78bfa" }} />
+            <h3 className="text-sm font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.6)" }}>
+              Rebalancing Recommendations
+            </h3>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {analysis.recommendations.map((rec, i) => (
               <RecommendationCard key={i} rec={rec} currency={currency} />
             ))}
           </div>
-          <p className="text-gray-700 text-xs mt-4">
+          <p className="text-xs mt-4" style={{ color: "rgba(255,255,255,0.2)" }}>
             Amounts are estimates based on your current portfolio size. Not financial advice.
           </p>
         </div>
@@ -518,7 +560,10 @@ function AnalysisResults({
 
       <button
         onClick={onReset}
-        className="print-hide text-xs text-gray-500 hover:text-white transition-colors border border-gray-700 hover:border-gray-500 rounded-lg px-4 py-2"
+        className="print-hide text-xs rounded-lg px-4 py-2 transition-all"
+        style={{ color: "rgba(255,255,255,0.35)", border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.02)" }}
+        onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.7)"; }}
+        onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.35)"; }}
       >
         ← Start over
       </button>
@@ -561,85 +606,82 @@ export default function PortfolioComparePage() {
   const target = style ? PORTFOLIO_TARGETS[style] : null;
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
-      <div className="max-w-6xl mx-auto px-4 py-10">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
 
-        {/* Header */}
-        <div className="mb-8 animate-fade-in-up relative">
-          {/* Ambient glow */}
-          <div className="absolute -top-12 -left-12 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl pointer-events-none" />
-          <div className="flex items-center gap-2 mb-2">
-            <span className="w-5 h-px bg-gradient-to-r from-purple-400 to-blue-500" />
-            <span className="text-purple-400 text-xs font-mono font-semibold uppercase tracking-widest">
-              AI-Powered · Claude Vision
-            </span>
-          </div>
-          <h1 className="text-3xl font-bold tracking-tight">
-            <span className="text-white">Portfolio </span>
-            <span className="bg-gradient-to-r from-purple-400 via-blue-300 to-indigo-400 bg-clip-text text-transparent">Advisor</span>
-          </h1>
-          <p className="text-gray-400 mt-1 text-sm max-w-2xl">
-            Upload a screenshot of your brokerage portfolio. Claude AI extracts your holdings,
-            maps them to sectors, and gives you specific rebalancing recommendations aligned
-            to your chosen investment style.
+      {/* Header */}
+      <div className="mb-8 animate-fade-in-up">
+        <div className="flex items-center gap-2.5 mb-3">
+          <div className="w-1 h-5 rounded-full" style={{ background: "linear-gradient(180deg, #a78bfa, #818cf8)" }} />
+          <span className="text-[11px] font-mono font-bold uppercase tracking-[0.2em]" style={{ color: "#a78bfa" }}>
+            AI-Powered · Claude Vision
+          </span>
+        </div>
+        <h1 className="text-3xl sm:text-4xl font-black tracking-tight mb-3">
+          <span className="text-white">Portfolio </span>
+          <span className="text-gradient-violet">Advisor</span>
+        </h1>
+        <p className="text-sm max-w-2xl" style={{ color: "rgba(255,255,255,0.4)" }}>
+          Upload a screenshot of your brokerage portfolio. Claude AI extracts your holdings,
+          maps them to sectors, and gives you specific rebalancing recommendations aligned
+          to your chosen investment style.
+        </p>
+      </div>
+
+      {/* Step indicator */}
+      <div className="print-hide flex items-center gap-3 mb-8 animate-fade-in-up-1">
+        <StepDot n={1} active={step === 1} done={step > 1} />
+        <div className="flex-1 h-px max-w-16 transition-colors duration-500" style={{ background: step > 1 ? "#00e5a0" : "rgba(255,255,255,0.08)" }} />
+        <StepDot n={2} active={step === 2} done={step > 2} />
+        <div className="flex-1 h-px max-w-16 transition-colors duration-500" style={{ background: step > 2 ? "#00e5a0" : "rgba(255,255,255,0.08)" }} />
+        <StepDot n={3} active={step === 3} done={false} />
+      </div>
+
+      {/* Step content */}
+      {step === 1 && (
+        <div className="animate-fade-in-up-2">
+          <h2 className="text-lg font-bold text-white mb-1">Choose your investment style</h2>
+          <p className="text-sm mb-6" style={{ color: "rgba(255,255,255,0.35)" }}>
+            This determines your target sector allocation and which positions to recommend.
           </p>
+          <StyleSelector selected={style} onSelect={handleStyleSelect} market={market} onMarketChange={handleMarketChange} />
         </div>
+      )}
 
-        {/* Step indicator */}
-        <div className="print-hide flex items-center gap-3 mb-8 animate-fade-in-up-1">
-          <StepDot n={1} active={step === 1} done={step > 1} />
-          <div className={`flex-1 h-px max-w-16 transition-colors duration-500 ${step > 1 ? "bg-green-500" : "bg-gray-800"}`} />
-          <StepDot n={2} active={step === 2} done={step > 2} />
-          <div className={`flex-1 h-px max-w-16 transition-colors duration-500 ${step > 2 ? "bg-green-500" : "bg-gray-800"}`} />
-          <StepDot n={3} active={step === 3} done={false} />
-        </div>
-
-        {/* Step content */}
-        {step === 1 && (
-          <div className="animate-fade-in-up-2">
-            <h2 className="text-lg font-bold text-white mb-1">Choose your investment style</h2>
-            <p className="text-gray-500 text-sm mb-6">
-              This determines your target sector allocation and which positions to recommend.
-            </p>
-            <StyleSelector selected={style} onSelect={handleStyleSelect} market={market} onMarketChange={handleMarketChange} />
-          </div>
-        )}
-
-        {step === 2 && style && target && (
-          <div>
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <h2 className="text-lg font-bold text-white mb-1">
-                  {target.icon} {target.label} — Upload your portfolio
-                </h2>
-                <p className="text-gray-500 text-sm">
-                  Screenshot from any brokerage app. Works with list view or pie chart.
-                </p>
-              </div>
-              <button
-                onClick={() => setStep(1)}
-                className="text-xs text-gray-500 hover:text-white border border-gray-700 rounded-lg px-3 py-1.5 transition-colors"
-              >
-                ← Change style
-              </button>
+      {step === 2 && style && target && (
+        <div className="animate-fade-in-up-1">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h2 className="text-lg font-bold text-white mb-1">
+                {target.icon} {target.label} — Upload your portfolio
+              </h2>
+              <p className="text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>
+                Screenshot from any brokerage app. Works with list view or pie chart.
+              </p>
             </div>
-            <ImageUploader onHoldings={handleHoldings} style={style} />
+            <button
+              onClick={() => setStep(1)}
+              className="text-xs rounded-lg px-3 py-1.5 transition-all"
+              style={{ color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.02)" }}
+            >
+              ← Change style
+            </button>
           </div>
-        )}
-
-        {step === 3 && analysis && target && (
-          <AnalysisResults analysis={analysis} target={target} onReset={handleReset} />
-        )}
-
-        {/* Disclaimer */}
-        <div className="mt-10 border border-gray-800 rounded-xl p-4 bg-gray-900/50">
-          <p className="text-gray-600 text-xs leading-relaxed">
-            <span className="text-gray-400 font-semibold">Disclaimer: </span>
-            This tool is for educational and informational purposes only. Recommendations are
-            generated by AI based on backtested frameworks and do not constitute financial advice.
-            Always consult a registered investment advisor before making any investment decisions.
-          </p>
+          <ImageUploader onHoldings={handleHoldings} style={style} />
         </div>
+      )}
+
+      {step === 3 && analysis && target && (
+        <AnalysisResults analysis={analysis} target={target} onReset={handleReset} />
+      )}
+
+      {/* Disclaimer */}
+      <div className="mt-10 rounded-xl p-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+        <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.28)" }}>
+          <span className="font-semibold" style={{ color: "rgba(255,255,255,0.45)" }}>Disclaimer: </span>
+          This tool is for educational and informational purposes only. Recommendations are
+          generated by AI based on backtested frameworks and do not constitute financial advice.
+          Always consult a registered investment advisor before making any investment decisions.
+        </p>
       </div>
     </div>
   );

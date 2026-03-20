@@ -17,28 +17,17 @@ interface CustomLabelProps {
 }
 
 function renderCustomLabel({
-  cx = 0,
-  cy = 0,
-  midAngle = 0,
-  innerRadius = 0,
-  outerRadius = 0,
-  percent = 0,
-  name = "",
+  cx = 0, cy = 0, midAngle = 0,
+  innerRadius = 0, outerRadius = 0,
+  percent = 0, name = "",
 }: CustomLabelProps) {
   if (percent < 0.07) return null;
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
   const x = cx + radius * Math.cos(-midAngle * RADIAN);
   const y = cy + radius * Math.sin(-midAngle * RADIAN);
   return (
-    <text
-      x={x}
-      y={y}
-      fill="white"
-      textAnchor="middle"
-      dominantBaseline="central"
-      fontSize={10}
-      fontWeight={600}
-    >
+    <text x={x} y={y} fill="rgba(255,255,255,0.9)" textAnchor="middle"
+      dominantBaseline="central" fontSize={9} fontWeight={700} fontFamily="monospace">
       {name}
     </text>
   );
@@ -50,23 +39,27 @@ interface TooltipPayload {
   payload: { color: string; rationale: string };
 }
 
-interface CustomTooltipProps {
-  active?: boolean;
-  payload?: TooltipPayload[];
-}
-
-function CustomTooltip({ active, payload }: CustomTooltipProps) {
+function CustomTooltip({ active, payload }: { active?: boolean; payload?: TooltipPayload[] }) {
   if (!active || !payload?.length) return null;
   const item = payload[0];
   return (
-    <div className="bg-gray-900 border border-gray-700 rounded-lg p-2 text-xs max-w-48 shadow-xl">
-      <p className="font-bold text-white mb-1">
-        {item.name} — {item.value}%
-      </p>
-      <p className="text-gray-400 leading-snug">{item.payload.rationale}</p>
+    <div
+      className="rounded-xl p-3 text-xs max-w-52 shadow-2xl"
+      style={{ background: "rgba(15,14,24,0.96)", border: "1px solid rgba(255,255,255,0.12)" }}
+    >
+      <p className="font-bold text-white mb-1 font-mono">{item.name} — {item.value}%</p>
+      <p className="leading-snug" style={{ color: "rgba(255,255,255,0.5)" }}>{item.payload.rationale}</p>
     </div>
   );
 }
+
+// Map portfolio id → section glow color
+const PORTFOLIO_ACCENT: Record<string, string> = {
+  stocks:   "#ff6b6b",
+  "roth-ira": "#00e5a0",
+  "401k":   "#00d4ff",
+  house:    "#a78bfa",
+};
 
 interface PortfolioCardProps {
   portfolio: PortfolioDefinition;
@@ -75,12 +68,7 @@ interface PortfolioCardProps {
   onClick: () => void;
 }
 
-export function PortfolioCard({
-  portfolio,
-  prices,
-  loadingPrices,
-  onClick,
-}: PortfolioCardProps) {
+export function PortfolioCard({ portfolio, prices, loadingPrices, onClick }: PortfolioCardProps) {
   const chartData = portfolio.holdings.map((h) => ({
     name: h.ticker,
     value: h.allocation,
@@ -88,7 +76,6 @@ export function PortfolioCard({
     rationale: h.rationale,
   }));
 
-  // Calculate weighted portfolio value change (by allocation weight)
   let weightedChange: number | null = 0;
   let hasAnyPrice = false;
   for (const h of portfolio.holdings) {
@@ -101,102 +88,121 @@ export function PortfolioCard({
   if (!hasAnyPrice) weightedChange = null;
 
   const isPositive = weightedChange !== null && weightedChange >= 0;
+  const accent = PORTFOLIO_ACCENT[portfolio.id] ?? "#00d4ff";
+  const changeColor = weightedChange === null ? "rgba(255,255,255,0.3)" : isPositive ? "#00e5a0" : "#ff4d6a";
 
   return (
     <button
       onClick={onClick}
-      className={`
-        w-full text-left rounded-2xl border bg-gradient-to-br ${portfolio.cardGradient}
-        ${portfolio.accentColor} hover:border-white/20 transition-all duration-300
-        hover:scale-[1.02] hover:shadow-2xl hover:shadow-black/40
-        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40
-        p-5 group
-      `}
+      className="w-full text-left rounded-2xl glass glass-hover transition-all duration-300 hover:scale-[1.018] group focus-visible:outline-none focus-visible:ring-2"
+      style={{}}
+      onMouseEnter={(e) => {
+        (e.currentTarget as HTMLElement).style.boxShadow = `0 0 0 1px ${accent}30, 0 16px 56px ${accent}12`;
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLElement).style.boxShadow = "";
+      }}
       aria-label={`View ${portfolio.name} portfolio details`}
     >
-      {/* Header */}
-      <div className="flex items-start justify-between mb-4">
-        <div>
-          <h2 className="text-xl font-bold text-white leading-tight">
-            {portfolio.name}
-          </h2>
-          <p className="text-xs text-gray-400 mt-0.5">{portfolio.accountType}</p>
-        </div>
-        <div className="flex flex-col items-end gap-1">
-          <span
-            className={`text-xs font-semibold px-2 py-0.5 rounded-full border ${portfolio.riskColor} border-current/30 bg-current/5`}
-          >
-            {portfolio.riskLevel}
-          </span>
-          <span className="text-xs text-gray-500">{portfolio.timeHorizon}</span>
-        </div>
-      </div>
+      {/* Top accent bar */}
+      <div
+        className="rounded-t-2xl h-[2px] w-full"
+        style={{ background: `linear-gradient(90deg, transparent 0%, ${accent} 40%, ${accent} 60%, transparent 100%)` }}
+      />
 
-      {/* Donut chart */}
-      <div className="h-44 w-full" aria-hidden="true">
-        <ResponsiveContainer width="100%" height="100%">
-          <PieChart>
-            <Pie
-              data={chartData}
-              cx="50%"
-              cy="50%"
-              innerRadius={48}
-              outerRadius={78}
-              dataKey="value"
-              labelLine={false}
-              label={renderCustomLabel}
-              stroke="none"
-            >
-              {chartData.map((entry) => (
-                <Cell key={entry.name} fill={entry.color} />
-              ))}
-            </Pie>
-            <Tooltip content={<CustomTooltip />} />
-          </PieChart>
-        </ResponsiveContainer>
-      </div>
-
-      {/* Stats row */}
-      <div className="mt-3 space-y-2">
-        {/* Top performers / laggards */}
-        {!loadingPrices && (
-          <div className="flex gap-1.5 flex-wrap">
-            {portfolio.holdings
-              .map((h) => ({ h, cp: prices[h.ticker]?.changePercent ?? null }))
-              .filter((x) => x.cp !== null)
-              .sort((a, b) => b.cp! - a.cp!)
-              .slice(0, 3)
-              .map(({ h, cp }) => (
-                <span
-                  key={h.ticker}
-                  className={`text-[10px] font-mono px-1.5 py-0.5 rounded border ${
-                    cp! >= 0
-                      ? "text-green-400 border-green-900 bg-green-900/20"
-                      : "text-red-400 border-red-900 bg-red-900/20"
-                  }`}
-                >
-                  {h.ticker} {cp! >= 0 ? "+" : ""}{cp!.toFixed(1)}%
-                </span>
-              ))}
+      <div className="p-5">
+        {/* Header */}
+        <div className="flex items-start justify-between mb-4">
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.14em] font-semibold mb-1" style={{ color: "rgba(255,255,255,0.35)" }}>
+              {portfolio.accountType}
+            </p>
+            <h2 className="text-xl font-bold text-white leading-tight">{portfolio.name}</h2>
           </div>
-        )}
-
-        <div className="flex items-center justify-between text-xs">
-          <span className="text-gray-400">{portfolio.holdings.length} holdings</span>
-
-          {loadingPrices ? (
-            <span className="text-gray-600 animate-pulse">Loading…</span>
-          ) : weightedChange !== null ? (
-            <span className={`font-mono font-semibold ${isPositive ? "text-green-400" : "text-red-400"}`}>
-              {isPositive ? "+" : ""}{weightedChange.toFixed(2)}% today
+          <div className="flex flex-col items-end gap-1">
+            <span
+              className="text-[10px] font-bold px-2.5 py-1 rounded-full"
+              style={{
+                color: accent,
+                background: `${accent}18`,
+                border: `1px solid ${accent}35`,
+              }}
+            >
+              {portfolio.riskLevel}
             </span>
-          ) : (
-            <span className="text-gray-600">No price data</span>
+            <span className="text-[10px]" style={{ color: "rgba(255,255,255,0.28)" }}>{portfolio.timeHorizon}</span>
+          </div>
+        </div>
+
+        {/* Donut chart */}
+        <div className="h-40 w-full" aria-hidden="true">
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
+              <Pie
+                data={chartData}
+                cx="50%" cy="50%"
+                innerRadius={42} outerRadius={70}
+                dataKey="value"
+                labelLine={false}
+                label={renderCustomLabel}
+                stroke="none"
+              >
+                {chartData.map((entry) => (
+                  <Cell key={entry.name} fill={entry.color} />
+                ))}
+              </Pie>
+              <Tooltip content={<CustomTooltip />} />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Stats */}
+        <div className="mt-3 space-y-2.5">
+          {/* Top performers */}
+          {!loadingPrices && (
+            <div className="flex gap-1.5 flex-wrap">
+              {portfolio.holdings
+                .map((h) => ({ h, cp: prices[h.ticker]?.changePercent ?? null }))
+                .filter((x) => x.cp !== null)
+                .sort((a, b) => b.cp! - a.cp!)
+                .slice(0, 4)
+                .map(({ h, cp }) => (
+                  <span
+                    key={h.ticker}
+                    className="text-[10px] font-mono px-1.5 py-0.5 rounded"
+                    style={
+                      cp! >= 0
+                        ? { color: "#00e5a0", background: "rgba(0,229,160,0.1)", border: "1px solid rgba(0,229,160,0.18)" }
+                        : { color: "#ff4d6a", background: "rgba(255,77,106,0.1)", border: "1px solid rgba(255,77,106,0.18)" }
+                    }
+                  >
+                    {h.ticker} {cp! >= 0 ? "+" : ""}{cp!.toFixed(1)}%
+                  </span>
+                ))}
+            </div>
           )}
 
-          <span className="text-gray-500 group-hover:text-white/60 transition-colors text-[10px] uppercase tracking-wide">
-            Explore →
-          </span>
+          {/* Footer row */}
+          <div className="flex items-center justify-between pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+            <span className="text-[11px]" style={{ color: "rgba(255,255,255,0.35)" }}>
+              {portfolio.holdings.length} holdings
+            </span>
+
+            {loadingPrices ? (
+              <span className="text-xs animate-pulse" style={{ color: "rgba(255,255,255,0.2)" }}>Loading…</span>
+            ) : weightedChange !== null ? (
+              <span className="font-mono font-bold text-sm" style={{ color: changeColor }}>
+                {isPositive ? "+" : ""}{weightedChange.toFixed(2)}% today
+              </span>
+            ) : (
+              <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>No price data</span>
+            )}
+
+            <span className="text-[10px] uppercase tracking-wider transition-colors group-hover:text-white/60"
+              style={{ color: "rgba(255,255,255,0.25)" }}>
+              View →
+            </span>
+          </div>
         </div>
       </div>
     </button>

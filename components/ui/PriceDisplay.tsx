@@ -7,12 +7,8 @@ interface PriceDisplayProps {
 }
 
 function formatPrice(price: number, isCrypto: boolean): string {
-  if (isCrypto && price < 1) {
-    return `$${price.toFixed(6)}`;
-  }
-  if (isCrypto && price < 10) {
-    return `$${price.toFixed(4)}`;
-  }
+  if (isCrypto && price < 1)  return `$${price.toFixed(6)}`;
+  if (isCrypto && price < 10) return `$${price.toFixed(4)}`;
   return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
@@ -23,10 +19,10 @@ function formatPrice(price: number, isCrypto: boolean): string {
 
 export function PriceDisplay({ price, loading, isCrypto = false }: PriceDisplayProps) {
   if (loading) return <LoadingSkeleton className="h-5 w-24" />;
-  if (price === null) return <span className="text-gray-500 font-mono">—</span>;
+  if (price === null) return <span className="font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>—</span>;
 
   return (
-    <span className="font-mono tabular-nums text-white">
+    <span className="font-mono tabular-nums font-semibold text-white">
       {formatPrice(price, isCrypto)}
     </span>
   );
