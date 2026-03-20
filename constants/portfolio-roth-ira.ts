@@ -27,6 +27,13 @@
  *   − QQQ reduced 15→12%    (trimmed to fund higher-conviction individual names)
  *   − VGT reduced 10→8%     (same — concentration in moat-quality names preferred)
  *   − PLTR reduced 6→2%     (retain exposure to govt moat; trim speculative sizing)
+ *
+ * March 2026 market refresh (research update — current intelligence):
+ *   + PLTR increased 2→3%   (US commercial +137% YoY; $7.2B FY26 guidance +61%; AIP resolved revenue concern)
+ *   − VGT reduced 8→7%      (funded PLTR increase; broad ETF less efficient than moat names)
+ *   ~ NVDA updated           (Blackwell B200 shipping; +73% Q4 FY26 revenue to $68.1B)
+ *   ~ META updated           ($27B Nebius AI infrastructure deal; CapEx $115–135B 2026)
+ *   ~ GOOGL updated          (Gemini 2.0 competitive with GPT-4o; Waymo commercially deployed)
  */
 
 import { PortfolioDefinition } from "@/types/portfolio";
@@ -64,8 +71,9 @@ export const PORTFOLIO_ROTH_IRA: PortfolioDefinition = {
       allocation: 18,
       rationale:
         "7 Powers score: 6/7. CUDA ecosystem = switching cost + cornered resource. " +
-        "~80% AI training market share with Blackwell B200 extending moat into 2026–27. " +
-        "Every AI model trained today deepens the CUDA lock-in for the next training cycle. " +
+        "Q4 FY26 revenue +73% to $68.1B, blowing past consensus. Blackwell B200/GB200 NVL72 now shipping — " +
+        "extends the CUDA moat into 2027–28 as every new model trained deepens switching cost. " +
+        "Hyperscalers (Google, MSFT, Amazon, Meta) combined CapEx approaching $520B in 2026. " +
         "Roth structure makes this ideal: tax-free exit on a stock with multi-year compounding ahead.",
       color: "#76b900",
     },
@@ -89,8 +97,9 @@ export const PORTFOLIO_ROTH_IRA: PortfolioDefinition = {
       sector: "Internet & AI",
       allocation: 11,
       rationale:
-        "7 Powers score: 6/7. 92% search moat + YouTube flywheel + Google Cloud inflecting. " +
-        "Gemini 2.0 competitive with GPT-4o. Waymo and DeepMind represent multi-billion optionality. " +
+        "7 Powers score: 6/7. 92% search moat + YouTube flywheel + Google Cloud +28% YoY. " +
+        "Gemini 2.0 now competitive with GPT-4o across benchmarks — AI search narrative shifting back toward GOOGL. " +
+        "Waymo robotaxi commercially deployed in multiple cities (10M+ autonomous miles). " +
         "Greenblatt screen: highest ROIC (~28%) among mega-cap internet at a discount to MSFT/META multiples.",
       color: "#4285f4",
     },
@@ -103,7 +112,9 @@ export const PORTFOLIO_ROTH_IRA: PortfolioDefinition = {
       rationale:
         "7 Powers score: 5/7. Network effects on 3.27B DAU = strongest consumer tech moat. " +
         "Prompt #18 (Behavioral Finance — 84/100): In Jan 2023, META had 55% sell ratings → returned +194%. " +
-        "Llama AI models save $3B+/yr in inference costs. AI-driven ad targeting already boosted engagement 10%+.",
+        "March 2026: $27B deal with Nebius Group ($12B dedicated AI processing + $15B supplementary compute). " +
+        "2026 CapEx guidance raised to $115–135B — hyper-aggressive AI infrastructure buildout. " +
+        "Llama open-source cuts inference costs $3B+/yr. Roth ideal: no dividend, pure capital appreciation.",
       color: "#0866ff",
     },
     {
@@ -135,7 +146,7 @@ export const PORTFOLIO_ROTH_IRA: PortfolioDefinition = {
       name: "Vanguard Info Technology ETF",
       type: "etf",
       sector: "ETF — Technology",
-      allocation: 8,
+      allocation: 7,
       rationale:
         "Pure-play technology sector ETF at 0.10% fee. Provides exposure to mid-cap tech " +
         "names not fully represented in QQQ. Trimmed to 8% (was 10%) — same rationale as QQQ trim; " +
@@ -173,11 +184,13 @@ export const PORTFOLIO_ROTH_IRA: PortfolioDefinition = {
       name: "Palantir Technologies",
       type: "stock",
       sector: "AI & Government Analytics",
-      allocation: 2,
+      allocation: 3,
       rationale:
         "7 Powers score: 4/7. Cornered resource in government intelligence data + AIP switching cost. " +
-        "Reduced to 2% (was 6%) — valuation premium (PS ~25x) limits sizing. " +
-        "Retain small position for AIP commercial acceleration optionality; add on pullbacks below $60.",
+        "March 2026: US commercial revenue +137% YoY Q4 2025; $7.2B FY26 guidance (+61% YoY). " +
+        "AIP is now a production revenue engine — not a proof of concept. GAAP profitable 8+ consecutive quarters. " +
+        "Increased to 3% (was 2%) — execution has resolved the revenue-growth concern. " +
+        "Roth ideal for PLTR: no dividend, and outsized capital gain potential in a tax-free account.",
       color: "#6366f1",
     },
   ],

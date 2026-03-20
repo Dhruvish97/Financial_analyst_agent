@@ -31,6 +31,14 @@
  *   − TSLA reduced 7→5%     (weakest 7 Powers score; no scale/switching-cost moat)
  *   − NET reduced 6→4%      (valid edge moat but lower conviction vs core names)
  *   − PLTR reduced 5→4%     (speculative; thin GAAP margin; government moat intact)
+ *
+ * March 2026 market refresh (research update — current intelligence):
+ *   + PLTR increased 4→5%   (US commercial +137% YoY Q4; $7.2B FY26 revenue guidance +61%; AIP executing)
+ *   − NET reduced 4→3%      (funded PLTR increase; NET still quality but PLTR revenue growth > edge)
+ *   ~ NVDA updated           (Blackwell B200 extending moat; +73% revenue to $68.1B Q4 FY26)
+ *   ~ META updated           ($27B Nebius AI infrastructure deal; CapEx raised to $115–135B 2026)
+ *   ~ TSLA updated           (Cybercab production April 2026; Optimus 1M/yr target; stock ~$405 at 210x)
+ *   ~ GOOGL updated          (Gemini 2.0 competitive with GPT-4o; Waymo scaling; Cloud +28%)
  */
 
 import { PortfolioDefinition } from "@/types/portfolio";
@@ -69,8 +77,9 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       rationale:
         "7 Powers score: 6/7. CUDA ecosystem = switching cost (every AI model trained deepens lock-in) + " +
         "cornered resource (GPU talent + CUDA library monopoly) + scale economies + process power. " +
-        "Dominant 80% AI training market share with H200/B200 Blackwell architecture extending lead. " +
-        "Backtested: #17 Moat correctly identified NVDA as buy even during Jan 2023 semiconductor downturn.",
+        "Q4 FY26 revenue +73% to $68.1B, blowing past estimates. Blackwell B200/GB200 NVL72 now shipping — " +
+        "architecture extends the CUDA moat into 2027–28 as every new model trained deepens switching cost. " +
+        "Hyperscalers (Google, Microsoft, Amazon, Meta) combined CapEx approaching $520B in 2026 — NVDA is the primary beneficiary.",
       color: "#76b900",
     },
     {
@@ -96,7 +105,8 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
         "7 Powers score: 5/7. Network effects on 3.27B DAU = the strongest single moat in consumer tech. " +
         "WhatsApp/Instagram/FB form a closed social graph that is structurally impossible to replicate. " +
         "Prompt #18 (Behavioral Finance): Jan 2023 analyst consensus was 55% sell — contrarian buyers returned +194%. " +
-        "Llama open-source models reduce AI infra costs by $3B+/yr, compounding operating leverage.",
+        "March 2026 update: Landmark $27B deal with Nebius Group ($12B dedicated AI processing + $15B supplementary compute). " +
+        "2026 CapEx guidance raised to $115–135B, signalling hyper-aggressive AI infrastructure buildout. Llama open-source cuts inference costs $3B+/yr.",
       color: "#0866ff",
     },
     {
@@ -107,9 +117,10 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       allocation: 10,
       rationale:
         "7 Powers score: 6/7. 92% search share = unassailable scale economy + counter-positioning vs ChatGPT " +
-        "(Search has real-time indexing no LLM can match). Google Cloud +28% YoY, Gemini 2.0 competitive. " +
-        "Waymo robotaxi (10M+ autonomous miles) and DeepMind represent multi-hundred-billion unpriced optionality. " +
-        "Greenblatt Magic Formula: highest ROIC in mega-cap internet (~28%) at a reasonable 20x forward earnings.",
+        "(Search has real-time indexing no LLM can match). Google Cloud +28% YoY. " +
+        "Gemini 2.0 now competitive with GPT-4o across benchmarks — the AI search narrative is shifting back toward GOOGL. " +
+        "Waymo robotaxi expanding to new cities — 10M+ autonomous miles and commercially deployed. " +
+        "Greenblatt: highest ROIC in mega-cap internet (~28%) at a discount to MSFT/META multiples.",
       color: "#4285f4",
     },
     {
@@ -157,10 +168,12 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       sector: "EV & Autonomous / Robotics",
       allocation: 5,
       rationale:
-        "7 Powers score: 3/7. Weakest moat in this portfolio — EV is becoming a commoditised market. " +
-        "FSD software + Optimus robot represent genuine asymmetric optionality on a $10T+ robotics TAM. " +
-        "Reduced to 5% (was 7%) — 7 Powers analysis confirms the manufacturing moat is eroding while software " +
-        "optionality remains real but uncertain. Size reflects asymmetry rather than conviction.",
+        "7 Powers score: 3/7. Weakest moat in this portfolio — EV is becoming a commoditised market with BYD/Chinese " +
+        "OEMs compressing margins. Stock trades at ~$405 (210x earnings) — extraordinary multiple requiring flawless execution. " +
+        "March 2026: Cybercab autonomous robotaxi entering production April 2026 (Austin, TX); Optimus humanoid robot targeting " +
+        "1M units/year by 2027. FSD v13 showing real capability improvements. " +
+        "Prompt #18 (Behavioral Finance): consensus is increasingly negative on EV thesis — which historically precedes re-rating. " +
+        "5% size reflects robotics/autonomy optionality on a $10T+ TAM, not EV conviction. Stop-loss if Cybercab production slips 6+ months.",
       color: "#e82127",
     },
     {
@@ -168,7 +181,7 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       name: "Cloudflare Inc.",
       type: "stock",
       sector: "Edge Computing & AI",
-      allocation: 4,
+      allocation: 3,
       rationale:
         "7 Powers score: 4/7. Global edge network in 330+ cities processes 20% of all internet traffic — " +
         "a scale economy with network effects (every node makes the whole network faster). " +
@@ -181,12 +194,14 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       name: "Palantir Technologies",
       type: "stock",
       sector: "AI & Government Analytics",
-      allocation: 4,
+      allocation: 5,
       rationale:
         "7 Powers score: 4/7. Cornered resource (classified government intelligence data partnerships) + " +
-        "switching cost (AIP deeply embedded in enterprise workflows). " +
-        "AIP commercial revenue growing 50%+ YoY; US government contracts provide a profitable base. " +
-        "Reduced to 4% (was 5%) — valuation (PS ~25x) limits sizing despite genuine moat quality.",
+        "switching cost (AIP deeply embedded in enterprise and government workflows). " +
+        "March 2026 update: US commercial revenue +137% YoY Q4 2025; $7.2B FY26 revenue guidance (+61% YoY) — " +
+        "AIP is no longer a proof-of-concept, it's a production revenue engine. GAAP profitable for 8+ consecutive quarters. " +
+        "Increased to 5% (was 4%) — execution has resolved the prior revenue-growth concern. Stock ~$142 at 100x forward earnings " +
+        "remains expensive, but 7 Powers + AIP commercial inflection justify elevated sizing vs prior quarter.",
       color: "#6366f1",
     },
     {

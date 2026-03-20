@@ -100,7 +100,10 @@ export const AGGRESSIVE_TARGET: PortfolioTarget = {
   description:
     "Concentrates in high-7-Powers moat companies and secular megatrends: " +
     "AI infrastructure, cybersecurity, and digital payments. " +
-    "Accepts short-term volatility in exchange for outsized 5–10 year returns.",
+    "Accepts short-term volatility in exchange for outsized 5–10 year returns. " +
+    "March 2026 macro: Fed held rates at 4.25–4.5% (tariff uncertainty pausing cuts); inflation 2.7%; " +
+    "hyperscaler CapEx approaching $520B in 2026 — AI infrastructure spend is the key earnings driver. " +
+    "PLTR added to Cybersecurity/Cloud (AIP commercial +137% YoY).",
   riskLevel: "Aggressive",
   timeHorizon: "5–10+ years",
   icon: "🚀",
@@ -237,8 +240,10 @@ export const INDIA_AGGRESSIVE_TARGET: PortfolioTarget = {
   tagline: "High Growth · India Megatrend",
   description:
     "Captures India's structural growth story — digitisation, capex supercycle, " +
-    "EV transition, and mid-cap compounders. " +
-    "Concentrated in high-ROCE businesses with durable competitive advantages.",
+    "EV transition, and mid-cap compounders. Concentrated in high-ROCE businesses with durable competitive advantages. " +
+    "March 2026 update: IT Services overweighted to 27% — sector -25% YTD triggers Prompt #18 (Behavioral Finance) " +
+    "contrarian signal; HCL leads AI deal wins (139/194 mandates). India macro remains strong: 7.4% GDP FY26, " +
+    "RBI paused at 5.25% after 50bps cuts, ₹11.21L Cr capex budget (+10% YoY).",
   riskLevel: "Aggressive",
   timeHorizon: "5–10+ years",
   icon: "🚀",
@@ -246,9 +251,9 @@ export const INDIA_AGGRESSIVE_TARGET: PortfolioTarget = {
   sectors: [
     {
       sector: "IT Services (India)",
-      targetPct: 25,
-      description: "Global IT delivery + digital transformation moat",
-      suggestedBuys: ["TCS", "INFY", "COFORGE", "PERSISTENT", "LTIM"],
+      targetPct: 27,
+      description: "Sector -25% YTD = Prompt #18 contrarian entry; HCL leads AI deal wins (139/194 mandates); FY27 guidance 4.5–6.5% — strongest in sector",
+      suggestedBuys: ["HCLTECH", "TCS", "INFY", "COFORGE", "PERSISTENT"],
       color: "#8b5cf6",
     },
     {
@@ -260,8 +265,8 @@ export const INDIA_AGGRESSIVE_TARGET: PortfolioTarget = {
     },
     {
       sector: "Small / Mid Cap Growth (India)",
-      targetPct: 15,
-      description: "High-ROCE mid-cap compounders in niche industries",
+      targetPct: 13,
+      description: "High-ROCE mid-cap compounders in niche industries (trimmed 2% to fund IT Services contrarian overweight)",
       suggestedBuys: ["POLYCAB", "TATAELXSI", "KPITTECH", "HAPPSTMNDS"],
       color: "#ec4899",
     },
