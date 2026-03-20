@@ -229,30 +229,39 @@ Search for the following to get current intelligence beyond the snapshot prices:
 - US macro: Fed policy, AI capex cycle, hyperscaler earnings, S&P 500 trend
 - India sectors: Banking NIM trends, IT deal wins, Defence PLI, Renewable energy bids
 
-### Step 3 — Read current constants
-Read these three files to understand what's already written:
-- `constants/portfolio-stocks.ts`
-- `constants/india-stocks.ts`
-- `constants/portfolio-targets.ts`
+### Step 3 — Read current constants (all three — all tabs depend on these)
+- `constants/portfolio-stocks.ts` → **Stocks tab**: US portfolio rationale + catalysts
+- `constants/india-stocks.ts` → **India tab**: NSE stocks + all 7 sector cards
+- `constants/portfolio-targets.ts` → **Advisor tab**: sector target descriptions + allocation context
 
-### Step 4 — Update constants using research frameworks
+### Step 4 — Update all three files using research frameworks
 Apply the backtested framework sequence (see STOCK_ANALYSIS_PROMPTS.md):
 - **#17 Moat Destroyer (7 Powers)** — confirm each holding still scores ≥3/7
 - **#8 Bain Competitive Analysis** — sector winner still leading?
 - **#18 Behavioral Finance Bias Auditor** — any contrarian opportunities from sentiment?
 - **#10 McKinsey Macro** — megatrend alignment still intact?
 
-Update the following fields with fresh, specific analysis (numbers, dates, recent events):
-- `rationale` — every US and India stock
-- `catalysts` — every US and India stock (3–5 catalysts with timeframes)
-- `outlook` — every India sector card
-- `drivers` — every India sector card
+**Stocks tab** (`constants/portfolio-stocks.ts`):
+- `rationale` — every US stock (rewrite with current earnings, P/E, product data)
+- `catalysts` — every US stock (3–5 specific catalysts with timeframes)
+- Header comment date stamp
 
-**Rules for updates:**
-- Never change: tickers, names, colors, allocations (unless conviction has materially changed — flag it)
-- Be specific: reference actual P/E ratios, earnings figures, policy dates, product launches
-- Do not copy-paste the old rationale — rewrite it with current intelligence
-- Stamp the month/year in the file header comment (e.g. "March 2026 market refresh → April 2026 market refresh")
+**India tab** (`constants/india-stocks.ts`):
+- `rationale` — every India stock (reference RBI stance, INR, domestic demand)
+- `catalysts` — every India stock (3–4 catalysts)
+- `outlook` — all 7 sector cards (Banking, IT, Consumer, Pharma, Real Estate, Energy, Defence)
+- `drivers` — all 7 sector cards (3–5 specific drivers with policy/numbers)
+- Header comment date stamp
+
+**Advisor tab** (`constants/portfolio-targets.ts`):
+- `description` — for all 4 portfolio styles (conservative, aggressive, india-conservative, india-aggressive)
+- Update the macro context sentences to reflect current market regime (Fed stance, RBI stance, sector rotation)
+
+**Rules for all updates:**
+- Never change: tickers, names, colors, allocation numbers (flag if conviction has materially shifted)
+- Be specific: reference actual P/E ratios, earnings beats, policy meeting dates, product launches
+- Do not copy-paste old content — rewrite with current intelligence
+- Stamp the month/year in each file's header comment
 
 ### Step 5 — Validate, test, build
 ```bash
@@ -263,7 +272,7 @@ Fix any failures before proceeding.
 
 ### Step 6 — Commit, push, deploy
 ```bash
-git add constants/portfolio-stocks.ts constants/india-stocks.ts
+git add constants/portfolio-stocks.ts constants/india-stocks.ts constants/portfolio-targets.ts
 git commit -m "research: weekly market refresh YYYY-MM-DD"
 git push
 npx vercel --prod --yes
@@ -272,6 +281,6 @@ npx vercel --prod --yes
 ### What to report back
 After completing, summarize:
 - Key market changes found (price moves, earnings surprises, macro shifts)
-- Which stocks had rationale meaningfully updated and why
-- Any conviction changes flagged (allocation recommendations if relevant)
+- Which stocks/sectors had rationale meaningfully updated and why
+- Any conviction changes flagged (allocation recommendations if warranted)
 - Deployment URL confirmation
