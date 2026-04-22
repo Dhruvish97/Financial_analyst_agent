@@ -40,14 +40,14 @@
  *   ~ TSLA updated           (Cybercab production April 2026; Optimus 1M/yr target; stock ~$405 at 210x)
  *   ~ GOOGL updated          (Gemini 2.0 competitive with GPT-4o; Waymo scaling; Cloud +28%)
  *
- * April 2026 market refresh (research update — current intelligence):
- *   ~ NVDA updated           (Stock ~$198, forward P/E ~24x — cheapest in 3 yrs; May 20 earnings, ~$78B rev guidance expected; hyperscaler capex >$600B 2026 +36% YoY)
- *   ~ META updated           (3.58B DAU +7% YoY; Advantage+ AI ads $60B run-rate; MTIA 1GW chip deployment Apr 14; CapEx $115–135B unchanged)
- *   ~ MSFT updated           (Stock -23% YTD = Prompt #18 contrarian signal; Azure/Copilot monetisation intact; Q1 2026 earnings week of Apr 29)
- *   ~ GOOGL updated          (Stock ~$336; Q1 2026 earnings Apr 29, $107.7B expected +18% YoY; Google Cloud >50% growth; $243B backlog; KeyBanc Cloud $91.8B 2026 target)
- *   ~ AMZN updated           (AWS +24% Q4 2025, fastest in 13 qtrs; AI revenue >$15B annual run-rate; Ads $60B+ run-rate; Q1 earnings Apr 29)
- *   ~ AVGO updated           (Q1 FY2026: $19.3B rev +29% YoY; AI semiconductor $8.4B +106% YoY — mega AI ASIC cycle confirmed; EPS beat $2.05 vs $1.88)
- *   ~ TSLA updated           (Q1 2026 earnings Apr 22; consensus $0.36/$21.9B; 50K-unit inventory overhang; energy storage headwinds; growth narrative under pressure)
+ * April 22, 2026 market refresh (research update — current intelligence):
+ *   ~ NVDA updated           (Stock ~$202, forward P/E ~24x — cheapest in 3 yrs; May 20 earnings; hyperscaler capex ~$700B 2026 ~60% YoY increase — $450B AI-specific)
+ *   ~ META updated           (3.58B DAU +7% YoY; Advantage+ AI ads $60B run-rate; MTIA 1GW chip deployment Apr 14; CapEx $115–135B 2026)
+ *   ~ MSFT updated           (Stock ~$420, -20% YTD = textbook Prompt #18 contrarian signal; Q1 2026 earnings Apr 29; Powell term ends May 15 — Fed Chair change adds macro uncertainty)
+ *   ~ GOOGL updated          (Stock ~$336; Q1 2026 earnings Apr 29, $106.9B rev expected +18% YoY; Google Cloud >50% growth; $243B backlog; KeyBanc Cloud $91.8B 2026 target)
+ *   ~ AMZN updated           (AWS +24% Q4 2025, fastest in 13 qtrs; AI revenue >$15B annual run-rate; $200B 2026 CapEx; Q1 earnings Apr 29)
+ *   ~ AVGO updated           (Q1 FY2026: $19.3B rev +29% YoY; AI semiconductor $8.4B +106% YoY — mega AI ASIC cycle confirmed; EPS beat $2.05 vs $1.88; custom ASIC for Google/Meta accelerating)
+ *   ~ TSLA updated           (Q1 2026 earnings reported Apr 22 after close; 358K deliveries vs 365K consensus miss; 50K-unit inventory overhang; energy storage headwinds; $0.33–0.37 EPS consensus)
  *   ~ PLTR updated           (Q4 2025 US commercial +137% YoY; FY2025 rev $4.475B +56%; FY2026 guidance $7.2B +61%; GAAP net income $1.625B; Q1 earnings May 4)
  *   ~ NET updated            (Q1 2026 earnings Apr 30; Q1 guidance $620–621M; FY2026 guidance $2.785–$2.795B)
  */
@@ -88,10 +88,11 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       rationale:
         "7 Powers score: 6/7. CUDA ecosystem = switching cost (every AI model trained deepens lock-in) + " +
         "cornered resource (GPU talent + CUDA library monopoly) + scale economies + process power. " +
-        "Q1 FY27 (calendar Q1 2026) earnings due May 20 — analysts expect ~$78B revenue guidance. " +
-        "Stock ~$198, trailing P/E ~41x, forward P/E ~24x — cheapest vs 3-yr average of 69x (earnings growing faster than multiple). " +
+        "Q1 FY27 earnings due May 20 — analysts expect ~$43B revenue for Q1, guiding to full-year trajectory. " +
+        "Stock ~$202, trailing P/E ~41x, forward P/E ~24x — cheapest vs 3-yr average of 69x (earnings growing faster than multiple). " +
         "Blackwell B200/GB200 NVL72 architecture deepens CUDA switching cost into 2027–28. " +
-        "Hyperscaler capex exceeds $600B in 2026 (+36% YoY), ~$450B AI-specific — NVDA captures the largest share.",
+        "Hyperscaler capex ~$700B in 2026 (~60% YoY increase), ~$450B AI-specific — NVDA captures the largest share. " +
+        "Amazon $200B, Alphabet $175–185B, Meta $115–135B, MSFT $120B+ — all committed AI infrastructure spend through FY27.",
       color: "#76b900",
     },
     {
@@ -103,9 +104,10 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       rationale:
         "7 Powers score: 7/7 (rare perfect score). Azure + Office 365 = switching cost (enterprise data lock-in) + " +
         "network effects (Teams/LinkedIn) + scale economies + process power (OpenAI partnership moat). " +
-        "Stock -23% YTD April 2026 — Prompt #18 (Behavioral Finance) flags a textbook contrarian entry; the business moat is structurally intact. " +
-        "Q1 2026 earnings due Apr 29; Azure growth and Copilot per-seat monetisation are the key revenue drivers. " +
-        "Government cloud (JEDI/JWCC), gaming (Activision synergies), and LinkedIn add rare multi-platform resilience.",
+        "Stock ~$420, -20% YTD April 2026 — Prompt #18 (Behavioral Finance) flags a textbook contrarian entry; business moat is structurally intact. " +
+        "Q1 2026 earnings Apr 29; Azure growth and Copilot per-seat monetisation are key revenue drivers. " +
+        "Macro note: Fed Chair Powell's term expires May 15, 2026 — leadership transition adds uncertainty to rate path, but Microsoft's government-cloud moat is Fed-independent. " +
+        "Government cloud (JEDI/JWCC), gaming (Activision synergies), LinkedIn, and $120B+ 2026 CapEx signal long-term AI infrastructure commitment.",
       color: "#00a4ef",
     },
     {
@@ -147,7 +149,8 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
         "7 Powers score: 6/7. AWS scale economy (32% cloud market share) + logistics flywheel switching cost (Prime ecosystem). " +
         "AWS grew 24% in Q4 2025 — fastest pace in 13 quarters — with AI-driven cloud revenue crossing $15B annual run-rate. " +
         "Advertising segment at $60B+ run-rate now rivals Google Ads as a standalone business. " +
-        "Q1 2026 earnings Apr 29. Operating margins tripled 2023–2025 as high-margin AWS/Ads overtake low-margin retail.",
+        "Q1 2026 earnings Apr 29; $200B total CapEx guidance for 2026 — largest absolute AI infrastructure commitment of any hyperscaler. " +
+        "Operating margins tripled 2023–2025 as high-margin AWS/Ads overtake low-margin retail.",
       color: "#ff9900",
     },
     {
@@ -185,10 +188,10 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       allocation: 5,
       rationale:
         "7 Powers score: 3/7. Weakest moat in this portfolio — EV is becoming a commoditised market with BYD/Chinese " +
-        "OEMs compressing margins. Q1 2026 earnings Apr 22: consensus $0.36 EPS, $21.9B revenue. " +
-        "50,000-unit inventory overhang and energy storage headwinds cloud near-term results. FSD v13 progress real but Cybercab production timelines remain unconfirmed. " +
-        "Prompt #18 (Behavioral Finance): analyst consensus increasingly negative on EV thesis — same sentiment pattern that historically precedes re-ratings. " +
-        "5% size reflects robotics/autonomy optionality on a $10T+ TAM, not EV conviction. Monitor Cybercab production timeline and inventory drawdown.",
+        "OEMs compressing margins. Q1 2026 earnings reported Apr 22 after close: 358K deliveries missed 365K consensus; consensus $0.33–0.37 EPS; 50K-unit inventory overhang. " +
+        "Energy storage segment under pressure; EV gross margins challenged by BYD/Chinese OEM pricing wars. FSD v13 progressing but Cybercab production unconfirmed. " +
+        "Prompt #18 (Behavioral Finance): analyst consensus increasingly negative on EV thesis — same herding dynamics that historically precede re-ratings. " +
+        "5% size reflects robotics/autonomy optionality (Cybercab, Optimus on $10T+ TAM), not EV conviction. Monitor actual Q1 margins and inventory drawdown trajectory.",
       color: "#e82127",
     },
     {

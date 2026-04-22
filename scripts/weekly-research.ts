@@ -42,7 +42,8 @@ async function fetchAll(): Promise<Record<string, QuoteSnapshot>> {
   await Promise.allSettled(
     all.map(async (ticker) => {
       try {
-        const q = await yahooFinance.quote(ticker);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const q = await yahooFinance.quote(ticker) as any;
         data[ticker] = {
           price: q.regularMarketPrice ?? null,
           changePercent: q.regularMarketChangePercent ?? null,

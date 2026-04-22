@@ -101,10 +101,10 @@ export const AGGRESSIVE_TARGET: PortfolioTarget = {
     "Concentrates in high-7-Powers moat companies and secular megatrends: " +
     "AI infrastructure, cybersecurity, and digital payments. " +
     "Accepts short-term volatility in exchange for outsized 5–10 year returns. " +
-    "April 2026 macro: Fed holding rate at 3.5–3.75% (next cut pushed to 2027); S&P 500 Q1 earnings +12.5% (6th consecutive double-digit quarter); " +
-    "hyperscaler CapEx exceeds $600B in 2026 (+36% YoY), ~$450B AI-specific — AI infrastructure is the dominant earnings driver. " +
-    "Sector rotation intensifying: value/energy outperforming; tech facing near-term headwinds but AI monetisation entering production phase across MSFT, META, GOOGL. " +
-    "PLTR FY2026 guidance $7.2B (+61% YoY); AVGO Q1 FY2026 AI semiconductor +106% YoY.",
+    "April 22, 2026 macro: Fed holding rate at 3.5–3.75% (Powell term expires May 15 — Chair transition adds uncertainty); S&P 500 +4.23% YTD (recovered from -19% tariff shock); " +
+    "Q1 2026 earnings growth ~13% expected — 6th consecutive double-digit quarter; hyperscaler CapEx ~$700B in 2026 (~60% YoY increase), ~$450B AI-specific. " +
+    "Mega-cap earnings catalyst week Apr 29: MSFT, META, GOOGL, AMZN all report simultaneously. AVGO Q1 FY2026 AI semiconductor +106% YoY confirmed. " +
+    "MSFT -20% YTD = textbook Prompt #18 contrarian signal; PLTR FY2026 guidance $7.2B (+61% YoY); recession risk low at 20% per Morgan Stanley.",
   riskLevel: "Aggressive",
   timeHorizon: "5–10+ years",
   icon: "🚀",
@@ -180,9 +180,9 @@ export const INDIA_CONSERVATIVE_TARGET: PortfolioTarget = {
   description:
     "Built for the Indian investor seeking capital preservation. " +
     "Anchored in large-cap PSU and private sector blue chips with strong dividend history. " +
-    "April 2026 macro: RBI held repo at 5.25% (April MPC); CPI FY27 projected 4.6%; GDP FY27 projected 6.9%. " +
-    "West Asia conflict adds near-term INR and imported-inflation risk. " +
-    "IT and FMCG provide defensive growth; banking (HDFCBANK Q4 profit +9% YoY) offers contrarian value.",
+    "April 22, 2026 macro: RBI held repo at 5.25% (April MPC — neutral stance amid geopolitical uncertainty); CPI FY27 projected 4.6%; GDP FY27 projected 6.9%. " +
+    "NIFTY target 29,000 by Dec 2026 (analyst consensus); West Asia conflict adds near-term INR and imported-inflation risk. " +
+    "HCLTech Q4 FY26 actual +12.3% YoY revenue — IT sector recovery confirmed; HDFCBANK Q4 profit +9% YoY (GNPA 1.15% — best-in-class) offers contrarian value at 2.2x P/B.",
   riskLevel: "Low–Medium",
   timeHorizon: "3–7 years",
   icon: "🛡️",
@@ -244,10 +244,10 @@ export const INDIA_AGGRESSIVE_TARGET: PortfolioTarget = {
   description:
     "Captures India's structural growth story — digitisation, capex supercycle, " +
     "EV transition, and mid-cap compounders. Concentrated in high-ROCE businesses with durable competitive advantages. " +
-    "April 2026 update: RBI held repo at 5.25% (April MPC); GDP FY27 projected 6.9% (FY26: 7.6%); West Asia conflict adds INR/inflation risk. " +
-    "IT Services FY27 guidance cautious (HCLTech 1–4% CC; TCS record TCV $40.7B — deal pipeline strong despite macro uncertainty). " +
-    "BAJFINANCE AUM +22% YoY, HDFCBANK Q4 profit +9%; banking/NBFC sector re-rating underway. " +
-    "Defence budget ₹7.85L Cr (FY27) + renewable record 44.5 GW added in 2025 confirm India capex supercycle intact.",
+    "April 22, 2026 update: RBI held repo at 5.25% (April MPC — neutral amid global tensions); GDP FY27 projected 6.9%; NIFTY target 29,000 Dec 2026. " +
+    "IT sector recovering: HCLTech Q4 FY26 revenue ₹33,981 cr +12.3% YoY; FY27 CC guidance upgraded 4.5–5%; TCS record TCV $40.7B FY26. " +
+    "BAJFINANCE AUM +22% YoY; HDFCBANK Q4 profit +9% (GNPA 1.15% best-in-class); banking/NBFC re-rating underway as rate cycle turns. " +
+    "Adani Green 15,000 MW installed + BESS entry; defence budget ₹7.85L Cr FY27 — India capex supercycle intact.",
   riskLevel: "Aggressive",
   timeHorizon: "5–10+ years",
   icon: "🚀",
@@ -256,7 +256,7 @@ export const INDIA_AGGRESSIVE_TARGET: PortfolioTarget = {
     {
       sector: "IT Services (India)",
       targetPct: 27,
-      description: "IT FY27 guidance cautious (HCLTech 1–4% CC); TCS FY26 TCV record $40.7B signals long-term pipeline is intact; AI now embedded in every major deal; sector valuation de-rating creates selective entry opportunity",
+      description: "IT sector recovering: HCLTech Q4 FY26 +12.3% YoY; FY27 CC guidance upgraded to 4.5–5%; TCS FY26 TCV record $40.7B; AI embedded in every major deal; sector P/E de-rating creates selective entry before re-rating",
       suggestedBuys: ["HCLTECH", "TCS", "INFY", "COFORGE", "PERSISTENT"],
       color: "#8b5cf6",
     },

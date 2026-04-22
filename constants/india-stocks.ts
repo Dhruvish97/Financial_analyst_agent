@@ -26,16 +26,19 @@
 //   − RELIANCE reduced 14→12%    (fair value after modest 2023–24 returns; free allocation to HDFC)
 //   − ZOMATO reduced 8→6%        (network effects moat intact but no GAAP profit; size reflects risk)
 //
-// April 2026 market refresh (current intelligence — research update):
-//   ~ HCLTECH updated   (FY26 revenue $14.66B +3.9% YoY; Q4 rev $3.68B +5.3%; AI revenue $620M annual;
-//                        FY27 guidance cut to 1–4% CC amid client-specific issues — cautious but AI pipeline intact)
+// April 22, 2026 market refresh (current intelligence — research update):
+//   ~ HCLTECH updated   (Q4 FY26 ACTUAL: revenue ₹33,981 cr +12.3% YoY; PAT ₹4,488 cr +4.2%; EBIT margin 16.5%;
+//                        dollar rev $3,682M +5.3% YoY; ₹24 dividend declared; FY27 guidance 4.5–5% CC; AI pipeline strong)
 //   ~ HDFCBANK updated  (Q4FY26 profit ₹19,221 cr +9% YoY; NIM 3.38% flat; NII +3.2% despite 12% loan growth;
-//                        NIM compression ongoing as deposit costs remain elevated; contrarian position maintained)
+//                        GNPA improved to 1.15% — best-in-class; contrarian position maintained; NIM recovery H2 FY27)
 //   ~ BAJFINANCE updated (RBI held repo at 5.25% in April 2026 MPC; AUM ₹5.1L cr +22% YoY; new loans +20.5%;
 //                        rate cycle has turned — funding cost relief expected in H2 FY27)
-//   ~ RELIANCE updated  (Q3 FY26 profit ₹18,645 cr +0.57% YoY — muted; Jio Financial + New Energy still long-term)
-//   ~ ADANIGREEN noted  (Q3 FY26 net loss ₹-41 cr — near-term headwinds; long-term capacity build intact)
-//   ~ IT sector card    (FY27 guidance cautious across sector; TCS TCV $40.7B FY26; AI deal pipeline building)
+//   ~ RELIANCE updated  (Q4 FY26 board meeting Apr 24; PAT expected ₹19,200–21,000 cr; revenue ~₹2.82L cr +8% YoY;
+//                        dividend ₹6–7/share expected; Jio Financial + New Energy remain long-term re-rating catalysts)
+//   ~ ADANIGREEN updated (15,000 MW installed capacity milestone; 37% YoY energy sales growth in 9M FY26;
+//                        307.4 MW commissioned Jan 2026; BESS 1126 MW / 3530 MWh project — largest in India)
+//   ~ IT sector card    (HCLTech Q4 actual ₹33,981 cr +12.3%; TCS FY26 TCV $40.7B; Infosys Q4 results Apr 23;
+//                        FY27 guidance range 1.5–5% CC across tier-1; AI revenue embedded in every major deal)
 
 export interface IndiaStock {
   ticker: string;        // Yahoo Finance NSE ticker (e.g. "RELIANCE.NS")
@@ -112,13 +115,13 @@ export const INDIA_SECTORS: IndiaSector[] = [
     gradient: "from-green-950/80 to-emerald-950/60",
     borderColor: "border-green-800/50",
     textColor: "text-green-400",
-    outlook: "India added a record 44.5 GW of renewable capacity in 2025, pushing total non-fossil fuel capacity past 253 GW vs the 500 GW 2030 target. PLI beneficiaries installed 11 GW solar PV modules and 5 GW cells in 2025. Green Hydrogen Mission ₹19,744 Cr outlay. Fastest RE capacity build in the world.",
+    outlook: "India added a record 44.5 GW of renewable capacity in 2025, pushing non-fossil fuel capacity past 253 GW vs 500 GW 2030 target. Adani Green reached 15,000 MW installed milestone; 37% YoY energy sales growth in 9M FY26; launched India's largest BESS project (1126 MW / 3530 MWh). PLI beneficiaries installing 11 GW solar PV modules. Green Hydrogen Mission ₹19,744 Cr underway. Fastest RE capacity build in the world.",
     drivers: [
-      "500 GW renewable target by 2030",
-      "₹19,744 Cr Green Hydrogen Mission",
-      "PM Surya Ghar: 1 Cr rooftop solar homes",
-      "India's power demand growing 6–7% annually",
-      "Falling solar+wind tariffs making RE cheaper than coal",
+      "500 GW renewable target by 2030 — Adani Green at 15,000 MW installed",
+      "Adani Green BESS 1126 MW / 3530 MWh — largest single-location BESS in India",
+      "₹19,744 Cr Green Hydrogen Mission; PM Surya Ghar 1 Cr rooftop solar",
+      "India's power demand growing 6–7% annually — RE cheapest marginal power",
+      "37% YoY energy sales growth (9M FY26) confirms RE absorption accelerating",
     ],
     marketSize: "₹3.2L Cr",
     cagr: "18–22% CAGR",
@@ -169,13 +172,13 @@ export const INDIA_SECTORS: IndiaSector[] = [
     gradient: "from-indigo-950/80 to-blue-950/60",
     borderColor: "border-indigo-800/50",
     textColor: "text-indigo-400",
-    outlook: "India IT sector faces a muted FY27: HCLTech guided 1–4% CC growth; sector-wide discretionary spending under pressure from West Asia conflict uncertainty. However, deal quality is improving — TCS closed FY26 with record TCV $40.7B ($12B in Q4 alone); AI is embedded in virtually every new mandate. India IT revenues $250B+ growing to $500B by 2030 — the structural case is intact even as near-term guidance disappoints.",
+    outlook: "India IT sector Q4 FY26 results show recovery momentum: HCLTech Q4 revenue ₹33,981 cr +12.3% YoY (PAT +4.2%); FY27 CC guidance upgraded to 4.5–5%. TCS closed FY26 with record TCV $40.7B; Infosys Q4 results Apr 23 (FY27 guidance 1.5–4.5% CC expected). AI is embedded in virtually every new deal mandate — AI revenue becoming meaningful. India IT revenues $250B+ growing to $500B by 2030 — structural case intact as guidance uncertainty resolves.",
     drivers: [
-      "TCS FY26 TCV $40.7B (record) — deal pipeline strongest in years",
-      "HCLTech AI revenue $620M annually; AI in virtually every new deal signed",
-      "IT FY27 guidance cautious but improving — client budget decisions accelerating",
+      "TCS FY26 TCV $40.7B (record) — AI deal pipeline strongest in years",
+      "HCLTech Q4 FY26 revenue ₹33,981 cr +12.3%; FY27 CC guidance upgraded to 4.5–5%",
+      "AI revenue crossing $620M+ at HCLTech; AI embedded in every major new deal signed",
       "85% of global workloads still on-prem — decade-long cloud migration runway",
-      "USD revenue = natural INR depreciation hedge for India investors",
+      "USD revenue = natural INR depreciation hedge; sector P/E de-rating creates selective entry",
     ],
     marketSize: "₹20.0L Cr",
     cagr: "12–18% CAGR",
@@ -214,9 +217,10 @@ export const INDIA_STOCKS: IndiaStock[] = [
     allocation: 12,
     rationale:
       "7 Powers score 4/7: Jio scale economy + Retail switching cost (largest Asia retailer) + New Energy cornered resource. " +
-      "Q3 FY26 profit ₹18,645 cr (+0.57% YoY) — muted near-term growth reflecting retail normalization and telecom ARPU pressure. Share price ~₹1,353. " +
-      "CLSA has de-emphasised RELIANCE in favour of consumer growth names for 2026. Jio IPO timeline and New Energy 100 GW capacity ramp remain the key long-term re-rating catalysts. 12% allocation reflects quality moat but limited near-term catalysts vs peers.",
-    catalysts: ["Jio Financial Services growth", "New Energy 100 GW capacity ramp", "Jio IPO listing timeline"],
+      "Q4 FY26 results board meeting Apr 24, 2026: PAT expected ₹19,200–21,000 cr; revenue ~₹2.82L cr +8% YoY; dividend ₹6–7/share expected. " +
+      "Q3 FY26 profit ₹18,645 cr (+0.57% YoY) — muted reflecting retail normalization and telecom ARPU pressure. " +
+      "Jio IPO timeline and New Energy 100 GW capacity ramp remain key long-term re-rating catalysts. 12% allocation reflects quality moat but limited near-term earnings acceleration vs peers.",
+    catalysts: ["Q4 FY26 results & dividend (Apr 24, 2026)", "Jio Financial Services growth + Jio IPO listing", "New Energy 100 GW capacity ramp"],
     risk: "Low",
     color: "#3b82f6",
   },
@@ -230,10 +234,10 @@ export const INDIA_STOCKS: IndiaStock[] = [
     rationale:
       "7 Powers score 5/7: Scale economy (India's largest private bank by assets) + switching cost (salary accounts + home loan ecosystem lock-in across 90M+ customers). " +
       "Q4 FY26 results (Apr 18, 2026): profit ₹19,221 cr +9% YoY on lower provisions. NIM 3.38% (flat QoQ) — NII grew only 3.2% YoY despite 12% loan growth, confirming NIM compression from elevated deposit costs. " +
-      "Deposit growth 14.4% outpacing loan growth 12% — structurally healthy, reduces reliance on expensive borrowings. GNPA 1.24% — best asset quality in large-cap Indian banking. " +
+      "Deposit growth 14.4% outpacing loan growth 12% — structurally healthy, reduces reliance on expensive borrowings. GNPA improved to 1.15% — best asset quality in large-cap Indian banking. " +
       "Prompt #18: Analyst consensus still anchored to NIM compression — same herding bias that preceded META's +194% re-rating. RBI rate hold may delay NIM recovery to FY27-end. " +
       "Trading at ~2.2x P/B (multi-year low vs historical 3.5–4x). Highest conviction India contrarian position; patience required.",
-    catalysts: ["NIM recovery in H2 FY27 as high-cost merger deposits mature and RBI begins cutting", "Loan growth acceleration as LDR stabilises at 96%", "GNPA 1.24% — best-in-class asset quality driving P/B re-rating"],
+    catalysts: ["NIM recovery in H2 FY27 as high-cost merger deposits mature and RBI begins cutting", "Loan growth acceleration as LDR stabilises at 96%", "GNPA 1.15% — best-in-class asset quality driving P/B re-rating from multi-year low ~2.2x P/B"],
     risk: "Low",
     color: "#10b981",
   },
@@ -272,11 +276,12 @@ export const INDIA_STOCKS: IndiaStock[] = [
     allocation: 10,
     rationale:
       "7 Powers score 5/7: Switching cost (multi-year enterprise IT contracts average 5+ years) + process power (ER&D engineering services moat — 60,000+ engineers in product engineering). " +
-      "FY26 results: revenue $14.66B +3.9% YoY; Q4 FY26 revenue $3.68B +5.3%. AI-related revenue $620M annually, with advanced AI in nearly every new deal signed. " +
-      "FY27 guidance: 1–4% constant-currency growth — management flagged client-specific delays and macro uncertainty (West Asia conflict). Below prior expectations, but deal TCV $9.3B FY26 confirms long-term pipeline. " +
+      "Q4 FY26 ACTUAL (Apr 21, 2026): revenue ₹33,981 cr +12.3% YoY; PAT ₹4,488 cr +4.2% YoY; EBIT margin 16.5%; dollar revenue $3,682M +5.3% YoY. Declared ₹24 dividend. " +
+      "FY26 full-year: $14.66B revenue +3.9% YoY. AI-related revenue $620M annually, embedded in virtually every new deal. Deal TCV $9.3B FY26 confirms long-term pipeline. " +
+      "FY27 guidance: 4.5–5% constant-currency — upgrade vs prior 1–4% cautious signal; management confidence improving as macro uncertainty eases. " +
       "Prompt #18: IT sector valuation has de-rated sharply — same sentiment dynamics that preceded re-ratings in prior cycles. " +
       "Cheaper than TCS/Infosys on P/E — same ER&D engineering moat at a discount; AI pipeline conversion is the FY27 key watch.",
-    catalysts: ["AI deal TCV conversion in FY27 (TCV $9.3B FY26 = strong backlog)", "ER&D market share gains in semiconductor + auto verticals", "IT sector P/E re-rating as FY27 guidance uncertainty resolves"],
+    catalysts: ["FY27 CC guidance upgraded to 4.5–5% — confidence improving on AI deal ramp", "ER&D market share gains in semiconductor + auto verticals", "IT sector P/E re-rating as FY27 guidance uncertainty resolves; ₹24 dividend signals confidence"],
     risk: "Low",
     color: "#8b5cf6",
   },
