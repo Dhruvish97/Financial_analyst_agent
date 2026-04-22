@@ -229,6 +229,26 @@ Search for the following to get current intelligence beyond the snapshot prices:
 - US macro: Fed policy, AI capex cycle, hyperscaler earnings, S&P 500 trend
 - India sectors: Banking NIM trends, IT deal wins, Defence PLI, Renewable energy bids
 
+### Step 2.5 — NEW CANDIDATE SCREENING (mandatory — do not skip)
+**This step must happen every research cycle.** Search for stocks NOT currently in the portfolio that may deserve addition or replacement. Evaluate each candidate against the 7 Powers framework (≥3/7 required). Flag in the header comment block of the relevant constants file.
+
+**US new candidate searches (run in parallel):**
+- "best new AI software stocks to buy [year] strong moat not [existing holdings]"
+- "undervalued wide moat US tech stocks analyst buy [year]"
+- Specific names to always check: AAPL, MELI, MU, PANW, DDOG, ANET, SNOW, UBER
+
+**India new candidate searches (run in parallel):**
+- "India mid cap stocks strong moat growth [year] new buy recommendations"
+- "India defence stocks order book 2026 BEL Data Patterns MTAR"
+- "India FMCG consumer stocks re-rating [year] ITC HUL rural demand"
+- Specific names to always check: BEL, ITC, ICICIBANK, BAJAJFINSV, PERSISTENT, COFORGE
+
+**What to write in the constants file:**
+- Add a `NEW CANDIDATE SCREENING` block to the header comment of `portfolio-stocks.ts` and `india-stocks.ts`
+- For each candidate: ticker, 7 Powers score, key data point, and WATCH/STRONG WATCH/ON RADAR label
+- End with `ALLOCATION VERDICT`: which existing holding it would replace and why, or "no changes this cycle"
+- If a candidate scores ≥5/7 AND has better forward metrics than the weakest current holding → flag for allocation review
+
 ### Step 3 — Read current constants (all three — all tabs depend on these)
 - `constants/portfolio-stocks.ts` → **Stocks tab**: US portfolio rationale + catalysts
 - `constants/india-stocks.ts` → **India tab**: NSE stocks + all 7 sector cards

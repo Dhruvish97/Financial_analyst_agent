@@ -50,6 +50,25 @@
  *   ~ TSLA updated           (Q1 2026 earnings reported Apr 22 after close; 358K deliveries vs 365K consensus miss; 50K-unit inventory overhang; energy storage headwinds; $0.33–0.37 EPS consensus)
  *   ~ PLTR updated           (Q4 2025 US commercial +137% YoY; FY2025 rev $4.475B +56%; FY2026 guidance $7.2B +61%; GAAP net income $1.625B; Q1 earnings May 4)
  *   ~ NET updated            (Q1 2026 earnings Apr 30; Q1 guidance $620–621M; FY2026 guidance $2.785–$2.795B)
+ *
+ * NEW CANDIDATE SCREENING — April 22, 2026 (7 Powers ≥ 3/7 required; $10B+ market cap):
+ *   ★ AAPL  WATCH       (7 Powers 6/7; Q1 FY26 $143.8B +16% YoY; Services $30B +14%; Siri 2.0 @ WWDC June 8;
+ *                        stock -9% YTD = mild contrarian; foldable iPhone Fall 2026; Q2 earnings Apr 30; BofA Buy $300 target +18% upside)
+ *   ★ MELI  WATCH       (7 Powers 5/7; Rev +39% 2025; Fintech +46% YoY — fintech now 43% of revenue at higher margins;
+ *                        $10.5B operating cash flow; operating margins 6→10-11%; 23/26 analysts Buy; price target $2,848 +41% upside)
+ *   ★ MU    WATCH       (Micron — AI HBM winner; revenue +111% FY2026 expected; forward P/E 12x — cheapest in AI supply chain;
+ *                        HBM3E moat tied to NVDA/AVGO; beneficiary of same $700B hyperscaler capex cycle)
+ *   ★ PANW  WATCH       (Palo Alto Networks — Morningstar wide moat; 28% undervalued vs $225 fair value;
+ *                        platform consolidation eating NET/CRWD adjacent market; potential to replace or complement NET at 3%)
+ *   ~ DDOG  ON RADAR    (Datadog +29% YoY; AI observability moat building; BofA bullish on AI tailwinds; watch for entry)
+ *
+ * ALLOCATION VERDICT — April 22, 2026 (IMPLEMENTED):
+ *   + AAPL added    3%  (replaces COIN — AAPL 6/7 vs COIN 3/7; Services flywheel > crypto regulatory moat)
+ *   + MELI added    2%  (new position — LatAm fintech+ecommerce flywheel; 5/7 powers; funded by TSLA trim)
+ *   − COIN removed  3%  (3/7 powers; S&P 500 inclusion already priced in; regulatory upside fully baked)
+ *   ~ TSLA reduced  5→3% (3/7 powers; Q1 delivery miss; keeps optionality at lower conviction size)
+ *   ~ MU on radar   —   (hold; NVDA+AVGO already 30% semi exposure; revisit if HBM standalone moat strengthens)
+ *   ~ PANW on radar —   (hold; CRWD at 7% covers cybersecurity; revisit if NET conviction weakens further)
  */
 
 import { PortfolioDefinition } from "@/types/portfolio";
@@ -68,8 +87,8 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
     "companies — no penny stocks, no pre-revenue speculation. Every holding must score " +
     "≥ 3/7 on Hamilton Helmer's 7 Powers framework (Prompt #17 — 92/100 backtested accuracy). " +
     "Concentrated in AI infrastructure (NVDA, AVGO), hyperscale cloud (MSFT, AMZN, GOOGL), " +
-    "high-growth platforms (META, COIN), and mission-critical software (CRWD, NET, PLTR). " +
-    "Rebuilt March 2026 using the validated prompt accuracy sequence.",
+    "high-growth platforms (META, AAPL, MELI), and mission-critical software (CRWD, NET, PLTR). " +
+    "April 2026: COIN replaced by AAPL (6/7 vs 3/7 powers); MELI added (LatAm fintech flywheel) funded by TSLA trim.",
   promptsUsed: [
     "Prompt #17 — Moat Destroyer / 7 Powers (92/100 — primary structural filter)",
     "Prompt #8  — Bain Competitive Analysis (87/100 — sector winner selection)",
@@ -191,7 +210,7 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
         "OEMs compressing margins. Q1 2026 earnings reported Apr 22 after close: 358K deliveries missed 365K consensus; consensus $0.33–0.37 EPS; 50K-unit inventory overhang. " +
         "Energy storage segment under pressure; EV gross margins challenged by BYD/Chinese OEM pricing wars. FSD v13 progressing but Cybercab production unconfirmed. " +
         "Prompt #18 (Behavioral Finance): analyst consensus increasingly negative on EV thesis — same herding dynamics that historically precede re-ratings. " +
-        "5% size reflects robotics/autonomy optionality (Cybercab, Optimus on $10T+ TAM), not EV conviction. Monitor actual Q1 margins and inventory drawdown trajectory.",
+        "Reduced to 3% (was 5%) — reflects robotics/autonomy optionality (Cybercab, Optimus on $10T+ TAM) at lower conviction; 2% freed for MELI (higher 7-Powers score).",
       color: "#e82127",
     },
     {
@@ -223,17 +242,34 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       color: "#6366f1",
     },
     {
-      ticker: "COIN",
-      name: "Coinbase Global Inc.",
+      ticker: "AAPL",
+      name: "Apple Inc.",
       type: "stock",
-      sector: "Crypto Finance",
+      sector: "Consumer Tech & Services",
       allocation: 3,
       rationale:
-        "7 Powers score: 3/7. US crypto market scale leader + regulatory moat (licensed in 50 states, " +
-        "first crypto company in S&P 500). GAAP net income $2.6B in 2024. Bitcoin spot ETF approval drives " +
-        "institutional custody and trading volume. Prompt #18: regulatory optimism under new SEC regime is " +
-        "not yet fully priced in. Starter 3% position — add on dips toward $150–180.",
-      color: "#0052ff",
+        "7 Powers score: 6/7. iOS ecosystem = switching cost (app purchases, iCloud, FaceTime lock-in) + " +
+        "brand (premium pricing power — iPhone ASP rising vs Android) + scale economy (750M+ paying services subscribers). " +
+        "Q1 FY2026: revenue $143.8B +16% YoY; EPS $2.84 +19% YoY. Services $30.01B +14% YoY — tracking toward 75% margin. " +
+        "Siri 2.0 (Gemini-powered) unveiling at WWDC June 8, 2026 = AI refresh cycle catalyst. Q2 FY26 earnings Apr 30. " +
+        "Stock -9% YTD = Prompt #18 mild contrarian entry; BofA Buy, $300 target (+18% upside). " +
+        "Replaces COIN (3/7 powers) — AAPL 6/7 vs COIN 3/7; Services flywheel is a structurally superior moat to crypto regulatory moat.",
+      color: "#555555",
+    },
+    {
+      ticker: "MELI",
+      name: "MercadoLibre Inc.",
+      type: "stock",
+      sector: "LatAm E-Commerce & Fintech",
+      allocation: 2,
+      rationale:
+        "7 Powers score: 5/7. Network effects (LatAm e-commerce + MercadoPago fintech flywheel — GMV and payments volume in self-reinforcing loop) + " +
+        "scale economy (largest e-commerce platform in 18 Latin American countries, ~5.5% market share expanding). " +
+        "Revenue +39% in 2025; Fintech +46% YoY — fintech now 43% of revenue at higher margins than e-commerce. " +
+        "Operating cash flow $10.5B in 2025; operating margins expanding 6% → 10-11%. 23/26 analysts Buy; price target $2,848 (+41% upside). " +
+        "LatAm is structurally under-penetrated: formal credit penetration <30%, e-commerce <10% of retail — decade of growth ahead. " +
+        "Geographic diversifier — uncorrelated to US tech regulatory risk. Funded by TSLA trim (TSLA 5%→3%).",
+      color: "#ffe600",
     },
   ],
 };

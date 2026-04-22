@@ -39,6 +39,22 @@
 //                        307.4 MW commissioned Jan 2026; BESS 1126 MW / 3530 MWh project — largest in India)
 //   ~ IT sector card    (HCLTech Q4 actual ₹33,981 cr +12.3%; TCS FY26 TCV $40.7B; Infosys Q4 results Apr 23;
 //                        FY27 guidance range 1.5–5% CC across tier-1; AI revenue embedded in every major deal)
+//
+// NEW CANDIDATE SCREENING — April 22, 2026 (7 Powers ≥ 3/7 required):
+//   ★ BEL   STRONG WATCH (Bharat Electronics — 7 Powers 5/7: cornered resource + switching cost; order book ₹75,000 cr (3.1x FY25 rev);
+//                          QRSAM orders ₹30,000–32,000 cr pipeline; Axis Securities & Choice Broking top defence pick;
+//                          potential to ADD at 6–8% funded from partial HAL trim or new allocation)
+//   ★ ITC   WATCH         (7 Powers 4/7: brand moat + distribution network; FMCG+hotels+agri; 12–15% upside expected FY26;
+//                          rural volumes +8.4% vs urban +2.6% — ITC has strongest rural footprint; GST tailwind; target ₹380)
+//   ★ ICICIBANK WATCH     (7 Powers 5/7: strong CASA ratio, digital moat — faster growing than HDFCBANK; already in suggestedBuys;
+//                          Q4 FY26 results upcoming; ROE expanding; consider as alternative/complement to HDFCBANK)
+//   ~ DATA PATTERNS ON RADAR (Defence electronics niche; high moat but small-cap; watch for liquidity improvement)
+//
+// ALLOCATION VERDICT — April 22, 2026 (IMPLEMENTED):
+//   + BEL added   8%  (replaces DIXON — BEL 5/7 vs DIXON 3/7; govt contract moat vs commodity manufacturing)
+//   − DIXON removed  (3/7 powers; contract electronics is commodity play; no durable switching-cost moat)
+//   ~ ITC on radar   (4/7 powers; rural FMCG; 12-15% upside; consider replacing ZOMATO if GAAP profits stall in FY27)
+//   ~ ICICIBANK on radar (5/7; faster growth than HDFCBANK; consider as 2nd banking position in future cycle)
 
 export interface IndiaStock {
   ticker: string;        // Yahoo Finance NSE ticker (e.g. "RELIANCE.NS")
@@ -286,17 +302,21 @@ export const INDIA_STOCKS: IndiaStock[] = [
     color: "#8b5cf6",
   },
   {
-    ticker: "DIXON.NS",
-    displayTicker: "DIXON",
-    name: "Dixon Technologies",
-    sector: "Electronics Mfg",
-    sectorId: "electronics",
+    ticker: "BEL.NS",
+    displayTicker: "BEL",
+    name: "Bharat Electronics",
+    sector: "Defence Electronics",
+    sectorId: "defence",
     allocation: 8,
     rationale:
-      "7 Powers score 3/7: Scale economy (India's largest contract electronics manufacturer) + counter-positioning (vs Chinese EMS — China+1 structural shift). Assembling iPhones for Apple. PLI incentives drive 40%+ revenue CAGR. Operating leverage accelerates as volume scales — gross margin expansion of 150–200 bps expected annually. Higher risk (3/7 Powers) justifies 8% cap.",
-    catalysts: ["iPhone production ramp expansion", "IT hardware PLI scheme wins", "Semiconductor assembly JV announcement"],
-    risk: "High",
-    color: "#06b6d4",
+      "7 Powers score 5/7: Cornered resource (government-mandated defence electronics supplier — 75% indigenisation policy cannot be bypassed) + switching cost (multi-year system integration contracts lock in MOD for 7–10 years per programme) + scale economy (only listed pure-play defence electronics OEM at scale). " +
+      "Order book ~₹75,000 crore = 3.1× FY25 revenue — providing >3 years of forward revenue visibility. " +
+      "QRSAM (Quick Reaction Surface to Air Missile) orders ₹30,000–32,000 crore in pipeline; BEL is prime contractor. " +
+      "FY27 defence budget ₹7.85L Cr (+record) + Defence Acquisition Council approvals worth ₹3.3L Cr across Army/Navy/Air Force. " +
+      "Axis Securities and Choice Broking top defence pick. Replaces DIXON (3/7 powers) — BEL is structurally superior: government moat vs commodity contract manufacturing.",
+    catalysts: ["QRSAM prime contract award (₹30,000–32,000 cr expected FY27)", "Defence budget execution — ₹7.85L Cr FY27 capital outlay", "Export order wins as India targets $5B+ annual defence exports"],
+    risk: "Low",
+    color: "#f97316",
   },
   {
     ticker: "NTPC.NS",

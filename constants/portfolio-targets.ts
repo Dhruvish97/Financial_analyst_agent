@@ -127,14 +127,14 @@ export const AGGRESSIVE_TARGET: PortfolioTarget = {
     {
       sector: "Semiconductors",
       targetPct: 12,
-      description: "Custom ASIC moat accelerating for hyperscalers",
-      suggestedBuys: ["NVDA", "AMD", "AVGO", "QCOM"],
+      description: "Custom ASIC moat accelerating for hyperscalers; MU (Micron HBM) added as AI memory watch",
+      suggestedBuys: ["NVDA", "AMD", "AVGO", "QCOM", "MU"],
       color: "#f59e0b",
     },
     {
       sector: "Consumer Growth",
       targetPct: 10,
-      description: "Brand moat + pricing power in high-margin categories",
+      description: "Brand moat + pricing power in high-margin categories; MELI (LatAm fintech+e-commerce flywheel, +39% rev 2025) flagged as strong new candidate",
       suggestedBuys: ["AMZN", "CMG", "SHOP", "MELI"],
       color: "#ec4899",
     },
@@ -205,8 +205,8 @@ export const INDIA_CONSERVATIVE_TARGET: PortfolioTarget = {
     {
       sector: "FMCG / Consumer Staples (India)",
       targetPct: 20,
-      description: "Non-cyclical demand with strong distribution moats",
-      suggestedBuys: ["HINDUNILVR", "ITC", "NESTLEIND", "BRITANNIA"],
+      description: "Non-cyclical demand with strong distribution moats; ITC flagged for re-rating (rural volumes +8.4%, GST tailwind, 12–15% upside expected)",
+      suggestedBuys: ["HINDUNILVR", "ITC", "NESTLEIND", "BRITANNIA", "DABUR"],
       color: "#22c55e",
     },
     {
@@ -277,8 +277,8 @@ export const INDIA_AGGRESSIVE_TARGET: PortfolioTarget = {
     {
       sector: "Infrastructure / Capital Goods (India)",
       targetPct: 12,
-      description: "India capex supercycle — defence, rail, roads",
-      suggestedBuys: ["LT", "BEL", "SIEMENS", "ABB"],
+      description: "India capex supercycle — defence, rail, roads; BEL flagged as strong new portfolio candidate (order book ₹75,000 cr = 3.1x FY25 revenue)",
+      suggestedBuys: ["LT", "BEL", "SIEMENS", "ABB", "DATAPATT"],
       color: "#f97316",
     },
     {
