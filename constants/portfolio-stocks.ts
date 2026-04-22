@@ -39,6 +39,17 @@
  *   ~ META updated           ($27B Nebius AI infrastructure deal; CapEx raised to $115–135B 2026)
  *   ~ TSLA updated           (Cybercab production April 2026; Optimus 1M/yr target; stock ~$405 at 210x)
  *   ~ GOOGL updated          (Gemini 2.0 competitive with GPT-4o; Waymo scaling; Cloud +28%)
+ *
+ * April 2026 market refresh (research update — current intelligence):
+ *   ~ NVDA updated           (Stock ~$198, forward P/E ~24x — cheapest in 3 yrs; May 20 earnings, ~$78B rev guidance expected; hyperscaler capex >$600B 2026 +36% YoY)
+ *   ~ META updated           (3.58B DAU +7% YoY; Advantage+ AI ads $60B run-rate; MTIA 1GW chip deployment Apr 14; CapEx $115–135B unchanged)
+ *   ~ MSFT updated           (Stock -23% YTD = Prompt #18 contrarian signal; Azure/Copilot monetisation intact; Q1 2026 earnings week of Apr 29)
+ *   ~ GOOGL updated          (Stock ~$336; Q1 2026 earnings Apr 29, $107.7B expected +18% YoY; Google Cloud >50% growth; $243B backlog; KeyBanc Cloud $91.8B 2026 target)
+ *   ~ AMZN updated           (AWS +24% Q4 2025, fastest in 13 qtrs; AI revenue >$15B annual run-rate; Ads $60B+ run-rate; Q1 earnings Apr 29)
+ *   ~ AVGO updated           (Q1 FY2026: $19.3B rev +29% YoY; AI semiconductor $8.4B +106% YoY — mega AI ASIC cycle confirmed; EPS beat $2.05 vs $1.88)
+ *   ~ TSLA updated           (Q1 2026 earnings Apr 22; consensus $0.36/$21.9B; 50K-unit inventory overhang; energy storage headwinds; growth narrative under pressure)
+ *   ~ PLTR updated           (Q4 2025 US commercial +137% YoY; FY2025 rev $4.475B +56%; FY2026 guidance $7.2B +61%; GAAP net income $1.625B; Q1 earnings May 4)
+ *   ~ NET updated            (Q1 2026 earnings Apr 30; Q1 guidance $620–621M; FY2026 guidance $2.785–$2.795B)
  */
 
 import { PortfolioDefinition } from "@/types/portfolio";
@@ -77,9 +88,10 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       rationale:
         "7 Powers score: 6/7. CUDA ecosystem = switching cost (every AI model trained deepens lock-in) + " +
         "cornered resource (GPU talent + CUDA library monopoly) + scale economies + process power. " +
-        "Q4 FY26 revenue +73% to $68.1B, blowing past estimates. Blackwell B200/GB200 NVL72 now shipping — " +
-        "architecture extends the CUDA moat into 2027–28 as every new model trained deepens switching cost. " +
-        "Hyperscalers (Google, Microsoft, Amazon, Meta) combined CapEx approaching $520B in 2026 — NVDA is the primary beneficiary.",
+        "Q1 FY27 (calendar Q1 2026) earnings due May 20 — analysts expect ~$78B revenue guidance. " +
+        "Stock ~$198, trailing P/E ~41x, forward P/E ~24x — cheapest vs 3-yr average of 69x (earnings growing faster than multiple). " +
+        "Blackwell B200/GB200 NVL72 architecture deepens CUDA switching cost into 2027–28. " +
+        "Hyperscaler capex exceeds $600B in 2026 (+36% YoY), ~$450B AI-specific — NVDA captures the largest share.",
       color: "#76b900",
     },
     {
@@ -91,8 +103,9 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       rationale:
         "7 Powers score: 7/7 (rare perfect score). Azure + Office 365 = switching cost (enterprise data lock-in) + " +
         "network effects (Teams/LinkedIn) + scale economies + process power (OpenAI partnership moat). " +
-        "Azure growing 28%+ YoY. Copilot monetisation creating new per-seat revenue above the existing base. " +
-        "Government cloud (JEDI/JWCC), gaming (Activision), and LinkedIn add rare multi-platform resilience.",
+        "Stock -23% YTD April 2026 — Prompt #18 (Behavioral Finance) flags a textbook contrarian entry; the business moat is structurally intact. " +
+        "Q1 2026 earnings due Apr 29; Azure growth and Copilot per-seat monetisation are the key revenue drivers. " +
+        "Government cloud (JEDI/JWCC), gaming (Activision synergies), and LinkedIn add rare multi-platform resilience.",
       color: "#00a4ef",
     },
     {
@@ -102,11 +115,12 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       sector: "Social Media & AI",
       allocation: 12,
       rationale:
-        "7 Powers score: 5/7. Network effects on 3.27B DAU = the strongest single moat in consumer tech. " +
+        "7 Powers score: 5/7. Network effects on 3.58B DAU (+7% YoY) = the strongest single moat in consumer tech. " +
         "WhatsApp/Instagram/FB form a closed social graph that is structurally impossible to replicate. " +
         "Prompt #18 (Behavioral Finance): Jan 2023 analyst consensus was 55% sell — contrarian buyers returned +194%. " +
-        "March 2026 update: Landmark $27B deal with Nebius Group ($12B dedicated AI processing + $15B supplementary compute). " +
-        "2026 CapEx guidance raised to $115–135B, signalling hyper-aggressive AI infrastructure buildout. Llama open-source cuts inference costs $3B+/yr.",
+        "AI Advantage+ advertising suite at $60B annual run-rate. April 14, 2026: committed to deploying 1GW of custom MTIA chips — " +
+        "a structural signal that Meta is building proprietary silicon to reduce long-term inference costs. " +
+        "2026 CapEx guidance $115–135B, signalling hyper-aggressive AI infrastructure buildout. Llama open-source cuts inference costs $3B+/yr.",
       color: "#0866ff",
     },
     {
@@ -117,10 +131,10 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       allocation: 10,
       rationale:
         "7 Powers score: 6/7. 92% search share = unassailable scale economy + counter-positioning vs ChatGPT " +
-        "(Search has real-time indexing no LLM can match). Google Cloud +28% YoY. " +
-        "Gemini 2.0 now competitive with GPT-4o across benchmarks — the AI search narrative is shifting back toward GOOGL. " +
-        "Waymo robotaxi expanding to new cities — 10M+ autonomous miles and commercially deployed. " +
-        "Greenblatt: highest ROIC in mega-cap internet (~28%) at a discount to MSFT/META multiples.",
+        "(Search has real-time indexing no LLM can match). Stock ~$336; Q1 2026 earnings Apr 29 — " +
+        "consensus $2.68 EPS on $106.9B revenue (+18% YoY). Google Cloud growth expected >50% YoY driven by Gemini and enterprise AI. " +
+        "$243B cloud backlog provides unprecedented revenue visibility. KeyBanc 2026 Cloud revenue forecast $91.8B — 8% above Wall Street consensus. " +
+        "Waymo commercially deployed and scaling. Greenblatt: highest ROIC in mega-cap internet (~28%).",
       color: "#4285f4",
     },
     {
@@ -130,9 +144,10 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       sector: "Cloud & E-Commerce",
       allocation: 10,
       rationale:
-        "7 Powers score: 6/7. AWS scale economy (32% cloud market share, 5x more cloud revenue than #3 Azure) + " +
-        "logistics flywheel switching cost (Prime ecosystem). Advertising segment ($60B+ run-rate) now rivals Google. " +
-        "Operating margins tripled 2023→2025 as high-margin AWS/Ads overtake low-margin retail — margin expansion story intact.",
+        "7 Powers score: 6/7. AWS scale economy (32% cloud market share) + logistics flywheel switching cost (Prime ecosystem). " +
+        "AWS grew 24% in Q4 2025 — fastest pace in 13 quarters — with AI-driven cloud revenue crossing $15B annual run-rate. " +
+        "Advertising segment at $60B+ run-rate now rivals Google Ads as a standalone business. " +
+        "Q1 2026 earnings Apr 29. Operating margins tripled 2023–2025 as high-margin AWS/Ads overtake low-margin retail.",
       color: "#ff9900",
     },
     {
@@ -142,10 +157,11 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       sector: "Semiconductors & Software",
       allocation: 10,
       rationale:
-        "7 Powers score: 5/7. Custom AI ASIC chips for Google (TPU v5) and Meta (MTIA) = switching cost moat " +
+        "7 Powers score: 5/7. Custom AI ASIC chips for Google (TPU) and Meta (MTIA) = switching cost moat " +
         "(multi-year design partnerships lock hyperscalers in for 3–5 year silicon cycles). " +
-        "VMware acquisition adds recurring software revenue — rare semiconductor + software hybrid with 50%+ EBITDA margins. " +
-        "Increased to 10% (was 8%) — accelerating ASIC demand is the biggest structural shift in AI chips beyond NVDA.",
+        "Q1 FY2026 results (Mar 4): $19.3B revenue +29% YoY; AI semiconductor revenue $8.4B +106% YoY — custom ASIC cycle accelerating faster than consensus expected. EPS $2.05 beat $1.88 estimate by 9%. " +
+        "VMware adds recurring software revenue; 50%+ EBITDA margins intact. " +
+        "Increased to 10% (was 8%) — ASIC demand is the biggest structural shift in AI chips beyond NVDA.",
       color: "#cc0000",
     },
     {
@@ -169,11 +185,10 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       allocation: 5,
       rationale:
         "7 Powers score: 3/7. Weakest moat in this portfolio — EV is becoming a commoditised market with BYD/Chinese " +
-        "OEMs compressing margins. Stock trades at ~$405 (210x earnings) — extraordinary multiple requiring flawless execution. " +
-        "March 2026: Cybercab autonomous robotaxi entering production April 2026 (Austin, TX); Optimus humanoid robot targeting " +
-        "1M units/year by 2027. FSD v13 showing real capability improvements. " +
-        "Prompt #18 (Behavioral Finance): consensus is increasingly negative on EV thesis — which historically precedes re-rating. " +
-        "5% size reflects robotics/autonomy optionality on a $10T+ TAM, not EV conviction. Stop-loss if Cybercab production slips 6+ months.",
+        "OEMs compressing margins. Q1 2026 earnings Apr 22: consensus $0.36 EPS, $21.9B revenue. " +
+        "50,000-unit inventory overhang and energy storage headwinds cloud near-term results. FSD v13 progress real but Cybercab production timelines remain unconfirmed. " +
+        "Prompt #18 (Behavioral Finance): analyst consensus increasingly negative on EV thesis — same sentiment pattern that historically precedes re-ratings. " +
+        "5% size reflects robotics/autonomy optionality on a $10T+ TAM, not EV conviction. Monitor Cybercab production timeline and inventory drawdown.",
       color: "#e82127",
     },
     {
@@ -185,8 +200,8 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       rationale:
         "7 Powers score: 4/7. Global edge network in 330+ cities processes 20% of all internet traffic — " +
         "a scale economy with network effects (every node makes the whole network faster). " +
-        "Workers AI platform captures AI inference at the edge. 130%+ NRR confirms product-market fit. " +
-        "Reduced to 4% (was 6%) — high-quality business but valuation premium limits near-term upside.",
+        "Workers AI platform captures AI inference at the edge. Q1 2026 earnings Apr 30: guidance $620–621M; FY2026 guidance $2.785–$2.795B with operating income $378–382M. " +
+        "130%+ NRR confirms product-market fit. Reduced to 3% — high-quality business; PLTR revenue acceleration currently justifies heavier sizing.",
       color: "#f6821f",
     },
     {
@@ -198,10 +213,10 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       rationale:
         "7 Powers score: 4/7. Cornered resource (classified government intelligence data partnerships) + " +
         "switching cost (AIP deeply embedded in enterprise and government workflows). " +
-        "March 2026 update: US commercial revenue +137% YoY Q4 2025; $7.2B FY26 revenue guidance (+61% YoY) — " +
-        "AIP is no longer a proof-of-concept, it's a production revenue engine. GAAP profitable for 8+ consecutive quarters. " +
-        "Increased to 5% (was 4%) — execution has resolved the prior revenue-growth concern. Stock ~$142 at 100x forward earnings " +
-        "remains expensive, but 7 Powers + AIP commercial inflection justify elevated sizing vs prior quarter.",
+        "Q4 2025: US commercial revenue +137% YoY. FY2025 total revenue $4.475B (+56% YoY), GAAP net income $1.625B. " +
+        "FY2026 guidance $7.2B (+61% YoY) with US commercial >$3.1B (+115% YoY) — AIP is a production revenue engine, not a proof-of-concept. " +
+        "Stock ~$135–145 (down from $177 Jan start), forward multiple compressing as revenue catches up. Q1 2026 earnings May 4. " +
+        "Morgan Stanley flags 'strong setup' for May earnings. Increased to 5% — AIP execution justifies elevated sizing.",
       color: "#6366f1",
     },
     {

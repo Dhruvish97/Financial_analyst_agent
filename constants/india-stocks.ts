@@ -26,14 +26,16 @@
 //   − RELIANCE reduced 14→12%    (fair value after modest 2023–24 returns; free allocation to HDFC)
 //   − ZOMATO reduced 8→6%        (network effects moat intact but no GAAP profit; size reflects risk)
 //
-// March 2026 market refresh (current intelligence — research update):
-//   ~ HCLTECH updated   (India IT sector -25% YTD 2026 = Prompt #18 contrarian trigger; HCL leads AI deals
-//                        139/194 new AI mandates won; FY27 revenue guidance 4.5–6.5% — strongest in sector)
-//   ~ HDFCBANK updated  (LDR normalised to 96% from 110% post-merger; GNPA pristine 1.24%; NIM recovery
-//                        path confirmed — NIM expanding toward 3.7% FY27; re-rating catalyst intact)
-//   ~ BAJFINANCE updated (RBI paused repo at 5.25% after 50bps cuts; April MPC is next catalyst;
-//                         credit costs improving; AUM growth 26% YoY confirms rural expansion executing)
-//   ~ IT sector card    (updated to reflect -25% YTD correction = sector-level #18 contrarian opportunity)
+// April 2026 market refresh (current intelligence — research update):
+//   ~ HCLTECH updated   (FY26 revenue $14.66B +3.9% YoY; Q4 rev $3.68B +5.3%; AI revenue $620M annual;
+//                        FY27 guidance cut to 1–4% CC amid client-specific issues — cautious but AI pipeline intact)
+//   ~ HDFCBANK updated  (Q4FY26 profit ₹19,221 cr +9% YoY; NIM 3.38% flat; NII +3.2% despite 12% loan growth;
+//                        NIM compression ongoing as deposit costs remain elevated; contrarian position maintained)
+//   ~ BAJFINANCE updated (RBI held repo at 5.25% in April 2026 MPC; AUM ₹5.1L cr +22% YoY; new loans +20.5%;
+//                        rate cycle has turned — funding cost relief expected in H2 FY27)
+//   ~ RELIANCE updated  (Q3 FY26 profit ₹18,645 cr +0.57% YoY — muted; Jio Financial + New Energy still long-term)
+//   ~ ADANIGREEN noted  (Q3 FY26 net loss ₹-41 cr — near-term headwinds; long-term capacity build intact)
+//   ~ IT sector card    (FY27 guidance cautious across sector; TCS TCV $40.7B FY26; AI deal pipeline building)
 
 export interface IndiaStock {
   ticker: string;        // Yahoo Finance NSE ticker (e.g. "RELIANCE.NS")
@@ -72,9 +74,9 @@ export const INDIA_SECTORS: IndiaSector[] = [
     gradient: "from-orange-950/80 to-amber-950/60",
     borderColor: "border-orange-800/50",
     textColor: "text-orange-400",
-    outlook: "Government capex of ₹6.21L Cr allocated for FY2025–26. Indigenisation mandate targets 75% domestic procurement. India aims to become a $5B defence exporter by 2025.",
+    outlook: "FY2026–27 defence budget ₹7.85 lakh crore — India's largest-ever. DAC approvals worth ₹6.73 lakh crore. Domestic defence production reached ₹1.27 lakh crore in FY24. India targeting $5B+ annual defence exports, with HAL, BEL, and DRDO pipelines scaling rapidly.",
     drivers: [
-      "Record ₹6.21L Cr defence budget FY26",
+      "Record ₹7.85L Cr defence budget FY27 — highest ever",
       "75% indigenisation procurement policy",
       "Atmanirbhar Bharat defence push",
       "₹1.4L Cr HAL order book (10-yr visibility)",
@@ -110,7 +112,7 @@ export const INDIA_SECTORS: IndiaSector[] = [
     gradient: "from-green-950/80 to-emerald-950/60",
     borderColor: "border-green-800/50",
     textColor: "text-green-400",
-    outlook: "India targets 500 GW renewable capacity by 2030 (currently ~200 GW). Green hydrogen mission with ₹19,744 Cr outlay. Largest solar expansion programme in the world.",
+    outlook: "India added a record 44.5 GW of renewable capacity in 2025, pushing total non-fossil fuel capacity past 253 GW vs the 500 GW 2030 target. PLI beneficiaries installed 11 GW solar PV modules and 5 GW cells in 2025. Green Hydrogen Mission ₹19,744 Cr outlay. Fastest RE capacity build in the world.",
     drivers: [
       "500 GW renewable target by 2030",
       "₹19,744 Cr Green Hydrogen Mission",
@@ -167,12 +169,12 @@ export const INDIA_SECTORS: IndiaSector[] = [
     gradient: "from-indigo-950/80 to-blue-950/60",
     borderColor: "border-indigo-800/50",
     textColor: "text-indigo-400",
-    outlook: "India IT sector down ~25% YTD March 2026 — Prompt #18 (Behavioral Finance, 84/100) signals a sector-level contrarian entry. Analyst consensus is anchoring to near-term growth slowdown, missing the structural AI services inflection. HCL Technologies leads new AI deal wins (139 of 194 mandates won in last 12 months). India IT revenues $250B+ growing to $500B by 2030. 85% of global workloads still on-prem = multi-year cloud migration runway.",
+    outlook: "India IT sector faces a muted FY27: HCLTech guided 1–4% CC growth; sector-wide discretionary spending under pressure from West Asia conflict uncertainty. However, deal quality is improving — TCS closed FY26 with record TCV $40.7B ($12B in Q4 alone); AI is embedded in virtually every new mandate. India IT revenues $250B+ growing to $500B by 2030 — the structural case is intact even as near-term guidance disappoints.",
     drivers: [
-      "Sector -25% YTD 2026 = Prompt #18 contrarian trigger (same pattern as META Jan 2023)",
-      "HCL leads AI deal signings: 139/194 new mandates (best in sector)",
-      "AI services $50B+ new deal pipeline through 2027 accelerating",
-      "85% of global workloads still on-prem — decade-long cloud migration",
+      "TCS FY26 TCV $40.7B (record) — deal pipeline strongest in years",
+      "HCLTech AI revenue $620M annually; AI in virtually every new deal signed",
+      "IT FY27 guidance cautious but improving — client budget decisions accelerating",
+      "85% of global workloads still on-prem — decade-long cloud migration runway",
       "USD revenue = natural INR depreciation hedge for India investors",
     ],
     marketSize: "₹20.0L Cr",
@@ -211,7 +213,9 @@ export const INDIA_STOCKS: IndiaStock[] = [
     sectorId: "fintech",
     allocation: 12,
     rationale:
-      "7 Powers score 4/7: Jio scale economy + Retail switching cost (largest Asia retailer) + New Energy cornered resource. Reduced to 12% (was 14%) — 2023–24 returns modest (+8–12%) reflecting fair valuation. Jio IPO and New Energy ramp remain multi-year catalysts.",
+      "7 Powers score 4/7: Jio scale economy + Retail switching cost (largest Asia retailer) + New Energy cornered resource. " +
+      "Q3 FY26 profit ₹18,645 cr (+0.57% YoY) — muted near-term growth reflecting retail normalization and telecom ARPU pressure. Share price ~₹1,353. " +
+      "CLSA has de-emphasised RELIANCE in favour of consumer growth names for 2026. Jio IPO timeline and New Energy 100 GW capacity ramp remain the key long-term re-rating catalysts. 12% allocation reflects quality moat but limited near-term catalysts vs peers.",
     catalysts: ["Jio Financial Services growth", "New Energy 100 GW capacity ramp", "Jio IPO listing timeline"],
     risk: "Low",
     color: "#3b82f6",
@@ -225,11 +229,11 @@ export const INDIA_STOCKS: IndiaStock[] = [
     allocation: 14,
     rationale:
       "7 Powers score 5/7: Scale economy (India's largest private bank by assets) + switching cost (salary accounts + home loan ecosystem lock-in across 90M+ customers). " +
-      "March 2026 update: LDR (loan-to-deposit ratio) normalised to 96% from 110% post-HDFC merger peak — the key stock overhang is resolving. " +
-      "GNPA pristine at 1.24% — best asset quality in large-cap Indian banking. NIM expanding toward 3.7% FY27 as high-cost merger deposits mature. " +
-      "Prompt #18: Analyst consensus still anchored to NIM compression narrative — same herding bias as META Jan 2023 (+194% post-hate). " +
-      "Trading at ~2.2x P/B (multi-year low vs historical 3.5–4x). Highest conviction India contrarian position.",
-    catalysts: ["LDR normalisation to 96% unlocking loan growth", "NIM recovery path to 3.7% FY27", "GNPA 1.24% — re-rating as quality premium returns"],
+      "Q4 FY26 results (Apr 18, 2026): profit ₹19,221 cr +9% YoY on lower provisions. NIM 3.38% (flat QoQ) — NII grew only 3.2% YoY despite 12% loan growth, confirming NIM compression from elevated deposit costs. " +
+      "Deposit growth 14.4% outpacing loan growth 12% — structurally healthy, reduces reliance on expensive borrowings. GNPA 1.24% — best asset quality in large-cap Indian banking. " +
+      "Prompt #18: Analyst consensus still anchored to NIM compression — same herding bias that preceded META's +194% re-rating. RBI rate hold may delay NIM recovery to FY27-end. " +
+      "Trading at ~2.2x P/B (multi-year low vs historical 3.5–4x). Highest conviction India contrarian position; patience required.",
+    catalysts: ["NIM recovery in H2 FY27 as high-cost merger deposits mature and RBI begins cutting", "Loan growth acceleration as LDR stabilises at 96%", "GNPA 1.24% — best-in-class asset quality driving P/B re-rating"],
     risk: "Low",
     color: "#10b981",
   },
@@ -268,10 +272,11 @@ export const INDIA_STOCKS: IndiaStock[] = [
     allocation: 10,
     rationale:
       "7 Powers score 5/7: Switching cost (multi-year enterprise IT contracts average 5+ years) + process power (ER&D engineering services moat — 60,000+ engineers in product engineering). " +
-      "March 2026: India IT sector -25% YTD — Prompt #18 (Behavioral Finance, 84/100) identifies this as a sector-level contrarian signal identical to META Jan 2023 (consensus hate → +194% return). " +
-      "HCL leads AI deal wins: 139 of 194 new mandates in the last 12 months — best AI deal pipeline in Indian IT. " +
-      "FY27 revenue guidance: 4.5–6.5% (strongest in the sector; consensus underestimates AI services ramp). Cheaper than TCS/Infosys on P/E — same moat quality at a discount.",
-    catalysts: ["AI deal pipeline conversion FY27 (139 mandates won)", "ER&D market share gains in semiconductors/auto", "IT sector re-rating as -25% YTD correction reverses"],
+      "FY26 results: revenue $14.66B +3.9% YoY; Q4 FY26 revenue $3.68B +5.3%. AI-related revenue $620M annually, with advanced AI in nearly every new deal signed. " +
+      "FY27 guidance: 1–4% constant-currency growth — management flagged client-specific delays and macro uncertainty (West Asia conflict). Below prior expectations, but deal TCV $9.3B FY26 confirms long-term pipeline. " +
+      "Prompt #18: IT sector valuation has de-rated sharply — same sentiment dynamics that preceded re-ratings in prior cycles. " +
+      "Cheaper than TCS/Infosys on P/E — same ER&D engineering moat at a discount; AI pipeline conversion is the FY27 key watch.",
+    catalysts: ["AI deal TCV conversion in FY27 (TCV $9.3B FY26 = strong backlog)", "ER&D market share gains in semiconductor + auto verticals", "IT sector P/E re-rating as FY27 guidance uncertainty resolves"],
     risk: "Low",
     color: "#8b5cf6",
   },
@@ -336,10 +341,11 @@ export const INDIA_STOCKS: IndiaStock[] = [
     allocation: 10,
     rationale:
       "7 Powers score 5/7: Scale economy (India's largest NBFC) + switching cost (80M+ customers cross-sold 10+ products — deposits, loans, insurance, EMI cards). " +
-      "Prompt #18 + #11: Analyst consensus too pessimistic on NPA cycle (anchoring to 2022–23 credit stress). P/E compressed from 50x+ to ~25x while 25%+ ROE track record intact. AUM growth 26% YoY confirms rural expansion strategy executing on plan. " +
-      "March 2026: RBI has paused repo rate at 5.25% after 50bps of cuts (Feb–Apr 2026). Next MPC meeting (April 2026) is the key catalyst — further 25bps cut would lower BAJFINANCE funding costs and boost NIM. " +
-      "Rate pause ≠ rate risk; the rate cycle has already turned — credit demand recovering.",
-    catalysts: ["April 2026 MPC rate decision (next 25bps cut expected)", "AUM growth sustaining 25%+ as rural/semi-urban expansion continues", "Credit cost normalisation as NPA cycle peaks in FY26"],
+      "Q4 FY26: AUM ₹5.1 lakh cr (+22% YoY), new loans 12.89M (+20.5%) — rural/semi-urban expansion executing strongly. Share price ~₹906. " +
+      "Prompt #18 + #11: Analyst consensus overly pessimistic on NPA cycle (anchoring to 2022–23 stress). P/E compressed from 50x+ to ~25x while 25%+ ROE intact. " +
+      "April 2026 MPC: RBI held repo at 5.25% — confirming the pause. Funding cost relief expected in H2 FY27 as RBI begins next cuts; credit demand already recovering. " +
+      "Rate hold ≠ rate risk; the rate cycle has already turned — NIM improvement is a matter of timing, not direction.",
+    catalysts: ["RBI rate cuts in H2 FY27 reducing NBFC funding costs and expanding NIM", "AUM growth sustaining 22%+ as rural/semi-urban expansion continues", "Credit cost normalisation as NPA cycle peaks and provisioning eases"],
     risk: "Medium",
     color: "#a855f7",
   },
