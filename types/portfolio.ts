@@ -16,6 +16,7 @@ export type RiskLevel =
   | "Moderate"
   | "Mod. Aggressive"
   | "Aggressive";
+export type HoldingRisk = "Low" | "Medium" | "High";
 
 export interface PortfolioHolding {
   ticker: string;
@@ -25,6 +26,7 @@ export interface PortfolioHolding {
   allocation: number;
   rationale: string;
   color: string;
+  risk: HoldingRisk;
 }
 
 export interface PortfolioDefinition {

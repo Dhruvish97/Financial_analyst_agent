@@ -12,6 +12,7 @@ import {
   PortfolioAnalysis,
   analysePortfolio,
 } from "@/lib/portfolio-analysis";
+import { RiskBadge } from "@/components/ui/RiskBadge";
 
 // ── Step indicator ─────────────────────────────────────────────────────────────
 
@@ -393,9 +394,12 @@ function RecommendationCard({ rec, currency }: { rec: import("@/lib/portfolio-an
               className="flex items-center justify-between rounded-lg px-2.5 py-1.5"
               style={{ background: `${accentColor}0a`, border: `1px solid ${accentColor}18` }}
             >
-              <span className="font-mono font-bold text-xs" style={{ color: accentColor }}>
-                {t.ticker}
-              </span>
+              <div className="flex items-center gap-2">
+                <span className="font-mono font-bold text-xs" style={{ color: accentColor }}>
+                  {t.ticker}
+                </span>
+                {t.risk && <RiskBadge risk={t.risk} />}
+              </div>
               <div className="flex items-center gap-2 text-[10px] font-mono">
                 {t.shares !== null ? (
                   <>

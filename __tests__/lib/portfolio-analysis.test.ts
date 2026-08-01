@@ -260,6 +260,8 @@ describe("analysePortfolio", () => {
     );
     expect(bondBuy).toBeDefined();
     expect(bondBuy?.tickers).toContain("BND");
+    const bndAction = bondBuy?.tickerBreakdown.find((t) => t.ticker === "BND");
+    expect(bndAction?.risk).toBe("Low");
   });
 
   it("gives higher score for aggressive target (more tech = better fit)", () => {

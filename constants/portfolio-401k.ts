@@ -58,6 +58,7 @@ export const PORTFOLIO_401K: PortfolioDefinition = {
         "One-ticket exposure to the entire US equity market (4,000+ stocks). " +
         "0.03% expense ratio makes it the gold standard for tax-deferred core holdings.",
       color: "#3b82f6",
+      risk: "Low",
     },
     {
       ticker: "VXUS",
@@ -69,6 +70,7 @@ export const PORTFOLIO_401K: PortfolioDefinition = {
         "Covers 8,000+ non-US stocks across developed and emerging markets. " +
         "Reduces home-country bias and captures growth in regions outpacing the US.",
       color: "#60a5fa",
+      risk: "Medium",
     },
     {
       ticker: "BND",
@@ -80,6 +82,7 @@ export const PORTFOLIO_401K: PortfolioDefinition = {
         "Broad US investment-grade bond exposure — treasuries, corporates, agency. " +
         "Acts as the portfolio's shock absorber during equity drawdowns.",
       color: "#93c5fd",
+      risk: "Low",
     },
     {
       ticker: "SCHD",
@@ -91,6 +94,7 @@ export const PORTFOLIO_401K: PortfolioDefinition = {
         "Screens for 10+ years of consecutive dividends, strong free cash flow, " +
         "and high dividend growth. Historically lower drawdowns than SPY with comparable returns.",
       color: "#1d4ed8",
+      risk: "Low",
     },
     {
       ticker: "VHT",
@@ -102,6 +106,7 @@ export const PORTFOLIO_401K: PortfolioDefinition = {
         "Defensive sector with secular tailwinds from aging demographics. " +
         "Healthcare historically holds up better in recessions — critical for a long-duration portfolio.",
       color: "#2563eb",
+      risk: "Low",
     },
     {
       ticker: "VNQ",
@@ -113,6 +118,7 @@ export const PORTFOLIO_401K: PortfolioDefinition = {
         "Diversified REIT exposure providing real asset inflation hedging and income. " +
         "Low correlation to bonds makes it an effective diversifier in a 401k.",
       color: "#7dd3fc",
+      risk: "Medium",
     },
     {
       ticker: "GLD",
@@ -124,6 +130,7 @@ export const PORTFOLIO_401K: PortfolioDefinition = {
         "Safe haven and inflation hedge with near-zero correlation to equities or bonds. " +
         "Endorsed by Bridgewater-style 'all weather' frameworks for tail-risk protection.",
       color: "#fbbf24",
+      risk: "Low",
     },
   ],
 };

@@ -6,6 +6,7 @@ import { PortfolioDefinition, PriceMap, RSIMap } from "@/types/portfolio";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid } from "recharts";
 import { useRSI } from "@/hooks/useRSI";
 import { StockPriceChart } from "@/components/ui/StockPriceChart";
+import { RiskBadge } from "@/components/ui/RiskBadge";
 
 // ── Formatters ────────────────────────────────────────────────────────────────
 
@@ -343,7 +344,7 @@ export function PortfolioDetailModal({ portfolio, prices, loadingPrices, onClose
               <table className="w-full text-sm" aria-label={`${portfolio.name} holdings`}>
                 <thead>
                   <tr className="border-b border-gray-800 bg-gray-800/40">
-                    {["Ticker","Name","Type","Alloc.","Price","24h %","RSI","P/E","52-Week Range","Mkt Cap"].map((h) => (
+                    {["Ticker","Name","Type","Alloc.","Price","24h %","RSI","P/E","52-Week Range","Mkt Cap","Risk"].map((h) => (
                       <th key={h} scope="col" className="text-left text-[10px] text-gray-500 font-semibold uppercase tracking-wider px-3 py-2.5 whitespace-nowrap">
                         {h}
                       </th>
@@ -429,12 +430,16 @@ export function PortfolioDetailModal({ portfolio, prices, loadingPrices, onClose
                           <td className="px-3 py-2.5 text-right font-mono text-xs text-gray-500">
                             {loadingPrices ? <span className="animate-pulse text-gray-600">…</span> : fmtCap(lp?.marketCap ?? null)}
                           </td>
+                          {/* Risk */}
+                          <td className="px-3 py-2.5">
+                            <RiskBadge risk={h.risk} />
+                          </td>
                         </tr>
 
                         {/* ── Expanded price chart row ── */}
                         {isChartOpen && (
                           <tr key={`${h.ticker}-chart`} className="border-b border-gray-800/50 bg-gray-900/40">
-                            <td colSpan={10} className="px-4 py-3">
+                            <td colSpan={11} className="px-4 py-3">
                               <StockPriceChart
                                 ticker={h.ticker}
                                 name={h.name}

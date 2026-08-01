@@ -1,4 +1,6 @@
 import { PortfolioTarget, SectorTarget } from "@/constants/portfolio-targets";
+import { TICKER_RISK } from "@/constants/ticker-risk";
+import { HoldingRisk } from "@/types/portfolio";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -30,6 +32,7 @@ export interface TickerAction {
   shares: number | null;   // null if price unavailable
   price: number | null;
   dollarAmount: number;
+  risk?: HoldingRisk;      // undefined for tickers not in TICKER_RISK (e.g. India suggestions)
 }
 
 export interface Recommendation {
@@ -460,6 +463,7 @@ export function generateRecommendations(
           shares: shares !== null ? Math.round(shares * 100) / 100 : null,
           price: h.price,
           dollarAmount: Math.round(dollars),
+          risk: TICKER_RISK[h.ticker],
         };
       });
 
@@ -488,6 +492,7 @@ export function generateRecommendations(
           shares: shares !== null ? Math.round(shares * 100) / 100 : null,
           price,
           dollarAmount: Math.round(perTickerDollars),
+          risk: TICKER_RISK[t],
         };
       });
 

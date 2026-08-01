@@ -145,6 +145,7 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
         "China remains a wildcard: H200 exports approved for ~10 Chinese firms but actual shipments called 'trivial' vs ~2M chips ordered; Blackwell still unlicensed for China. " +
         "Hyperscaler capex commitments keep rising — MSFT FY27 capex guided $255–260B, GOOGL FY26 capex raised to $195–205B, AMZN FY26 ~$220B, META FY26 $125–145B — NVDA captures the largest share of all of it.",
       color: "#76b900",
+      risk: "High",
     },
     {
       ticker: "MSFT",
@@ -161,6 +162,7 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
         "New Fed Chair Kevin Warsh (sworn in May 22, replacing Powell) has struck a hawkish tone, but Microsoft's government-cloud and enterprise moat is Fed-independent. " +
         "Government cloud (JEDI/JWCC), gaming (Activision synergies), LinkedIn, and record capex signal long-term AI infrastructure commitment.",
       color: "#00a4ef",
+      risk: "Low",
     },
     {
       ticker: "META",
@@ -176,6 +178,7 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
         "CapEx raised to $125–145B for FY2026 (Q2 capex $31.1B, nearly double Q2 2025) — almost entirely AI datacenters/custom silicon (MTIA). " +
         "57 of 63 analysts still rate Buy/Strong Buy despite target cuts (Baird to $750 from $830); avg target ~$769–843. Llama open-source cuts inference costs $3B+/yr.",
       color: "#0866ff",
+      risk: "Medium",
     },
     {
       ticker: "GOOGL",
@@ -190,6 +193,7 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
         "FY2026 capex guidance raised to $195–205B (from $180–190B) — stock initially sank on the capex hike despite the beat, a near-term sentiment overhang rather than a moat concern. " +
         "Gemini AI crossed 750M+ monthly active users. Stock ~$359, P/E ~17.7x. Waymo commercially deployed and scaling. Greenblatt: highest ROIC in mega-cap internet (~28%).",
       color: "#4285f4",
+      risk: "Medium",
     },
     {
       ticker: "AMZN",
@@ -204,6 +208,7 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
         "Advertising segment continues to rival Google Ads as a standalone business. FY2026 CapEx guided to ~$220B — largest absolute AI infrastructure commitment of any hyperscaler. " +
         "Operating margins continue expanding as high-margin AWS/Ads overtake low-margin retail.",
       color: "#ff9900",
+      risk: "Medium",
     },
     {
       ticker: "AVGO",
@@ -219,6 +224,7 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
         "VMware adds recurring software revenue; 50%+ EBITDA margins intact. Stock +51% YTD; P/E ~62x, down from ~79x average as earnings catch up to the multiple. " +
         "Increased to 10% (was 8%) — ASIC demand is the biggest structural shift in AI chips beyond NVDA.",
       color: "#cc0000",
+      risk: "Medium",
     },
     {
       ticker: "CRWD",
@@ -233,6 +239,7 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
         "Raised FY27 net-new-ARR growth guidance by 520bps to ~27.7%. Executed a 4-for-1 stock split (Jul 2); hit a split-adjusted all-time high $217.50 on Jul 15. Q2 FY2027 earnings due ~Aug 26. " +
         "130%+ net revenue retention confirms customers expand rather than churn. Cybersecurity spend is non-discretionary — grows with AI threat surface expansion.",
       color: "#f97316",
+      risk: "Medium",
     },
     {
       ticker: "TSLA",
@@ -248,6 +255,7 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
         "his new pay package is tied to these milestones. Analysts split 23 buy/6 sell; Stifel cut target to $450. " +
         "Held at 3% — 2nd consecutive earnings disappointment confirms the weakest-moat thesis, but robotics/autonomy optionality (Cybercab, Optimus) keeps it in the portfolio at reduced conviction.",
       color: "#e82127",
+      risk: "High",
     },
     {
       ticker: "NET",
@@ -263,6 +271,7 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
         "BofA raised target to $330 from $255. Q2 2026 earnings due Aug 6 (guided $664–665M, +30% YoY). " +
         "7 Powers score now trails newer AI-infrastructure candidates ANET (5/7) and PANW (5/7) screened this cycle — held at 3% pending Q2 results, top watch for replacement if guidance disappoints.",
       color: "#f6821f",
+      risk: "High",
     },
     {
       ticker: "PLTR",
@@ -278,6 +287,7 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
         "Stock down ~30% YTD despite the fundamentals — a valuation reset, not a thesis break; trading ~$123 as of Aug 1. Q2 2026 earnings due Aug 3 (consensus EPS $0.35, revenue $1.81B +80% YoY). " +
         "AIP execution continues to justify the 5% sizing.",
       color: "#6366f1",
+      risk: "High",
     },
     {
       ticker: "AAPL",
@@ -293,6 +303,7 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
         "Siri 2.0, rebuilt on a custom Google Gemini model (~$1B/yr deal), unveiled at WWDC June 8 and ships with iOS 27 in September 2026 — drawing fresh antitrust scrutiny alongside the existing ~$20B Google search-default deal. " +
         "BofA/Goldman Buy consensus, avg target $321.66. Fiscal Q4 2026 earnings due late October. Services flywheel remains the core structural moat.",
       color: "#555555",
+      risk: "Low",
     },
     {
       ticker: "MELI",
@@ -308,6 +319,7 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
         "pushing further into consumer banking beyond marketplace/payments. Stock down ~10.7% YTD on margin-pressure concerns despite the growth beat. 24 analysts Buy consensus, avg target $2,209 (~18% upside). Q2 2026 earnings due Aug 5. " +
         "LatAm remains structurally under-penetrated: formal credit penetration <30%, e-commerce <10% of retail — geographic diversifier uncorrelated to US tech regulatory risk.",
       color: "#ffe600",
+      risk: "High",
     },
   ],
 };

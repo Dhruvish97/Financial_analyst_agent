@@ -5,6 +5,7 @@ import { useIndiaPrices } from "@/hooks/useIndiaPrices";
 import { useRSI } from "@/hooks/useRSI";
 import { INDIA_STOCKS, INDIA_SECTORS, INDIA_TICKERS } from "@/constants/india-stocks";
 import { StockPriceChart } from "@/components/ui/StockPriceChart";
+import { RiskBadge } from "@/components/ui/RiskBadge";
 
 // ── Formatters ────────────────────────────────────────────────────────────────
 
@@ -85,14 +86,6 @@ function WeekBar({ low, high, price }: { low: number | null; high: number | null
     </div>
   );
 }
-
-// ── Risk badge ────────────────────────────────────────────────────────────────
-
-const RISK_STYLE: Record<string, React.CSSProperties> = {
-  Low:    { color: "#00e5a0", background: "rgba(0,229,160,0.08)", border: "1px solid rgba(0,229,160,0.2)" },
-  Medium: { color: "#fbbf24", background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)" },
-  High:   { color: "#ff4d6a", background: "rgba(255,77,106,0.08)", border: "1px solid rgba(255,77,106,0.2)" },
-};
 
 // ── IST market hours helper ───────────────────────────────────────────────────
 
@@ -487,9 +480,7 @@ export default function IndiaPage() {
 
                       {/* Risk */}
                       <td className="px-3 py-3">
-                        <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full" style={RISK_STYLE[stock.risk]}>
-                          {stock.risk}
-                        </span>
+                        <RiskBadge risk={stock.risk} />
                       </td>
                     </tr>
 

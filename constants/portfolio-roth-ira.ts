@@ -76,6 +76,7 @@ export const PORTFOLIO_ROTH_IRA: PortfolioDefinition = {
         "Hyperscalers (Google, MSFT, Amazon, Meta) combined CapEx approaching $520B in 2026. " +
         "Roth structure makes this ideal: tax-free exit on a stock with multi-year compounding ahead.",
       color: "#76b900",
+      risk: "High",
     },
     {
       ticker: "MSFT",
@@ -89,6 +90,7 @@ export const PORTFOLIO_ROTH_IRA: PortfolioDefinition = {
         "Azure growing 28%+ YoY; Copilot monetisation adds per-seat revenue. " +
         "GARP check: ~28x forward earnings for a business growing 15%+ EPS with high visibility.",
       color: "#00a4ef",
+      risk: "Low",
     },
     {
       ticker: "GOOGL",
@@ -102,6 +104,7 @@ export const PORTFOLIO_ROTH_IRA: PortfolioDefinition = {
         "Waymo robotaxi commercially deployed in multiple cities (10M+ autonomous miles). " +
         "Greenblatt screen: highest ROIC (~28%) among mega-cap internet at a discount to MSFT/META multiples.",
       color: "#4285f4",
+      risk: "Medium",
     },
     {
       ticker: "META",
@@ -116,6 +119,7 @@ export const PORTFOLIO_ROTH_IRA: PortfolioDefinition = {
         "2026 CapEx guidance raised to $115–135B — hyper-aggressive AI infrastructure buildout. " +
         "Llama open-source cuts inference costs $3B+/yr. Roth ideal: no dividend, pure capital appreciation.",
       color: "#0866ff",
+      risk: "Medium",
     },
     {
       ticker: "AMZN",
@@ -128,6 +132,7 @@ export const PORTFOLIO_ROTH_IRA: PortfolioDefinition = {
         "Operating margin tripling as high-margin AWS/Ads become dominant. " +
         "Roth is ideal for AMZN: zero dividends (no tax drag) and all return expected via capital appreciation.",
       color: "#ff9900",
+      risk: "Medium",
     },
     {
       ticker: "QQQ",
@@ -140,6 +145,7 @@ export const PORTFOLIO_ROTH_IRA: PortfolioDefinition = {
         "Trimmed to 12% (was 15%) — freed allocation moved to AVGO and CRWD " +
         "where moat analysis gives higher conviction than broad-index exposure.",
       color: "#8884d8",
+      risk: "Medium",
     },
     {
       ticker: "VGT",
@@ -152,6 +158,7 @@ export const PORTFOLIO_ROTH_IRA: PortfolioDefinition = {
         "names not fully represented in QQQ. Trimmed to 8% (was 10%) — same rationale as QQQ trim; " +
         "backtesting shows concentrated moat-quality names outperform broad-tech ETFs.",
       color: "#a78bfa",
+      risk: "Medium",
     },
     {
       ticker: "CRWD",
@@ -165,6 +172,7 @@ export const PORTFOLIO_ROTH_IRA: PortfolioDefinition = {
         "Increased to 10% (was 8%) — backtesting shows cybersecurity + platform consolidation thesis " +
         "is durable regardless of macro regime. Strongest moat score in cybersecurity sector.",
       color: "#f97316",
+      risk: "Medium",
     },
     {
       ticker: "AVGO",
@@ -178,6 +186,7 @@ export const PORTFOLIO_ROTH_IRA: PortfolioDefinition = {
         "Added to Roth IRA — was missing from prior version. ASIC demand is the biggest AI chip " +
         "story beyond NVDA, and Broadcom is the only scaled competitor. Ideal Roth holding: no dividend.",
       color: "#cc0000",
+      risk: "Medium",
     },
     {
       ticker: "PLTR",
@@ -192,6 +201,7 @@ export const PORTFOLIO_ROTH_IRA: PortfolioDefinition = {
         "Increased to 3% (was 2%) — execution has resolved the revenue-growth concern. " +
         "Roth ideal for PLTR: no dividend, and outsized capital gain potential in a tax-free account.",
       color: "#6366f1",
+      risk: "High",
     },
   ],
 };

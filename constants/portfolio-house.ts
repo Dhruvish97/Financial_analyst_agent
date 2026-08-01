@@ -49,6 +49,7 @@ export const PORTFOLIO_HOUSE: PortfolioDefinition = {
         "With a 5-year horizon, this cushions against equity downturns in years 3-5 " +
         "when the purchase date approaches.",
       color: "#f59e0b",
+      risk: "Low",
     },
     {
       ticker: "VGSH",
@@ -60,6 +61,7 @@ export const PORTFOLIO_HOUSE: PortfolioDefinition = {
         "Short 1-3 year treasuries with minimal interest rate risk. " +
         "Acts as near-cash that still earns yield, crucial for capital you'll need access to soon.",
       color: "#fbbf24",
+      risk: "Low",
     },
     {
       ticker: "SCHD",
@@ -72,6 +74,7 @@ export const PORTFOLIO_HOUSE: PortfolioDefinition = {
         "Lower volatility than SPY, higher yield, and proven resilience in down markets " +
         "— ideal for capital you can't afford to see cut in half.",
       color: "#d97706",
+      risk: "Low",
     },
     {
       ticker: "VTI",
@@ -83,6 +86,7 @@ export const PORTFOLIO_HOUSE: PortfolioDefinition = {
         "Broad market participation to capture upside if equities continue rallying " +
         "over the 5-year window. Low 0.03% fee ensures no drag on moderate returns.",
       color: "#b45309",
+      risk: "Low",
     },
     {
       ticker: "JNJ",
@@ -95,6 +99,7 @@ export const PORTFOLIO_HOUSE: PortfolioDefinition = {
         "is recession-proof and JNJ's Medtech + Pharmaceutical split provides " +
         "diversification within a single defensive holding.",
       color: "#ef4444",
+      risk: "Low",
     },
     {
       ticker: "PG",
@@ -107,6 +112,7 @@ export const PORTFOLIO_HOUSE: PortfolioDefinition = {
         "67 years of consecutive dividend growth. In any economic environment, " +
         "people buy household essentials — minimal revenue risk.",
       color: "#3b82f6",
+      risk: "Low",
     },
     {
       ticker: "KO",
@@ -119,6 +125,7 @@ export const PORTFOLIO_HOUSE: PortfolioDefinition = {
         "Global distribution in 200+ countries, massive brand moat, and a " +
         "3.1% yield makes this one of the safest equity positions available.",
       color: "#dc2626",
+      risk: "Low",
     },
     {
       ticker: "MCD",
@@ -131,6 +138,7 @@ export const PORTFOLIO_HOUSE: PortfolioDefinition = {
         "— not restaurant operating risk. 47 consecutive years of dividend growth " +
         "and recession-resistant 'affordable treat' consumer behavior.",
       color: "#fde047",
+      risk: "Low",
     },
   ],
 };
