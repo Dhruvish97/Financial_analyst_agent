@@ -10,7 +10,9 @@ Read this file at the start of every conversation. Follow every rule here withou
 - **Data**: yahoo-finance2 (live quotes, RSI, OHLC charts), CNN Fear & Greed API
 - **Deployment**: Vercel Hobby (free tier) — `maxDuration = 30` on all API routes, `force-dynamic`
 - **Live URL**: https://financial-analyst-agent-beta.vercel.app
-- **GitHub**: https://github.com/Dhruvish97/Financial_analyst_agent
+- **GitHub**: https://github.com/Dhruvish97/Financial_analyst_agent — **PUBLIC repo.**
+  Everything committed here is visible to anyone. See the pre-commit audit checklist
+  under Git Rules — run it before every commit, not just the first time.
 
 ---
 
@@ -24,8 +26,10 @@ Every feature change — no matter how small — must follow this exact sequence
 3. EDIT   → make the minimal change needed
 4. TEST   → run `npm test` — all tests must pass
 5. BUILD  → run `npm run build` — must compile with zero errors
-6. COMMIT → commit with a clear message (see Git Rules)
-7. PUSH   → push to GitHub
+6. AUDIT  → run the public-repo pre-commit checklist (see Git Rules) — this is a
+             public repo, not a private one; nothing skips this step
+7. COMMIT → commit with a clear message (see Git Rules)
+8. PUSH   → push to GitHub
 ```
 
 **Never skip steps 4 or 5.** If tests fail, fix them before proceeding. If the build fails, fix it before committing.
@@ -106,6 +110,38 @@ __mocks__/        → Manual mocks for external modules
 - Never force-push to `main`
 - Never commit: `.env`, `coverage/`, `.next/`, `node_modules/`
 
+### Public repo — pre-commit audit (mandatory, every commit)
+
+**This repo is public.** Anyone can read every file, every commit message, and the
+full history the moment it's pushed. Run this before every single commit — a change
+that felt "too small to check" is exactly how a secret gets committed. Do not rely on
+memory of having checked before; re-check the actual diff being committed.
+
+1. **Diff review, not just `git status`.** Run `git diff --cached` (or review each
+   file about to be staged) and actually read it — don't just glance at the file
+   list.
+2. **Secrets and credentials.** No API keys, tokens, passwords, private keys, or
+   `.env` contents in any staged file — including comments, test fixtures, and
+   commit messages. If a key was ever pasted into a file during debugging, confirm
+   it was removed before staging.
+3. **Personal data.** No personal email, phone number, home address, account
+   numbers, or real financial figures (balances, dollar amounts). Portfolio
+   `rationale`/`description` text must stay illustrative — see Portfolio &
+   Research Context.
+4. **Generated/build artifacts.** Never stage `coverage/`, `.next/`, `node_modules/`,
+   `.vercel/`, or `*.tsbuildinfo` — confirm `.gitignore` still covers them if you
+   touch build tooling.
+5. **Absolute local paths.** Nothing containing `/Users/<name>/...` — check any file
+   that embeds a path (configs, generated reports, error messages).
+6. **New files specifically.** A new file wasn't reviewed in a prior audit — read
+   it in full before `git add`, even if you wrote it yourself this session.
+7. **If unsure, ask.** If something might be sensitive and you're not sure, stop and
+   ask the user before staging it — don't guess in the direction of committing.
+
+This checklist is the reason the repo was hardened before going public (removing
+`coverage/`, de-personalizing portfolio labels, gating the paid Advisor endpoint,
+etc.) — the goal is to never need that kind of cleanup pass again.
+
 ---
 
 ## Portfolio & Research Context
@@ -122,6 +158,9 @@ __mocks__/        → Manual mocks for external modules
 - **Fear & Greed Index**: equity signals only (S&P momentum, NYSE breadth, VIX, put/call, junk bonds)
 - **India tab**: 10 NSE stocks, 7 sector cards, prices in INR, IST market hours indicator
 - All portfolio allocations must sum to exactly 100%
+- **Portfolios are illustrative, not personal.** Account labels ("Aggressive Growth",
+  "Retirement Core", etc.) and all commentary are example templates — never add real
+  balances, dollar amounts, or anything that reads as an actual account.
 
 ---
 
