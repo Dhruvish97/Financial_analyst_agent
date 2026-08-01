@@ -45,7 +45,7 @@ function RSIBadge({ rsi }: { rsi: number | null | undefined }) {
     rsi <= 30 ? "bg-green-900/60 text-green-300 border-green-700" :
                 "bg-gray-800 text-gray-400 border-gray-700";
   return (
-    <span className={`text-[10px] font-mono font-bold px-1.5 py-0.5 rounded border ${cls}`}
+    <span className={`text-[10px] font-mono font-bold px-1.5 py-0.5 rounded border whitespace-nowrap ${cls}`}
       title={`RSI: ${rsi} — ${rsi >= 70 ? "Overbought" : rsi <= 30 ? "Oversold" : "Neutral"}`}>
       {rsi} {label}
     </span>
@@ -266,7 +266,7 @@ export function PortfolioDetailModal({ portfolio, prices, loadingPrices, onClose
       <div
         ref={modalRef}
         tabIndex={-1}
-        className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-2xl bg-gray-900 border border-gray-700 shadow-2xl focus-visible:outline-none"
+        className="relative w-full max-w-6xl max-h-[90vh] overflow-y-auto rounded-2xl bg-gray-900 border border-gray-700 shadow-2xl focus-visible:outline-none"
       >
         {/* Header */}
         <div className={`bg-gradient-to-br ${portfolio.cardGradient} ${portfolio.accentColor} p-6 rounded-t-2xl`}>
@@ -340,7 +340,10 @@ export function PortfolioDetailModal({ portfolio, prices, loadingPrices, onClose
               <p className="text-[10px] text-gray-600">Click any row to view price chart</p>
             </div>
             <div className="overflow-x-auto rounded-xl border border-gray-800">
-              <table className="w-full text-sm" aria-label={`${portfolio.name} holdings`}>
+              {/* min-w-full (not w-full): lets the table grow past the container when
+                  11 columns don't fit, so this div scrolls horizontally instead of
+                  every column being squeezed (which wrapped RSI badges onto two lines). */}
+              <table className="min-w-full text-sm" aria-label={`${portfolio.name} holdings`}>
                 <thead>
                   <tr className="border-b border-gray-800 bg-gray-800/40">
                     {["Ticker","Name","Type","Alloc.","Price","24h %","RSI","P/E","52-Week Range","Mkt Cap","Risk"].map((h) => (
