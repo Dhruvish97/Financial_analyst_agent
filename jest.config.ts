@@ -15,7 +15,8 @@ const customConfig: Config = {
     "components/ui/**/*.{ts,tsx}",   // fully tested UI primitives
     "hooks/**/*.ts",
     "app/api/**/*.ts",
-    // Exclude large page-level components tested via E2E / Playwright
+    // Exclude large page-level components — verified manually in the browser
+    // rather than by unit test, so they are not counted toward the thresholds.
     "!components/stocks/**",
     "!components/charts/**",
     "!components/crypto/**",

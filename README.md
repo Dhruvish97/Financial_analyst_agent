@@ -1,52 +1,28 @@
 # Financial Analyst Agent
 
-A real-time financial dashboard for tracking US stocks, Indian equities, and crypto — built with institutional-grade research frameworks and live market data.
+A real-time market dashboard for US equities, Indian (NSE) equities, and crypto — with
+live prices, RSI, interactive charts, and moat-based portfolio research.
 
-**Live app:** https://financial-analyst-agent-beta.vercel.app
+**Live demo:** https://financial-analyst-agent-beta.vercel.app
+
+> **This is a software portfolio project, not a financial product.** The portfolios shown
+> are illustrative examples, not real holdings. Nothing here is financial advice — see
+> [Disclaimer](#disclaimer).
 
 ---
 
 ## Features
 
-### Dashboard
-- **CNN Fear & Greed Index** — live stock market sentiment gauge (equity signals only: S&P momentum, NYSE breadth, put/call ratio, VIX, junk bond demand)
-- Real-time index overview with auto-refresh
+| Tab | What it does |
+|-----|--------------|
+| **Dashboard** | CNN Fear & Greed sentiment gauge + live index overview |
+| **Stocks** | Four example US portfolios with live prices, RSI, P/E, 52-week range, market cap, earnings-date badges, per-holding risk ratings, and expandable price charts |
+| **India** | 10 NSE stocks priced in ₹ + 7 sector cards, with an IST market-open indicator and INR-formatted market caps (Cr / KCr / LCr) |
+| **Crypto** | Live prices, 24h change, market cap, and volume for major cryptocurrencies |
+| **Advisor** | Upload a brokerage screenshot → Claude extracts your holdings → get sector-gap analysis and rebalancing suggestions *(disabled by default — see [Advisor setup](#optional-enabling-the-advisor-tab))* |
 
-### Stocks Tab
-- Four portfolio views: Personal Stocks, Roth IRA, 401(k), and House Fund
-- Live prices, 24h change, RSI, P/E, beta, 52-week range, and market cap via Yahoo Finance
-- **Expandable price charts** — click any holding row to view a 1W / 1M / 3M / 1Y Recharts area chart inline
-- **Earnings date badges** — color-coded countdown (red ≤7d, orange ≤21d, yellow ≤45d) shown under each ticker
-- Portfolio allocation bars with conviction-weighted sizing
-- Health summary with overbought/oversold alerts and upcoming earnings warnings
-
-### India Tab
-- 10 high-conviction NSE stocks for a 2–3 year holding horizon
-- 7 booming sector cards (Fintech, EV, Renewable Energy, Consumer, Pharma, Digital Infrastructure, IT Services) with CAGR and growth drivers
-- NSE / BSE index strip with live IST market-open indicator
-- Same inline price charts and earnings badges as the Stocks tab (prices in INR ₹)
-- INR-formatted market cap (Cr / KCr / LCr)
-
-### Crypto Tab
-- Live prices for major cryptocurrencies
-- 24h change, market cap, and volume
-
----
-
-## Research Framework
-
-Portfolio allocations and stock selection are driven by a **backtested prompt accuracy system** — 22 analytical frameworks ranked by simulated signal accuracy across 14 stocks × 2 historical snapshots (Jan 2023, Jan 2024).
-
-| Rank | Framework | Score |
-|------|-----------|-------|
-| 1 | Hamilton Helmer's 7 Powers Moat Analysis | 92/100 |
-| 2 | Institutional Accumulation & Dark Pool Flow | 89/100 |
-| 3 | Behavioral Finance & Contrarian Signal | 84/100 |
-| 4 | Earnings Quality & FCF Durability | 81/100 |
-| 5 | Sector Rotation & Macro Regime | 78/100 |
-
-Full report: [`PROMPT_ACCURACY_REPORT.md`](./PROMPT_ACCURACY_REPORT.md)
-All 22 prompts: [`STOCK_ANALYSIS_PROMPTS.md`](./STOCK_ANALYSIS_PROMPTS.md)
+Every holding row carries a **Low / Medium / High** risk badge, and prices auto-refresh
+every 60 seconds.
 
 ---
 
@@ -55,60 +31,19 @@ All 22 prompts: [`STOCK_ANALYSIS_PROMPTS.md`](./STOCK_ANALYSIS_PROMPTS.md)
 | Layer | Technology |
 |-------|-----------|
 | Framework | Next.js 14 (App Router) |
-| Language | TypeScript |
+| Language | TypeScript (strict) |
 | Styling | Tailwind CSS v4 |
 | Charts | Recharts 3 |
-| Market Data | yahoo-finance2 |
-| Deployment | Vercel (Hobby — free tier) |
-
----
-
-## Project Structure
-
-```
-app/
-├── page.tsx              # Dashboard (Fear & Greed)
-├── stocks/page.tsx       # US portfolio tab
-├── india/page.tsx        # India market tab
-├── crypto/page.tsx       # Crypto tab
-└── api/
-    ├── prices/           # US stock quotes
-    ├── india-prices/     # NSE stock quotes
-    ├── chart/            # Historical OHLC (1W–1Y)
-    ├── rsi/              # RSI calculation
-    ├── fear-greed/       # CNN Fear & Greed proxy
-    └── crypto/           # Crypto prices
-
-components/
-├── stocks/               # PortfolioDetailModal (holdings table + charts)
-├── ui/StockPriceChart    # Recharts area chart with period selector
-├── widgets/FearGreedGauge
-└── layout/               # Nav, tab bar
-
-constants/
-├── portfolio-stocks.ts   # Personal brokerage holdings
-├── portfolio-roth-ira.ts # Roth IRA holdings
-├── portfolio-401k.ts     # 401(k) holdings
-├── india-stocks.ts       # India NSE holdings + sector data
-└── stocks-data.ts        # Ticker metadata
-
-hooks/
-├── useStockPrices.ts
-├── useIndiaPrices.ts
-├── useRSI.ts
-├── useFearGreed.ts
-└── useCryptoPrices.ts
-```
+| Market data | [yahoo-finance2](https://github.com/gadicc/yahoo-finance2) |
+| Vision AI | Anthropic Claude (Advisor tab only) |
+| Testing | Jest + React Testing Library — 145 tests |
+| Deployment | Vercel |
 
 ---
 
 ## Getting Started
 
-### Prerequisites
-- Node.js 22+
-- npm
-
-### Install & Run
+**Prerequisites:** Node.js 22+ and npm.
 
 ```bash
 git clone https://github.com/Dhruvish97/Financial_analyst_agent.git
@@ -117,13 +52,32 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000). No API key or `.env` file is needed —
+every tab except Advisor works out of the box on public market data.
 
-### Build for Production
+### Optional: enabling the Advisor tab
+
+The Advisor tab sends an uploaded screenshot to the Anthropic API, which **costs money per
+request**. It is therefore disabled unless you explicitly opt in. To run it locally, create
+`.env.local`:
 
 ```bash
-npm run build
-npm start
+ANTHROPIC_API_KEY=sk-ant-...   # https://console.anthropic.com/
+ADVISOR_ENABLED=true
+```
+
+Without `ADVISOR_ENABLED=true` the route returns `503` and the rest of the app is unaffected.
+Leave it unset on any public deployment — otherwise anyone who finds the endpoint can spend
+your API credits.
+
+### Other commands
+
+```bash
+npm run build          # production build
+npm test               # run the test suite
+npm run test:coverage  # coverage report (thresholds: 80% stmts/fns/lines, 70% branches)
+npm run lint           # eslint
+npm run research       # refresh the market-data snapshot used by research updates
 ```
 
 ---
@@ -134,26 +88,101 @@ npm start
 |-------|-------------|--------|
 | `GET /api/prices` | Live quotes for US tickers | — |
 | `GET /api/india-prices` | Live quotes for NSE tickers | — |
-| `GET /api/chart` | Historical OHLC data | `ticker`, `period` (1w/1m/3m/1y) |
-| `GET /api/rsi` | RSI(14) for given tickers | `tickers` (comma-separated) |
-| `GET /api/fear-greed` | CNN Fear & Greed score | — |
 | `GET /api/crypto` | Crypto prices | — |
+| `GET /api/chart` | Historical OHLC data | `ticker`, `period` (`1w`/`1m`/`3m`/`1y`) |
+| `GET /api/rsi` | RSI(14), max 25 tickers/request | `tickers` (comma-separated) |
+| `GET /api/fear-greed` | CNN Fear & Greed score | — |
+| `POST /api/analyze-portfolio` | Extract holdings from a screenshot **(opt-in)** | `image` (multipart, ≤4 MB) |
 
-All routes use `force-dynamic` and `maxDuration = 30` for Vercel serverless compatibility.
+All routes use `force-dynamic`, `maxDuration = 30`, and `Cache-Control: no-store`.
+User-supplied tickers are validated against `^[A-Z0-9.\-]{1,12}$` before reaching any
+upstream request.
+
+---
+
+## Project Structure
+
+```
+app/
+├── page.tsx                  # Dashboard (Fear & Greed)
+├── stocks/ india/ crypto/    # Market tabs
+├── portfolio-compare/        # Advisor tab
+└── api/                      # Route handlers (one folder each)
+
+components/
+├── ui/        # Tested primitives — RiskBadge, PriceDisplay, StockPriceChart…
+├── stocks/    # PortfolioCard, PortfolioDetailModal
+├── charts/ crypto/ layout/ widgets/
+
+constants/     # Portfolio definitions, India stocks + sectors, ticker risk map
+hooks/         # One data-fetching hook per source
+lib/           # yahoo-finance wrapper, RSI math, portfolio analysis, formatters
+types/         # Shared interfaces
+__tests__/     # Mirrors the source tree
+```
+
+---
+
+## Research Methodology
+
+Portfolio rationale is written against a set of 22 analytical frameworks — the top five
+being 7 Powers moat analysis, institutional accumulation, behavioral/contrarian signals,
+earnings quality & FCF, and sector rotation. Every holding is expected to score ≥3/7 on
+[Hamilton Helmer's 7 Powers](https://www.amazon.com/7-Powers-Foundations-Business-Strategy/dp/0998116300).
+
+> ⚠️ **On the framework scores:** [`PROMPT_ACCURACY_REPORT.md`](./PROMPT_ACCURACY_REPORT.md)
+> ranks these frameworks with `NN/100` figures. Those are **self-assessed, qualitative
+> confidence ratings — not measured backtest results.** No prompt was run against live data
+> in advance; the rankings were reasoned out after the fact with outcomes already known, so
+> they are subject to hindsight bias. Treat them as a statement of research philosophy, not
+> as evidence of predictive accuracy.
+
+The full prompt library is in [`STOCK_ANALYSIS_PROMPTS.md`](./STOCK_ANALYSIS_PROMPTS.md).
+Market commentary in `constants/` is refreshed periodically; each file's header comment
+carries the date it was last updated, so figures quoted in rationale text reflect that date
+rather than today's market.
+
+---
+
+## Testing
+
+```bash
+npm test
+```
+
+145 tests across API routes, hooks, UI primitives, and the portfolio-analysis library.
+Large page-level components are excluded from coverage thresholds and verified manually in
+the browser. Route tests use the `@jest-environment node` docblock; `yahoo-finance2` is
+mocked via `__mocks__/`.
 
 ---
 
 ## Deployment
 
-The app is deployed on **Vercel Hobby (free)**. To deploy your own instance:
+Deploys to Vercel with no configuration:
 
 ```bash
-npm i -g vercel
-vercel --prod
+npx vercel --prod
 ```
+
+If you deploy your own instance, leave `ADVISOR_ENABLED` unset unless you intend to pay for
+the Advisor tab's API usage.
 
 ---
 
 ## Disclaimer
 
-This project is for informational and educational purposes only. It does not constitute financial advice or a solicitation to buy or sell any security. Always consult a qualified financial advisor before making investment decisions. Past performance is not indicative of future results.
+This project is for **educational and demonstration purposes only**. The portfolios,
+allocations, and commentary are illustrative examples — not real holdings, not a record of
+any actual account, and not a recommendation to buy or sell anything. Nothing here
+constitutes financial, investment, or tax advice.
+
+Market data is sourced from unofficial public endpoints and may be delayed, incomplete, or
+wrong. Past performance does not indicate future results. Always do your own research and
+consult a licensed financial advisor before investing.
+
+---
+
+## License
+
+[MIT](./LICENSE)

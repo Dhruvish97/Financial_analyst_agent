@@ -1,7 +1,6 @@
 "use client";
 
 import { PortfolioDefinition, PriceMap } from "@/types/portfolio";
-// eslint-disable-next-line @typescript-eslint/no-deprecated
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 
 const RADIAN = Math.PI / 180;

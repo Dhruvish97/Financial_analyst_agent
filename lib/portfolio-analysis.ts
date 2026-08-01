@@ -363,48 +363,48 @@ export function calcSectorAllocations(
 
 const BUY_FRAMEWORK: Record<string, string> = {
   "Technology / AI":
-    "Moat Destroyer (#17, 92/100): CUDA scale economy + network effects confirm structural dominance in AI infrastructure.",
+    "Moat Destroyer (#17): CUDA scale economy + network effects confirm structural dominance in AI infrastructure.",
   "Cybersecurity / Cloud":
-    "Moat Destroyer (#17, 92/100): Switching-cost moat — Falcon platform lock-in makes churn structurally unlikely.",
+    "Moat Destroyer (#17): Switching-cost moat — Falcon platform lock-in makes churn structurally unlikely.",
   "Semiconductors":
-    "Bain Competitive (#8, 87/100): Custom ASIC moat accelerating — hyperscaler demand creates durable volume advantage.",
+    "Bain Competitive (#8): Custom ASIC moat accelerating — hyperscaler demand creates durable volume advantage.",
   "Healthcare Innovation":
-    "Bain Competitive (#8, 87/100): Process-power moat in high-margin specialty care; insurer scale reinforces barrier.",
+    "Bain Competitive (#8): Process-power moat in high-margin specialty care; insurer scale reinforces barrier.",
   "Financials / Fintech":
-    "Options Flow (#19, 80/100): Institutional accumulation signals in payment-rail network-effect businesses.",
+    "Options Flow (#19): Institutional accumulation signals in payment-rail network-effect businesses.",
   "Consumer Growth":
-    "Peter Lynch GARP (#11, 73/100): Growth at reasonable price — target PEG <1.5 in high-margin brand categories.",
+    "Peter Lynch GARP (#11): Growth at reasonable price — target PEG <1.5 in high-margin brand categories.",
   "Broad Market ETF":
-    "McKinsey Macro (#10, 70/100): Index floor reduces single-stock tail risk and anchors diversification.",
+    "McKinsey Macro (#10): Index floor reduces single-stock tail risk and anchors diversification.",
   "International":
-    "Macro Regime (#16, 67/100): Geographic diversification for cycle-resilient positioning and USD hedge.",
+    "Macro Regime (#16): Geographic diversification for cycle-resilient positioning and USD hedge.",
   "Bonds / Fixed Income":
-    "Macro Regime (#16, 67/100): Fixed-income ballast appropriate for current elevated-rate macro regime.",
+    "Macro Regime (#16): Fixed-income ballast appropriate for current elevated-rate macro regime.",
   "Dividend / Value Equity":
-    "Magic Formula (#15, 72/100): High-yield + quality screen — Greenblatt earnings-yield filter identifies undervalued dividend growers.",
+    "Magic Formula (#15): High-yield + quality screen — Greenblatt earnings-yield filter identifies undervalued dividend growers.",
   "REITs":
-    "Behavioral Finance (#18, 84/100): Real asset income often undervalued in rate-fear regimes — contrarian opportunity.",
+    "Behavioral Finance (#18): Real asset income often undervalued in rate-fear regimes — contrarian opportunity.",
   "Healthcare":
-    "Behavioral Finance (#18, 84/100): Defensive sector undervalued in risk-on regimes — contrarian non-cyclical exposure.",
+    "Behavioral Finance (#18): Defensive sector undervalued in risk-on regimes — contrarian non-cyclical exposure.",
   // India sectors
   "Banking & Finance (India)":
-    "Moat Destroyer (#17, 92/100): Strong CASA ratios and provisioning depth confirm switching-cost moat in private banks.",
+    "Moat Destroyer (#17): Strong CASA ratios and provisioning depth confirm switching-cost moat in private banks.",
   "IT Services (India)":
-    "Moat Destroyer (#17, 92/100): Global delivery moat — dollar-revenue stream is a natural INR depreciation hedge.",
+    "Moat Destroyer (#17): Global delivery moat — dollar-revenue stream is a natural INR depreciation hedge.",
   "FMCG / Consumer Staples (India)":
-    "Bain Competitive (#8, 87/100): Non-cyclical demand + distribution reach moat — dominant rural penetration barrier.",
+    "Bain Competitive (#8): Non-cyclical demand + distribution reach moat — dominant rural penetration barrier.",
   "Pharma / Healthcare (India)":
-    "Bain Competitive (#8, 87/100): Generic drug export moat + domestic chronic care growth — process-power advantage.",
+    "Bain Competitive (#8): Generic drug export moat + domestic chronic care growth — process-power advantage.",
   "Auto & EV (India)":
-    "McKinsey Macro (#10, 70/100): EV transition megatrend + premium auto demand in India's growing middle class.",
+    "McKinsey Macro (#10): EV transition megatrend + premium auto demand in India's growing middle class.",
   "Infrastructure / Capital Goods (India)":
-    "McKinsey Macro (#10, 70/100): India capex supercycle — defence, rail, roads — government-backed secular megatrend.",
+    "McKinsey Macro (#10): India capex supercycle — defence, rail, roads — government-backed secular megatrend.",
   "Energy / PSU (India)":
-    "Magic Formula (#15, 72/100): PSU dividend plays — high earnings yield with government-backing floor on downside.",
+    "Magic Formula (#15): PSU dividend plays — high earnings yield with government-backing floor on downside.",
   "Small / Mid Cap Growth (India)":
-    "Peter Lynch GARP (#11, 73/100): High-ROCE mid-cap compounders at reasonable PEG — Lynch's 'ten-bagger' profile.",
+    "Peter Lynch GARP (#11): High-ROCE mid-cap compounders at reasonable PEG — Lynch's 'ten-bagger' profile.",
   "Broad Market ETF (India)":
-    "McKinsey Macro (#10, 70/100): Nifty index exposure as diversified large-cap floor — anchors India beta.",
+    "McKinsey Macro (#10): Nifty index exposure as diversified large-cap floor — anchors India beta.",
 };
 
 function buildBuyReason(alloc: SectorAllocation): string {
@@ -412,7 +412,7 @@ function buildBuyReason(alloc: SectorAllocation): string {
   const base = `${alloc.sector} is ${gap}% underweight (${alloc.currentPct.toFixed(1)}% vs ${alloc.targetPct}% target).`;
   const framework =
     BUY_FRAMEWORK[alloc.sector] ??
-    "Bain Competitive (#8, 87/100): Increase sector exposure to improve portfolio alignment.";
+    "Bain Competitive (#8): Increase sector exposure to improve portfolio alignment.";
   return `${base} ${framework}`;
 }
 
@@ -421,7 +421,7 @@ function buildSellReason(alloc: SectorAllocation): string {
   return (
     `${alloc.sector} is ${gap}% overweight ` +
     `(${alloc.currentPct.toFixed(1)}% vs ${alloc.targetPct}% target). ` +
-    `Bridgewater Risk (#3, 62/100): Concentration risk — trim proportionally to reduce single-sector tail exposure.`
+    `Bridgewater Risk (#3): Concentration risk — trim proportionally to reduce single-sector tail exposure.`
   );
 }
 

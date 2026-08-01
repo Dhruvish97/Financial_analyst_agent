@@ -2,10 +2,17 @@
   "name": "financial-analyst-agent",
   "version": "1.0.0",
   "private": true,
+  "description": "Real-time market dashboard for US equities, Indian (NSE) equities, and crypto — live prices, RSI, charts, and moat-based portfolio research. Next.js 14 + TypeScript.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Dhruvish97/Financial_analyst_agent.git"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "lint": "next lint",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
@@ -30,6 +37,8 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "autoprefixer": "^10.4.27",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.35",
     "jest": "^30.3.0",
     "jest-environment-jsdom": "^30.3.0",
     "playwright": "^1.58.2",

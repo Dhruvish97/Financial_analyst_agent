@@ -1,7 +1,23 @@
-# Prompt Accuracy Backtesting Report
-## Financial Analyst Agent — 22-Prompt Framework Evaluation
+# Prompt Framework Evaluation (Self-Assessed)
+## Financial Analyst Agent — 22-Prompt Framework Ranking
 
-> **Methodology:** Each of the 22 analytical prompts from `STOCK_ANALYSIS_PROMPTS.md` was simulated against historical snapshots of 15 stocks across two discrete time periods. Prompts were scored on whether they would have generated a correct BUY / HOLD / AVOID signal — not just directional accuracy, but conviction and timing quality.
+> ### ⚠️ Read this first — what these scores are, and are not
+>
+> **These are not measured backtest results.** No prompt was executed against
+> live data at the time, and no signal was logged in advance. Every score below
+> was produced by *reasoning after the fact* about what a given framework
+> **would likely have** concluded, with the historical outcome already known.
+>
+> That makes this a **qualitative, self-assessed ranking**, not a validated
+> backtest — and it is structurally vulnerable to hindsight bias. The `NN/100`
+> figures are a way of expressing relative confidence in each framework's
+> usefulness, not a reproducible accuracy metric. Do not treat them as evidence
+> that any framework predicts returns.
+>
+> Use this document as a *rationale for why the project favours moat- and
+> fundamentals-based analysis over momentum-chasing* — not as performance data.
+
+> **Method:** Each of the 22 analytical prompts from `STOCK_ANALYSIS_PROMPTS.md` was simulated against historical snapshots of 15 stocks across two discrete time periods, then scored on whether it would plausibly have generated a correct BUY / HOLD / AVOID signal — judging conviction and timing quality, not just direction.
 
 ---
 

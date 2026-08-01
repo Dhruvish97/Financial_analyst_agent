@@ -27,8 +27,8 @@ import { PortfolioDefinition } from "@/types/portfolio";
 
 export const PORTFOLIO_401K: PortfolioDefinition = {
   id: "401k",
-  name: "401k",
-  accountType: "401k Retirement",
+  name: "Retirement Core",
+  accountType: "Tax-Deferred Retirement",
   timeHorizon: "20–30 years",
   riskLevel: "Mod. Conservative",
   riskColor: "text-blue-400",

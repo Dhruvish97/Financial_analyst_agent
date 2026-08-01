@@ -3,6 +3,7 @@ import { fetchQuotes } from "@/lib/yahoo-finance";
 import { CRYPTO_TICKERS } from "@/constants/crypto-data";
 
 export const dynamic = "force-dynamic";
+export const maxDuration = 30;
 
 export async function GET() {
   try {

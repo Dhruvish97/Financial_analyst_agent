@@ -8,12 +8,15 @@ export const maxDuration = 30; // RSI fetches 45 days of historical data — nee
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const tickersParam = searchParams.get("tickers");
-  const rawTickers = tickersParam ? tickersParam.split(",") : ALL_STOCK_TICKERS;
-  // Sanitise: only allow valid ticker symbols
+  // Slice BEFORE mapping so a huge param can't cost us thousands of iterations.
+  const rawTickers = tickersParam
+    ? tickersParam.split(",").slice(0, 25)
+    : ALL_STOCK_TICKERS;
+  // Sanitise: only allow valid ticker symbols. Each ticker becomes an outbound
+  // Yahoo request, so the cap also bounds fan-out amplification from one GET.
   const tickers = rawTickers
     .map((t) => t.trim().toUpperCase())
-    .filter((t) => /^[A-Z0-9.\-]{1,12}$/.test(t))
-    .slice(0, 50); // cap at 50 tickers per request
+    .filter((t) => /^[A-Z0-9.\-]{1,12}$/.test(t));
 
   try {
     const data = await fetchRSI(tickers);

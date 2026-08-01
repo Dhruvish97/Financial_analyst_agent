@@ -18,7 +18,7 @@ import { PortfolioDefinition } from "@/types/portfolio";
 
 export const PORTFOLIO_HOUSE: PortfolioDefinition = {
   id: "house",
-  name: "House Fund",
+  name: "Medium-Term Savings",
   accountType: "Taxable / Savings",
   timeHorizon: "3–5 years",
   riskLevel: "Moderate",
@@ -27,8 +27,8 @@ export const PORTFOLIO_HOUSE: PortfolioDefinition = {
   cardGradient: "from-amber-500/10 to-transparent",
   description:
     "A capital preservation portfolio designed to protect and modestly grow a " +
-    "house down-payment over 3–5 years. Fixed income (BND + VGSH) makes up 37% " +
-    "to minimize drawdown risk near the target purchase date. Dividend aristocrats " +
+    "medium-term savings goal over 3–5 years. Fixed income (BND + VGSH) makes up 37% " +
+    "to minimize drawdown risk as the target date approaches. Dividend aristocrats " +
     "JNJ, PG, KO, and MCD provide defensive equity exposure with low beta, " +
     "while VTI and SCHD capture broad market upside with quality filters.",
   promptsUsed: [

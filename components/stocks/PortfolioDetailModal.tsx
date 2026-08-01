@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useMemo, useState } from "react";
+import { useEffect, useRef, useMemo, useState, Fragment } from "react";
 import { PortfolioDefinition, PriceMap, RSIMap } from "@/types/portfolio";
-// eslint-disable-next-line @typescript-eslint/no-deprecated
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid } from "recharts";
 import { useRSI } from "@/hooks/useRSI";
 import { StockPriceChart } from "@/components/ui/StockPriceChart";
@@ -131,6 +130,7 @@ function generateHealthSummary(
     sectorWeights[h.sector] = (sectorWeights[h.sector] ?? 0) + h.allocation;
   }
   const topSector = Object.entries(sectorWeights).sort((a, b) => b[1] - a[1])[0];
+  if (!topSector) return { bullets: [], tone: "neutral" };
   if (topSector[1] > 45) {
     bullets.push(`High concentration in ${topSector[0]} (${topSector[1]}%) — consider if this aligns with your risk mandate.`);
     warnings++;
@@ -317,7 +317,6 @@ export function PortfolioDetailModal({ portfolio, prices, loadingPrices, onClose
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie data={chartData} cx="50%" cy="50%" innerRadius={52} outerRadius={90} dataKey="value" stroke="none">
-                      {/* eslint-disable-next-line @typescript-eslint/no-deprecated */}
                       {chartData.map((entry) => (<Cell key={entry.name} fill={entry.color} />))}
                     </Pie>
                     <Tooltip content={<ChartTooltip />} />
@@ -358,9 +357,8 @@ export function PortfolioDetailModal({ portfolio, prices, loadingPrices, onClose
                     const isChartOpen = chartTicker === h.ticker;
 
                     return (
-                      <>
+                      <Fragment key={h.ticker}>
                         <tr
-                          key={h.ticker}
                           onClick={() => setChartTicker(isChartOpen ? null : h.ticker)}
                           className={`border-b border-gray-800/50 cursor-pointer transition-colors ${
                             i % 2 === 0 ? "" : "bg-gray-800/10"
@@ -438,7 +436,7 @@ export function PortfolioDetailModal({ portfolio, prices, loadingPrices, onClose
 
                         {/* ── Expanded price chart row ── */}
                         {isChartOpen && (
-                          <tr key={`${h.ticker}-chart`} className="border-b border-gray-800/50 bg-gray-900/40">
+                          <tr className="border-b border-gray-800/50 bg-gray-900/40">
                             <td colSpan={11} className="px-4 py-3">
                               <StockPriceChart
                                 ticker={h.ticker}
@@ -449,7 +447,7 @@ export function PortfolioDetailModal({ portfolio, prices, loadingPrices, onClose
                             </td>
                           </tr>
                         )}
-                      </>
+                      </Fragment>
                     );
                   })}
                 </tbody>

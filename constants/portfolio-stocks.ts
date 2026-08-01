@@ -107,7 +107,7 @@ import { PortfolioDefinition } from "@/types/portfolio";
 
 export const PORTFOLIO_STOCKS: PortfolioDefinition = {
   id: "stocks",
-  name: "Stocks",
+  name: "Aggressive Growth",
   accountType: "Taxable Brokerage",
   timeHorizon: "3–7 years",
   riskLevel: "Aggressive",
@@ -117,16 +117,16 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
   description:
     "An aggressive growth portfolio restricted to large-cap and established mid-cap " +
     "companies — no penny stocks, no pre-revenue speculation. Every holding must score " +
-    "≥ 3/7 on Hamilton Helmer's 7 Powers framework (Prompt #17 — 92/100 backtested accuracy). " +
+    "≥ 3/7 on Hamilton Helmer's 7 Powers framework (Prompt #17). " +
     "Concentrated in AI infrastructure (NVDA, AVGO), hyperscale cloud (MSFT, AMZN, GOOGL), " +
     "high-growth platforms (META, AAPL, MELI), and mission-critical software (CRWD, NET, PLTR). " +
     "April 2026: COIN replaced by AAPL (6/7 vs 3/7 powers); MELI added (LatAm fintech flywheel) funded by TSLA trim.",
   promptsUsed: [
-    "Prompt #17 — Moat Destroyer / 7 Powers (92/100 — primary structural filter)",
-    "Prompt #8  — Bain Competitive Analysis (87/100 — sector winner selection)",
-    "Prompt #18 — Behavioral Finance Bias Auditor (84/100 — contrarian ID)",
-    "Prompt #6  — Citadel Technical Analysis (82/100 — entry timing)",
-    "Prompt #11 — Peter Lynch GARP (73/100 — PEG validation)",
+    "Prompt #17 — Moat Destroyer / 7 Powers (primary structural filter)",
+    "Prompt #8  — Bain Competitive Analysis (sector winner selection)",
+    "Prompt #18 — Behavioral Finance Bias Auditor (contrarian ID)",
+    "Prompt #6  — Citadel Technical Analysis (entry timing)",
+    "Prompt #11 — Peter Lynch GARP (PEG validation)",
     "Prompt #13 — Forensic Accounting Auditor (mandatory risk filter — all clear)",
   ],
   holdings: [

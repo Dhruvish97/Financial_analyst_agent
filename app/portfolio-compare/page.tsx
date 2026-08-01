@@ -183,7 +183,11 @@ function ImageUploader({
       }
       setError(null);
       setFileName(file.name);
-      setPreview(URL.createObjectURL(file));
+      // Release the previous blob URL before replacing it, or each re-upload leaks.
+      setPreview((prev) => {
+        if (prev) URL.revokeObjectURL(prev);
+        return URL.createObjectURL(file);
+      });
       setLoading(true);
 
       const fd = new FormData();

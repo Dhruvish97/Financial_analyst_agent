@@ -25,7 +25,7 @@ Every feature change — no matter how small — must follow this exact sequence
 4. TEST   → run `npm test` — all tests must pass
 5. BUILD  → run `npm run build` — must compile with zero errors
 6. COMMIT → commit with a clear message (see Git Rules)
-7. PUSH   → push to GitHub (ask user before deploying to Vercel)
+7. PUSH   → push to GitHub
 ```
 
 **Never skip steps 4 or 5.** If tests fail, fix them before proceeding. If the build fails, fix it before committing.
@@ -81,7 +81,7 @@ Every feature change — no matter how small — must follow this exact sequence
 ```
 app/api/          → API routes (one folder per route, route.ts inside)
 components/ui/    → Reusable primitives (tested, high coverage required)
-components/stocks/→ Portfolio-specific components (page-level, E2E tested)
+components/stocks/→ Portfolio-specific components (page-level)
 components/widgets/→ Dashboard widgets (FearGreedGauge etc.)
 constants/        → Static data: portfolios, India stocks, crypto list
 hooks/            → Data-fetching hooks (one per data source)
@@ -105,18 +105,19 @@ __mocks__/        → Manual mocks for external modules
 - Always co-author: `Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>`
 - Never force-push to `main`
 - Never commit: `.env`, `coverage/`, `.next/`, `node_modules/`
-- Ask before pushing to Vercel production
 
 ---
 
 ## Portfolio & Research Context
 
-- **Prompt accuracy system**: 22 frameworks backtested; top 5 used for all recommendations
-  - #1 Hamilton Helmer's 7 Powers (92/100)
-  - #2 Institutional Accumulation (89/100)
-  - #3 Behavioral Finance / Contrarian (84/100)
-  - #4 Earnings Quality & FCF (81/100)
-  - #5 Sector Rotation & Macro (78/100)
+- **Framework ranking**: 22 analytical frameworks, self-assessed and ranked; top 5 inform all
+  research write-ups. The scores are qualitative confidence ratings, **not** measured backtest
+  results — see the caveat at the top of `PROMPT_ACCURACY_REPORT.md`.
+  1. Hamilton Helmer's 7 Powers
+  2. Institutional Accumulation
+  3. Behavioral Finance / Contrarian
+  4. Earnings Quality & FCF
+  5. Sector Rotation & Macro
 - Full reports: `PROMPT_ACCURACY_REPORT.md`, `STOCK_ANALYSIS_PROMPTS.md`
 - **Fear & Greed Index**: equity signals only (S&P momentum, NYSE breadth, VIX, put/call, junk bonds)
 - **India tab**: 10 NSE stocks, 7 sector cards, prices in INR, IST market hours indicator
@@ -129,7 +130,7 @@ __mocks__/        → Manual mocks for external modules
 - Node.js 20 locally (yahoo-finance2 warns about needing Node 22 — safe to ignore, Vercel uses 22)
 - `next/jest` via SWC handles TypeScript transpilation — no `babel-jest` needed
 - `jest.config.ts` requires `ts-node` to parse (already installed)
-- Large page-level components (PortfolioDetailModal, StocksTable etc.) excluded from unit coverage — tested via Playwright E2E
+- Large page-level components (PortfolioDetailModal etc.) are excluded from unit coverage and verified manually in the browser
 - Vercel Hobby timeout: 10s hard limit on serverless functions in practice; `maxDuration = 30` is a hint
 
 ---
@@ -142,165 +143,33 @@ npm test             # run all unit tests
 npm run test:watch   # watch mode
 npm run test:coverage# tests + coverage report (must stay ≥80%)
 npm run build        # production build validation
-npx vercel --prod --yes  # deploy to Vercel (ask user first)
+npm run lint         # eslint (next/core-web-vitals)
+npx vercel --prod --yes  # deploy to Vercel
 git push             # push to GitHub
 ```
 
 ---
 
-## Workflow Orchestration
+## Weekly Research Refresh
 
-### 1. Plan Node Default
-- Enter plan mode for ANY non-trivial task (3+ steps or architectural decisions)
-- If something goes sideways, STOP and re-plan immediately — don't keep pushing
-- Use plan mode for verification steps, not just building
-- Write detailed specs upfront to reduce ambiguity
+The market commentary in `constants/portfolio-stocks.ts`, `constants/india-stocks.ts`,
+and `constants/portfolio-targets.ts` is refreshed periodically rather than hand-maintained.
 
-### 2. Subagent Strategy
-- Use subagents liberally to keep main context window clean
-- Offload research, exploration, and parallel analysis to subagents
-- For complex problems, throw more compute at it via subagents
-- One task per subagent for focused execution
-
-### 3. Self-Improvement Loop
-- After ANY correction from the user: update `tasks/lessons.md` with the pattern
-- Write rules for yourself that prevent the same mistake
-- Ruthlessly iterate on these lessons until mistake rate drops
-- Review lessons at session start for relevant project
-
-### 4. Verification Before Done
-- Never mark a task complete without proving it works
-- Diff behavior between main and your changes when relevant
-- Ask yourself: "Would a staff engineer approve this?"
-- Run tests, check logs, demonstrate correctness
-
-### 5. Demand Elegance (Balanced)
-- For non-trivial changes: pause and ask "is there a more elegant way?"
-- If a fix feels hacky: "Knowing everything I know now, implement the elegant solution"
-- Skip this for simple, obvious fixes — don't over-engineer
-- Challenge your own work before presenting it
-
-### 6. Autonomous Bug Fixing
-- When given a bug report: just fix it. Don't ask for hand-holding
-- Point at logs, errors, failing tests — then resolve them
-- Zero context switching required from the user
-- Go fix failing CI tests without being told how
-
----
-
-## Task Management
-
-1. **Plan First**: Write plan to `tasks/todo.md` with checkable items
-2. **Verify Plan**: Check in before starting implementation
-3. **Track Progress**: Mark items complete as you go
-4. **Explain Changes**: High-level summary at each step
-5. **Document Results**: Add review section to `tasks/todo.md`
-6. **Capture Lessons**: Update `tasks/lessons.md` after corrections
-
----
-
-## Core Principles
-
-- **Simplicity First**: Make every change as simple as possible. Impact minimal code.
-- **No Laziness**: Find root causes. No temporary fixes. Senior developer standards.
-- **Minimal Impact**: Changes should only touch what's necessary. Avoid introducing bugs.
-
----
-
-## Weekly Research Trigger
-
-When the user says any of the following (or anything similar):
-- "trigger the weekly research"
-- "run the weekly research"
-- "run research update"
-- "do the weekly research"
-- "update the research"
-
-**Execute this exact sequence without asking for confirmation:**
-
-### Step 1 — Collect live market data
-Run `npm run research` — this fetches live quotes for all tickers and saves
-`.research-snapshot.json`. Read that file after it completes.
-
-### Step 2 — Web-search for recent news (run these in parallel)
-Search for the following to get current intelligence beyond the snapshot prices:
-- Recent earnings results for: NVDA, META, GOOGL, MSFT, AMZN, AVGO, PLTR, TSLA, CRM, NET
-- India macro: RBI policy, NIFTY outlook, IT sector, HDFCBANK, BAJFINANCE, HCLTECH news
-- US macro: Fed policy, AI capex cycle, hyperscaler earnings, S&P 500 trend
-- India sectors: Banking NIM trends, IT deal wins, Defence PLI, Renewable energy bids
-
-### Step 2.5 — NEW CANDIDATE SCREENING (mandatory — do not skip)
-**This step must happen every research cycle.** Search for stocks NOT currently in the portfolio that may deserve addition or replacement. Evaluate each candidate against the 7 Powers framework (≥3/7 required). Flag in the header comment block of the relevant constants file.
-
-**US new candidate searches (run in parallel):**
-- "best new AI software stocks to buy [year] strong moat not [existing holdings]"
-- "undervalued wide moat US tech stocks analyst buy [year]"
-- Specific names to always check: AAPL, MELI, MU, PANW, DDOG, ANET, SNOW, UBER
-
-**India new candidate searches (run in parallel):**
-- "India mid cap stocks strong moat growth [year] new buy recommendations"
-- "India defence stocks order book 2026 BEL Data Patterns MTAR"
-- "India FMCG consumer stocks re-rating [year] ITC HUL rural demand"
-- Specific names to always check: BEL, ITC, ICICIBANK, BAJAJFINSV, PERSISTENT, COFORGE
-
-**What to write in the constants file:**
-- Add a `NEW CANDIDATE SCREENING` block to the header comment of `portfolio-stocks.ts` and `india-stocks.ts`
-- For each candidate: ticker, 7 Powers score, key data point, and WATCH/STRONG WATCH/ON RADAR label
-- End with `ALLOCATION VERDICT`: which existing holding it would replace and why, or "no changes this cycle"
-- If a candidate scores ≥5/7 AND has better forward metrics than the weakest current holding → flag for allocation review
-
-### Step 3 — Read current constants (all three — all tabs depend on these)
-- `constants/portfolio-stocks.ts` → **Stocks tab**: US portfolio rationale + catalysts
-- `constants/india-stocks.ts` → **India tab**: NSE stocks + all 7 sector cards
-- `constants/portfolio-targets.ts` → **Advisor tab**: sector target descriptions + allocation context
-
-### Step 4 — Update all three files using research frameworks
-Apply the backtested framework sequence (see STOCK_ANALYSIS_PROMPTS.md):
-- **#17 Moat Destroyer (7 Powers)** — confirm each holding still scores ≥3/7
-- **#8 Bain Competitive Analysis** — sector winner still leading?
-- **#18 Behavioral Finance Bias Auditor** — any contrarian opportunities from sentiment?
-- **#10 McKinsey Macro** — megatrend alignment still intact?
-
-**Stocks tab** (`constants/portfolio-stocks.ts`):
-- `rationale` — every US stock (rewrite with current earnings, P/E, product data)
-- `catalysts` — every US stock (3–5 specific catalysts with timeframes)
-- Header comment date stamp
-
-**India tab** (`constants/india-stocks.ts`):
-- `rationale` — every India stock (reference RBI stance, INR, domestic demand)
-- `catalysts` — every India stock (3–4 catalysts)
-- `outlook` — all 7 sector cards (Banking, IT, Consumer, Pharma, Real Estate, Energy, Defence)
-- `drivers` — all 7 sector cards (3–5 specific drivers with policy/numbers)
-- Header comment date stamp
-
-**Advisor tab** (`constants/portfolio-targets.ts`):
-- `description` — for all 4 portfolio styles (conservative, aggressive, india-conservative, india-aggressive)
-- Update the macro context sentences to reflect current market regime (Fed stance, RBI stance, sector rotation)
-
-**Rules for all updates:**
-- Never change: tickers, names, colors, allocation numbers (flag if conviction has materially shifted)
-- Be specific: reference actual P/E ratios, earnings beats, policy meeting dates, product launches
-- Do not copy-paste old content — rewrite with current intelligence
-- Stamp the month/year in each file's header comment
-
-### Step 5 — Validate, test, build
 ```bash
-npm test          # must pass 138+ tests
-npm run build     # must compile with zero errors
-```
-Fix any failures before proceeding.
-
-### Step 6 — Commit, push, deploy
-```bash
-git add constants/portfolio-stocks.ts constants/india-stocks.ts constants/portfolio-targets.ts
-git commit -m "research: weekly market refresh YYYY-MM-DD"
-git push
-npx vercel --prod --yes
+npm run research     # fetches live quotes → .research-snapshot.json (gitignored)
 ```
 
-### What to report back
-After completing, summarize:
-- Key market changes found (price moves, earnings surprises, macro shifts)
-- Which stocks/sectors had rationale meaningfully updated and why
-- Any conviction changes flagged (allocation recommendations if warranted)
-- Deployment URL confirmation
+The refresh then:
+
+1. Reads the snapshot for current prices, P/E, and 52-week ranges.
+2. Web-searches recent earnings, macro (Fed / RBI), and sector news.
+3. **Screens for new candidates** not already held — each scored against the
+   7 Powers moat framework (≥3/7 to qualify) and recorded in the header comment
+   of the relevant constants file with a WATCH / STRONG WATCH / ON RADAR label.
+4. Rewrites `rationale`, `catalysts`, and sector `outlook` / `drivers` with the
+   current numbers, and stamps the month in each file's header comment.
+5. Runs `npm test` and `npm run build` before committing.
+
+**Never changed by a refresh:** tickers, company names, colors, or allocation
+percentages. If conviction has materially shifted, that is flagged in the header
+comment for a human decision rather than applied automatically.

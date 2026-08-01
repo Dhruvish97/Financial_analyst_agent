@@ -40,8 +40,8 @@ import { PortfolioDefinition } from "@/types/portfolio";
 
 export const PORTFOLIO_ROTH_IRA: PortfolioDefinition = {
   id: "roth-ira",
-  name: "Roth IRA",
-  accountType: "Roth IRA",
+  name: "Tax-Free Growth",
+  accountType: "Tax-Advantaged Retirement",
   timeHorizon: "5–10 years",
   riskLevel: "Mod. Aggressive",
   riskColor: "text-green-400",
@@ -49,17 +49,17 @@ export const PORTFOLIO_ROTH_IRA: PortfolioDefinition = {
   cardGradient: "from-green-500/10 to-transparent",
   description:
     "A tax-free growth portfolio concentrated in AI and technology leaders with the " +
-    "highest moat scores (Prompt #17 — 92/100 backtested accuracy). The Roth structure " +
+    "highest moat scores (Prompt #17). The Roth structure " +
     "maximises the benefit of high-growth assets — all gains compound tax-free. " +
     "Core positions in mega-cap compounders with perfect or near-perfect 7 Powers scores, " +
     "supported by AVGO (custom ASIC moat) and CRWD (Falcon switching cost). " +
     "QQQ and VGT provide diversified tech breadth. Rebuilt March 2026.",
   promptsUsed: [
-    "Prompt #17 — Moat Destroyer / 7 Powers (92/100 — primary filter for every holding)",
-    "Prompt #8  — Bain Competitive Analysis (87/100 — sector winner confirmation)",
-    "Prompt #18 — Behavioral Finance Bias Auditor (84/100 — contrarian check)",
-    "Prompt #6  — Citadel Technical Analysis (82/100 — RSI entry timing)",
-    "Prompt #11 — Peter Lynch GARP (73/100 — PEG validation on profitable names)",
+    "Prompt #17 — Moat Destroyer / 7 Powers (primary filter for every holding)",
+    "Prompt #8  — Bain Competitive Analysis (sector winner confirmation)",
+    "Prompt #18 — Behavioral Finance Bias Auditor (contrarian check)",
+    "Prompt #6  — Citadel Technical Analysis (RSI entry timing)",
+    "Prompt #11 — Peter Lynch GARP (PEG validation on profitable names)",
     "Prompt #13 — Forensic Accounting Auditor (mandatory risk filter — all clear)",
   ],
   holdings: [
@@ -114,7 +114,7 @@ export const PORTFOLIO_ROTH_IRA: PortfolioDefinition = {
       allocation: 9,
       rationale:
         "7 Powers score: 5/7. Network effects on 3.27B DAU = strongest consumer tech moat. " +
-        "Prompt #18 (Behavioral Finance — 84/100): In Jan 2023, META had 55% sell ratings → returned +194%. " +
+        "Prompt #18 (Behavioral Finance): In Jan 2023, META had 55% sell ratings → returned +194%. " +
         "March 2026: $27B deal with Nebius Group ($12B dedicated AI processing + $15B supplementary compute). " +
         "2026 CapEx guidance raised to $115–135B — hyper-aggressive AI infrastructure buildout. " +
         "Llama open-source cuts inference costs $3B+/yr. Roth ideal: no dividend, pure capital appreciation.",

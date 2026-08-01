@@ -21,14 +21,19 @@ const getMockCreate = () =>
   ((Anthropic as unknown as { _create: jest.Mock })._create);
 
 const ORIGINAL_API_KEY = process.env.ANTHROPIC_API_KEY;
+const ORIGINAL_ADVISOR_ENABLED = process.env.ADVISOR_ENABLED;
 
 beforeEach(() => {
   getMockCreate().mockReset();
   process.env.ANTHROPIC_API_KEY = "test-key";
+  // The route is disabled by default so a public deployment can't be used to
+  // drain API credits; enable it for the tests that exercise the happy path.
+  process.env.ADVISOR_ENABLED = "true";
 });
 
 afterAll(() => {
   process.env.ANTHROPIC_API_KEY = ORIGINAL_API_KEY;
+  process.env.ADVISOR_ENABLED = ORIGINAL_ADVISOR_ENABLED;
 });
 
 function makeImageReq(
@@ -137,5 +142,50 @@ describe("POST /api/analyze-portfolio", () => {
     const res = await POST(req);
     expect(res.status).toBe(500);
     expect((await res.json()).error).toMatch(/Failed to analyze/);
+  });
+
+  it("does not leak upstream error detail to the client", async () => {
+    // Build the request first — makeImageReq() sets a resolved mock, which would
+    // otherwise overwrite the rejection we want to exercise here.
+    const req = makeImageReq();
+    getMockCreate().mockRejectedValue(new Error("invalid x-api-key sk-ant-secret"));
+    const res = await POST(req);
+    const body = await res.json();
+    expect(res.status).toBe(500);
+    expect(body.error).toBe("Failed to analyze image.");
+    expect(JSON.stringify(body)).not.toMatch(/x-api-key|sk-ant/);
+  });
+
+  it("returns 503 when ADVISOR_ENABLED is not set", async () => {
+    delete process.env.ADVISOR_ENABLED;
+    const res = await POST(makeImageReq());
+    expect(res.status).toBe(503);
+    expect((await res.json()).error).toMatch(/disabled on this deployment/);
+  });
+
+  it("rejects non-finite quantities from a manipulated model response", async () => {
+    const res = await POST(
+      makeImageReq(
+        '[{"ticker":"AAPL","quantity":"Infinity","price":1,"value":1},' +
+          '{"ticker":"MSFT","quantity":2,"price":1,"value":2}]'
+      )
+    );
+    expect(res.status).toBe(200);
+    const { holdings } = await res.json();
+    expect(holdings).toHaveLength(1);
+    expect(holdings[0].ticker).toBe("MSFT");
+  });
+
+  it("rejects malformed tickers from a manipulated model response", async () => {
+    const res = await POST(
+      makeImageReq(
+        '[{"ticker":"../../etc/passwd","quantity":1,"price":1,"value":1},' +
+          '{"ticker":"AAPL","quantity":1,"price":1,"value":1}]'
+      )
+    );
+    expect(res.status).toBe(200);
+    const { holdings } = await res.json();
+    expect(holdings).toHaveLength(1);
+    expect(holdings[0].ticker).toBe("AAPL");
   });
 });

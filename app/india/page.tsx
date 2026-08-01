@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Fragment } from "react";
 import { useIndiaPrices } from "@/hooks/useIndiaPrices";
 import { useRSI } from "@/hooks/useRSI";
 import { INDIA_STOCKS, INDIA_SECTORS, INDIA_TICKERS } from "@/constants/india-stocks";
@@ -89,14 +89,28 @@ function WeekBar({ low, high, price }: { low: number | null; high: number | null
 
 // ── IST market hours helper ───────────────────────────────────────────────────
 
-function MarketStatus() {
-  const now = new Date();
+function isNseOpen(now: Date): boolean {
   const istOffset = 5.5 * 60;
   const utcMin = now.getUTCHours() * 60 + now.getUTCMinutes();
   const istMin = (utcMin + istOffset) % (24 * 60);
   const day = (now.getUTCDay() + (utcMin + istOffset >= 24 * 60 ? 1 : 0)) % 7;
   const isWeekday = day >= 1 && day <= 5;
-  const isOpen = isWeekday && istMin >= 555 && istMin < 930;
+  return isWeekday && istMin >= 555 && istMin < 930;
+}
+
+function MarketStatus() {
+  // Computed after mount only — reading the clock during render makes the
+  // server-rendered markup disagree with the client and trips hydration.
+  const [isOpen, setIsOpen] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const update = () => setIsOpen(isNseOpen(new Date()));
+    update();
+    const id = setInterval(update, 60_000);
+    return () => clearInterval(id);
+  }, []);
+
+  if (isOpen === null) return null;
 
   return (
     <div className="flex items-center gap-1.5">
@@ -390,9 +404,8 @@ export default function IndiaPage() {
                 const isExpanded = expandedStock === stock.ticker;
 
                 return (
-                  <>
+                  <Fragment key={stock.ticker}>
                     <tr
-                      key={stock.ticker}
                       onClick={() => setExpandedStock(isExpanded ? null : stock.ticker)}
                       className="cursor-pointer transition-all duration-200"
                       style={{
@@ -486,7 +499,7 @@ export default function IndiaPage() {
 
                     {/* Expanded thesis row */}
                     {isExpanded && (
-                      <tr key={`${stock.ticker}-detail`} style={{ borderBottom: "1px solid rgba(255,255,255,0.06)", background: "rgba(251,146,60,0.04)" }}>
+                      <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.06)", background: "rgba(251,146,60,0.04)" }}>
                         <td colSpan={12} className="px-6 py-5">
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">
                             <div>
@@ -517,7 +530,7 @@ export default function IndiaPage() {
                         </td>
                       </tr>
                     )}
-                  </>
+                  </Fragment>
                 );
               })}
             </tbody>

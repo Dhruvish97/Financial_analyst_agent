@@ -1,12 +1,3 @@
-export interface StockHolding {
-  ticker: string;
-  company: string;
-  sector: string;
-  allocation: number;
-  rationale: string;
-  color: string;
-}
-
 // ── Multi-portfolio types ──────────────────────────────────────────────────
 
 export type AssetType = "etf" | "stock" | "bond";

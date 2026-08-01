@@ -22,6 +22,19 @@ Rules:
 - If you see a partial ticker (e.g. "GOOGL CLASS A"), use just the ticker symbol`;
 
 export async function POST(req: NextRequest) {
+  // This route makes a paid Anthropic vision call per request. It is disabled by
+  // default so a public deployment cannot be used to drain the owner's API credits.
+  // Set ADVISOR_ENABLED=true (alongside ANTHROPIC_API_KEY) to turn it on.
+  if (process.env.ADVISOR_ENABLED !== "true") {
+    return NextResponse.json(
+      {
+        error:
+          "Portfolio analysis is disabled on this deployment. Run locally with ADVISOR_ENABLED=true and ANTHROPIC_API_KEY set to use this feature.",
+      },
+      { status: 503 }
+    );
+  }
+
   // Require API key
   if (!process.env.ANTHROPIC_API_KEY) {
     return NextResponse.json(
@@ -35,9 +48,9 @@ export async function POST(req: NextRequest) {
 
   try {
     const formData = await req.formData();
-    const file = formData.get("image") as File | null;
+    const file = formData.get("image");
 
-    if (!file) {
+    if (!(file instanceof File)) {
       return NextResponse.json({ error: "No image provided." }, { status: 400 });
     }
 
@@ -49,10 +62,12 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const MAX_BYTES = 10 * 1024 * 1024; // 10 MB
+    // 4 MB — Vercel caps request bodies around 4.5 MB and the Anthropic API rejects
+    // base64 images over 5 MB, so a higher limit would only fail on the paid path.
+    const MAX_BYTES = 4 * 1024 * 1024;
     if (file.size > MAX_BYTES) {
       return NextResponse.json(
-        { error: "Image too large. Please use a screenshot under 10 MB." },
+        { error: "Image too large. Please use a screenshot under 4 MB." },
         { status: 400 }
       );
     }
@@ -84,7 +99,8 @@ export async function POST(req: NextRequest) {
       ],
     });
 
-    const raw = message.content[0].type === "text" ? message.content[0].text.trim() : "";
+    const first = message.content[0];
+    const raw = first?.type === "text" ? first.text.trim() : "";
 
     // Strip any accidental markdown fences
     const cleaned = raw.replace(/^```(?:json)?\n?/, "").replace(/\n?```$/, "").trim();
@@ -107,20 +123,32 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Sanitise: ensure correct types
-    const sanitised: DetectedHolding[] = holdings.map((h) => ({
-      ticker: String(h.ticker ?? "").toUpperCase().trim(),
-      quantity: Number(h.quantity ?? 0),
-      price: h.price !== null && h.price !== undefined ? Number(h.price) : null,
-      value: h.value !== null && h.value !== undefined ? Number(h.value) : null,
-    })).filter((h) => h.ticker.length > 0 && h.quantity > 0);
+    // Sanitise. The model output is attacker-influencable (a crafted screenshot can
+    // contain arbitrary text), so every field is coerced, range-checked, and the
+    // array length is capped before anything downstream sees it.
+    const finiteOrNull = (v: unknown): number | null => {
+      if (v === null || v === undefined) return null;
+      const n = Number(v);
+      return Number.isFinite(n) ? n : null;
+    };
+
+    const sanitised: DetectedHolding[] = holdings
+      .slice(0, 200)
+      .map((h) => ({
+        ticker: String(h.ticker ?? "").toUpperCase().trim(),
+        quantity: finiteOrNull(h.quantity) ?? 0,
+        price: finiteOrNull(h.price),
+        value: finiteOrNull(h.value),
+      }))
+      .filter((h) => /^[A-Z0-9.\-]{1,12}$/.test(h.ticker) && h.quantity > 0);
 
     return NextResponse.json({ holdings: sanitised });
   } catch (err) {
-    const message = err instanceof Error ? err.message : String(err);
-    console.error("[analyze-portfolio] Claude API error:", message);
+    // Log the detail server-side only — upstream SDK errors can disclose API key
+    // state, quota, and request IDs, so the client gets a fixed message.
+    console.error("[analyze-portfolio] Claude API error:", err);
     return NextResponse.json(
-      { error: `Failed to analyze image: ${message}` },
+      { error: "Failed to analyze image." },
       { status: 500 }
     );
   }
