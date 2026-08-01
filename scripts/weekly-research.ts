@@ -11,7 +11,9 @@
 
 import * as fs from "fs";
 import * as path from "path";
-import yahooFinance from "yahoo-finance2";
+import YahooFinance from "yahoo-finance2";
+
+const yahooFinance = new YahooFinance({ suppressNotices: ["yahooSurvey"] });
 
 const ROOT = path.join(__dirname, "..");
 const SNAPSHOT_PATH = path.join(ROOT, ".research-snapshot.json");
@@ -22,7 +24,7 @@ const US_TICKERS = [
 ];
 const INDIA_TICKERS = [
   "HDFCBANK.NS", "RELIANCE.NS", "INFY.NS", "TCS.NS", "BAJFINANCE.NS",
-  "HCLTECH.NS", "ZOMATO.NS", "ADANIGREEN.NS", "DMART.NS", "AXISBANK.NS",
+  "HCLTECH.NS", "ETERNAL.NS", "ADANIGREEN.NS", "DMART.NS", "AXISBANK.NS",
 ];
 const INDEX_TICKERS = ["^GSPC", "^IXIC", "^NSEI", "^BSESN"];
 
@@ -52,8 +54,8 @@ async function fetchAll(): Promise<Record<string, QuoteSnapshot>> {
           weekLow: q.fiftyTwoWeekLow ?? null,
           marketCapB: q.marketCap ? q.marketCap / 1e9 : null,
         };
-      } catch {
-        console.warn(`  ⚠️  Skipping ${ticker}`);
+      } catch (err) {
+        console.warn(`  ⚠️  Skipping ${ticker}: ${(err as Error).message}`);
         data[ticker] = { price: null, changePercent: null, pe: null, weekHigh: null, weekLow: null, marketCapB: null };
       }
     })

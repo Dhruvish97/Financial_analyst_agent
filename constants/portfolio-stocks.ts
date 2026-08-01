@@ -69,6 +69,38 @@
  *   ~ TSLA reduced  5→3% (3/7 powers; Q1 delivery miss; keeps optionality at lower conviction size)
  *   ~ MU on radar   —   (hold; NVDA+AVGO already 30% semi exposure; revisit if HBM standalone moat strengthens)
  *   ~ PANW on radar —   (hold; CRWD at 7% covers cybersecurity; revisit if NET conviction weakens further)
+ *
+ * August 1, 2026 market refresh (research update — current intelligence):
+ *   ~ NVDA updated    (Q1 FY27 actual: $81.6B rev +85% YoY; GAAP EPS $2.39; stock ~$199, P/E ~30x — cheapest since 2023; Q2 FY27 earnings Aug 26, guided ~$91.0B; China H200 exports approved but shipments "trivial" vs 2M chips ordered — Blackwell still unlicensed)
+ *   ~ MSFT updated    (Q4 FY26 actual: $90B rev +18% YoY, EPS $4.81 +31%; Azure +43% YoY accelerating, crossed $100B FY26 revenue; FY27 capex guided $255-260B; forward P/E ~21x cheapest since 2023; RBC/Bernstein targets raised to $640-647)
+ *   ~ META updated    (Q2 2026: $60.8B rev +28% YoY beat, but adj. EPS $6.18 MISSED $7.14 on $2.4B legal + $1.2B severance charges; stock -8% on print; capex raised to $125-135B; 57/63 analysts still Buy)
+ *   ~ GOOGL updated   (Q2 2026: $119.8B rev +24% YoY beat; Cloud +82% YoY to $24.8B, backlog $514B; FY26 capex raised to $195-205B — stock dipped on capex hike despite beat; Gemini 750M+ MAU)
+ *   ~ AMZN updated    (Q2 2026: $200.6B rev +20% YoY, first $200B quarter, beat; AWS +37% YoY to $42.2B — fastest in 18 qtrs; AI/chips run-rate >$25B; FY26 capex ~$220B)
+ *   ~ AVGO updated    (Q2 FY26: $22.2B rev +48% YoY; AI semi revenue $10.8B +143% YoY; Q3 FY26 guidance $29.4B (+84%), AI semi ~$16.0B; FY26 AI semi guided ~$56B; stock +51% YTD)
+ *   ~ TSLA updated    (Q2 2026: record $28.2B rev +26% YoY on record 480K deliveries, but EPS $0.33 MISSED $0.53 — op margin fell to 1.4%; stock -14.5% post-earnings, erased >$140B market cap; robotaxi now live in 5 markets)
+ *   ~ PLTR updated    (Q1 2026: $1.633B rev +85% YoY — fastest since IPO; US commercial +133%; raised FY26 guidance to $7.65-7.66B; stock down ~30% YTD despite fundamentals; Q2 earnings Aug 3)
+ *   ~ NET updated     (Q1 2026: $639.8M rev +34% YoY beat, but stock fell 24% same-day on 1,100 layoffs (~20% workforce) "AI-first" restructuring; launched agentic-internet product suite; Q2 earnings Aug 6)
+ *   ~ AAPL updated    (fiscal Q3 2026: $109.4B rev +16% YoY beat; weak Q4 guidance on supply constraints, stock -6% after-hours; Gemini-powered Siri 2.0 shipping with iOS 27 Sept 2026; fresh antitrust scrutiny)
+ *   ~ MELI updated    (Q1 2026: $8.85B rev +49% YoY — fastest in ~4 yrs, but EPS $8.23 missed $8.75 on margin compression from credit/logistics investment; digital banks launching in Mexico/Argentina)
+ *   ~ FED             (Kevin Warsh sworn in as Fed Chair May 22, 2026, replacing Powell; rate held 3.50–3.75% through July; Warsh dropped forward guidance, struck hawkish tone — inflation at 3-yr high, 9/18 FOMC favor hikes)
+ *
+ * NEW CANDIDATE SCREENING — August 1, 2026 (7 Powers ≥ 3/7 required; $10B+ market cap):
+ *   ★ ANET  STRONG WATCH (Arista Networks — 7 Powers 5/7: EOS software switching cost embedded in hyperscaler networks + scale from Meta/Microsoft-class deployments;
+ *                         Strong Buy 84%, targets $190–210 raised by TD Cowen; earnings Aug 3; scores higher than NET (4/7) on moat and thematically fits AI-infra core — top swap candidate for NET pending Q2 results)
+ *   ★ PANW  STRONG WATCH (Palo Alto Networks — 7 Powers 5/7: platformization creates switching cost + network effects; Morningstar wide-moat, 17% undervalued vs $225 fair value;
+ *                         Q3 FY26 rev +31.1%, raised FY26 guidance to $11.41–11.42B; scores higher than NET on moat and valuation)
+ *   ~ MU    WATCH        (Micron — sold out HBM supply through 2026, $100B+ binding multi-year contracts; targets lifted to ~$1,507 avg; moat is supply-lock not durable platform — memory remains cyclical)
+ *   ~ DDOG  WATCH        (Datadog — 4/7 powers; Jefferies downgraded to Hold on valuation even while raising target; earnings Aug 6; not clearly better than NET right now)
+ *   ~ SNOW  WATCH        (Snowflake — 4/7 powers; earnings Aug 25; in line with NET, not a clear upgrade)
+ *   ~ UBER  WATCH        (4/7 powers; strong network-effect moat but AV disruption risk from Waymo/Tesla; $10B+ AV commitment; consensus targets flat to current price — fully priced)
+ *   ~ F5    ON RADAR     (repositioning from legacy ADC hardware to AI-native security platform; too early-stage to score)
+ *
+ * ALLOCATION VERDICT — August 1, 2026 (no changes this cycle — pending earnings):
+ *   ~ NET hold at 3%     (ANET and PANW both screen stronger on 7 Powers + valuation, but NET's Q2 earnings (Aug 6) and ANET's Q2 earnings (Aug 3) are both unreported as of this refresh —
+ *                         premature to swap ahead of results; revisit as top candidate for NET replacement next cycle)
+ *   ~ TSLA hold at 3%    (2nd consecutive EPS miss, stock -14.5% post-earnings; weakest 7 Powers (3/7) in portfolio; no clean thematic substitute identified this cycle — remains the position most at risk of further trims)
+ *   ~ all other holdings confirmed — Q1/Q2 2026 earnings broadly beat on revenue across the portfolio (NVDA, MSFT, GOOGL, AMZN, AVGO, CRWD, PLTR all beat); META, TSLA, AAPL, MELI missed EPS/guidance
+ *     on one-time items or near-term softness without structural moat impairment
  */
 
 import { PortfolioDefinition } from "@/types/portfolio";
@@ -107,11 +139,11 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       rationale:
         "7 Powers score: 6/7. CUDA ecosystem = switching cost (every AI model trained deepens lock-in) + " +
         "cornered resource (GPU talent + CUDA library monopoly) + scale economies + process power. " +
-        "Q1 FY27 earnings due May 20 — analysts expect ~$43B revenue for Q1, guiding to full-year trajectory. " +
-        "Stock ~$202, trailing P/E ~41x, forward P/E ~24x — cheapest vs 3-yr average of 69x (earnings growing faster than multiple). " +
+        "Q1 FY27 actual (reported May 20): $81.6B revenue +85% YoY, +20% QoQ; GAAP EPS $2.39. Q2 FY27 earnings due Aug 26, guided to ~$91.0B. " +
+        "Stock ~$199, trailing P/E ~30x — cheapest since 2023, well below the 3-yr average of 69x (earnings growing faster than multiple). " +
         "Blackwell B200/GB200 NVL72 architecture deepens CUDA switching cost into 2027–28. " +
-        "Hyperscaler capex ~$700B in 2026 (~60% YoY increase), ~$450B AI-specific — NVDA captures the largest share. " +
-        "Amazon $200B, Alphabet $175–185B, Meta $115–135B, MSFT $120B+ — all committed AI infrastructure spend through FY27.",
+        "China remains a wildcard: H200 exports approved for ~10 Chinese firms but actual shipments called 'trivial' vs ~2M chips ordered; Blackwell still unlicensed for China. " +
+        "Hyperscaler capex commitments keep rising — MSFT FY27 capex guided $255–260B, GOOGL FY26 capex raised to $195–205B, AMZN FY26 ~$220B, META FY26 $125–145B — NVDA captures the largest share of all of it.",
       color: "#76b900",
     },
     {
@@ -123,10 +155,11 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       rationale:
         "7 Powers score: 7/7 (rare perfect score). Azure + Office 365 = switching cost (enterprise data lock-in) + " +
         "network effects (Teams/LinkedIn) + scale economies + process power (OpenAI partnership moat). " +
-        "Stock ~$420, -20% YTD April 2026 — Prompt #18 (Behavioral Finance) flags a textbook contrarian entry; business moat is structurally intact. " +
-        "Q1 2026 earnings Apr 29; Azure growth and Copilot per-seat monetisation are key revenue drivers. " +
-        "Macro note: Fed Chair Powell's term expires May 15, 2026 — leadership transition adds uncertainty to rate path, but Microsoft's government-cloud moat is Fed-independent. " +
-        "Government cloud (JEDI/JWCC), gaming (Activision synergies), LinkedIn, and $120B+ 2026 CapEx signal long-term AI infrastructure commitment.",
+        "Q4 FY26 actual (reported Jul 29): $90B revenue +18% YoY; GAAP EPS $4.81 +31% YoY. Azure +43% YoY — accelerating — and FY26 Azure revenue crossed $100B for the first time (+41% FY), " +
+        "still trailing AWS but now ahead of Google Cloud. FY27 guidance: Q1 revenue $89.85–90.95B (+16% midpoint); Azure growth guided ~45% constant currency; FY27 capex guided $255–260B. " +
+        "Stock ~$451, forward P/E ~21–22x — cheapest since 2023. RBC raised target to $640, Bernstein to $647; consensus avg target ~$561. " +
+        "New Fed Chair Kevin Warsh (sworn in May 22, replacing Powell) has struck a hawkish tone, but Microsoft's government-cloud and enterprise moat is Fed-independent. " +
+        "Government cloud (JEDI/JWCC), gaming (Activision synergies), LinkedIn, and record capex signal long-term AI infrastructure commitment.",
       color: "#00a4ef",
     },
     {
@@ -138,10 +171,10 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       rationale:
         "7 Powers score: 5/7. Network effects on 3.58B DAU (+7% YoY) = the strongest single moat in consumer tech. " +
         "WhatsApp/Instagram/FB form a closed social graph that is structurally impossible to replicate. " +
-        "Prompt #18 (Behavioral Finance): Jan 2023 analyst consensus was 55% sell — contrarian buyers returned +194%. " +
-        "AI Advantage+ advertising suite at $60B annual run-rate. April 14, 2026: committed to deploying 1GW of custom MTIA chips — " +
-        "a structural signal that Meta is building proprietary silicon to reduce long-term inference costs. " +
-        "2026 CapEx guidance $115–135B, signalling hyper-aggressive AI infrastructure buildout. Llama open-source cuts inference costs $3B+/yr.",
+        "Q2 2026 (reported Jul 29–30): $60.8B revenue +28% YoY, beat estimates — but adjusted EPS $6.18 MISSED $7.14 consensus on $2.4B legal contingencies + $1.2B severance charges; " +
+        "GAAP EPS $10.44 was boosted by an $8.0B one-time tax benefit. Stock fell ~8% on the print despite the revenue beat — a one-time-charge miss, not a moat impairment. " +
+        "CapEx raised to $125–145B for FY2026 (Q2 capex $31.1B, nearly double Q2 2025) — almost entirely AI datacenters/custom silicon (MTIA). " +
+        "57 of 63 analysts still rate Buy/Strong Buy despite target cuts (Baird to $750 from $830); avg target ~$769–843. Llama open-source cuts inference costs $3B+/yr.",
       color: "#0866ff",
     },
     {
@@ -152,10 +185,10 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       allocation: 10,
       rationale:
         "7 Powers score: 6/7. 92% search share = unassailable scale economy + counter-positioning vs ChatGPT " +
-        "(Search has real-time indexing no LLM can match). Stock ~$336; Q1 2026 earnings Apr 29 — " +
-        "consensus $2.68 EPS on $106.9B revenue (+18% YoY). Google Cloud growth expected >50% YoY driven by Gemini and enterprise AI. " +
-        "$243B cloud backlog provides unprecedented revenue visibility. KeyBanc 2026 Cloud revenue forecast $91.8B — 8% above Wall Street consensus. " +
-        "Waymo commercially deployed and scaling. Greenblatt: highest ROIC in mega-cap internet (~28%).",
+        "(Search has real-time indexing no LLM can match). Q2 2026 (reported Jul 22): $119.8B revenue +24% YoY, beat $116.93B estimate; operating income $40.8B (34% margin). " +
+        "Google Cloud revenue +82% YoY to $24.8B; cloud backlog swelled to $514B — unprecedented revenue visibility. " +
+        "FY2026 capex guidance raised to $195–205B (from $180–190B) — stock initially sank on the capex hike despite the beat, a near-term sentiment overhang rather than a moat concern. " +
+        "Gemini AI crossed 750M+ monthly active users. Stock ~$359, P/E ~17.7x. Waymo commercially deployed and scaling. Greenblatt: highest ROIC in mega-cap internet (~28%).",
       color: "#4285f4",
     },
     {
@@ -165,11 +198,11 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       sector: "Cloud & E-Commerce",
       allocation: 10,
       rationale:
-        "7 Powers score: 6/7. AWS scale economy (32% cloud market share) + logistics flywheel switching cost (Prime ecosystem). " +
-        "AWS grew 24% in Q4 2025 — fastest pace in 13 quarters — with AI-driven cloud revenue crossing $15B annual run-rate. " +
-        "Advertising segment at $60B+ run-rate now rivals Google Ads as a standalone business. " +
-        "Q1 2026 earnings Apr 29; $200B total CapEx guidance for 2026 — largest absolute AI infrastructure commitment of any hyperscaler. " +
-        "Operating margins tripled 2023–2025 as high-margin AWS/Ads overtake low-margin retail.",
+        "7 Powers score: 6/7. AWS scale economy (32%+ cloud market share) + logistics flywheel switching cost (Prime ecosystem). " +
+        "Q2 2026 (reported Jul 30): net sales $200.6B +20% YoY — first time crossing $200B in a single quarter, beat $196.47B estimate; operating income $27.5B +43% YoY. " +
+        "AWS revenue $42.2B +37% YoY — fastest growth in 18 quarters, beat consensus — with AI/chips business run-rate now exceeding $25B and growing triple-digits. AWS operating margin 39.4%. " +
+        "Advertising segment continues to rival Google Ads as a standalone business. FY2026 CapEx guided to ~$220B — largest absolute AI infrastructure commitment of any hyperscaler. " +
+        "Operating margins continue expanding as high-margin AWS/Ads overtake low-margin retail.",
       color: "#ff9900",
     },
     {
@@ -181,8 +214,9 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       rationale:
         "7 Powers score: 5/7. Custom AI ASIC chips for Google (TPU) and Meta (MTIA) = switching cost moat " +
         "(multi-year design partnerships lock hyperscalers in for 3–5 year silicon cycles). " +
-        "Q1 FY2026 results (Mar 4): $19.3B revenue +29% YoY; AI semiconductor revenue $8.4B +106% YoY — custom ASIC cycle accelerating faster than consensus expected. EPS $2.05 beat $1.88 estimate by 9%. " +
-        "VMware adds recurring software revenue; 50%+ EBITDA margins intact. " +
+        "Q2 FY2026 results: $22.2B revenue +48% YoY; AI semiconductor revenue $10.8B +143% YoY — custom ASIC cycle accelerating even faster than the prior quarter. GAAP EPS $1.91, non-GAAP EPS $2.44. " +
+        "Q3 FY2026 guidance: ~$29.4B revenue (+84% YoY); AI semiconductor revenue guided ~$16.0B (+200%+ YoY); full-year 2026 AI semi revenue guided ~$56B (+~180%); 2027 AI revenue reiterated >$100B. Next earnings ~Sep 3. " +
+        "VMware adds recurring software revenue; 50%+ EBITDA margins intact. Stock +51% YTD; P/E ~62x, down from ~79x average as earnings catch up to the multiple. " +
         "Increased to 10% (was 8%) — ASIC demand is the biggest structural shift in AI chips beyond NVDA.",
       color: "#cc0000",
     },
@@ -195,8 +229,9 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       rationale:
         "7 Powers score: 5/7. Falcon platform = switching cost (single-agent security consolidation) + process power " +
         "(threat graph trained on 3T+ events/week, impossible to replicate from scratch). " +
-        "130%+ net revenue retention confirms customers expand rather than churn. " +
-        "Cybersecurity spend is non-discretionary — grows with AI threat surface expansion. Rule-of-40 positive.",
+        "Q1 FY2027 (reported Jun 3): $1.39B revenue +26% YoY, beat estimate; non-GAAP EPS $1.10 vs $0.88 estimate — 25% beat. Record net-new ARR $256M +32% YoY; ending ARR $5.51B +24% YoY. Record FCF $468M. " +
+        "Raised FY27 net-new-ARR growth guidance by 520bps to ~27.7%. Executed a 4-for-1 stock split (Jul 2); hit a split-adjusted all-time high $217.50 on Jul 15. Q2 FY2027 earnings due ~Aug 26. " +
+        "130%+ net revenue retention confirms customers expand rather than churn. Cybersecurity spend is non-discretionary — grows with AI threat surface expansion.",
       color: "#f97316",
     },
     {
@@ -207,10 +242,11 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       allocation: 5,
       rationale:
         "7 Powers score: 3/7. Weakest moat in this portfolio — EV is becoming a commoditised market with BYD/Chinese " +
-        "OEMs compressing margins. Q1 2026 earnings reported Apr 22 after close: 358K deliveries missed 365K consensus; consensus $0.33–0.37 EPS; 50K-unit inventory overhang. " +
-        "Energy storage segment under pressure; EV gross margins challenged by BYD/Chinese OEM pricing wars. FSD v13 progressing but Cybercab production unconfirmed. " +
-        "Prompt #18 (Behavioral Finance): analyst consensus increasingly negative on EV thesis — same herding dynamics that historically precede re-ratings. " +
-        "Reduced to 3% (was 5%) — reflects robotics/autonomy optionality (Cybercab, Optimus on $10T+ TAM) at lower conviction; 2% freed for MELI (higher 7-Powers score).",
+        "OEMs compressing margins. Q2 2026 (reported Jul 22): record $28.2B revenue +26% YoY on record 480,126 deliveries, but non-GAAP EPS $0.33 MISSED $0.53 consensus — " +
+        "operating income fell 57% to $398M (1.4% margin) as gross margin slid to 16.8%. Stock plunged ~14.5% post-earnings to ~$320, erasing over $140B in market cap; trading ~$311 as of Aug 1. " +
+        "Robotaxi now live in 5 markets (Austin, Dallas, Houston, Miami expansion through 2026); Musk targets 'widespread' US robotaxi by year-end and Optimus enterprise leasing late 2026 — " +
+        "his new pay package is tied to these milestones. Analysts split 23 buy/6 sell; Stifel cut target to $450. " +
+        "Held at 3% — 2nd consecutive earnings disappointment confirms the weakest-moat thesis, but robotics/autonomy optionality (Cybercab, Optimus) keeps it in the portfolio at reduced conviction.",
       color: "#e82127",
     },
     {
@@ -222,8 +258,10 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       rationale:
         "7 Powers score: 4/7. Global edge network in 330+ cities processes 20% of all internet traffic — " +
         "a scale economy with network effects (every node makes the whole network faster). " +
-        "Workers AI platform captures AI inference at the edge. Q1 2026 earnings Apr 30: guidance $620–621M; FY2026 guidance $2.785–$2.795B with operating income $378–382M. " +
-        "130%+ NRR confirms product-market fit. Reduced to 3% — high-quality business; PLTR revenue acceleration currently justifies heavier sizing.",
+        "Q1 2026 (reported May 7): $639.8M revenue +34% YoY, beat estimate; EPS $0.25 beat — but stock fell 24% same-day on news of 1,100 layoffs (~20% of workforce, $140–150M charge) as part of an 'AI-first' restructuring. " +
+        "Launched an 'agentic internet' product suite (Agents Week 2026) — new model-inference platform and AI-bot classification/monetization tools for publishers; stock has recovered since, +8–10% in early July on AI-tailwind optimism. " +
+        "BofA raised target to $330 from $255. Q2 2026 earnings due Aug 6 (guided $664–665M, +30% YoY). " +
+        "7 Powers score now trails newer AI-infrastructure candidates ANET (5/7) and PANW (5/7) screened this cycle — held at 3% pending Q2 results, top watch for replacement if guidance disappoints.",
       color: "#f6821f",
     },
     {
@@ -235,10 +273,10 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       rationale:
         "7 Powers score: 4/7. Cornered resource (classified government intelligence data partnerships) + " +
         "switching cost (AIP deeply embedded in enterprise and government workflows). " +
-        "Q4 2025: US commercial revenue +137% YoY. FY2025 total revenue $4.475B (+56% YoY), GAAP net income $1.625B. " +
-        "FY2026 guidance $7.2B (+61% YoY) with US commercial >$3.1B (+115% YoY) — AIP is a production revenue engine, not a proof-of-concept. " +
-        "Stock ~$135–145 (down from $177 Jan start), forward multiple compressing as revenue catches up. Q1 2026 earnings May 4. " +
-        "Morgan Stanley flags 'strong setup' for May earnings. Increased to 5% — AIP execution justifies elevated sizing.",
+        "Q1 2026 (reported May 4): $1.633B revenue +85% YoY — fastest growth since the 2020 IPO. US revenue +104% to $1.282B; US commercial +133%; government +84%. Adjusted EPS $0.33 (GAAP $0.34, 53% GAAP net margin). " +
+        "Raised FY2026 guidance to $7.65–7.66B (+71% YoY). Closed 206 deals ≥$1M; secured >$900M in new federal awards (Army, ICE, IRS, Space Force, Treasury) plus a $1B DHS software agreement; commercial remaining deal value $4.92B (+112% YoY). " +
+        "Stock down ~30% YTD despite the fundamentals — a valuation reset, not a thesis break; trading ~$123 as of Aug 1. Q2 2026 earnings due Aug 3 (consensus EPS $0.35, revenue $1.81B +80% YoY). " +
+        "AIP execution continues to justify the 5% sizing.",
       color: "#6366f1",
     },
     {
@@ -250,10 +288,10 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       rationale:
         "7 Powers score: 6/7. iOS ecosystem = switching cost (app purchases, iCloud, FaceTime lock-in) + " +
         "brand (premium pricing power — iPhone ASP rising vs Android) + scale economy (750M+ paying services subscribers). " +
-        "Q1 FY2026: revenue $143.8B +16% YoY; EPS $2.84 +19% YoY. Services $30.01B +14% YoY — tracking toward 75% margin. " +
-        "Siri 2.0 (Gemini-powered) unveiling at WWDC June 8, 2026 = AI refresh cycle catalyst. Q2 FY26 earnings Apr 30. " +
-        "Stock -9% YTD = Prompt #18 mild contrarian entry; BofA Buy, $300 target (+18% upside). " +
-        "Replaces COIN (3/7 powers) — AAPL 6/7 vs COIN 3/7; Services flywheel is a structurally superior moat to crypto regulatory moat.",
+        "Fiscal Q3 2026 (reported Jul 30): $109.4B revenue +16% YoY, beat estimate; adjusted EPS $1.91 vs $1.89 estimate; net profit $29.8B, diluted EPS +29% YoY. iPhone sales +22%. " +
+        "Weak fiscal Q4 guidance on supply constraints sent the stock down >6% after-hours; Greater China revenue $18.8B missed estimate. Stock ~$309, still +20% YTD despite the pullback. " +
+        "Siri 2.0, rebuilt on a custom Google Gemini model (~$1B/yr deal), unveiled at WWDC June 8 and ships with iOS 27 in September 2026 — drawing fresh antitrust scrutiny alongside the existing ~$20B Google search-default deal. " +
+        "BofA/Goldman Buy consensus, avg target $321.66. Fiscal Q4 2026 earnings due late October. Services flywheel remains the core structural moat.",
       color: "#555555",
     },
     {
@@ -265,10 +303,10 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       rationale:
         "7 Powers score: 5/7. Network effects (LatAm e-commerce + MercadoPago fintech flywheel — GMV and payments volume in self-reinforcing loop) + " +
         "scale economy (largest e-commerce platform in 18 Latin American countries, ~5.5% market share expanding). " +
-        "Revenue +39% in 2025; Fintech +46% YoY — fintech now 43% of revenue at higher margins than e-commerce. " +
-        "Operating cash flow $10.5B in 2025; operating margins expanding 6% → 10-11%. 23/26 analysts Buy; price target $2,848 (+41% upside). " +
-        "LatAm is structurally under-penetrated: formal credit penetration <30%, e-commerce <10% of retail — decade of growth ahead. " +
-        "Geographic diversifier — uncorrelated to US tech regulatory risk. Funded by TSLA trim (TSLA 5%→3%).",
+        "Q1 2026: $8.85B revenue +49% YoY — fastest growth in ~4 years, beat estimate — but EPS $8.23 missed $8.75 consensus on margin compression from credit and logistics investment. " +
+        "Brazil revenue +55%, Mexico +62%, advertising +73%. Credit portfolio expanded to $14.6B (+87% YoY); credit-card book doubled to $6.6B. Launching full digital banks in Mexico and Argentina — " +
+        "pushing further into consumer banking beyond marketplace/payments. Stock down ~10.7% YTD on margin-pressure concerns despite the growth beat. 24 analysts Buy consensus, avg target $2,209 (~18% upside). Q2 2026 earnings due Aug 5. " +
+        "LatAm remains structurally under-penetrated: formal credit penetration <30%, e-commerce <10% of retail — geographic diversifier uncorrelated to US tech regulatory risk.",
       color: "#ffe600",
     },
   ],
