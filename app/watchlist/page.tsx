@@ -1,6 +1,7 @@
 "use client";
 
 import { CANDIDATE_SCREENING, ScreeningLabel, ScreeningMarket } from "@/constants/candidate-screening";
+import { INDIA_MARKET_ENABLED } from "@/constants/feature-flags";
 
 const LABEL_STYLE: Record<ScreeningLabel, React.CSSProperties> = {
   "STRONG WATCH": { color: "#00e5a0", background: "rgba(0,229,160,0.08)", border: "1px solid rgba(0,229,160,0.2)" },
@@ -27,7 +28,7 @@ function formatDate(iso: string): string {
 }
 
 export default function WatchlistPage() {
-  const markets: ScreeningMarket[] = ["us", "india"];
+  const markets: ScreeningMarket[] = INDIA_MARKET_ENABLED ? ["us", "india"] : ["us"];
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">

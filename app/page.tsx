@@ -6,6 +6,7 @@ import { ALL_PORTFOLIOS } from "@/constants/all-portfolios";
 import { CRYPTO_PORTFOLIO } from "@/constants/crypto-data";
 import { useFearGreed } from "@/hooks/useFearGreed";
 import { useStockPrices } from "@/hooks/useStockPrices";
+import { INDIA_MARKET_ENABLED } from "@/constants/feature-flags";
 
 const FearGreedGauge = dynamic(
   () => import("@/components/widgets/FearGreedGauge").then((m) => m.FearGreedGauge),
@@ -236,7 +237,9 @@ export default function DashboardPage() {
         {[
           { href: "/stocks",            label: "Stock Portfolios",  sub: "4 strategies",   color: "#00d4ff", icon: "📊" },
           { href: "/crypto",            label: "Digital Assets",    sub: "6 holdings",      color: "#ff6b2b", icon: "₿" },
-          { href: "/india",             label: "India Market",      sub: "10 NSE stocks",   color: "#fb923c", icon: "🇮🇳" },
+          ...(INDIA_MARKET_ENABLED
+            ? [{ href: "/india", label: "India Market", sub: "10 NSE stocks", color: "#fb923c", icon: "🇮🇳" }]
+            : []),
           { href: "/portfolio-compare", label: "AI Advisor",        sub: "Upload & analyse",color: "#a78bfa", icon: "🧠" },
         ].map(({ href, label, sub, color, icon }) => (
           <Link

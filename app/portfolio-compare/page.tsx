@@ -13,6 +13,7 @@ import {
   analysePortfolio,
 } from "@/lib/portfolio-analysis";
 import { RiskBadge } from "@/components/ui/RiskBadge";
+import { INDIA_MARKET_ENABLED } from "@/constants/feature-flags";
 
 // ── Step indicator ─────────────────────────────────────────────────────────────
 
@@ -62,23 +63,25 @@ function StyleSelector({
   const styles = MARKET_STYLES[market];
   return (
     <div className="space-y-5">
-      {/* Market toggle */}
-      <div className="flex items-center gap-1 p-1 rounded-xl w-fit" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
-        {(["us", "india"] as Market[]).map((m) => (
-          <button
-            key={m}
-            onClick={() => onMarketChange(m)}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all"
-            style={
-              market === m
-                ? { background: "rgba(167,139,250,0.15)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.3)" }
-                : { color: "rgba(255,255,255,0.35)", border: "1px solid transparent" }
-            }
-          >
-            {m === "us" ? "🇺🇸 US Market" : "🇮🇳 India Market"}
-          </button>
-        ))}
-      </div>
+      {/* Market toggle — only worth showing when there's more than one market to pick from */}
+      {INDIA_MARKET_ENABLED && (
+        <div className="flex items-center gap-1 p-1 rounded-xl w-fit" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
+          {(["us", "india"] as Market[]).map((m) => (
+            <button
+              key={m}
+              onClick={() => onMarketChange(m)}
+              className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all"
+              style={
+                market === m
+                  ? { background: "rgba(167,139,250,0.15)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.3)" }
+                  : { color: "rgba(255,255,255,0.35)", border: "1px solid transparent" }
+              }
+            >
+              {m === "us" ? "🇺🇸 US Market" : "🇮🇳 India Market"}
+            </button>
+          ))}
+        </div>
+      )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {styles.map((style) => {

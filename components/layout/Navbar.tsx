@@ -2,8 +2,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
+import { INDIA_MARKET_ENABLED } from "@/constants/feature-flags";
 
-const NAV_LINKS = [
+const ALL_NAV_LINKS = [
   { href: "/",                  label: "Dashboard",    color: "#00e5a0", bg: "rgba(0,229,160,0.1)"   },
   { href: "/stocks",            label: "Stocks",       color: "#00d4ff", bg: "rgba(0,212,255,0.1)"   },
   { href: "/crypto",            label: "Crypto",       color: "#ff6b2b", bg: "rgba(255,107,43,0.1)"  },
@@ -13,6 +14,8 @@ const NAV_LINKS = [
   { href: "/research-log",      label: "Research Log", color: "#38bdf8", bg: "rgba(56,189,248,0.1)"  },
   { href: "/portfolio-compare", label: "🧠 Advisor",   color: "#a78bfa", bg: "rgba(167,139,250,0.1)" },
 ];
+
+const NAV_LINKS = ALL_NAV_LINKS.filter((l) => l.href !== "/india" || INDIA_MARKET_ENABLED);
 
 export function Navbar() {
   const pathname = usePathname();

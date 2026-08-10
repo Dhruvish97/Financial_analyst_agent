@@ -12,6 +12,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import YahooFinance from "yahoo-finance2";
+import { INDIA_MARKET_ENABLED } from "../constants/feature-flags";
 
 const yahooFinance = new YahooFinance({ suppressNotices: ["yahooSurvey"] });
 
@@ -22,11 +23,14 @@ const US_TICKERS = [
   "NVDA", "META", "GOOGL", "MSFT", "AMZN", "AVGO",
   "PLTR", "TSLA", "CRM", "NET", "COIN", "AMD",
 ];
-const INDIA_TICKERS = [
-  "HDFCBANK.NS", "RELIANCE.NS", "INFY.NS", "TCS.NS", "BAJFINANCE.NS",
-  "HCLTECH.NS", "ETERNAL.NS", "ADANIGREEN.NS", "DMART.NS", "AXISBANK.NS",
-];
-const INDEX_TICKERS = ["^GSPC", "^IXIC", "^NSEI", "^BSESN"];
+// Only fetched while INDIA_MARKET_ENABLED is true — see constants/feature-flags.ts.
+const INDIA_TICKERS = INDIA_MARKET_ENABLED
+  ? [
+      "HDFCBANK.NS", "RELIANCE.NS", "INFY.NS", "TCS.NS", "BAJFINANCE.NS",
+      "HCLTECH.NS", "ETERNAL.NS", "ADANIGREEN.NS", "DMART.NS", "AXISBANK.NS",
+    ]
+  : [];
+const INDEX_TICKERS = INDIA_MARKET_ENABLED ? ["^GSPC", "^IXIC", "^NSEI", "^BSESN"] : ["^GSPC", "^IXIC"];
 
 type QuoteSnapshot = {
   price: number | null;
@@ -87,13 +91,18 @@ async function main() {
     console.log(`  ${t.padEnd(8)} $${q.price.toFixed(2).padStart(8)}  ${chg.padStart(8)}  ${pe}`);
   }
 
-  console.log("\n── India Portfolio ──────────────────────────────────");
-  for (const t of INDIA_TICKERS) {
-    const q = quotes[t];
-    const display = t.replace(".NS", "").padEnd(12);
-    if (!q?.price) { console.log(`  ${display} —`); continue; }
-    const chg = q.changePercent != null ? (q.changePercent >= 0 ? "+" : "") + q.changePercent.toFixed(2) + "%" : "—";
-    console.log(`  ${display} ₹${q.price.toFixed(2).padStart(9)}  ${chg.padStart(8)}`);
+  if (INDIA_MARKET_ENABLED) {
+    console.log("\n── India Portfolio ──────────────────────────────────");
+    for (const t of INDIA_TICKERS) {
+      const q = quotes[t];
+      const display = t.replace(".NS", "").padEnd(12);
+      if (!q?.price) { console.log(`  ${display} —`); continue; }
+      const chg = q.changePercent != null ? (q.changePercent >= 0 ? "+" : "") + q.changePercent.toFixed(2) + "%" : "—";
+      console.log(`  ${display} ₹${q.price.toFixed(2).padStart(9)}  ${chg.padStart(8)}`);
+    }
+  } else {
+    console.log("\n── India Portfolio ──────────────────────────────────");
+    console.log("  Skipped — INDIA_MARKET_ENABLED is false (constants/feature-flags.ts)");
   }
 
   console.log("\n── Indices ──────────────────────────────────────────");

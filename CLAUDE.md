@@ -194,6 +194,15 @@ git push             # push to GitHub
 The market commentary in `constants/portfolio-stocks.ts`, `constants/india-stocks.ts`,
 and `constants/portfolio-targets.ts` is refreshed periodically rather than hand-maintained.
 
+**India market coverage is currently paused.** `constants/feature-flags.ts` sets
+`INDIA_MARKET_ENABLED = false`, which hides all India UI (nav link, `/india`, and the
+India sections of `/watchlist`, `/analytics`, `/research-log`, and the Advisor). While
+this flag is `false`, **skip India entirely during a refresh** — do not web-search India
+news, do not touch `constants/india-stocks.ts`, and do not add India entries to
+`constants/candidate-screening.ts` or `constants/research-log.ts`. `npm run research`
+already skips fetching India tickers automatically while the flag is off. Only resume
+India research once a human flips `INDIA_MARKET_ENABLED` back to `true`.
+
 ```bash
 npm run research     # fetches live quotes → .research-snapshot.json (gitignored)
 ```

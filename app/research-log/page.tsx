@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { RESEARCH_LOG, ResearchLogScope } from "@/constants/research-log";
+import { INDIA_MARKET_ENABLED } from "@/constants/feature-flags";
 
 const SCOPE_META: Record<ResearchLogScope, { label: string; color: string }> = {
   "multi": { label: "Multi-Market", color: "#00e5a0" },
@@ -10,7 +11,13 @@ const SCOPE_META: Record<ResearchLogScope, { label: string; color: string }> = {
   "roth-ira": { label: "Tax-Free Growth", color: "#a78bfa" },
 };
 
-const FILTERS: ("all" | ResearchLogScope)[] = ["all", "multi", "us-stocks", "india", "roth-ira"];
+const FILTERS: ("all" | ResearchLogScope)[] = INDIA_MARKET_ENABLED
+  ? ["all", "multi", "us-stocks", "india", "roth-ira"]
+  : ["all", "multi", "us-stocks", "roth-ira"];
+
+const VISIBLE_LOG = INDIA_MARKET_ENABLED
+  ? RESEARCH_LOG
+  : RESEARCH_LOG.filter((e) => e.scope !== "india");
 
 function formatDate(iso: string): string {
   // "YYYY-MM" (month-only precision) vs full "YYYY-MM-DD"
@@ -23,7 +30,7 @@ function formatDate(iso: string): string {
 
 export default function ResearchLogPage() {
   const [filter, setFilter] = useState<"all" | ResearchLogScope>("all");
-  const entries = filter === "all" ? RESEARCH_LOG : RESEARCH_LOG.filter((e) => e.scope === filter);
+  const entries = filter === "all" ? VISIBLE_LOG : VISIBLE_LOG.filter((e) => e.scope === filter);
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10">

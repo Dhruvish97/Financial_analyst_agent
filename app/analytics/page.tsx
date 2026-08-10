@@ -12,6 +12,7 @@ import {
   AnalyticsPortfolio,
 } from "@/lib/sector-analysis";
 import { DriftStatus } from "@/lib/drift";
+import { INDIA_MARKET_ENABLED } from "@/constants/feature-flags";
 
 const AllocationDonut = dynamic(
   () => import("@/components/charts/AllocationDonut").then((m) => m.AllocationDonut),
@@ -28,7 +29,7 @@ const DRIFT_PORTFOLIOS = [
   { id: "roth-ira", name: "Tax-Free Growth" },
   { id: "house", name: "Medium-Term Savings" },
   { id: "stocks", name: "Aggressive Growth" },
-  { id: "india", name: "India" },
+  ...(INDIA_MARKET_ENABLED ? [{ id: "india", name: "India" }] : []),
 ];
 
 const STATUS_STYLE: Record<DriftStatus, React.CSSProperties> = {
@@ -104,9 +105,9 @@ export default function AnalyticsPage() {
           Average weight per sector across the 4 US model portfolios (each portfolio weighted
           equally, not by dollar value — these are illustrative allocations, not real accounts).
         </p>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <div className={`grid grid-cols-1 ${INDIA_MARKET_ENABLED ? "lg:grid-cols-2" : ""} gap-5`}>
           <AllocationDonut data={usDonutData} title="US Portfolios (avg.)" />
-          <AllocationDonut data={indiaDonutData} title="India" />
+          {INDIA_MARKET_ENABLED && <AllocationDonut data={indiaDonutData} title="India" />}
         </div>
       </section>
 

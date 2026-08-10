@@ -6,6 +6,7 @@ import { useRSI } from "@/hooks/useRSI";
 import { INDIA_STOCKS, INDIA_SECTORS, INDIA_TICKERS } from "@/constants/india-stocks";
 import { StockPriceChart } from "@/components/ui/StockPriceChart";
 import { RiskBadge } from "@/components/ui/RiskBadge";
+import { INDIA_MARKET_ENABLED } from "@/constants/feature-flags";
 
 // ── Formatters ────────────────────────────────────────────────────────────────
 
@@ -175,7 +176,7 @@ function SectorCard({ sector, active, onClick }: SectorCardProps) {
 
 // ── Main Page ─────────────────────────────────────────────────────────────────
 
-export default function IndiaPage() {
+function IndiaMarketContent() {
   const { prices, loading, lastUpdated, error, refetch } = useIndiaPrices();
   const { rsi, loadingRSI } = useRSI(INDIA_TICKERS);
   const [activeSector, setActiveSector] = useState<string | null>(null);
@@ -560,4 +561,31 @@ export default function IndiaPage() {
       </div>
     </div>
   );
+}
+
+// ── Paused state (INDIA_MARKET_ENABLED = false) ────────────────────────────────
+
+function IndiaMarketPaused() {
+  return (
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-24 text-center animate-fade-in-up">
+      <div
+        className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-5"
+        style={{ background: "rgba(251,146,60,0.1)", border: "1px solid rgba(251,146,60,0.2)" }}
+      >
+        🇮🇳
+      </div>
+      <h1 className="text-2xl font-bold text-white mb-3">India coverage is paused for now</h1>
+      <p className="text-sm max-w-lg mx-auto leading-relaxed" style={{ color: "rgba(255,255,255,0.4)" }}>
+        Research and live prices for the India market are temporarily switched off while
+        coverage focuses on the US market. Nothing was removed — the India portfolio,
+        research history, and screening data are all still here and will come back as
+        soon as this section is re-enabled.
+      </p>
+    </div>
+  );
+}
+
+export default function IndiaPage() {
+  if (!INDIA_MARKET_ENABLED) return <IndiaMarketPaused />;
+  return <IndiaMarketContent />;
 }
