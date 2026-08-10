@@ -101,10 +101,12 @@ export const AGGRESSIVE_TARGET: PortfolioTarget = {
     "Concentrates in high-7-Powers moat companies and secular megatrends: " +
     "AI infrastructure, cybersecurity, and digital payments. " +
     "Accepts short-term volatility in exchange for outsized 5–10 year returns. " +
-    "August 1, 2026 macro: Kevin Warsh sworn in as Fed Chair May 22 (replacing Powell), holding rate at 3.5–3.75% through July with a notably hawkish tone — inflation at a 3-year high, 9 of 18 FOMC officials now favor higher rates. " +
-    "Q2 2026 mega-cap earnings season delivered broad revenue beats — GOOGL (+24%), AMZN (first-ever $200B quarter, +20%), MSFT (+18%, Azure +43%), AVGO (+48%, AI semi +143% YoY) — but META and TSLA both missed EPS on one-time charges and margin pressure. " +
-    "Hyperscaler capex keeps climbing: MSFT FY27 guided $255–260B, GOOGL FY26 raised to $195–205B, AMZN FY26 ~$220B, META FY26 $125–145B. " +
-    "PLTR raised FY2026 guidance to $7.65–7.66B (+71% YoY) on 85% revenue growth; TSLA's 2nd consecutive EPS miss (stock -14.5% post-earnings) confirms it as the portfolio's weakest-moat holding.",
+    "August 10, 2026 update: Q2 earnings season closed out strong for the smaller growth names — PLTR delivered the standout print (+93% revenue growth, guidance raised to $8.15B, stock +29.5%), " +
+    "NET beat its own guidance and jumped +14.9% despite a restructuring charge (resolving the swap risk flagged Aug 1), ANET posted a first-ever $3B quarter and raised FY26 guidance to $12.6B, " +
+    "and MELI beat on revenue (+50%) but saw margin compression pressure the stock -4.6%. " +
+    "Kevin Warsh remains Fed Chair (sworn in May 22, replacing Powell), holding rate at 3.5–3.75% with a hawkish tone. " +
+    "Hyperscaler capex keeps climbing: MSFT FY27 guided $255–260B, GOOGL FY26 raised to $195–205B, AMZN FY26 ~$220B, META FY26 $125–145B — the AI infrastructure buildout shows no signs of slowing. " +
+    "NVDA's China exposure remains a wildcard after a Blackwell export loophole was uncovered and closed by Commerce in late May; core US/hyperscaler demand is unaffected.",
   riskLevel: "Aggressive",
   timeHorizon: "5–10+ years",
   icon: "🚀",
@@ -127,8 +129,8 @@ export const AGGRESSIVE_TARGET: PortfolioTarget = {
     {
       sector: "Semiconductors",
       targetPct: 12,
-      description: "Custom ASIC moat accelerating for hyperscalers; MU (Micron HBM) added as AI memory watch",
-      suggestedBuys: ["NVDA", "AMD", "AVGO", "QCOM", "MU"],
+      description: "Custom ASIC moat accelerating for hyperscalers; MU (Micron HBM) added as AI memory watch; ALAB (Astera Labs, AI-fabric interconnect, +104% rev YoY) flagged as new strong-watch candidate",
+      suggestedBuys: ["NVDA", "AMD", "AVGO", "QCOM", "MU", "ALAB"],
       color: "#f59e0b",
     },
     {
@@ -180,9 +182,10 @@ export const INDIA_CONSERVATIVE_TARGET: PortfolioTarget = {
   description:
     "Built for the Indian investor seeking capital preservation. " +
     "Anchored in large-cap PSU and private sector blue chips with strong dividend history. " +
-    "August 1, 2026 macro: RBI's June MPC held repo at 5.25% but cut FY27 GDP forecast to 6.6% (from 6.9%) and raised its inflation forecast to 5.1% (from 4.6%), citing West Asia conflict, oil prices, and monsoon uncertainty. " +
-    "August 5 MPC decision pending — consensus (68 of 72 economists polled) expects another hold. NIFTY ~24,381 is running well below the 29,000 Dec-2026 target set in April, with five months left in the year. " +
-    "The Feb 2026 US-India trade deal cut tariffs from 50% to 18%, easing a key macro risk. HCLTech Q1 FY27 PAT +20.3% YoY — IT sector recovery accelerating; HDFCBANK Q1 profit +5% YoY with GNPA improving further to 1.17%, still offering contrarian value at a depressed P/B.",
+    "August 10, 2026 macro: the Aug 3–5 MPC held repo unchanged at 5.25% (unanimous), neutral stance — Governor Malhotra wants 'greater clarity' on inflation before acting; headline inflation " +
+    "sits above the 4% target on food/fuel and is expected to peak in the Oct–Dec quarter, with the next MPC meeting Oct 5–7. NIFTY ~24,584/SENSEX ~78,542 remain well below the 29,000 Dec-2026 " +
+    "target set in April. The Feb 2026 US-India trade deal cut tariffs from 50% to 18%, easing a key macro risk. HCLTech Q1 FY27 PAT +20.3% YoY — IT sector recovery accelerating; HDFCBANK Q1 " +
+    "profit +5% YoY with GNPA improving further to 1.17%, still offering contrarian value at a depressed P/B. ITC (down ~26% over the trailing year) stays on strong watch as rural FMCG demand improves.",
   riskLevel: "Low–Medium",
   timeHorizon: "3–7 years",
   icon: "🛡️",
@@ -244,11 +247,12 @@ export const INDIA_AGGRESSIVE_TARGET: PortfolioTarget = {
   description:
     "Captures India's structural growth story — digitisation, capex supercycle, " +
     "EV transition, and mid-cap compounders. Concentrated in high-ROCE businesses with durable competitive advantages. " +
-    "August 1, 2026 update: RBI's June MPC held repo at 5.25% but cut FY27 GDP forecast to 6.6% (from 6.9%) and raised inflation forecast to 5.1%; Aug 5 decision pending, consensus expects another hold. NIFTY ~24,381, tracking well below the 29,000 Dec-2026 target. " +
+    "August 10, 2026 update: the Aug 3–5 MPC held repo unchanged at 5.25% (unanimous), neutral stance, with inflation above target but expected to peak Oct–Dec; next decision Oct 5–7. " +
+    "NIFTY ~24,584/SENSEX ~78,542, tracking well below the 29,000 Dec-2026 target. HAL's Q1 FY27 results are still pending (board meeting Aug 12) after an 11% one-month rally on easing engine-supply issues. " +
     "IT sector accelerating: HCLTech Q1 FY27 revenue ₹34,579 cr +13.9% YoY, PAT +20.3% YoY; TCS AI revenue run-rate $2.6B annualized with new Anthropic/Mistral AI partnerships. " +
-    "BAJFINANCE Q1 FY27 AUM +24% YoY with improving GNPA; HDFCBANK Q1 profit +5% YoY (GNPA improved to 1.17%); banking/NBFC re-rating underway despite RBI's more hawkish inflation stance. " +
+    "BAJFINANCE Q1 FY27 AUM +24% YoY with improving GNPA; HDFCBANK Q1 profit +5% YoY (GNPA improved to 1.17%); banking/NBFC re-rating underway despite RBI's inflation caution. " +
     "L&T record order book ₹7.79L Cr (+27% YoY) on offshore wind Europe wins; BEL Q1 FY27 revenue +25.3% YoY; defence budget ₹7.85L Cr FY27 — India capex supercycle intact. " +
-    "ITC (5/7 powers, down ~22% YTD) flagged this cycle as a strong new FMCG candidate for future allocation review.",
+    "ITC (down ~26% over the trailing year, rural demand improving) stays on strong watch as a new FMCG candidate for future allocation review.",
   riskLevel: "Aggressive",
   timeHorizon: "5–10+ years",
   icon: "🚀",

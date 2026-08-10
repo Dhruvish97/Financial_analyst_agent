@@ -95,12 +95,42 @@
  *   ~ UBER  WATCH        (4/7 powers; strong network-effect moat but AV disruption risk from Waymo/Tesla; $10B+ AV commitment; consensus targets flat to current price — fully priced)
  *   ~ F5    ON RADAR     (repositioning from legacy ADC hardware to AI-native security platform; too early-stage to score)
  *
- * ALLOCATION VERDICT — August 1, 2026 (no changes this cycle — pending earnings):
+ * ALLOCATION VERDICT — August 1, 2026:
  *   ~ NET hold at 3%     (ANET and PANW both screen stronger on 7 Powers + valuation, but NET's Q2 earnings (Aug 6) and ANET's Q2 earnings (Aug 3) are both unreported as of this refresh —
  *                         premature to swap ahead of results; revisit as top candidate for NET replacement next cycle)
  *   ~ TSLA hold at 3%    (2nd consecutive EPS miss, stock -14.5% post-earnings; weakest 7 Powers (3/7) in portfolio; no clean thematic substitute identified this cycle — remains the position most at risk of further trims)
  *   ~ all other holdings confirmed — Q1/Q2 2026 earnings broadly beat on revenue across the portfolio (NVDA, MSFT, GOOGL, AMZN, AVGO, CRWD, PLTR all beat); META, TSLA, AAPL, MELI missed EPS/guidance
  *     on one-time items or near-term softness without structural moat impairment
+ *
+ * August 10, 2026 market refresh (research update — pending items from Aug 1 now resolved):
+ *   ~ NET updated     (Q2 2026 actual, reported Aug 6: $696.1M revenue +36% YoY, beat its own $664–665M guide; non-GAAP EPS $0.29 beat by 7.5%; stock jumped +14.9% on the print despite $150.7M
+ *                      restructuring charge tied to the 20% workforce cut; Q3 guidance $736–737M — the bear case flagged Aug 1 did not materialize this quarter)
+ *   ~ ANET updated    (Q2 2026 actual, reported Aug 4: first-ever $3.04B quarter, +37.7% YoY, beat estimates by $162M; EPS $1.02 beat by $0.12; raised FY26 revenue guidance to $12.6B (+40%);
+ *                      non-GAAP operating margin expanded to 49.9%; extends 5-quarter EPS-beat streak — moat and growth both confirmed, but NET's own beat removes the urgency to swap)
+ *   ~ PLTR updated    (Q2 2026 actual, reported Aug 3: $1.935B revenue +93% YoY — growth accelerated from Q1's 85%; EPS $0.41 beat by 24%; US commercial +149% YoY; raised FY26 guidance to
+ *                      $8.15B from $7.65B; stock surged +29.5%, erasing ~$2.7B in short-seller mark-to-market gains in a single session — strongest print in the portfolio this cycle)
+ *   ~ MELI updated    (Q2 2026 actual, reported Aug 5: $10.17B revenue +50% YoY; EPS $9.19 beat; GMV +36% FX-neutral, TPV +56%; credit portfolio +75% to $16.4B; but EBIT margin compressed
+ *                      550bps YoY to 6.7% on AI/logistics/credit investment — stock fell ~4.6% on margin concern despite the growth beat; margin trajectory remains the thing to watch)
+ *   ~ NVDA updated    (China H200 shipments still described as "trivial" by US Commerce officials despite $10B in approved licenses; separately, a Blackwell export loophole routing chips to
+ *                      China through non-China-HQ subsidiaries was uncovered — Commerce closed it May 31 by extending license rules to any company with a China-HQ ultimate parent; core
+ *                      US/hyperscaler demand and Q2 FY27 earnings (Aug 26) unaffected)
+ *   ~ AVGO updated    (Mizuho reiterated Buy, $480 target, citing expanding ASIC pipeline and a new multi-gigawatt Anthropic compute deal; Aug 6 VMware vDefend/Avi Load Balancer release extends
+ *                      the software moat; next earnings ~Sep 3)
+ *   ~ HAL (India)      not yet reported — board meeting confirmed for Aug 12, 2026; still pending into next cycle
+ *
+ * NEW CANDIDATE SCREENING — August 10, 2026 (7 Powers ≥ 3/7 required; $10B+ market cap):
+ *   ★ ALAB  STRONG WATCH (Astera Labs — AI-fabric connectivity chips (Scorpio-X switches, Aries retimers); Q2 2026 revenue $392.4M +104% YoY, beat by $31M; non-GAAP EPS $0.80 beat by 15.6%,
+ *                          8th consecutive beat; Q3 guidance $540–560M (+40% QoQ) as Scorpio-X enters volume production and becomes the largest product line a quarter early; PCIe 6 now >50%
+ *                          of revenue. Cornered-resource + switching-cost moat in the AI-rack interconnect layer that NVDA/AVGO/ANET all depend on — highest-growth name screened this cycle,
+ *                          but richly valued after the beat; watch for an entry point rather than chasing)
+ *   ~ MU    WATCH        (unchanged from Aug 1 — sold-out HBM supply through 2026, $100B+ contracts; Morgan Stanley's top 2026 semis pick; moat remains supply-lock, not durable platform)
+ *   ~ PANW  STRONG WATCH (unchanged from Aug 1 — 7 Powers 5/7, Q3 FY26 revenue +31.1%, FY26 guidance raised to $11.41–11.42B)
+ *
+ * ALLOCATION VERDICT — August 10, 2026 (no changes this cycle):
+ *   ~ NET hold at 3%     (Q2 print resolved the Aug-1 bear case — beat guidance and jumped +14.9% despite the restructuring charge; ANET is still the stronger long-term 7-Powers score (5/7 vs 4/7)
+ *                         and remains the top swap candidate, but a fresh beat is the wrong moment to replace it — revisit if NET's Q3 guidance execution slips)
+ *   ~ ALAB on radar  —   (highest-conviction new name screened this cycle; no clean funding source without cutting an already-thin position — revisit sizing next cycle)
+ *   ~ all other holdings confirmed — PLTR (+93% rev growth, guidance raised) and MELI (+50% rev, margin watch) both delivered the strongest and most nuanced prints of the cycle respectively
  */
 
 import { PortfolioDefinition } from "@/types/portfolio";
@@ -142,7 +172,8 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
         "Q1 FY27 actual (reported May 20): $81.6B revenue +85% YoY, +20% QoQ; GAAP EPS $2.39. Q2 FY27 earnings due Aug 26, guided to ~$91.0B. " +
         "Stock ~$199, trailing P/E ~30x — cheapest since 2023, well below the 3-yr average of 69x (earnings growing faster than multiple). " +
         "Blackwell B200/GB200 NVL72 architecture deepens CUDA switching cost into 2027–28. " +
-        "China remains a wildcard: H200 exports approved for ~10 Chinese firms but actual shipments called 'trivial' vs ~2M chips ordered; Blackwell still unlicensed for China. " +
+        "China remains a wildcard: H200 exports approved for ~10 Chinese firms but actual shipments still called 'trivial' by US Commerce officials despite $10B in licenses; a Blackwell export " +
+        "loophole (chips routed via non-China-HQ subsidiaries) was uncovered and closed by Commerce on May 31 — Blackwell remains formally unlicensed for China. " +
         "Hyperscaler capex commitments keep rising — MSFT FY27 capex guided $255–260B, GOOGL FY26 capex raised to $195–205B, AMZN FY26 ~$220B, META FY26 $125–145B — NVDA captures the largest share of all of it.",
       color: "#76b900",
       risk: "High",
@@ -221,6 +252,7 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
         "(multi-year design partnerships lock hyperscalers in for 3–5 year silicon cycles). " +
         "Q2 FY2026 results: $22.2B revenue +48% YoY; AI semiconductor revenue $10.8B +143% YoY — custom ASIC cycle accelerating even faster than the prior quarter. GAAP EPS $1.91, non-GAAP EPS $2.44. " +
         "Q3 FY2026 guidance: ~$29.4B revenue (+84% YoY); AI semiconductor revenue guided ~$16.0B (+200%+ YoY); full-year 2026 AI semi revenue guided ~$56B (+~180%); 2027 AI revenue reiterated >$100B. Next earnings ~Sep 3. " +
+        "Mizuho reiterated Buy with a $480 target, citing an expanding ASIC pipeline and a new multi-gigawatt Anthropic compute deal; Aug 6 VMware vDefend/Avi Load Balancer release extends the software moat. " +
         "VMware adds recurring software revenue; 50%+ EBITDA margins intact. Stock +51% YTD; P/E ~62x, down from ~79x average as earnings catch up to the multiple. " +
         "Increased to 10% (was 8%) — ASIC demand is the biggest structural shift in AI chips beyond NVDA.",
       color: "#cc0000",
@@ -266,10 +298,10 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       rationale:
         "7 Powers score: 4/7. Global edge network in 330+ cities processes 20% of all internet traffic — " +
         "a scale economy with network effects (every node makes the whole network faster). " +
-        "Q1 2026 (reported May 7): $639.8M revenue +34% YoY, beat estimate; EPS $0.25 beat — but stock fell 24% same-day on news of 1,100 layoffs (~20% of workforce, $140–150M charge) as part of an 'AI-first' restructuring. " +
-        "Launched an 'agentic internet' product suite (Agents Week 2026) — new model-inference platform and AI-bot classification/monetization tools for publishers; stock has recovered since, +8–10% in early July on AI-tailwind optimism. " +
-        "BofA raised target to $330 from $255. Q2 2026 earnings due Aug 6 (guided $664–665M, +30% YoY). " +
-        "7 Powers score now trails newer AI-infrastructure candidates ANET (5/7) and PANW (5/7) screened this cycle — held at 3% pending Q2 results, top watch for replacement if guidance disappoints.",
+        "Q2 2026 actual (reported Aug 6): $696.1M revenue +36% YoY, beat its own $664–665M guidance; non-GAAP EPS $0.29 beat consensus by 7.5%. Stock jumped +14.9% on the print even after a " +
+        "$150.7M restructuring charge tied to the prior quarter's 1,100-person (~20%) layoff. Q3 guidance $736–737M, +0.34 non-GAAP EPS. " +
+        "Launched an 'agentic internet' product suite (Agents Week 2026) — model-inference platform and AI-bot classification/monetization tools for publishers. " +
+        "7 Powers score (4/7) still trails ANET (5/7), but the Q2 beat resolves the bear case flagged last cycle — held at 3%; ANET remains the top swap candidate if execution slips again.",
       color: "#f6821f",
       risk: "High",
     },
@@ -282,10 +314,9 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       rationale:
         "7 Powers score: 4/7. Cornered resource (classified government intelligence data partnerships) + " +
         "switching cost (AIP deeply embedded in enterprise and government workflows). " +
-        "Q1 2026 (reported May 4): $1.633B revenue +85% YoY — fastest growth since the 2020 IPO. US revenue +104% to $1.282B; US commercial +133%; government +84%. Adjusted EPS $0.33 (GAAP $0.34, 53% GAAP net margin). " +
-        "Raised FY2026 guidance to $7.65–7.66B (+71% YoY). Closed 206 deals ≥$1M; secured >$900M in new federal awards (Army, ICE, IRS, Space Force, Treasury) plus a $1B DHS software agreement; commercial remaining deal value $4.92B (+112% YoY). " +
-        "Stock down ~30% YTD despite the fundamentals — a valuation reset, not a thesis break; trading ~$123 as of Aug 1. Q2 2026 earnings due Aug 3 (consensus EPS $0.35, revenue $1.81B +80% YoY). " +
-        "AIP execution continues to justify the 5% sizing.",
+        "Q2 2026 actual (reported Aug 3): $1.935B revenue +93% YoY — growth accelerated from Q1's 85%, fastest since the 2020 IPO. US commercial +149% YoY. Adjusted EPS $0.41 beat consensus by 24%. " +
+        "Raised FY2026 guidance to $8.15B (from $7.65B) — US commercial guidance raised to >$3.42B. Stock surged +29.5% on the print, erasing ~$2.7B in short-seller mark-to-market gains in a single session; " +
+        "CEO Alex Karp called the quarter 'otherworldly.' The strongest print in the portfolio this cycle — AIP execution continues to justify the 5% sizing.",
       color: "#6366f1",
       risk: "High",
     },
@@ -314,9 +345,9 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       rationale:
         "7 Powers score: 5/7. Network effects (LatAm e-commerce + MercadoPago fintech flywheel — GMV and payments volume in self-reinforcing loop) + " +
         "scale economy (largest e-commerce platform in 18 Latin American countries, ~5.5% market share expanding). " +
-        "Q1 2026: $8.85B revenue +49% YoY — fastest growth in ~4 years, beat estimate — but EPS $8.23 missed $8.75 consensus on margin compression from credit and logistics investment. " +
-        "Brazil revenue +55%, Mexico +62%, advertising +73%. Credit portfolio expanded to $14.6B (+87% YoY); credit-card book doubled to $6.6B. Launching full digital banks in Mexico and Argentina — " +
-        "pushing further into consumer banking beyond marketplace/payments. Stock down ~10.7% YTD on margin-pressure concerns despite the growth beat. 24 analysts Buy consensus, avg target $2,209 (~18% upside). Q2 2026 earnings due Aug 5. " +
+        "Q2 2026 actual (reported Aug 5): $10.17B revenue +50% YoY, beat estimate; EPS $9.19 beat $8.95 consensus. GMV +36% FX-neutral to $22B; TPV +56% to $101B; added 18M unique active buyers (+25.4% YoY). " +
+        "Credit portfolio expanded 75% YoY to $16.4B with NPL ratios near historical lows; advertising revenue +70%+. But EBIT margin compressed 550bps YoY to 6.7% on AI/logistics/credit investment — " +
+        "stock fell ~4.6% on the print despite the growth beat, the same margin-pressure dynamic flagged last cycle. Digital banks now live in Mexico and Argentina. " +
         "LatAm remains structurally under-penetrated: formal credit penetration <30%, e-commerce <10% of retail — geographic diversifier uncorrelated to US tech regulatory risk.",
       color: "#ffe600",
       risk: "High",

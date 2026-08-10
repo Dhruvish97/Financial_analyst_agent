@@ -83,10 +83,27 @@
 //   ~ BAJAJFINSV ON RADAR (3/7 powers; overlaps existing BAJFINANCE — correlated group risk)
 //   ~ PERSISTENT / COFORGE ON RADAR (4/7 powers each; overlap existing HCLTECH IT-sector exposure)
 //
-// ALLOCATION VERDICT — August 1, 2026 (no changes this cycle):
+// ALLOCATION VERDICT — August 1, 2026:
 //   ~ ETERNAL hold at 6% (delivered its flagged GAAP-profitability catalyst this quarter — replacing it right after a strong print would be poorly timed;
 //                          ITC remains the stronger long-term candidate on paper and stays on strong watch for the next cycle)
 //   ~ all other holdings confirmed — Q1 FY27 results broadly beat/met expectations across the portfolio; HAL results still pending (~Aug 7)
+//
+// August 10, 2026 market refresh (RBI decision resolved; HAL still pending):
+//   ~ RBI/macro         (Aug 3-5 MPC: repo held unchanged at 5.25%, unanimous vote, neutral stance — Governor Malhotra said the committee wants "greater clarity" on inflation before acting;
+//                        headline inflation is above the 4% target on food/fuel and expected to peak in Oct-Dec quarter; next MPC meeting Oct 5-7, 2026; NIFTY ~24,584/SENSEX ~78,542)
+//   ~ HAL               (Q1 FY27 results NOT yet reported — board meeting confirmed for Aug 12, 2026, two days after this refresh; still pending into next cycle)
+//   ~ ITC updated       (stock ₹284.15 as of Aug 10, down ~26% over 1 year vs NIFTY -0.05%; CMD Sanjiv Puri says FMCG demand improved across rural and urban markets post GST rationalisation
+//                        and income-tax relief; rural premium-product usage rose from 30% to 42%; company flagged West Asia tensions and El Nino as watch risks to rural demand)
+//
+// NEW CANDIDATE SCREENING — August 10, 2026 (7 Powers ≥ 3/7 required):
+//   ~ AZAD ENGINEERING ON RADAR (Goldman Sachs top private-defence pick; India's only titanium-aerofoil manufacturer and one of few globally machining complex aerospace components —
+//                        cornered-resource moat, but small-cap and overlaps existing HAL/BEL defence exposure; watch for scale/liquidity improvement)
+//   ~ ICICIBANK ON RADAR (unchanged from Aug 1 — 4/7 powers; credit-cycle recovery a recurring analyst theme this cycle; overlaps existing HDFCBANK exposure)
+//
+// ALLOCATION VERDICT — August 10, 2026 (no changes this cycle):
+//   ~ ITC stays STRONG WATCH — the ~26% 1-yr drawdown plus improving rural demand keeps building the contrarian case, but no earnings catalyst landed this cycle to force a decision;
+//                        revisit once HAL's Aug 12 results are in hand, since a swap decision after that report can weigh both candidates together
+//   ~ all other holdings confirmed — no material new India-specific news this cycle beyond the RBI hold and ITC's demand commentary
 
 export interface IndiaStock {
   ticker: string;        // Yahoo Finance NSE ticker (e.g. "RELIANCE.NS")
@@ -314,7 +331,8 @@ export const INDIA_STOCKS: IndiaStock[] = [
     allocation: 10,
     rationale:
       "7 Powers score 6/7: Cornered resource (only listed pure-play aerospace OEM in India — government mandate for indigenous procurement cannot be transferred) + scale economy + process power. " +
-      "Order book ₹2,54,538 cr = 7+ years of revenue visibility; FY27 guidance of 10–12% revenue growth with EBITDA margin 28–31%. Q1 FY27 results due ~Aug 7, 2026 (not yet reported). " +
+      "Order book ₹2,54,538 cr = 7+ years of revenue visibility; FY27 guidance of 10–12% revenue growth with EBITDA margin 28–31%. Q1 FY27 results still not reported — board meeting confirmed for Aug 12, 2026; " +
+      "stock +11% over the trailing month on easing engine-supply issues ahead of the print; revenue estimates range ₹5,164–5,817 cr vs ₹4,819 cr in Q1 FY26. " +
       "Management has confirmed domestic delivery priority — 180 Tejas Mk1A on order — over exports; some engine/radar integration delays acknowledged but the program remains 'on track'. LCA Mk2 first flight targeted Mar–Jul 2027; ₹10,000 cr committed to production-ramp infrastructure. " +
       "Backtested: #10 McKinsey macro prompt correctly identified HAL as structural buy — returned +50–80% in 2023 and +40–60% in 2024. Still runway via Tejas Mk2, LCH exports, and GE engine JV.",
     catalysts: ["Q1 FY27 results (~Aug 7, 2026)", "Tejas Mk2 first flight (targeted Mar–Jul 2027)", "LCH Prachand export orders", "Kaveri engine JV with GE finalisation"],
