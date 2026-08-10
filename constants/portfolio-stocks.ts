@@ -278,7 +278,7 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       name: "Tesla Inc.",
       type: "stock",
       sector: "EV & Autonomous / Robotics",
-      allocation: 5,
+      allocation: 3,
       rationale:
         "7 Powers score: 3/7. Weakest moat in this portfolio — EV is becoming a commoditised market with BYD/Chinese " +
         "OEMs compressing margins. Q2 2026 (reported Jul 22): record $28.2B revenue +26% YoY on record 480,126 deliveries, but non-GAAP EPS $0.33 MISSED $0.53 consensus — " +
