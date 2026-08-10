@@ -4,11 +4,14 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 
 const NAV_LINKS = [
-  { href: "/",                  label: "Dashboard",  color: "#00e5a0", bg: "rgba(0,229,160,0.1)"   },
-  { href: "/stocks",            label: "Stocks",     color: "#00d4ff", bg: "rgba(0,212,255,0.1)"   },
-  { href: "/crypto",            label: "Crypto",     color: "#ff6b2b", bg: "rgba(255,107,43,0.1)"  },
-  { href: "/india",             label: "🇮🇳 India",  color: "#fb923c", bg: "rgba(251,146,60,0.1)"  },
-  { href: "/portfolio-compare", label: "🧠 Advisor", color: "#a78bfa", bg: "rgba(167,139,250,0.1)" },
+  { href: "/",                  label: "Dashboard",    color: "#00e5a0", bg: "rgba(0,229,160,0.1)"   },
+  { href: "/stocks",            label: "Stocks",       color: "#00d4ff", bg: "rgba(0,212,255,0.1)"   },
+  { href: "/crypto",            label: "Crypto",       color: "#ff6b2b", bg: "rgba(255,107,43,0.1)"  },
+  { href: "/india",             label: "🇮🇳 India",    color: "#fb923c", bg: "rgba(251,146,60,0.1)"  },
+  { href: "/watchlist",         label: "Watchlist",    color: "#fbbf24", bg: "rgba(251,191,36,0.1)"  },
+  { href: "/analytics",         label: "Insights",     color: "#f472b6", bg: "rgba(244,114,182,0.1)" },
+  { href: "/research-log",      label: "Research Log", color: "#38bdf8", bg: "rgba(56,189,248,0.1)"  },
+  { href: "/portfolio-compare", label: "🧠 Advisor",   color: "#a78bfa", bg: "rgba(167,139,250,0.1)" },
 ];
 
 export function Navbar() {

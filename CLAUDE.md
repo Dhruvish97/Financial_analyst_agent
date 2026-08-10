@@ -205,10 +205,21 @@ The refresh then:
 3. **Screens for new candidates** not already held — each scored against the
    7 Powers moat framework (≥3/7 to qualify) and recorded in the header comment
    of the relevant constants file with a WATCH / STRONG WATCH / ON RADAR label.
+   **Also update `constants/candidate-screening.ts`** (the structured data behind
+   the `/watchlist` page) with the same entries — the header comment alone won't
+   reach the UI, and stale watchlist entries for tickers no longer actively
+   screened should be removed.
 4. Rewrites `rationale`, `catalysts`, and sector `outlook` / `drivers` with the
    current numbers, and stamps the month in each file's header comment.
+   **Also append one entry to `constants/research-log.ts`** (the structured data
+   behind the `/research-log` page) summarizing this cycle's changes.
 5. Runs `npm test` and `npm run build` before committing.
 
 **Never changed by a refresh:** tickers, company names, colors, or allocation
 percentages. If conviction has materially shifted, that is flagged in the header
 comment for a human decision rather than applied automatically.
+
+**Data-integrity guardrail:** `__tests__/constants/allocations.test.ts` asserts every
+portfolio's holdings sum to exactly 100%. If a refresh changes an allocation, this
+test must still pass — it exists specifically to catch a rationale saying one
+number while the `allocation` field still holds another (this happened once).

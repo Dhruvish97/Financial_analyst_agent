@@ -72,6 +72,41 @@ export function calcRSI(closes: number[], period = 14): number | null {
   return Math.round(100 - 100 / (1 + rs));
 }
 
+// ── Rolling price return (for allocation drift) ─────────────────────────────
+
+export async function fetchReturns(
+  tickers: string[],
+  lookbackDays = 90
+): Promise<Record<string, number | null>> {
+  const period1 = new Date(Date.now() - lookbackDays * 24 * 60 * 60 * 1000);
+  const period2 = new Date();
+
+  const results = await Promise.allSettled(
+    tickers.map((ticker) =>
+      yf.chart(ticker, { period1, period2, interval: "1d" })
+    )
+  );
+
+  return tickers.reduce((acc, ticker, idx) => {
+    const result = results[idx];
+    if (result.status === "fulfilled" && result.value?.quotes) {
+      const closes = result.value.quotes
+        .map((q) => q.close)
+        .filter((c): c is number => c !== null && c !== undefined);
+      if (closes.length >= 2) {
+        const first = closes[0];
+        const last = closes[closes.length - 1];
+        acc[ticker] = first > 0 ? (last - first) / first : null;
+      } else {
+        acc[ticker] = null;
+      }
+    } else {
+      acc[ticker] = null;
+    }
+    return acc;
+  }, {} as Record<string, number | null>);
+}
+
 export async function fetchRSI(tickers: string[]): Promise<RSIMap> {
   const period1 = new Date(Date.now() - 45 * 24 * 60 * 60 * 1000);
   const period2 = new Date();
