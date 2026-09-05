@@ -28,24 +28,41 @@ export const CANDIDATE_SCREENING: CandidateScreening[] = [
     name: "Astera Labs",
     market: "us",
     label: "STRONG WATCH",
-    date: "2026-08-10",
+    date: "2026-09-05",
     rationale:
       "AI-fabric connectivity chips (Scorpio-X switches, Aries retimers). Q2 2026 revenue $392.4M +104% YoY, " +
-      "beat by $31M; non-GAAP EPS $0.80 beat by 15.6%, 8th consecutive beat. Q3 guidance $540–560M (+40% QoQ) " +
-      "as Scorpio-X enters volume production and becomes the largest product line a quarter early. Cornered-resource " +
-      "+ switching-cost moat in the AI-rack interconnect layer that NVDA/AVGO/ANET all depend on — highest-growth " +
-      "name screened this cycle, but richly valued after the beat; watch for an entry point rather than chasing.",
+      "beat by $31M; non-GAAP EPS $0.80 beat by 15.6%, 8th consecutive beat. Cornered-resource + switching-cost " +
+      "moat in the AI-rack interconnect layer that NVDA/AVGO/ANET all depend on. Momentum accelerating, not " +
+      "cooling: stock $312 as of Sep 4 (+10.6% in a single session), Citi raised its target to $430 (from $315) " +
+      "and Jefferies to $450 (from $270), both still Buy-rated. Getting more expensive to initiate, not less — " +
+      "the 'watch for an entry point' caveat from last cycle is now more urgent.",
   },
   {
     ticker: "PANW",
     name: "Palo Alto Networks",
     market: "us",
     label: "STRONG WATCH",
-    date: "2026-08-01",
+    date: "2026-09-05",
     rationale:
-      "7 Powers 5/7: platformization creates switching cost + network effects. Morningstar wide-moat, 17% " +
-      "undervalued vs $225 fair value. Q3 FY26 revenue +31.1%, raised FY26 guidance to $11.41–11.42B — scores " +
-      "higher than NET on both moat and valuation.",
+      "7 Powers 5/7: platformization creates switching cost + network effects. Morningstar wide-moat. Fiscal " +
+      "Q4 FY26 actual (reported Sep 1) closed out the fiscal year: $3.41B revenue +34% YoY beat $3.35B estimate; " +
+      "adjusted EPS $1.02 beat $0.98 estimate. GAAP net loss was driven by one-time acquisition/stock-comp items, " +
+      "not core operations. Stock round-tripped a 5% pop into a 2% after-hours loss — full-year results confirm " +
+      "the moat and growth thesis, but the muted market reaction suggests a swap into NET's slot still needs a " +
+      "NET-side catalyst (a guidance slip), not just a PANW-side one.",
+  },
+  {
+    ticker: "CRDO",
+    name: "Credo Technology",
+    market: "us",
+    label: "WATCH",
+    date: "2026-09-05",
+    rationale:
+      "New this cycle. FY2026 revenue $1.3B, +206% YoY; Q4 FY26 revenue $437.0M +157% YoY; non-GAAP net income " +
+      "+5x YoY to $662M. Active Electrical Cables (AECs) have become the intra-rack AI-connectivity standard for " +
+      "hyperscalers/neoclouds, and PILOT diagnostic software embeds Credo into customers' network architecture — " +
+      "a telemetry-first switching-cost moat similar in shape to ALAB's. Smaller-cap and less proven at scale than " +
+      "ALAB, but complements rather than duplicates that thesis — a second way to play AI-interconnect demand.",
   },
   {
     ticker: "MU",

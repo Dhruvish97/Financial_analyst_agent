@@ -101,12 +101,13 @@ export const AGGRESSIVE_TARGET: PortfolioTarget = {
     "Concentrates in high-7-Powers moat companies and secular megatrends: " +
     "AI infrastructure, cybersecurity, and digital payments. " +
     "Accepts short-term volatility in exchange for outsized 5–10 year returns. " +
-    "August 10, 2026 update: Q2 earnings season closed out strong for the smaller growth names — PLTR delivered the standout print (+93% revenue growth, guidance raised to $8.15B, stock +29.5%), " +
-    "NET beat its own guidance and jumped +14.9% despite a restructuring charge (resolving the swap risk flagged Aug 1), ANET posted a first-ever $3B quarter and raised FY26 guidance to $12.6B, " +
-    "and MELI beat on revenue (+50%) but saw margin compression pressure the stock -4.6%. " +
-    "Kevin Warsh remains Fed Chair (sworn in May 22, replacing Powell), holding rate at 3.5–3.75% with a hawkish tone. " +
-    "Hyperscaler capex keeps climbing: MSFT FY27 guided $255–260B, GOOGL FY26 raised to $195–205B, AMZN FY26 ~$220B, META FY26 $125–145B — the AI infrastructure buildout shows no signs of slowing. " +
-    "NVDA's China exposure remains a wildcard after a Blackwell export loophole was uncovered and closed by Commerce in late May; core US/hyperscaler demand is unaffected.",
+    "September 5, 2026 update: NVDA (Q2 FY27: $96.2B revenue +106% YoY), AVGO (Q3 FY26: $29.6B +86% YoY, AI semi +221% YoY), and CRWD (Q2 FY27: best quarter in company history per CEO Kurtz) " +
+    "all beat and raised guidance. META agreed to an ~$18B settlement over youth-safety claims — Morgan Stanley called it a net positive that clears the way for new AI products — while capex keeps " +
+    "climbing on new CoreWeave and Google Cloud compute deals. GOOGL won an antitrust ruling on its ad exchange and is recovering from its longest monthly losing streak in over a decade. " +
+    "TSLA's Cybercab robotaxi launch underwhelmed investors and drew an NHTSA safety inquiry — a third straight soft catalyst. PLTR's fundamentals remain the portfolio's strongest, but its stock " +
+    "touched ~150x trailing earnings, now the dominant risk. Apple's John Ternus became CEO Sep 1, the company's first leadership change since 2011, days before unveiling the iPhone 18 Pro/Pro Max " +
+    "and its first foldable phone. Fed Chair Kevin Warsh has turned more hawkish since his Jackson Hole speech, lifting September rate-hike odds. " +
+    "Credo Technology (CRDO) — an AI-interconnect name complementing Astera Labs — was added to the watchlist this cycle.",
   riskLevel: "Aggressive",
   timeHorizon: "5–10+ years",
   icon: "🚀",
@@ -129,8 +130,8 @@ export const AGGRESSIVE_TARGET: PortfolioTarget = {
     {
       sector: "Semiconductors",
       targetPct: 12,
-      description: "Custom ASIC moat accelerating for hyperscalers; MU (Micron HBM) added as AI memory watch; ALAB (Astera Labs, AI-fabric interconnect, +104% rev YoY) flagged as new strong-watch candidate",
-      suggestedBuys: ["NVDA", "AMD", "AVGO", "QCOM", "MU", "ALAB"],
+      description: "Custom ASIC moat accelerating for hyperscalers; MU (Micron HBM) added as AI memory watch; ALAB (Astera Labs, AI-fabric interconnect) and CRDO (Credo Technology, AI cables, +206% FY26 rev) both flagged as strong-watch/watch candidates",
+      suggestedBuys: ["NVDA", "AMD", "AVGO", "QCOM", "MU", "ALAB", "CRDO"],
       color: "#f59e0b",
     },
     {

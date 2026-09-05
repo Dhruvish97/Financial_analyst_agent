@@ -23,6 +23,31 @@ export interface ResearchLogEntry {
 // Newest first.
 export const RESEARCH_LOG: ResearchLogEntry[] = [
   {
+    date: "2026-09-05",
+    scope: "multi",
+    title: "AI-earnings sweep confirms the core thesis; TSLA and PLTR flagged for human review",
+    summary:
+      "NVDA, AVGO, and CRWD all beat and raised guidance this cycle. META resolved a $18B legal overhang " +
+      "via settlement; GOOGL won an antitrust ruling and is recovering from its worst monthly stretch in a " +
+      "decade. TSLA's Cybercab launch underwhelmed investors and drew an NHTSA safety inquiry — a third " +
+      "straight soft catalyst. PLTR's fundamentals are the strongest in the portfolio, but its ~150x " +
+      "earnings multiple is now the dominant risk. No allocation changes; both flagged for a human decision. " +
+      "Apple's John Ternus became CEO Sep 1 — the company's first leadership transition since 2011. Credo " +
+      "Technology (CRDO) added to the US watchlist as an AI-interconnect name alongside Astera Labs.",
+    highlights: [
+      "NVDA Q2 FY27: $96.2B revenue +106% YoY beat; AWS committed to buy 2M NVDA GPUs plus a new 'Vera' CPU",
+      "AVGO Q3 FY26: $29.6B revenue +86% YoY beat; AI semi revenue +221% YoY; FY27/28 AI semi guided ~$115B/$230B",
+      "CRWD Q2 FY27: best quarter in company history per CEO Kurtz; stock +11% after hours",
+      "META: ~$18B settlement (29 states, youth-safety claims) — Morgan Stanley calls it a net positive; capex still climbing on new CoreWeave/Google Cloud deals",
+      "GOOGL: won antitrust ruling on its ad exchange; launched Gemini 3.8 Flash; recovering from its longest monthly losing streak in over a decade",
+      "TSLA: Cybercab launch event 'underwhelms' (Wells Fargo); NHTSA opened a safety audit query — third consecutive soft catalyst, flagged for human review",
+      "PLTR: PwC deal and Army TITAN contract extend growth, but stock touched ~150x earnings — flagged for a valuation-driven sizing review",
+      "AAPL: CEO transition (John Ternus succeeds Tim Cook, Sep 1); Sep 9 event unveiled the iPhone 18 Pro/Pro Max and Apple's first foldable, the iPhone Ultra",
+      "New candidate: Credo Technology (CRDO) — AI-interconnect AECs, FY26 revenue +206% YoY",
+      "PANW's fiscal Q4 FY26 closed out the year with a beat, but didn't shift the NET/ANET/PANW swap decision — still no NET-side catalyst",
+    ],
+  },
+  {
     date: "2026-08-10",
     scope: "multi",
     title: "Q2 earnings resolve last cycle's pending decisions",
