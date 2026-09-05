@@ -33,8 +33,10 @@ export default function CryptoPage() {
           <span className="text-gradient-orange">Portfolio</span>
         </h1>
         <p className="text-sm max-w-2xl" style={{ color: "rgba(255,255,255,0.4)" }}>
-          A moderately aggressive digital assets portfolio anchored in Bitcoin and Ethereum,
-          with selective exposure to high-upside Layer 1 protocols and DeFi infrastructure.
+          A 2-4 year research-driven digital assets portfolio anchored in Bitcoin and Ethereum,
+          with selective exposure to high-upside Layer 1 protocols and real-world-asset
+          tokenization infrastructure. Rebuilt September 2026 — see each holding&apos;s
+          rationale for the current thesis.
         </p>
       </div>
 

@@ -4,6 +4,7 @@ import { CRYPTO_PORTFOLIO } from "@/constants/crypto-data";
 import { PriceDisplay } from "@/components/ui/PriceDisplay";
 import { ChangeIndicator } from "@/components/ui/ChangeIndicator";
 import { LoadingSkeleton } from "@/components/ui/LoadingSkeleton";
+import { RiskBadge } from "@/components/ui/RiskBadge";
 import { formatMarketCap } from "@/lib/formatters";
 
 const MAX_ALLOCATION = Math.max(...CRYPTO_PORTFOLIO.map((c) => c.allocation));
@@ -32,7 +33,7 @@ export function CryptoTable() {
           <table className="w-full text-sm" aria-label="Crypto portfolio holdings with live prices">
             <thead>
               <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.06)", background: "rgba(255,255,255,0.025)" }}>
-                {["#", "Asset", "Name", "Allocation", "Price", "24h", "Mkt Cap"].map((h) => (
+                {["#", "Asset", "Name", "Allocation", "Risk", "Price", "24h", "Mkt Cap"].map((h) => (
                   <th
                     key={h}
                     scope="col"
@@ -108,6 +109,11 @@ export function CryptoTable() {
                           />
                         </div>
                       </div>
+                    </td>
+
+                    {/* Risk */}
+                    <td className="px-4 py-4">
+                      <RiskBadge risk={coin.risk} />
                     </td>
 
                     {/* Price */}

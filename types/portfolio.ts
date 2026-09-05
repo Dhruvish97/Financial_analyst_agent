@@ -41,6 +41,7 @@ export interface CryptoHolding {
   allocation: number;
   rationale: string;
   color: string;
+  risk: HoldingRisk;
 }
 
 export interface LivePrice {
