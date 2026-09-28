@@ -65,6 +65,34 @@
  *                                 found yet — watching, not adding)
  *   ~ XRP              ON RADAR  (payments/settlement thesis persists but didn't surface a
  *                                 new 2-4yr catalyst this cycle beyond what's already priced)
+ *
+ * September 27, 2026 refresh (research update — no allocation changes; ONDO flagged for
+ * human review):
+ *   ~ Market backdrop  (Broad crypto rally this cycle: BTC broke back above $84,000 —
+ *                        its highest since Jan 31 — on continued ETF/institutional buying;
+ *                        ETH ~$2,692; SOL ~$122, +4.5% in a day. Unrelated to any portfolio
+ *                        holding, a ~$350M hot-wallet hack hit exchange Bitget — a reminder
+ *                        of exchange-custody risk generally, not a flag on any coin held here)
+ *   ~ LINK confirmed   (Circle's Arc mainnet launched on schedule Sep 16 with Chainlink live
+ *                        from day one — Data Streams went live Sep 15, CCIP Sep 16 — and
+ *                        founding validators/participants include BlackRock, DTCC, Visa,
+ *                        Mastercard, and ICE. The single biggest thesis point from last
+ *                        cycle's increase has now actually happened, not just been
+ *                        announced)
+ *   ~ AVAX price note  (AVAX trading ~$11 as of late September — down materially from
+ *                        multi-year highs; the institutional-subnet thesis is about 2-4yr
+ *                        adoption, not near-term price, but flagging the move for the record)
+ *   ! ONDO flagged for human review (hold at 5%) — a real governance problem has surfaced
+ *     since this was added three weeks ago: founder Nathan Allman died in May 2026, and a
+ *     corporate-control fight became public Sep 24 — his estate alleges CEO Ian De Bode
+ *     improperly assumed control of the company. This is the same category of red flag
+ *     that got INJ removed last cycle (a transparency/governance question on a small,
+ *     high-conviction satellite position). Partially offsetting: Ondo and BlackRock jointly
+ *     launched "Ondo Intelligent Portfolios" (three tokenized, BlackRock-model portfolios)
+ *     on Sep 24 — a genuine positive catalyst landing the same week as the governance
+ *     story. Not removed this cycle — the position is already small and the BlackRock
+ *     product news is real — but this is now a live governance risk a human should weigh,
+ *     not a settled thesis.
  */
 
 import { CryptoHolding } from "@/types/portfolio";
@@ -79,8 +107,9 @@ export const CRYPTO_PORTFOLIO: CryptoHolding[] = [
       "The core anchor. Institutional-reserve-asset thesis keeps strengthening: the US Strategic Bitcoin Reserve, $564B in cumulative spot-ETF net inflows, and " +
       "160+ listed companies now holding 110.5k+ BTC on their balance sheets. ETF daily inflows have exceeded $400M on strong days, and large asset managers holding " +
       "BTC ETF positions are up 150% YoY. The halving still matters for long-run supply, but flows — not the halving — are now the marginal price driver; Bitwise " +
-      "estimates ETF demand alone could absorb more than 100% of newly issued BTC/ETH/SOL supply. Over a 2-4 year horizon, unmatched network effects and brand " +
-      "recognition, plus a widening base of fiduciary buyers (pension funds, regulated ETF vehicles) with multi-year mandates, remain the core case.",
+      "estimates ETF demand alone could absorb more than 100% of newly issued BTC/ETH/SOL supply. Broke back above $84,000 in late September — its highest level since Jan 31 — on continued " +
+      "institutional buying. Over a 2-4 year horizon, unmatched network effects and brand recognition, plus a widening base of fiduciary buyers (pension funds, regulated ETF vehicles) with " +
+      "multi-year mandates, remain the core case.",
     color: "#f7931a",
     risk: "Medium",
   },
@@ -107,8 +136,8 @@ export const CRYPTO_PORTFOLIO: CryptoHolding[] = [
       "High-throughput L1 with the deepest consumer-app and DeFi activity outside Ethereum. Firedancer, Jump Crypto's independent validator client, has been live on " +
       "mainnet since December 2025 and reached roughly 20%+ of active validators by Q2 2026 — real client diversity and a path toward 1M TPS, but full network " +
       "adoption is still projected 12-24 months out. The Alpenglow consensus upgrade, targeting ~150ms finality, could activate as early as Q3 2026 if testing stays " +
-      "clean. Reduced slightly this cycle to reflect that the throughput/reliability thesis is still mid-rollout rather than fully proven at scale — still the " +
-      "highest-conviction growth-L1 bet in the portfolio, just not yet a finished story.",
+      "clean. Trading ~$122, +4.5% in a recent session as the broader crypto market rallied. Reduced slightly this cycle to reflect that the throughput/reliability thesis is still mid-rollout " +
+      "rather than fully proven at scale — still the highest-conviction growth-L1 bet in the portfolio, just not yet a finished story.",
     color: "#9945ff",
     risk: "High",
   },
@@ -119,9 +148,10 @@ export const CRYPTO_PORTFOLIO: CryptoHolding[] = [
     allocation: 15,
     rationale:
       "Critical oracle and cross-chain infrastructure — the strongest concrete 2-4 year institutional moat found this cycle. Circle's institutional blockchain, Arc, " +
-      "goes live Sep 16, 2026 with Chainlink as its official oracle and connectivity partner; the DTCC (the world's largest securities clearinghouse) is expected to " +
-      "begin tokenizing DTC-custodied assets on Chainlink infrastructure in H2 2027; a SWIFT partnership bridges traditional bank messaging rails into CCIP; and " +
-      "Charles Schwab added LINK to its retail crypto platform Aug 30. Nine new integrations across five chains were announced Aug 31 alone. Ondo Finance's " +
+      "launched on schedule Sep 16, 2026 with Chainlink live from day one — Data Streams Sep 15, CCIP Sep 16 — with founding validators including BlackRock, DTCC, Visa, Mastercard, and ICE; the " +
+      "DTCC (the world's largest securities clearinghouse) is separately expected to begin tokenizing DTC-custodied assets on Chainlink infrastructure in H2 2027; a SWIFT partnership bridges " +
+      "traditional bank messaging rails into CCIP; and Charles Schwab added LINK to its retail crypto platform Aug 30. Nine new integrations across five chains were announced Aug 31 alone. " +
+      "Ondo Finance's " +
       "tokenized-securities platform — itself tied to Fidelity, BlackRock, and PayPal's PYUSD — runs on Chainlink oracles, and network transfer volume is up 1,972% " +
       "YoY to $7.77B. This is the 'picks and shovels' bet on the broader RWA-tokenization supercycle rather than a bet on any single chain winning.",
     color: "#375bd2",
@@ -136,7 +166,8 @@ export const CRYPTO_PORTFOLIO: CryptoHolding[] = [
       "Subnet (now 'Avalanche L1') architecture lets institutions run private, regulated chains for tokenized bonds, equities, and private funds separate from public " +
       "DeFi — 75+ active L1s were live by end-2025, up 158% YoY, after the Avalanche9000/Etna fork cut the cost of launching one by 99%+. Charles Schwab added AVAX " +
       "trading for its retail client base Aug 29, 2026, and the Helicon mainnet upgrade (planned for later in 2026) targets improved validator and staking " +
-      "economics. A steadier, more institution-facing complement to LINK's oracle-layer bet on the same RWA-tokenization trend.",
+      "economics. Trading ~$11 as of late September, well off multi-year highs — the institutional-subnet thesis here is about 2-4yr adoption, not near-term price. A steadier, more institution-" +
+      "facing complement to LINK's oracle-layer bet on the same RWA-tokenization trend.",
     color: "#e84142",
     risk: "Medium",
   },
@@ -146,12 +177,13 @@ export const CRYPTO_PORTFOLIO: CryptoHolding[] = [
     name: "Ondo Finance",
     allocation: 5,
     rationale:
-      "New this cycle — a direct, pure-play bet on real-world-asset tokenization, the single most explosive theme found in this research pass: on-chain RWA value " +
-      "grew from roughly $5.5B in early 2025 to ~$30B by mid-2026, led by BlackRock, JPMorgan, and Franklin Templeton. Ondo's TVL has crossed $3B; its OUSG product " +
-      "directly holds BlackRock BUIDL shares, connecting it to institutional tokenized-Treasury infrastructure, and it has a $200M seed deal with State Street and " +
-      "Galaxy Asset Management for a new tokenized fund (SWEEP) launching in 2026. Real risk to flag: a January 2026 token unlock added ~1.94B ONDO to circulating " +
-      "supply, a meaningful dilution event, and Ondo Global Markets' expansion into tokenized stocks/derivatives is still early. Sized small deliberately — this " +
-      "fills the higher-risk satellite slot vacated by INJ without adding net portfolio risk.",
+      "A direct, pure-play bet on real-world-asset tokenization, the single most explosive theme found when this was added: on-chain RWA value grew from roughly " +
+      "$5.5B in early 2025 to ~$30B by mid-2026, led by BlackRock, JPMorgan, and Franklin Templeton. Ondo's TVL has crossed $3B; its OUSG product directly holds BlackRock BUIDL shares, and Ondo " +
+      "and BlackRock jointly launched 'Ondo Intelligent Portfolios' (three tokenized, BlackRock-model portfolios) on Sep 24 — a genuine new positive catalyst. " +
+      "FLAGGED FOR HUMAN REVIEW this cycle: a real governance problem has surfaced since this was added — founder Nathan Allman died in May 2026, and a corporate-control fight became public Sep 24, " +
+      "with his estate alleging CEO Ian De Bode improperly assumed control. This is the same category of transparency/governance red flag that got INJ removed last cycle, now showing up on the " +
+      "coin that took INJ's slot. A January 2026 token unlock also added ~1.94B ONDO to circulating supply, a real dilution risk. Not removed this cycle — the position is already small and the " +
+      "BlackRock news is real — but this is a live risk, not a settled thesis.",
     color: "#1d4ed8",
     risk: "High",
   },

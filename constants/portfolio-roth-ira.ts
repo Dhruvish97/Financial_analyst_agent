@@ -51,6 +51,22 @@
  *                      ~$230B. Stock reaction was muted — much of the beat already priced in after +51% YTD.)
  *   ~ PLTR updated    (PwC collaboration expansion (Sep 3) and the Army's TITAN contract extend the growth story, but the stock also touched ~150x trailing earnings against a ~40x software-sector
  *                      median — a valuation risk worth flagging even at this Roth account's smaller 3% sizing.)
+ *
+ * September 27, 2026 market refresh (research update — current intelligence; no allocation changes):
+ *   ~ MACRO           (The Fed hiked 25bp to 3.75–4.00% on Sep 16 — first hike since 2023, 12-0 vote — with more possibly ahead per the dot plot. Anthropic CEO Dario Amodei's Sep 14 essay urging
+ *                      an AI-buildout slowdown briefly hit AI-infrastructure sentiment sector-wide, though not every desk agreed — JPMorgan upgraded CoreWeave the same week.)
+ *   ~ NVDA updated    (No new earnings this cycle; sector sentiment wobbled on the Amodei essay above, but hyperscaler capex commitments (MSFT, GOOGL, AMZN, META) all still climbing regardless.)
+ *   ~ MSFT updated    (Shipped a major Copilot upgrade unifying chat/coding/agents; raised its dividend 8% to $0.98/share. Two real counter-signals: Raymond James downgraded to 'Strong Sell' while
+ *                      Oppenheimer warned of a possible 2026 IT-spend pull-forward; FY26 capex is running past $175B and quarterly FCF fell 23.2%.)
+ *   ~ GOOGL updated   (Launched Gemini 3.8 Live + Extended Thinking; committed €13B to a Finland AI-datacenter buildout for 2027–28. Stock rangebound $330–350 this cycle.)
+ *   ~ META updated    (Muse, its new AI assistant, became a viral hit — shares +36% in September, nearing a $2T market cap. A New Mexico jury separately found Meta misled users on data-safety
+ *                      rules, a fresh legal matter distinct from the Aug settlement.)
+ *   ~ AMZN updated    (AWS backlog swelled to ~$496B from ~$195B a year ago; Wells Fargo upgraded to Overweight (Sep 24) on Project Rainier capacity — yet the stock sits ~12% below its August
+ *                      high, a real price/fundamentals disconnect.)
+ *   ~ CRWD updated    (Baird raised its target to $235 but kept a Neutral rating — the stock has run further than the rating has.)
+ *   ~ AVGO updated    (Cantor Fitzgerald raised its target to $600 (from $525); board approved a $0.65/share dividend. Increasingly framed as a broader AI-infrastructure platform, with some
+ *                      knock-on exposure to the sector-wide sentiment wobble above.)
+ *   ~ PLTR updated    (UBS raised its target to $250 (from $220) on a record $2.1B in US commercial bookings — the valuation flag from last cycle stands unchanged, not resolved.)
  */
 
 import { PortfolioDefinition } from "@/types/portfolio";
@@ -90,7 +106,8 @@ export const PORTFOLIO_ROTH_IRA: PortfolioDefinition = {
         "7 Powers score: 6/7. CUDA ecosystem = switching cost + cornered resource. " +
         "Q2 FY27 actual (reported Aug 26): $96.2B revenue +106% YoY beat; GAAP EPS $2.22 beat; data center revenue $89B +117% YoY, now 92% of total. Q3 FY27 guidance $108B beats the $104.2B " +
         "street estimate. AWS separately committed to buy 2M NVDA GPUs plus NVDA's new 'Vera' CPU — the largest hyperscaler AI-compute order disclosed to date. " +
-        "Hyperscaler combined CapEx keeps climbing past $520B for 2026 across Google, MSFT, Amazon, and Meta. " +
+        "Hyperscaler combined CapEx keeps climbing past $520B for 2026 across Google, MSFT, Amazon, and Meta. Sector sentiment wobbled this cycle on an Anthropic-CEO essay urging an AI-buildout " +
+        "slowdown, but hyperscaler capex commitments haven't moved — a sentiment risk to watch, not a change to the underlying thesis. " +
         "Roth structure makes this ideal: tax-free exit on a stock with multi-year compounding ahead.",
       color: "#76b900",
       risk: "High",
@@ -105,7 +122,9 @@ export const PORTFOLIO_ROTH_IRA: PortfolioDefinition = {
         "7 Powers score: 7/7 (perfect score). Azure + Office 365 enterprise lock-in. " +
         "FY26 Azure revenue crossed $100B for the first time; CFO Amy Hood guided Q1 FY27 Azure growth to ~45% constant currency — accelerating further. " +
         "The Microsoft–OpenAI partnership evolved this cycle: OpenAI has committed to an incremental $250B of Azure purchases, with Microsoft holding exclusive IP rights and Azure API exclusivity " +
-        "until AGI; Nadella confirmed early enterprise customers are already using OpenAI's new GPT-6 Astra model on Azure. Copilot monetisation adds per-seat revenue on top. " +
+        "until AGI; Nadella confirmed early enterprise customers are already using OpenAI's new GPT-6 Astra model on Azure. Copilot monetisation adds per-seat revenue on top. Shipped a major " +
+        "Copilot upgrade this cycle unifying chat/coding/agents and raised its dividend 8%, but Raymond James issued a rare 'Strong Sell' while Oppenheimer flagged 2027 IT-spend pull-forward risk — " +
+        "calendar-2026 capex is running past $175B and quarterly FCF fell 23.2%, a real split in how the Street reads the same capex story. " +
         "GARP check: forward earnings multiple remains reasonable for a business growing Azure at an accelerating rate with high revenue visibility.",
       color: "#00a4ef",
       risk: "Low",
@@ -120,7 +139,8 @@ export const PORTFOLIO_ROTH_IRA: PortfolioDefinition = {
         "7 Powers score: 6/7. 92% search moat + YouTube flywheel + Google Cloud, whose customers (per Cloud CEO Kurian) now spend ~50% above original commitments. " +
         "Gemini 3.8 Flash launched Sep 2 — the third Flash model in six weeks, plus a Cyber variant for enterprise/government use — keeping Gemini competitive at the frontier. " +
         "A federal judge rejected the DOJ's push to force divestiture of Google's ad exchange (Sep), removing a standing antitrust overhang; the stock is recovering in September after its longest " +
-        "monthly losing streak in over a decade — a contrarian setup. Waymo robotaxi commercially deployed in multiple cities. " +
+        "monthly losing streak in over a decade — a contrarian setup, though the stock has stayed rangebound $330–350 this cycle. Launched Gemini 3.8 Live + Extended Thinking for real-time, " +
+        "voice-first AI and committed €13B to a Finland AI-datacenter buildout for 2027–28. Waymo robotaxi commercially deployed in multiple cities. " +
         "Greenblatt screen: highest ROIC (~28%) among mega-cap internet at a discount to MSFT/META multiples.",
       color: "#4285f4",
       risk: "Medium",
@@ -136,7 +156,9 @@ export const PORTFOLIO_ROTH_IRA: PortfolioDefinition = {
         "Prompt #18 (Behavioral Finance): In Jan 2023, META had 55% sell ratings → returned +194%. " +
         "Agreed Aug 26 to pay ~$18B (a $10B Q3 charge, paid over 10 years) settling a 29-state youth-safety lawsuit; Morgan Stanley (Sep 2) called it a net positive that removes a legal overhang " +
         "and clears the way for new AI product launches — the network-effect moat itself is unaffected. CapEx guidance keeps climbing toward $135–145B for FY2026 as new external compute deals " +
-        "(Google Cloud, CoreWeave, talks with Oracle) stack on top of in-house buildout. Llama open-source cuts inference costs $3B+/yr. Roth ideal: no dividend, pure capital appreciation.",
+        "(Google Cloud, CoreWeave, talks with Oracle) stack on top of in-house buildout. Since then, Muse — Meta's new AI assistant — became a viral hit, with shares +36% in September and nearing a " +
+        "$2T market cap; a New Mexico jury separately found Meta misled users on data-safety rules, a fresh legal matter distinct from the Aug settlement. Llama open-source cuts inference costs " +
+        "$3B+/yr. Roth ideal: no dividend, pure capital appreciation.",
       color: "#0866ff",
       risk: "Medium",
     },
@@ -149,8 +171,9 @@ export const PORTFOLIO_ROTH_IRA: PortfolioDefinition = {
       rationale:
         "7 Powers score: 6/7. AWS scale leader with 32%+ cloud share; advertising at $60B+ run-rate. " +
         "AWS committed to buy 2M NVIDIA GPUs plus NVDA's new 'Vera' CPU — the largest disclosed hyperscaler AI-compute order this cycle — and rolled out new Graviton5-powered EC2 instances (up " +
-        "to 25% better compute than the prior generation), extending its custom-silicon cost edge. Operating margin expanding as high-margin AWS/Ads become dominant. " +
-        "Roth is ideal for AMZN: zero dividends (no tax drag) and all return expected via capital appreciation.",
+        "to 25% better compute than the prior generation), extending its custom-silicon cost edge. AWS backlog has since swelled to ~$496B (from ~$195B a year ago); Wells Fargo upgraded to " +
+        "Overweight (Sep 24, $280 target) on Project Rainier capacity — yet the stock sits ~12% below its August high, a real disconnect between fundamentals and price. Operating margin expanding " +
+        "as high-margin AWS/Ads become dominant. Roth is ideal for AMZN: zero dividends (no tax drag) and all return expected via capital appreciation.",
       color: "#ff9900",
       risk: "Medium",
     },
@@ -190,6 +213,7 @@ export const PORTFOLIO_ROTH_IRA: PortfolioDefinition = {
         "7 Powers score: 5/7. Falcon platform = switching cost (single-agent consolidation) + " +
         "process power (3T+ events/week threat graph). Q2 FY2027 actual (reported Aug 26): $1.47B revenue +26% YoY beat; non-GAAP EPS $0.31 beat; net-new ARR $333M accelerating to +51% YoY on " +
         "AI-security demand. CEO called it the best quarter in company history; stock popped more than 11% after hours. 130%+ net revenue retention confirms customers expand rather than churn. " +
+        "Baird has since raised its target to $235 but kept a Neutral rating — the stock has run further than the rating has. " +
         "Held at 10% — cybersecurity + platform consolidation thesis is durable regardless of macro regime. Strongest moat score in cybersecurity sector.",
       color: "#f97316",
       risk: "Medium",
@@ -204,7 +228,8 @@ export const PORTFOLIO_ROTH_IRA: PortfolioDefinition = {
         "7 Powers score: 5/7. Custom AI ASIC chips (Google TPU, Meta MTIA) = multi-year switching cost. " +
         "Q3 FY2026 actual (reported Sep 2): $29.6B revenue +86% YoY beat; AI semiconductor revenue $16.7B +221% YoY; record FCF $13.7B. Management now projects FY2027/28 AI semi revenue of " +
         "~$115B/~$230B. Stock reaction was muted — up +51% YTD already, this quarter's strength looks largely priced in. VMware acquisition adds high-margin recurring software revenue (50%+ EBITDA). " +
-        "ASIC demand remains the biggest AI chip story beyond NVDA, and Broadcom is the only scaled competitor. Ideal Roth holding: no dividend.",
+        "Cantor Fitzgerald has since raised its target to $600 (from $525); the board approved a $0.65/share dividend, though the Roth thesis here isn't about income. " +
+        "ASIC demand remains the biggest AI chip story beyond NVDA, and Broadcom is the only scaled competitor.",
       color: "#cc0000",
       risk: "Medium",
     },
@@ -218,7 +243,8 @@ export const PORTFOLIO_ROTH_IRA: PortfolioDefinition = {
         "7 Powers score: 4/7. Cornered resource in government intelligence data + AIP switching cost. " +
         "Q2 2026 actual (reported Aug 3): $1.935B revenue +93% YoY, fastest since IPO; raised FY2026 guidance to $8.15B. Since then, an expanded PwC collaboration (Sep 3, stock +~9%) and the " +
         "Army's TITAN ground-station contract extend the growth story, but the stock has also touched ~150x trailing earnings against a ~40x software-sector median — a valuation risk worth " +
-        "watching even at this account's smaller 3% sizing. AIP is now a production revenue engine — not a proof of concept. GAAP profitable 8+ consecutive quarters. " +
+        "watching even at this account's smaller 3% sizing. AIP is now a production revenue engine — not a proof of concept. GAAP profitable 8+ consecutive quarters. UBS has since raised its target " +
+        "to $250 (from $220) on a record $2.1B in US commercial bookings — the valuation flag stands unchanged, not resolved. " +
         "Roth ideal for PLTR: no dividend, and outsized capital gain potential in a tax-free account.",
       color: "#6366f1",
       risk: "High",

@@ -107,7 +107,12 @@ export const AGGRESSIVE_TARGET: PortfolioTarget = {
     "TSLA's Cybercab robotaxi launch underwhelmed investors and drew an NHTSA safety inquiry — a third straight soft catalyst. PLTR's fundamentals remain the portfolio's strongest, but its stock " +
     "touched ~150x trailing earnings, now the dominant risk. Apple's John Ternus became CEO Sep 1, the company's first leadership change since 2011, days before unveiling the iPhone 18 Pro/Pro Max " +
     "and its first foldable phone. Fed Chair Kevin Warsh has turned more hawkish since his Jackson Hole speech, lifting September rate-hike odds. " +
-    "Credo Technology (CRDO) — an AI-interconnect name complementing Astera Labs — was added to the watchlist this cycle.",
+    "Credo Technology (CRDO) — an AI-interconnect name complementing Astera Labs — was added to the watchlist this cycle. " +
+    "September 27, 2026 update: the Fed hiked for the first time since 2023 (25bp to 3.75–4.00%). AMD crossed $1T market cap after OpenAI and Meta each struck 6GW GPU deals with " +
+    "equity warrants tied to AMD's stock price — the strongest new watchlist candidate found yet, and a plausible swap-in for TSLA's flagged slot. NET had its best cycle to date " +
+    "(an OpenAI-powered security launch, a fresh all-time high), meaningfully weakening the case for swapping into ANET/PANW. Oracle (ORCL) joined the watchlist too — a $664B cloud " +
+    "backlog paired with a fresh S&P credit downgrade to BBB-. Meta's new Muse AI assistant went viral (+36% in September); Apple's first Ternus-era product event coincided with a " +
+    "record stock high. TSLA and PLTR's valuation/catalyst flags from last cycle remain open, and MELI picked up a new one.",
   riskLevel: "Aggressive",
   timeHorizon: "5–10+ years",
   icon: "🚀",
@@ -123,14 +128,14 @@ export const AGGRESSIVE_TARGET: PortfolioTarget = {
     {
       sector: "Cybersecurity / Cloud",
       targetPct: 15,
-      description: "Switching-cost moats — Falcon platform lock-in; ANET (Arista Networks, hyperscaler-embedded EOS switching cost, 5/7 powers) flagged this cycle as a stronger-moat watch than NET",
-      suggestedBuys: ["CRWD", "NET", "PLTR", "PANW", "ANET"],
+      description: "Switching-cost moats — Falcon platform lock-in; NET's OpenAI-security launch and fresh all-time high this cycle weakened the case for swapping into ANET/PANW; ORCL (Oracle, $664B cloud backlog, +62% YoY) added as a new cloud-infrastructure watch",
+      suggestedBuys: ["CRWD", "NET", "PLTR", "PANW", "ANET", "ORCL"],
       color: "#3b82f6",
     },
     {
       sector: "Semiconductors",
       targetPct: 12,
-      description: "Custom ASIC moat accelerating for hyperscalers; MU (Micron HBM) added as AI memory watch; ALAB (Astera Labs, AI-fabric interconnect) and CRDO (Credo Technology, AI cables, +206% FY26 rev) both flagged as strong-watch/watch candidates",
+      description: "Custom ASIC moat accelerating for hyperscalers; AMD crossed $1T market cap this cycle on OpenAI/Meta warrant-tied GPU deals — the strongest new candidate screened to date; MU (Micron HBM) added as AI memory watch; ALAB (Astera Labs, AI-fabric interconnect) and CRDO (Credo Technology, AI cables) both flagged as strong-watch/watch candidates",
       suggestedBuys: ["NVDA", "AMD", "AVGO", "QCOM", "MU", "ALAB", "CRDO"],
       color: "#f59e0b",
     },

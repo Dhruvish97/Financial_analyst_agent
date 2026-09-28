@@ -24,45 +24,77 @@ export interface CandidateScreening {
 
 export const CANDIDATE_SCREENING: CandidateScreening[] = [
   {
+    ticker: "AMD",
+    name: "Advanced Micro Devices",
+    market: "us",
+    label: "STRONG WATCH",
+    date: "2026-09-27",
+    rationale:
+      "New this cycle — the single biggest AI story of the month. OpenAI committed to deploying 6GW of AMD " +
+      "Instinct GPUs over multiple years (1GW starting 2026) and received a warrant for up to 160M AMD shares; " +
+      "Meta struck a parallel 6GW deal and warrant days later. Both vest as AMD's stock climbs toward $600. " +
+      "Oracle separately ordered 50,000 MI450 chips. AMD crossed $1T market cap Sep 21 on a five-session run; " +
+      "Raymond James upgraded to Strong Buy, $641 target. Strategically, the warrants financially incentivize " +
+      "the two largest AI labs to port models to AMD's ROCm stack — a structural first dent in NVDA's CUDA-" +
+      "exclusivity moat, not just a new competitor shipping more chips. The strongest new candidate screened in " +
+      "any cycle so far, and a plausible swap-in for the portfolio's flagged TSLA slot — though first GPU " +
+      "shipments aren't until late 2026 and most of the revenue lands later still.",
+  },
+  {
+    ticker: "ORCL",
+    name: "Oracle Corporation",
+    market: "us",
+    label: "WATCH",
+    date: "2026-09-27",
+    rationale:
+      "New this cycle. Record Q1 FY27 cloud revenue +62% YoY to $11.6B, infrastructure revenue +121%, backlog " +
+      "swelled to $664B; raised FY27 guidance to $90B+ revenue. Real moat: hyperscaler-tier growth with multi-" +
+      "year contracted visibility. Real, freshly-emerged risk: a force-majeure notice tied to its Project " +
+      "Jupiter (NM) data-center campus raised execution questions, and S&P cut Oracle's credit rating to BBB- — " +
+      "just above junk — citing heavy debt reliance to fund the AI buildout. Strong moat, real balance-sheet " +
+      "risk that wasn't there last cycle; watch rather than chase.",
+  },
+  {
     ticker: "ALAB",
     name: "Astera Labs",
     market: "us",
     label: "STRONG WATCH",
-    date: "2026-09-05",
+    date: "2026-09-27",
     rationale:
       "AI-fabric connectivity chips (Scorpio-X switches, Aries retimers). Q2 2026 revenue $392.4M +104% YoY, " +
-      "beat by $31M; non-GAAP EPS $0.80 beat by 15.6%, 8th consecutive beat. Cornered-resource + switching-cost " +
-      "moat in the AI-rack interconnect layer that NVDA/AVGO/ANET all depend on. Momentum accelerating, not " +
-      "cooling: stock $312 as of Sep 4 (+10.6% in a single session), Citi raised its target to $430 (from $315) " +
-      "and Jefferies to $450 (from $270), both still Buy-rated. Getting more expensive to initiate, not less — " +
-      "the 'watch for an entry point' caveat from last cycle is now more urgent.",
+      "beat by $31M; non-GAAP EPS $0.80 beat by 15.6%, 8th consecutive beat; Q2 net income $153.1M +199% YoY, EPS " +
+      "beat estimates by 82%. Cornered-resource + switching-cost moat in the AI-rack interconnect layer that " +
+      "NVDA/AVGO/ANET all depend on. Momentum still accelerating: stock $364.62 as of Sep 26, up from $312 on " +
+      "Sep 4. Getting more expensive to initiate by the cycle, not less.",
   },
   {
     ticker: "PANW",
     name: "Palo Alto Networks",
     market: "us",
     label: "STRONG WATCH",
-    date: "2026-09-05",
+    date: "2026-09-27",
     rationale:
       "7 Powers 5/7: platformization creates switching cost + network effects. Morningstar wide-moat. Fiscal " +
       "Q4 FY26 actual (reported Sep 1) closed out the fiscal year: $3.41B revenue +34% YoY beat $3.35B estimate; " +
-      "adjusted EPS $1.02 beat $0.98 estimate. GAAP net loss was driven by one-time acquisition/stock-comp items, " +
-      "not core operations. Stock round-tripped a 5% pop into a 2% after-hours loss — full-year results confirm " +
-      "the moat and growth thesis, but the muted market reaction suggests a swap into NET's slot still needs a " +
-      "NET-side catalyst (a guidance slip), not just a PANW-side one.",
+      "adjusted EPS $1.02 beat $0.98 estimate. Acquired Console Systems (Sep 1) to deepen agentic capabilities in " +
+      "its Cortex platform — part of CEO Arora's aggressive dealmaking run that already includes the $25B " +
+      "CyberArk and $3.4B Chronosphere acquisitions. The moat is now being extended by acquisition as much as by " +
+      "organic growth, but a swap into NET's slot still needs a NET-side catalyst, not just a PANW-side one — " +
+      "and NET itself had its strongest cycle yet (see research log).",
   },
   {
     ticker: "CRDO",
     name: "Credo Technology",
     market: "us",
     label: "WATCH",
-    date: "2026-09-05",
+    date: "2026-09-27",
     rationale:
-      "New this cycle. FY2026 revenue $1.3B, +206% YoY; Q4 FY26 revenue $437.0M +157% YoY; non-GAAP net income " +
-      "+5x YoY to $662M. Active Electrical Cables (AECs) have become the intra-rack AI-connectivity standard for " +
-      "hyperscalers/neoclouds, and PILOT diagnostic software embeds Credo into customers' network architecture — " +
-      "a telemetry-first switching-cost moat similar in shape to ALAB's. Smaller-cap and less proven at scale than " +
-      "ALAB, but complements rather than duplicates that thesis — a second way to play AI-interconnect demand.",
+      "FY2026 revenue $1.3B, +206% YoY; Q4 FY26 revenue $437.0M +157% YoY; non-GAAP net income +5x YoY to $662M. " +
+      "Active Electrical Cables (AECs) have become the intra-rack AI-connectivity standard for hyperscalers/" +
+      "neoclouds, and PILOT diagnostic software embeds Credo into customers' network architecture — a " +
+      "telemetry-first switching-cost moat similar in shape to ALAB's. First negative signal since being added: " +
+      "Mizuho cut its price target to $245 (from $290) on Sep 21. Still a legitimate AI-interconnect name, just " +
+      "cooling off relative to ALAB this cycle.",
   },
   {
     ticker: "MU",

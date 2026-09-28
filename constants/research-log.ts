@@ -23,6 +23,32 @@ export interface ResearchLogEntry {
 // Newest first.
 export const RESEARCH_LOG: ResearchLogEntry[] = [
   {
+    date: "2026-09-27",
+    scope: "multi",
+    title: "Fed hikes for first time since 2023; AMD crosses $1T on OpenAI/Meta warrant deals; NET's strongest cycle yet",
+    summary:
+      "The Fed raised rates 25bp to 3.75–4.00% on Sep 16, its first hike since 2023. AMD crossed $1 trillion " +
+      "market cap after OpenAI and Meta each struck 6GW GPU deals with equity warrants tied to AMD's stock " +
+      "price — added to the watchlist as the strongest new candidate screened to date, and a plausible " +
+      "swap-in for the portfolio's flagged TSLA slot. NET had its best cycle yet (OpenAI-security launch, " +
+      "fresh all-time high), meaningfully reducing the case for swapping into ANET/PANW. Oracle (ORCL) was " +
+      "also added to the watchlist — a strong cloud-growth story now paired with a real credit-rating " +
+      "downgrade. Meta's Muse AI assistant became a viral hit (+36% in September) alongside a fresh legal " +
+      "matter (a New Mexico jury verdict) distinct from August's settlement. Apple CEO John Ternus's debut " +
+      "product event drew a record stock high. TSLA and PLTR's human-review flags from last cycle both stand " +
+      "unchanged; MELI picked up a new valuation flag.",
+    highlights: [
+      "Fed hikes 25bp to 3.75–4.00% (12-0 vote) — first hike since 2023; dot plot points to at least one more",
+      "AMD crosses $1T market cap on OpenAI (6GW + 160M-share warrant) and Meta (parallel 6GW + warrant) deals, plus a 50,000-chip Oracle order — added to watchlist as STRONG WATCH",
+      "NET: OpenAI-powered security launch, fresh all-time high $333.94, analyst targets up 38% in ten weeks — the ANET/PANW swap case is materially weaker now",
+      "Oracle (ORCL) added to watchlist: record cloud growth and a $664B backlog, but a force-majeure notice and an S&P credit downgrade to BBB- emerged the same cycle",
+      "Meta's Muse AI assistant goes viral (+36% in September, nearing $2T market cap); separately, a New Mexico jury found Meta misled users on data-safety rules",
+      "Apple: CEO John Ternus's debut event (iPhone Duo foldable, Pro-only iPhone 18 lineup) coincided with a record stock high",
+      "Anthropic CEO Dario Amodei's AI-slowdown essay briefly hit AI-infrastructure sentiment (CoreWeave -8.4%), though JPMorgan upgraded CoreWeave the same week — a genuine market split, not consensus",
+      "TSLA and PLTR human-review flags carried forward unresolved; MELI added as a new valuation/momentum flag (Zacks Sell rank, -7.75% monthly pullback)",
+    ],
+  },
+  {
     date: "2026-09-05",
     scope: "multi",
     title: "AI-earnings sweep confirms the core thesis; TSLA and PLTR flagged for human review",
