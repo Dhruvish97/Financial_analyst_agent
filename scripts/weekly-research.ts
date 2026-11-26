@@ -19,9 +19,10 @@ const yahooFinance = new YahooFinance({ suppressNotices: ["yahooSurvey"] });
 const ROOT = path.join(__dirname, "..");
 const SNAPSHOT_PATH = path.join(ROOT, ".research-snapshot.json");
 
+// Holdings from the Nov 2026 rebuild + the top watchlist names (AMD, MU, ASML, VRT).
 const US_TICKERS = [
-  "NVDA", "META", "GOOGL", "MSFT", "AMZN", "AVGO",
-  "PLTR", "TSLA", "CRM", "NET", "COIN", "AMD",
+  "MSFT", "TSM", "GOOGL", "NVDA", "AMZN", "JPM", "AVGO", "UNH",
+  "META", "ETN", "NFLX", "CRM", "AMD", "MU", "ASML", "VRT",
 ];
 // Only fetched while INDIA_MARKET_ENABLED is true — see constants/feature-flags.ts.
 const INDIA_TICKERS = INDIA_MARKET_ENABLED

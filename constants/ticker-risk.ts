@@ -39,4 +39,6 @@ export const TICKER_RISK: Record<string, HoldingRisk> = {
   COIN: "High", V: "Low", MA: "Low", HOOD: "High",
   // Broad tech ETFs
   QQQ: "Medium", VGT: "Medium",
+  // Added in the Nov 2026 rebuild
+  TSM: "Medium", ASML: "High", JPM: "Low", NFLX: "Medium", CRM: "High", MCD: "Low", LLY: "Medium",
 };

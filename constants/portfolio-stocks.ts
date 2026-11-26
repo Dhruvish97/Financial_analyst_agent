@@ -1,6 +1,74 @@
 /**
  * Aggressive Stocks Portfolio — Large Cap + Select Mid Cap
  *
+ * ═══════════════════════════════════════════════════════════════════════════════════════
+ * NOVEMBER 25, 2026 — FROM-SCRATCH REBUILD (human-requested; supersedes the lineup below)
+ * ═══════════════════════════════════════════════════════════════════════════════════════
+ * The user asked for the existing list to be set aside and the portfolio rebuilt from new
+ * research after the AI-led pullback. Normal refresh rules ("never change tickers or
+ * allocations") were explicitly waived for this one rebuild. Everything dated before this
+ * block describes the PRIOR lineup and is kept only as history.
+ *
+ * Market backdrop (Nov 25, 2026):
+ *   - Nasdaq ~18% below its Oct 6 peak at the Nov 20 low; S&P 500 in/near correction.
+ *   - NVDA: Jensen Huang resigned Nov 12 (affair with a woman US intelligence suspects of
+ *     spying for China), reinstated Nov 23; board probe still open; S&P CreditWatch
+ *     Negative; House interview Dec 1. Stock ~39% off its high despite a record quarter.
+ *   - Q3 earnings: GOOGL (−$9.1B), META (−$2.1B) and AMZN (TTM −$42B) all FCF-negative;
+ *     only MSFT stayed FCF-positive. AI capex is now being funded with debt and equity.
+ *   - Credit stress: AI-linked CDS at record spreads; ORCL at BBB- with 5y CDS ~316bp;
+ *     Anthropic IPO'd Nov 19 at $83 and traded below it, with ~$901B of compute
+ *     commitments and expected junk-rated debt.
+ *   - Fed: held at 3.75–4.00% Oct 28 (two dissents for a hike); October core PCE 3.3%;
+ *     a December 9 hike is ~95% priced.
+ *   - Politics: Nov 3 midterms brought state data-center moratorium proposals; BIS
+ *     proposed "Remote Access to Advanced Semiconductors" rules Nov 16.
+ *   - Memory: Samsung/SK Hynix fell ~10–11% in one session; MU ~52% off its high.
+ *
+ * Answer to "should we be cautious on AI chips and memory?":
+ *   Yes on memory, selectively on chips. Chip demand is still real (NVDA Q3 +103% and a
+ *   $130B Q4 guide; AMD data center +97%; MU 2027 HBM largely sold out). The risk has moved
+ *   to the BUYERS: the companies paying for chips are now burning cash and borrowing, so
+ *   future orders depend on credit markets and rates, not just AI demand. Memory is the
+ *   most cyclical link and MU's ~3x forward P/E is the classic sign of peak earnings — the
+ *   market is pricing a 2027 oversupply (CXMT capacity, slowing DRAM contract increases).
+ *   So: own the chip companies that get paid and have pricing power (TSM, NVDA, AVGO) at
+ *   reduced size; leave memory and high-multiple AI small caps on the watchlist; cap
+ *   AI-capex exposure; add non-AI diversifiers.
+ *
+ * Re-qualification tests (every holding had to pass all four):
+ *   1. Moat ≥ 3/7 on Hamilton Helmer's 7 Powers.
+ *   2. A real price reset — meaningfully off the 52-week high and/or a below-normal
+ *      forward P/E. (MSFT, ~12% off, is the one quality-anchor exception.)
+ *   3. Balance-sheet resilience in a hiking, credit-stressed tape.
+ *   4. No unsized binary event (known catalysts are sized down, not ignored).
+ *
+ * New lineup: MSFT 12 · TSM 12 · GOOGL 11 · NVDA 10 · AMZN 9 · JPM 9 · AVGO 7 · UNH 7 ·
+ *             META 6 · ETN 6 · NFLX 6 · CRM 5
+ *   Direct AI-chip/power suppliers (TSM, NVDA, AVGO, ETN) = 35% (was 30% in NVDA+AVGO alone
+ *   plus AI-heavy software). Non-AI-capex diversifiers (JPM, UNH, NFLX) = 22% (was ~0%).
+ *
+ * Did NOT re-qualify (from the old list or the screen), and why:
+ *   PLTR  ~64x forward earnings — still priced for perfection in a rate-hiking tape.
+ *   TSLA  ~176x forward, weakest moat (3/7); three straight soft catalysts.
+ *   NET / CRWD  ~150x / ~127x forward — great businesses, wrong price for this regime.
+ *   AAPL  ~1.5% off its high at ~34x forward — no reset to buy.
+ *   MELI  Margin compression plus EM/FX risk with the dollar at a 19-month high.
+ *   AMD   Executing well, but ~23x forward vs NVDA's ~9x, plus OpenAI/Meta warrants for up
+ *         to ~320M shares. Watchlist.
+ *   MU    Memory at a peak-cycle ~3x forward P/E; earnings ~Dec 17. Watchlist.
+ *   ORCL  BBB-, record CDS, ~half its backlog tied to OpenAI. Watchlist only.
+ *   ALAB / CRDO / ARM  High multiples; small AI names fall hardest in a risk-off tape.
+ *   INTU / ADBE  Cheap (~10x / ~8.5x forward) but AI is visibly cutting their guidance.
+ *   BKNG  AI-agent disintermediation risk plus a soft Q4 room-night guide.
+ *   VRT / GEV / CEG  Strong results, but more exposed to data-center/power politics than ETN.
+ *
+ * Known dates: Dec 1 Huang House interview · Dec 9 FOMC + AVGO earnings · ~Dec 17 MU
+ * earnings · UNH 2027 guidance before year-end · Jan 19, 2027 CRUSH comment deadline.
+ * ═══════════════════════════════════════════════════════════════════════════════════════
+ *
+ * HISTORY — prior lineup and refresh notes (superseded by the rebuild above):
+ *
  * Research methodology — backtested prompt sequence (see PROMPT_ACCURACY_REPORT.md):
  *   TIER 1 (Structural Foundation — highest accuracy):
  *   - Prompt #17 Moat Destroyer (7 Powers) → 92/100 accuracy — every holding must score ≥ 3/7
@@ -272,85 +340,48 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
   accentColor: "border-red-500/40",
   cardGradient: "from-red-500/10 to-transparent",
   description:
-    "An aggressive growth portfolio restricted to large-cap and established mid-cap " +
-    "companies — no penny stocks, no pre-revenue speculation. Every holding must score " +
-    "≥ 3/7 on Hamilton Helmer's 7 Powers framework (Prompt #17). " +
-    "Concentrated in AI infrastructure (NVDA, AVGO), hyperscale cloud (MSFT, AMZN, GOOGL), " +
-    "high-growth platforms (META, AAPL, MELI), and mission-critical software (CRWD, NET, PLTR). " +
-    "April 2026: COIN replaced by AAPL (6/7 vs 3/7 powers); MELI added (LatAm fintech flywheel) funded by TSLA trim. " +
-    "September 2026: no allocation changes, but TSLA and PLTR are both flagged for a human sizing review — TSLA on a third " +
-    "straight soft catalyst, PLTR on valuation (~150x earnings) rather than fundamentals.",
+    "Rebuilt from scratch on Nov 25, 2026, after the AI-led correction (Nasdaq ~18% off its October peak). " +
+    "Every holding had to re-qualify on four tests: a durable moat (≥3/7 on Hamilton Helmer's 7 Powers), a real price reset " +
+    "(meaningfully off its 52-week high or at a below-normal forward P/E), a balance sheet that holds up in a rate-hiking, " +
+    "credit-stressed tape, and no unsized binary event. AI chip exposure is kept but deliberately smaller and tilted to the " +
+    "companies that get paid (TSM, NVDA, AVGO) rather than the ones borrowing to pay. Memory, high-multiple software and " +
+    "debt-funded AI names were left out; JPM, UNH, NFLX and ETN were added as non-AI-capex diversifiers.",
   promptsUsed: [
-    "Prompt #17 — Moat Destroyer / 7 Powers (primary structural filter)",
-    "Prompt #8  — Bain Competitive Analysis (sector winner selection)",
-    "Prompt #18 — Behavioral Finance Bias Auditor (contrarian ID)",
-    "Prompt #6  — Citadel Technical Analysis (entry timing)",
-    "Prompt #11 — Peter Lynch GARP (PEG validation)",
-    "Prompt #13 — Forensic Accounting Auditor (mandatory risk filter — all clear)",
+    "Prompt #17 — Moat Destroyer / 7 Powers (every holding ≥ 3/7)",
+    "Prompt #18 — Behavioral Finance Bias Auditor (which drops are fear vs. fundamentals)",
+    "Prompt #13 — Forensic Accounting Auditor (free cash flow vs. reported earnings)",
+    "Prompt #3  — Bridgewater Risk Assessment (AI-capex concentration cap, credit stress)",
+    "Prompt #11 — Peter Lynch GARP (forward P/E vs. growth at reset prices)",
+    "Prompt #10 — McKinsey Macro Report (Fed hiking cycle, data-center politics)",
   ],
   holdings: [
-    {
-      ticker: "NVDA",
-      name: "NVIDIA Corporation",
-      type: "stock",
-      sector: "AI Semiconductors",
-      allocation: 20,
-      rationale:
-        "7 Powers score: 6/7. CUDA ecosystem = switching cost (every AI model trained deepens lock-in) + " +
-        "cornered resource (GPU talent + CUDA library monopoly) + scale economies + process power. " +
-        "Q2 FY27 actual (reported Aug 26): $96.2B revenue +106% YoY, beat $92.07B estimate; GAAP EPS $2.22 beat $2.09 estimate. Data center revenue $89B +117% YoY — now 92% of total revenue. " +
-        "Q3 FY27 guidance $108B (±2%), ahead of the $104.2B street estimate. AWS separately committed to buy 2M NVDA GPUs plus NVDA's new 'Vera' CPU — the largest hyperscaler AI-compute order " +
-        "disclosed to date. Stock ~$230, up from the ~$199 August low; trailing P/E ~29x, still well below the 3-yr average of 69x. " +
-        "Blackwell B200/GB200 NVL72 architecture deepens CUDA switching cost into 2027–28. " +
-        "China remains a wildcard: the Blackwell export loophole (chips routed via non-China-HQ subsidiaries) closed by Commerce on May 31 is unchanged, and Blackwell remains formally unlicensed for China. " +
-        "Hyperscaler capex commitments keep rising — MSFT FY27 capex guided $255–260B, GOOGL FY26 capex raised to $195–205B, AMZN FY26 ~$220B, META FY26 raised again to $135–145B — NVDA captures the largest share of all of it. " +
-        "AMD's OpenAI/Meta warrant deals (see the Semiconductors watchlist) are a real long-term watch item: both labs are now financially incentivized to port models to AMD's ROCm stack, a first " +
-        "credible dent in CUDA's exclusivity rather than just a new competitor shipping more chips. Also note the sector-wide sentiment wobble after Anthropic CEO Dario Amodei's Sep 14 essay urging " +
-        "an AI-buildout slowdown (echoed by Musk/Altman) — CoreWeave fell as much as 8.4% on the read-through, though JPMorgan upgraded it the same week on demand grounds. A real split in how the " +
-        "market is pricing this, not a one-sided signal against NVDA's core thesis.",
-      color: "#76b900",
-      risk: "High",
-    },
     {
       ticker: "MSFT",
       name: "Microsoft Corporation",
       type: "stock",
       sector: "Cloud & Enterprise AI",
-      allocation: 15,
+      allocation: 12,
       rationale:
-        "7 Powers score: 7/7 (rare perfect score). Azure + Office 365 = switching cost (enterprise data lock-in) + " +
-        "network effects (Teams/LinkedIn) + scale economies + process power (OpenAI partnership moat). " +
-        "Q4 FY26 actual (reported Jul 29): $90B revenue +18% YoY; GAAP EPS $4.81 +31% YoY. FY26 Azure revenue crossed $100B for the first time (+41% FY). " +
-        "CFO Amy Hood has guided Q1 FY27 Azure growth to ~45% constant currency — accelerating further. CEO Nadella confirmed (Sep) that early enterprise customers are already using OpenAI's new " +
-        "GPT-6 Astra model on Azure; the Microsoft–OpenAI partnership now has OpenAI committed to an incremental $250B of Azure purchases, with Microsoft holding exclusive IP rights and Azure API " +
-        "exclusivity until AGI. Stock ~$500, off its recent highs on a run of weekly softness despite the fundamentals; forward P/E still cheap relative to the AI-capex growth rate. " +
-        "Fed Chair Kevin Warsh made good on the hawkish tone: the Fed hiked 25bp to 3.75–4.00% on Sep 16, its first hike since 2023 (12-0 vote), with most officials' dot-plot projections pointing to " +
-        "at least one more. Microsoft's government-cloud and enterprise moat is largely Fed-independent regardless. On the product side, a major Copilot upgrade unifying chat, coding, and " +
-        "autonomous agents shipped this cycle — analysts are framing it as a shift toward an 'AI operating system.' The dividend was raised 8% to $0.98/share. Two real counter-signals worth " +
-        "tracking: Raymond James issued a rare 'Strong Sell' downgrade, and Oppenheimer flagged risk of a 2026 enterprise-IT pull-forward decelerating Azure/M365 growth into 2027 — meanwhile calendar-" +
-        "2026 capex is running past $175B and quarterly free cash flow fell 23.2%, so the capex bill is now visible in cash generation, not just guidance language. " +
-        "Government cloud (JEDI/JWCC), gaming (Activision synergies), LinkedIn, and record capex still signal long-term AI infrastructure commitment.",
+        "7 Powers 7/7. The only one of the four big AI spenders still generating positive free cash flow ($18.6B in fiscal Q1 FY27, " +
+        "down 27% but positive), and it says it expects to stay FCF-positive for all of FY27. Azure grew 48% (fastest in two years) " +
+        "and is guided to 49–50% next quarter; Microsoft Cloud hit $63.9B (+30%). At ~$490 it is only ~12% off its high, so this is " +
+        "a quality anchor rather than a deep-value buy — it re-qualified because it is the hyperscaler least dependent on debt " +
+        "markets at a ~20x forward P/E.",
       color: "#00a4ef",
       risk: "Low",
     },
     {
-      ticker: "META",
-      name: "Meta Platforms Inc.",
+      ticker: "TSM",
+      name: "Taiwan Semiconductor (ADR)",
       type: "stock",
-      sector: "Social Media & AI",
+      sector: "Semiconductor Foundry",
       allocation: 12,
       rationale:
-        "7 Powers score: 5/7. Network effects on 3.58B DAU (+7% YoY) = the strongest single moat in consumer tech. " +
-        "WhatsApp/Instagram/FB form a closed social graph that is structurally impossible to replicate. " +
-        "Q2 2026 (reported Jul 29–30): $60.8B revenue +28% YoY, beat estimates — but adjusted EPS $6.18 MISSED $7.14 consensus on $2.4B legal contingencies + $1.2B severance charges. " +
-        "That legal contingency became concrete on Aug 26: Meta agreed to pay ~$18B (a $10B Q3 charge, paid out over 10 years) settling a 29-state lawsuit alleging Instagram/Facebook were designed " +
-        "to be addictive to minors, with platform changes including a 2-hour daily cap and tighter age verification. Morgan Stanley (Sep 2) called it a net positive — it removes a legal overhang and " +
-        "clears the way for new AI product launches; the network-effect moat itself is unaffected, and forensic accounting confirms this is a disclosed one-time charge, not an earnings-quality problem. " +
-        "CapEx guidance keeps climbing — raised again toward $135–145B for FY2026 — as new external compute deals stack on top of in-house buildout: $10B+ with Google Cloud (Aug), $14.2B with " +
-        "CoreWeave (Sep), and talks with Oracle for ~$20B more. Since then, Muse — Meta's new personal AI assistant — became a surprise viral hit: shares are +36% in September alone, the best month " +
-        "since 2013, putting the company within reach of a $2T market cap. Two offsetting legal threads are open at once: a New Mexico jury separately found Meta misled Facebook users on data-" +
-        "safety rules (distinct from the Aug 26 youth-safety settlement), and Goldman Sachs pushed back on some of the Muse-driven analyst enthusiasm. Llama open-source cuts inference costs $3B+/yr.",
-      color: "#0866ff",
+        "7 Powers 6/7 (scale, process power, cornered resource at the leading edge). The best way to own AI chips without betting " +
+        "on which designer wins: NVDA, AMD, AVGO's custom ASICs and Apple all fab here, and TSMC is reportedly raising prices ~10% " +
+        "next year. ~30% off its high at ~14.6x forward earnings. Main risks are geopolitical (Taiwan) and a capex digestion phase; " +
+        "Arizona expansion breaks ground Dec 4.",
+      color: "#9333ea",
       risk: "Medium",
     },
     {
@@ -358,170 +389,140 @@ export const PORTFOLIO_STOCKS: PortfolioDefinition = {
       name: "Alphabet Inc.",
       type: "stock",
       sector: "Internet & AI",
-      allocation: 10,
+      allocation: 11,
       rationale:
-        "7 Powers score: 6/7. 92% search share = unassailable scale economy + counter-positioning vs ChatGPT " +
-        "(Search has real-time indexing no LLM can match). Q2 2026 (reported Jul 22): $119.8B revenue +24% YoY, beat $116.93B estimate; operating income $40.8B (34% margin). " +
-        "Google Cloud revenue +82% YoY to $24.8B; cloud backlog swelled to $514B — unprecedented revenue visibility; Cloud CEO Kurian says ~75% of Cloud customers now use its AI products, spending " +
-        "~50% above original commitments. Launched Gemini 3.8 Flash on Sep 2 — its third Flash model in six weeks — plus a Cyber variant for government/enterprise vulnerability detection; Gemini " +
-        "overall has crossed 750M+ monthly active users. A federal judge rejected the DOJ's push to force divestiture of Google's ad exchange (Sep), removing a standing antitrust overhang. " +
-        "Stock had its longest monthly losing streak in over a decade through August but is recovering in September on the AI-momentum plus antitrust-win combination — a textbook Prompt #18 " +
-        "contrarian setup, though the stock has stayed rangebound $330–350 this cycle as capex and negative-FCF concerns offset the recovery. Launched Gemini 3.8 Live + Extended Thinking for " +
-        "real-time, voice-first AI (early deployers include Salesforce, Genspark, Lumeris), and committed €13B (~$15.1B) to a Finland AI-datacenter and clean-energy buildout for 2027–28 — its " +
-        "largest European investment. Waymo commercially deployed and scaling. Greenblatt: highest ROIC in mega-cap internet (~28%) at a still-cheap ~17x P/E. Q3 earnings due late October.",
+        "7 Powers 6/7. Cheapest mega-cap at ~14x trailing earnings, ~33% off its high after a Q3 miss and capex shock. Google Cloud " +
+        "revenue roughly doubled to $30.7B (36% margin) with a ~$561B backlog, and TPU system sales are now a real revenue line. " +
+        "The honest risk: free cash flow was −$9.1B in Q3 (second negative quarter) and long-term debt rose from $21.6B to $125B in " +
+        "a year, with 2027 capex guided to rise 'significantly'. Owned for the moat at a reset price, sized below MSFT because of the cash burn.",
       color: "#4285f4",
       risk: "Medium",
+    },
+    {
+      ticker: "NVDA",
+      name: "NVIDIA Corporation",
+      type: "stock",
+      sector: "AI Semiconductors",
+      allocation: 10,
+      rationale:
+        "7 Powers 6/7. The fundamentals are the strongest they have ever been — Q3 FY27 revenue $115.8B (+103%), Q4 guided to $130B, " +
+        "$28B returned to shareholders in one quarter — yet the stock is ~39% off its high at ~9x forward earnings. That discount is " +
+        "about governance, not demand: Jensen Huang resigned Nov 12 over an affair with a suspected foreign intelligence asset, was " +
+        "reinstated Nov 23 after government pressure, the board's investigation is still open, S&P put the company on CreditWatch " +
+        "Negative, and Huang faces a closed-door House interview Dec 1. Sized at half its old 20% weight for exactly that reason.",
+      color: "#76b900",
+      risk: "High",
     },
     {
       ticker: "AMZN",
       name: "Amazon.com Inc.",
       type: "stock",
       sector: "Cloud & E-Commerce",
-      allocation: 10,
+      allocation: 9,
       rationale:
-        "7 Powers score: 6/7. AWS scale economy (32%+ cloud market share) + logistics flywheel switching cost (Prime ecosystem). " +
-        "Q2 2026 (reported Jul 30): net sales $200.6B +20% YoY — first time crossing $200B in a single quarter, beat $196.47B estimate; operating income $27.5B +43% YoY. " +
-        "AWS revenue $42.2B +37% YoY — fastest growth in 18 quarters, beat consensus — with AI/chips business run-rate now exceeding $25B and growing triple-digits. AWS operating margin 39.4%. " +
-        "AWS committed (alongside NVDA's Q2 FY27 print, Aug 26) to buy 2M NVIDIA GPUs plus NVDA's new 'Vera' CPU — the largest disclosed hyperscaler AI-compute order this cycle. New Graviton5-powered " +
-        "EC2 R9g/R9gd instances (up to 25% better compute than R8g) extend AWS's custom-silicon cost advantage further. AWS's backlog has since swelled to ~$496B, up from ~$195B a year ago, and the " +
-        "AI business alone crossed a $25B annualized run-rate at triple-digit growth. Wells Fargo upgraded to Overweight (Sep 24, $280 target) citing Project Rainier capacity additions — 56 of 59 " +
-        "tracked analysts now rate it Buy — yet the stock sits ~12% below its August all-time high, a real disconnect between fundamentals and price this cycle. FY2026 CapEx guided to ~$220B. " +
-        "Operating margins continue expanding as high-margin AWS/Ads overtake low-margin retail. Q3 earnings due late October.",
+        "7 Powers 6/7. AWS grew ~39% to ~$46B in Q3 — accelerating for a sixth straight quarter — with a ~$578B backlog and management " +
+        "guiding to 40%+ growth in both 2027 and 2028. ~15% off its high at ~22x forward. Like GOOGL and META, it is now spending more " +
+        "than it earns: trailing free cash flow swung to about −$42B on ~$220B of 2026 capex. Kept because AWS demand is visible and " +
+        "contracted; sized to reflect the cash burn.",
       color: "#ff9900",
       risk: "Medium",
+    },
+    {
+      ticker: "JPM",
+      name: "JPMorgan Chase & Co.",
+      type: "stock",
+      sector: "Banking & Financials",
+      allocation: 9,
+      rationale:
+        "7 Powers 4/7 (scale, switching cost, brand). New, and a deliberate diversifier away from AI capex. ~14% off its high at " +
+        "~12x forward earnings with the strongest balance sheet in US banking. A rising-rate cycle (Fed held at 3.75–4.00% in October, " +
+        "a December hike is ~95% priced) supports net interest income. Risk: an extended hiking cycle eventually means higher " +
+        "unemployment and weaker consumer credit, which JPMorgan itself has flagged.",
+      color: "#a67c52",
+      risk: "Low",
     },
     {
       ticker: "AVGO",
       name: "Broadcom Inc.",
       type: "stock",
       sector: "Semiconductors & Software",
-      allocation: 10,
-      rationale:
-        "7 Powers score: 5/7. Custom AI ASIC chips for Google (TPU) and Meta (MTIA) = switching cost moat " +
-        "(multi-year design partnerships lock hyperscalers in for 3–5 year silicon cycles). " +
-        "Q3 FY2026 actual (reported Sep 2): $29.6B revenue +86% YoY, beat $29.25B estimate; EPS $3.32 beat $3.21 estimate. AI semiconductor revenue $16.7B +221% YoY. Record free cash flow $13.7B " +
-        "(46% of revenue); operating margin expanded to 67.9%. Q4 FY2026 guidance: $34.8B revenue (+93% YoY); AI chip sales guided ~$21.7B (+236% YoY). Management now projects AI semiconductor " +
-        "revenue of ~$115B in FY2027 and ~$230B in FY2028 — demand still outstripping supply. Stock reaction to the beat was muted; up +51% YTD already, much of this quarter's strength looks priced in. " +
-        "VMware vDefend/Avi Load Balancer (Aug 6) extends the software moat; VMware adds recurring software revenue on top of 50%+ EBITDA margins. Cantor Fitzgerald has since raised its target to " +
-        "$600 (from $525), and the board approved a $0.65/share quarterly dividend (paid Sep 30) — coverage is increasingly framing AVGO as a broader AI infrastructure platform rather than a pure " +
-        "chipmaker. Also flagged: a 'China test' and knock-on exposure to the CoreWeave-led AI-slowdown sentiment wobble (see NVDA). " +
-        "Held at 10% — ASIC demand remains the biggest structural shift in AI chips beyond NVDA, but valuation now leaves less margin for error than earlier in the cycle.",
-      color: "#cc0000",
-      risk: "Medium",
-    },
-    {
-      ticker: "CRWD",
-      name: "CrowdStrike Holdings",
-      type: "stock",
-      sector: "Cybersecurity",
       allocation: 7,
       rationale:
-        "7 Powers score: 5/7. Falcon platform = switching cost (single-agent security consolidation) + process power " +
-        "(threat graph trained on 3T+ events/week, impossible to replicate from scratch). " +
-        "Q2 FY2027 actual (reported Aug 26): $1.47B revenue +26% YoY, beat $1.44B estimate; non-GAAP EPS $0.31 beat $0.29 estimate. Net-new ARR $333M, accelerating to +51% YoY on AI-security demand. " +
-        "Record operating cash flow $530M and record free cash flow $377M for the quarter. CEO George Kurtz called it 'the best quarter in CrowdStrike's history.' Stock popped more than 11% in " +
-        "extended trading on the print. Comes on top of the 4-for-1 stock split (Jul 2) and the split-adjusted all-time high hit in July. Baird has since raised its target to $235 (from $230) but " +
-        "kept a Neutral rating — the stock has run further than the rating has, not a new catalyst; shares sit ~$203, off their post-earnings highs. " +
-        "130%+ net revenue retention confirms customers expand rather than churn. Cybersecurity spend is non-discretionary — grows with AI threat surface expansion.",
-      color: "#f97316",
-      risk: "Medium",
-    },
-    {
-      ticker: "TSLA",
-      name: "Tesla Inc.",
-      type: "stock",
-      sector: "EV & Autonomous / Robotics",
-      allocation: 3,
-      rationale:
-        "7 Powers score: 3/7. Weakest moat in this portfolio — EV is becoming a commoditised market with BYD/Chinese " +
-        "OEMs compressing margins. Q2 2026 (reported Jul 22): record $28.2B revenue +26% YoY on record 480,126 deliveries, but non-GAAP EPS $0.33 MISSED $0.53 consensus — " +
-        "operating income fell 57% to $398M (1.4% margin) as gross margin slid to 16.8%. Stock plunged ~14.5% post-earnings, erasing over $140B in market cap. " +
-        "The Cybercab robotaxi production event (Sep 3, Austin, invite-only, Musk absent) landed as a third soft catalyst: Wells Fargo's headline read 'TSLA Cybercab Launch Event Underwhelms,' " +
-        "flagging 'early execution issues' in the Austin service, and stock fell another ~6% the next session. NHTSA has separately opened an audit query into whether the steering-wheel-and-pedal-" +
-        "free Cybercab meets federal safety standards. Musk still targets 'widespread' US robotaxi by year-end and Optimus enterprise leasing in late 2026, with his pay package tied to these milestones. " +
-        "No new earnings since — Q3 deliveries due Oct 2, with Q3 earnings to follow; consensus currently models a YoY EPS and revenue decline. A Nevada Semi-truck factory scale-up (reported Sep 24) " +
-        "is a new product angle distinct from Cybercab/robotaxi, and the EU delayed its FSD regulatory vote to at least December. Stock has recovered to ~$372, but nothing here resolves the human-" +
-        "review flag — Q3 results are the next real data point. AMD's emergence as a STRONG WATCH candidate (see Semiconductors watchlist) gives a concrete swap option to weigh in the meantime. " +
-        "Held at 3% but flagged for human review — three consecutive disappointments (EPS miss, launch-event reception, regulatory scrutiny) with no clean thematic substitute yet identified.",
-      color: "#e82127",
+        "7 Powers 5/7 (custom-ASIC switching cost with Google/Meta, plus VMware recurring software). ~39% off its June high — formally " +
+        "a bear market — at ~15.5x forward earnings, after fiscal Q3 AI semiconductor revenue grew 221%. Analysts are trimming targets " +
+        "on an AI 'digestion phase' and margin pressure. Earnings land Dec 9, the same day as the Fed decision, so this is sized smaller " +
+        "and best built in stages rather than all at once.",
+      color: "#cc0000",
       risk: "High",
     },
     {
-      ticker: "NET",
-      name: "Cloudflare Inc.",
+      ticker: "UNH",
+      name: "UnitedHealth Group",
       type: "stock",
-      sector: "Edge Computing & AI",
-      allocation: 3,
+      sector: "Managed Healthcare",
+      allocation: 7,
       rationale:
-        "7 Powers score: 4/7. Global edge network in 330+ cities processes 20% of all internet traffic — " +
-        "a scale economy with network effects (every node makes the whole network faster). " +
-        "Q2 2026 actual (reported Aug 6): $696.1M revenue +36% YoY, beat its own $664–665M guidance; non-GAAP EPS $0.29 beat consensus by 7.5%. Stock jumped +14.9% on the print even after a " +
-        "$150.7M restructuring charge tied to the prior quarter's 1,100-person (~20%) layoff. Q3 guidance $736–737M, +0.34 non-GAAP EPS. " +
-        "Launched an 'agentic internet' product suite (Agents Week 2026) — model-inference platform and AI-bot classification/monetization tools for publishers, with a Sep 15 deadline to finalize " +
-        "the new AI-bot traffic classifications. No new earnings since Aug 6; stock roughly flat over the trailing month, lagging both its sector and the S&P 500. " +
-        "Since then, NET has had its strongest cycle yet: launched 'Vulnerability Discovery and Remediation,' an automated security service built with OpenAI's Daybreak Defense Network (Sep 9, " +
-        "stock +10%); hit a fresh all-time high of $333.94 on Sep 17; and analyst mean price targets have risen 38% over the trailing ten weeks, outrunning the stock's own 28% gain. " +
-        "7 Powers score (4/7) still trails ANET (5/7) and PANW (5/7), but NET is now winning on its own AI-security angle rather than needing the swap decision resolved in its favor — " +
-        "held at 3%, thesis strengthened, no action needed this cycle.",
-      color: "#f6821f",
-      risk: "High",
-    },
-    {
-      ticker: "PLTR",
-      name: "Palantir Technologies",
-      type: "stock",
-      sector: "AI & Government Analytics",
-      allocation: 5,
-      rationale:
-        "7 Powers score: 4/7. Cornered resource (classified government intelligence data partnerships) + " +
-        "switching cost (AIP deeply embedded in enterprise and government workflows). " +
-        "Q2 2026 actual (reported Aug 3): $1.935B revenue +93% YoY — growth accelerated from Q1's 85%, fastest since the 2020 IPO. US commercial +149% YoY. Adjusted EPS $0.41 beat consensus by 24%. " +
-        "Raised FY2026 guidance to $8.15B (from $7.65B) — US commercial guidance raised to >$3.42B. Stock surged +29.5% on the print, erasing ~$2.7B in short-seller mark-to-market gains in a single session; " +
-        "CEO Alex Karp called the quarter 'otherworldly.' Since then: an expanded PwC strategic collaboration (Sep 3) sent the stock up ~9%, the US Army awarded Palantir's USG unit the TITAN " +
-        "ground-station contract, and former AIG chief Peter Zaffino joined as global head of financial services — a push into a new commercial vertical. But the stock also fell ~5–6% (Sep 2) on " +
-        "profit-taking after touching ~150x trailing earnings against a ~40x software-industry median — by far the richest multiple in the portfolio. Since then, UBS raised its target to $250 " +
-        "(from $220) and the company disclosed a record $2.1B in US commercial bookings — fundamentals and price target both keep climbing. Fundamentals remain the strongest in the " +
-        "portfolio, but valuation is now the dominant risk, flagged for a human sizing review rather than an automatic trim — that flag stands unchanged this cycle, not resolved.",
+        "7 Powers 4/7 (scale, Optum data, cornered provider network). New contrarian pick: ~25% off its high at ~14.7x forward after " +
+        "CMS proposed the 'CRUSH' Medicare Advantage audit rule on Nov 16 (industry-wide clawback est. ~$9B per payment year). The rule " +
+        "is only a proposal — comments run to Jan 19, 2027 and litigation killed a similar framework before — and TD Cowen upgraded to " +
+        "Buy afterward. Healthcare is also where defensive money is rotating. Binary risk: the 2027 guidance due before year-end.",
       color: "#6366f1",
       risk: "High",
     },
     {
-      ticker: "AAPL",
-      name: "Apple Inc.",
+      ticker: "META",
+      name: "Meta Platforms Inc.",
       type: "stock",
-      sector: "Consumer Tech & Services",
-      allocation: 3,
+      sector: "Social Media & AI",
+      allocation: 6,
       rationale:
-        "7 Powers score: 6/7. iOS ecosystem = switching cost (app purchases, iCloud, FaceTime lock-in) + " +
-        "brand (premium pricing power — iPhone ASP rising vs Android) + scale economy (750M+ paying services subscribers). " +
-        "Fiscal Q3 2026 (reported Jul 30): $109.4B revenue +16% YoY, beat estimate; adjusted EPS $1.91 vs $1.89 estimate; net profit $29.8B, diluted EPS +29% YoY. iPhone sales +22%. " +
-        "Leadership change since: John Ternus became CEO on Sep 1, succeeding Tim Cook — Apple's first CEO transition in over a decade. Ternus's debut product event on Sep 9 unveiled the iPhone Duo — " +
-        "Apple's first foldable, correcting the earlier-rumored 'iPhone Ultra' name — plus iPhone 18 Pro/Pro Max, and discontinued the baseline iPhone 18 tier entirely to steer buyers toward the " +
-        "higher-margin Pro models, the biggest release-cadence change in seven years (standard/e models and iPhone Air 2 now pushed to spring 2027). Siri 2.0, rebuilt on a custom Google Gemini model " +
-        "(~$1B/yr deal), ships alongside the new hardware, drawing continued antitrust scrutiny next to the existing ~$20B Google search-default deal. Stock hit a record high after the event — a " +
-        "strong start to the Ternus era that meaningfully de-risks last cycle's leadership-transition watch item, though it remains worth tracking over the next few quarters. Fiscal Q4 2026 earnings " +
-        "due late October.",
-      color: "#555555",
-      risk: "Low",
+        "7 Powers 5/7 — the strongest consumer network effect anywhere, and the Muse AI assistant is a genuine product hit. ~22% off its " +
+        "high at ~17x forward. But it re-qualified only at a reduced size: Q3 free cash flow was about −$2.1B, it bought back no stock in " +
+        "the first nine months of 2026, it booked a ~$9.9B legal charge, and its plan to fund AI with a $60B non-voting Class C share " +
+        "program is reportedly being challenged in Delaware. Great business, shareholder-unfriendly financing.",
+      color: "#0866ff",
+      risk: "Medium",
     },
     {
-      ticker: "MELI",
-      name: "MercadoLibre Inc.",
+      ticker: "ETN",
+      name: "Eaton Corporation",
       type: "stock",
-      sector: "LatAm E-Commerce & Fintech",
-      allocation: 2,
+      sector: "Electrical & Power Infrastructure",
+      allocation: 6,
       rationale:
-        "7 Powers score: 5/7. Network effects (LatAm e-commerce + MercadoPago fintech flywheel — GMV and payments volume in self-reinforcing loop) + " +
-        "scale economy (largest e-commerce platform in 18 Latin American countries, ~5.5% market share expanding). " +
-        "Q2 2026 actual (reported Aug 5): $10.17B revenue +50% YoY, beat estimate; EPS $9.19 beat $8.95 consensus. GMV +36% FX-neutral to $22B; TPV +56% to $101B; added 18M unique active buyers (+25.4% YoY). " +
-        "Credit portfolio expanded 75% YoY to $16.4B with NPL ratios near historical lows; advertising revenue +70%+. But EBIT margin compressed 550bps YoY to 6.7% on AI/logistics/credit investment — " +
-        "stock fell ~4.6% on the print despite the growth beat, the same margin-pressure dynamic flagged last cycle. Digital banks now live in Mexico and Argentina. Since then, the stock has pulled " +
-        "back a further ~7.75% over the trailing month to ~$1,754–1,756; Zacks assigned a #4 (Sell) rank even as one analyst raised its target to $2,150 (Hold) — a momentum/valuation split layered " +
-        "on top of the still-open margin question, not a new fundamentals problem. Forward P/E (~46x) remains a large premium to the ~15.6x industry average. " +
-        "No new earnings since Aug 5; stock ~$1,991 within its $1,495–$2,548 52-week range. JPMorgan reiterated Neutral, while Wedbush flagged MELI as 'well-positioned going into Q4' despite recent " +
-        "underperformance vs the S&P 500 — the margin-compression question stays open into the next print (~November). " +
-        "LatAm remains structurally under-penetrated: formal credit penetration <30%, e-commerce <10% of retail — geographic diversifier uncorrelated to US tech regulatory risk.",
-      color: "#ffe600",
+        "7 Powers 4/7 (scale, switching cost in utility/data-center electrical gear). New. ~33% off its high at ~19x forward — the sell-off " +
+        "came from the Nov 3 midterms and state data-center moratorium proposals, not results: Q3 beat on revenue and EPS, raised guidance, " +
+        "rolling orders +39%, backlog +33%, data-center orders reportedly +101%. Chosen over Vertiv because Eaton also sells into utilities, " +
+        "aerospace and industrial, so it is less exposed if data-center projects get cancelled (Q3 cancellations were reportedly the highest on record).",
+      color: "#14b8a6",
+      risk: "Medium",
+    },
+    {
+      ticker: "NFLX",
+      name: "Netflix Inc.",
+      type: "stock",
+      sector: "Streaming & Media",
+      allocation: 6,
+      rationale:
+        "7 Powers 5/7 (scale economies in content, global subscriber network). New, and outside the AI-capex trade entirely. ~46% off its " +
+        "high (~55% from the 2025 peak) at ~16x forward — the lowest multiple in years — after it trimmed its 2026 ad-revenue forecast " +
+        "to $2.7B and lost Warner Bros. to Paramount. Management is leaning in: a record ~$4.8B buyback in Q3 with ~$22B still authorized. " +
+        "Risk: the ad business keeps under-delivering and analysts keep cutting.",
+      color: "#f43f5e",
+      risk: "Medium",
+    },
+    {
+      ticker: "CRM",
+      name: "Salesforce Inc.",
+      type: "stock",
+      sector: "Enterprise Software",
+      allocation: 5,
+      rationale:
+        "7 Powers 4/7 (switching cost, CRM data lock-in). The one contrarian software slot. The 'SaaS-pocalypse' fear — AI agents replacing " +
+        "per-seat software — has pushed CRM ~27% off its high to ~12x forward earnings even though Agentforce passed $1.5B in annualized " +
+        "revenue (+240%) and free cash flow jumped 81% last quarter. This is the highest-risk name here: if AI labs really do capture CRM " +
+        "spending, the multiple is not a floor. Kept small on purpose.",
+      color: "#38bdf8",
       risk: "High",
     },
   ],

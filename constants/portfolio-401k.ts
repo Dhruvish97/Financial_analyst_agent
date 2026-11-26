@@ -1,26 +1,35 @@
 /**
  * 401k Portfolio — Long Term, Moderately Conservative
  *
- * Research methodology — backtested prompt sequence (see PROMPT_ACCURACY_REPORT.md):
+ * ═══════════════════════════════════════════════════════════════════════════════════════
+ * NOVEMBER 25, 2026 — FROM-SCRATCH REBUILD (human-requested)
+ * ═══════════════════════════════════════════════════════════════════════════════════════
+ * A 20–30 year retirement core should not chase the AI correction — it should be built for
+ * the regime that caused it. The regime now: the Fed is hiking (3.75–4.00%, a December
+ * hike ~95% priced), headline PCE inflation is 3.8% and core 3.3%, the dollar sits near a
+ * 19-month high, and gold has fallen ~36% from its January record as real yields rose.
  *
- * NOTE: The prompts ranked highest for growth stock selection (#17 Moat, #8 Bain,
- * #18 Behavioral Finance) are deliberately NOT the primary framework here. For a
- * diversified, tax-deferred retirement portfolio, the relevant accuracy dimension is
- * risk-adjusted return and drawdown management — not single-stock alpha generation.
+ * What changed from the prior 401k, and why:
+ *   + SCHP 8%  (TIPS) — inflation-linked Treasuries hedge inflation directly; gold hedges
+ *              it only loosely and has just shown it can fall 36% in a hiking cycle.
+ *   + VGSH 6%  — short Treasuries yield ~4% with little rate risk while the Fed is still
+ *              raising; BND trimmed 22% → 14% so total fixed income stays ~28%.
+ *   ~ VXUS 12 → 14% — international equity trades ~14x earnings vs ~22x for the S&P 500,
+ *              a wider-than-usual discount after the US tech correction.
+ *   ~ VTI 28 → 30% — the broad US market is ~8% off its high; buying the whole market on
+ *              the dip, not just the beaten-up AI corner, is the right move for this account.
+ *   − SCHD 15 → 12%, VHT 9 → 7% — both near their highs after the defensive rotation;
+ *              still held, but no longer bargains.
+ *   − GLD 7 → 5% — kept as a crisis hedge, cut because TIPS now do the inflation job better.
+ *   − VNQ 7 → 4% — REITs are among the most rate-sensitive assets in a hiking cycle.
  *
- *   - Prompt #5  BlackRock Portfolio Builder → 48/100 on stock picking — but correct
- *                for overall asset allocation and risk-adjusted Sharpe optimisation
- *   - Prompt #3  Bridgewater Risk Assessment → 62/100 — excellent for risk sizing,
- *                correlation analysis, and tail-risk hedging (gold, bonds)
- *   - Prompt #7  Harvard Endowment Dividend → 15/100 on growth stocks — correct for
- *                income component (SCHD) in a retirement context
- *   - Prompt #10 McKinsey Macro Report → 70/100 — structural tailwinds for sector ETFs
- *   - Prompt #13 Forensic Accounting Auditor → mandatory screen on all ETF constituents
- *
- * Strategy: Low-cost, tax-deferred compounding. Broad market + international
- * diversification, meaningful bond allocation for ballast, dividend ETF for
- * quality tilt, real assets (REITs + gold) as inflation hedges.
- * Structure validated and unchanged — ETF-heavy approach is optimal for 20–30yr horizon.
+ * Framework: Prompt #5 BlackRock Portfolio Builder (allocation), #3 Bridgewater Risk
+ * Assessment (regime/rates, tail hedges), #7 Harvard Endowment Dividend (SCHD income),
+ * #10 McKinsey Macro (inflation and Fed regime), #13 Forensic screen on ETF constituents.
+ * Note: the stock-picking prompts (#17 Moat, #8 Bain) are deliberately not the primary
+ * framework here — for a diversified retirement core the relevant dimension is
+ * risk-adjusted return and drawdown, not single-stock alpha.
+ * ═══════════════════════════════════════════════════════════════════════════════════════
  */
 
 import { PortfolioDefinition } from "@/types/portfolio";
@@ -35,16 +44,16 @@ export const PORTFOLIO_401K: PortfolioDefinition = {
   accentColor: "border-blue-500/40",
   cardGradient: "from-blue-500/10 to-transparent",
   description:
-    "A tax-deferred retirement portfolio built for long-term compounding. " +
-    "Core allocation in broad US and international equity index ETFs provides " +
-    "market-rate growth, while a 22% bond sleeve smooths volatility. " +
-    "SCHD adds a quality dividend filter, REITs provide real estate exposure, " +
-    "and gold acts as an inflation and tail-risk hedge.",
+    "Rebuilt Nov 25, 2026 for a rate-hiking, above-target-inflation regime. Broad US and international index funds " +
+    "remain the growth engine (44%), with international raised because it trades at a wider discount to the US than usual. " +
+    "Fixed income stays ~28% but is now split across core bonds, short Treasuries and inflation-protected TIPS, so the " +
+    "portfolio is less exposed to further rate hikes. Gold and REITs were trimmed after a hiking cycle showed how " +
+    "rate-sensitive both are.",
   promptsUsed: [
     "Prompt #5  — BlackRock Portfolio Builder (asset allocation + Sharpe optimisation)",
-    "Prompt #3  — Bridgewater Risk Assessment (correlation, drawdown & tail-risk hedging)",
+    "Prompt #3  — Bridgewater Risk Assessment (rate regime, inflation & tail-risk hedging)",
     "Prompt #7  — Harvard Endowment Dividend Strategy (income component via SCHD)",
-    "Prompt #10 — McKinsey Macro Report (rate & inflation regime positioning)",
+    "Prompt #10 — McKinsey Macro Report (Fed hiking cycle, inflation at 3.8% headline)",
     "Prompt #13 — Forensic Accounting Auditor (mandatory screen — all ETFs clear)",
   ],
   holdings: [
@@ -53,10 +62,10 @@ export const PORTFOLIO_401K: PortfolioDefinition = {
       name: "Vanguard Total Market ETF",
       type: "etf",
       sector: "US Broad Market",
-      allocation: 28,
+      allocation: 30,
       rationale:
-        "One-ticket exposure to the entire US equity market (4,000+ stocks). " +
-        "0.03% expense ratio makes it the gold standard for tax-deferred core holdings.",
+        "One-ticket exposure to ~4,000 US stocks at a 0.03% fee. Raised from 28% because the whole US market is ~8% off its " +
+        "high — buying broadly on the dip, rather than just the AI names that fell hardest, is the right move for a 20–30 year account.",
       color: "#3b82f6",
       risk: "Low",
     },
@@ -65,10 +74,10 @@ export const PORTFOLIO_401K: PortfolioDefinition = {
       name: "Vanguard International ETF",
       type: "etf",
       sector: "International Equity",
-      allocation: 12,
+      allocation: 14,
       rationale:
-        "Covers 8,000+ non-US stocks across developed and emerging markets. " +
-        "Reduces home-country bias and captures growth in regions outpacing the US.",
+        "8,000+ non-US stocks at roughly 14x earnings versus ~22x for the S&P 500. Raised from 12% because that valuation gap is " +
+        "wider than usual after the US tech correction. A strong dollar is the near-term headwind; over decades it tends to mean-revert.",
       color: "#60a5fa",
       risk: "Medium",
     },
@@ -77,10 +86,10 @@ export const PORTFOLIO_401K: PortfolioDefinition = {
       name: "Vanguard Total Bond Market ETF",
       type: "bond",
       sector: "Fixed Income",
-      allocation: 22,
+      allocation: 14,
       rationale:
-        "Broad US investment-grade bond exposure — treasuries, corporates, agency. " +
-        "Acts as the portfolio's shock absorber during equity drawdowns.",
+        "Core investment-grade bonds and the portfolio's main shock absorber in an equity drawdown. Trimmed from 22% because its " +
+        "intermediate duration loses value if the Fed keeps hiking; the difference moved into short Treasuries and TIPS below.",
       color: "#93c5fd",
       risk: "Low",
     },
@@ -89,11 +98,23 @@ export const PORTFOLIO_401K: PortfolioDefinition = {
       name: "Schwab US Dividend Equity ETF",
       type: "etf",
       sector: "Dividend / Quality",
-      allocation: 15,
+      allocation: 12,
       rationale:
-        "Screens for 10+ years of consecutive dividends, strong free cash flow, " +
-        "and high dividend growth. Historically lower drawdowns than SPY with comparable returns.",
+        "Quality dividend growers with lower historical drawdowns than the S&P 500. Trimmed from 15% — it is near its high after " +
+        "the defensive rotation, so still worth holding but no longer a bargain.",
       color: "#1d4ed8",
+      risk: "Low",
+    },
+    {
+      ticker: "SCHP",
+      name: "Schwab US TIPS ETF",
+      type: "bond",
+      sector: "Inflation-Protected Bonds",
+      allocation: 8,
+      rationale:
+        "New. Treasury Inflation-Protected Securities adjust principal with CPI, so they hedge inflation directly — useful with " +
+        "headline PCE at 3.8%. Replaces part of the gold allocation, which hedges inflation only loosely and just fell ~36% as real yields rose.",
+      color: "#0ea5e9",
       risk: "Low",
     },
     {
@@ -101,36 +122,48 @@ export const PORTFOLIO_401K: PortfolioDefinition = {
       name: "Vanguard Health Care ETF",
       type: "etf",
       sector: "Healthcare",
-      allocation: 9,
+      allocation: 7,
       rationale:
-        "Defensive sector with secular tailwinds from aging demographics. " +
-        "Healthcare historically holds up better in recessions — critical for a long-duration portfolio.",
+        "Defensive sector with demographic tailwinds, and where money has been rotating during the tech sell-off. Trimmed from 9% " +
+        "because that rotation has already lifted it near its high.",
       color: "#2563eb",
       risk: "Low",
     },
     {
-      ticker: "VNQ",
-      name: "Vanguard Real Estate ETF",
-      type: "etf",
-      sector: "Real Estate",
-      allocation: 7,
+      ticker: "VGSH",
+      name: "Vanguard Short-Term Treasury ETF",
+      type: "bond",
+      sector: "Short-Term Fixed Income",
+      allocation: 6,
       rationale:
-        "Diversified REIT exposure providing real asset inflation hedging and income. " +
-        "Low correlation to bonds makes it an effective diversifier in a 401k.",
+        "New to this portfolio. 1–3 year Treasuries yield roughly in line with the 3.75–4.00% policy rate with very little price risk if " +
+        "rates keep rising. Dry powder to rebalance into stocks if the correction deepens.",
       color: "#7dd3fc",
-      risk: "Medium",
+      risk: "Low",
     },
     {
       ticker: "GLD",
       name: "SPDR Gold Shares ETF",
       type: "etf",
       sector: "Commodities / Gold",
-      allocation: 7,
+      allocation: 5,
       rationale:
-        "Safe haven and inflation hedge with near-zero correlation to equities or bonds. " +
-        "Endorsed by Bridgewater-style 'all weather' frameworks for tail-risk protection.",
+        "Kept as a crisis hedge with low correlation to stocks and bonds, but cut from 7%: gold fell ~36% from its January record as " +
+        "the Fed hiked and the dollar strengthened, and TIPS now cover the inflation-hedging role more directly.",
       color: "#fbbf24",
-      risk: "Low",
+      risk: "Medium",
+    },
+    {
+      ticker: "VNQ",
+      name: "Vanguard Real Estate ETF",
+      type: "etf",
+      sector: "Real Estate",
+      allocation: 4,
+      rationale:
+        "Real-asset diversification and income. Cut from 7% because REITs are among the most rate-sensitive assets while the Fed is " +
+        "still hiking; a candidate to rebuild once the hiking cycle ends.",
+      color: "#a5b4fc",
+      risk: "Medium",
     },
   ],
 };

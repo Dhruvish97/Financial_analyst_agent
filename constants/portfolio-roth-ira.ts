@@ -1,6 +1,29 @@
 /**
  * Roth IRA Portfolio — Semi Short Term, Moderately Aggressive
  *
+ * ═══════════════════════════════════════════════════════════════════════════════════════
+ * NOVEMBER 25, 2026 — FROM-SCRATCH REBUILD (human-requested; supersedes the lineup below)
+ * ═══════════════════════════════════════════════════════════════════════════════════════
+ * Rebuilt alongside Aggressive Growth (see constants/portfolio-stocks.ts for the full market
+ * backdrop, the "should we be cautious on AI chips and memory?" answer, and the list of
+ * names that did not re-qualify). Normal refresh rules were waived for this rebuild.
+ *
+ * Roth-specific logic: tax-free compounding makes this the right account to buy
+ * long-duration growth during a correction, but through a 30% index core (VOO 16 + QQQ 14)
+ * rather than concentrated single names. Single names are the Aggressive Growth holdings
+ * with the longest runway; META, JPM and CRM were left out here (META's equity-funded capex
+ * and CRM's AI-disruption risk are better sized in a taxable account where losses can be
+ * harvested; JPM's role as a rate-cycle diversifier is already covered by VOO's ~13%
+ * financials weight, and this account is meant to lean toward growth).
+ *
+ * New lineup: VOO 16 · QQQ 14 · MSFT 12 · TSM 10 · GOOGL 10 · NVDA 8 · AMZN 8 · AVGO 6 ·
+ *             ETN 6 · NFLX 5 · UNH 5
+ * Removed vs. prior lineup: META, CRWD (~127x forward), PLTR (~64x forward), VGT
+ * (redundant with QQQ). NVDA cut 18% → 8% on governance risk.
+ * ═══════════════════════════════════════════════════════════════════════════════════════
+ *
+ * HISTORY — prior lineup and refresh notes (superseded by the rebuild above):
+ *
  * Research methodology — backtested prompt sequence (see PROMPT_ACCURACY_REPORT.md):
  *   TIER 1 (Structural Foundation — highest accuracy):
  *   - Prompt #17 Moat Destroyer (7 Powers) → 92/100 — every holding must score ≥ 3/7
@@ -81,141 +104,108 @@ export const PORTFOLIO_ROTH_IRA: PortfolioDefinition = {
   accentColor: "border-green-500/40",
   cardGradient: "from-green-500/10 to-transparent",
   description:
-    "A tax-free growth portfolio concentrated in AI and technology leaders with the " +
-    "highest moat scores (Prompt #17). The Roth structure " +
-    "maximises the benefit of high-growth assets — all gains compound tax-free. " +
-    "Core positions in mega-cap compounders with perfect or near-perfect 7 Powers scores, " +
-    "supported by AVGO (custom ASIC moat) and CRWD (Falcon switching cost). " +
-    "QQQ and VGT provide diversified tech breadth. Rebuilt March 2026.",
+    "Rebuilt from scratch on Nov 25, 2026. A tax-free account is the best place to buy long-duration growth on sale, " +
+    "because any recovery compounds untaxed — so this portfolio leans into the AI-led correction, but through a 30% " +
+    "broad-index core (VOO + QQQ, both meaningfully off their highs) rather than concentrated single names. Individual " +
+    "holdings are the subset of the Aggressive Growth rebuild with the longest compounding runway; AI chip exposure is " +
+    "held through TSM, NVDA and AVGO at moderate sizes, with no memory or high-multiple software.",
   promptsUsed: [
-    "Prompt #17 — Moat Destroyer / 7 Powers (primary filter for every holding)",
-    "Prompt #8  — Bain Competitive Analysis (sector winner confirmation)",
-    "Prompt #18 — Behavioral Finance Bias Auditor (contrarian check)",
-    "Prompt #6  — Citadel Technical Analysis (RSI entry timing)",
-    "Prompt #11 — Peter Lynch GARP (PEG validation on profitable names)",
-    "Prompt #13 — Forensic Accounting Auditor (mandatory risk filter — all clear)",
+    "Prompt #17 — Moat Destroyer / 7 Powers (every single-stock holding ≥ 3/7)",
+    "Prompt #5  — BlackRock Portfolio Builder (index core vs. single-name satellite split)",
+    "Prompt #18 — Behavioral Finance Bias Auditor (buying fear vs. catching falling knives)",
+    "Prompt #13 — Forensic Accounting Auditor (free cash flow checks on every name)",
+    "Prompt #11 — Peter Lynch GARP (forward P/E vs. growth at reset prices)",
   ],
   holdings: [
     {
-      ticker: "NVDA",
-      name: "NVIDIA Corporation",
-      type: "stock",
-      sector: "AI Semiconductors",
-      allocation: 18,
+      ticker: "VOO",
+      name: "Vanguard S&P 500 ETF",
+      type: "etf",
+      sector: "ETF — S&P 500",
+      allocation: 16,
       rationale:
-        "7 Powers score: 6/7. CUDA ecosystem = switching cost + cornered resource. " +
-        "Q2 FY27 actual (reported Aug 26): $96.2B revenue +106% YoY beat; GAAP EPS $2.22 beat; data center revenue $89B +117% YoY, now 92% of total. Q3 FY27 guidance $108B beats the $104.2B " +
-        "street estimate. AWS separately committed to buy 2M NVDA GPUs plus NVDA's new 'Vera' CPU — the largest hyperscaler AI-compute order disclosed to date. " +
-        "Hyperscaler combined CapEx keeps climbing past $520B for 2026 across Google, MSFT, Amazon, and Meta. Sector sentiment wobbled this cycle on an Anthropic-CEO essay urging an AI-buildout " +
-        "slowdown, but hyperscaler capex commitments haven't moved — a sentiment risk to watch, not a change to the underlying thesis. " +
-        "Roth structure makes this ideal: tax-free exit on a stock with multi-year compounding ahead.",
-      color: "#76b900",
-      risk: "High",
-    },
-    {
-      ticker: "MSFT",
-      name: "Microsoft Corporation",
-      type: "stock",
-      sector: "Cloud & AI",
-      allocation: 14,
-      rationale:
-        "7 Powers score: 7/7 (perfect score). Azure + Office 365 enterprise lock-in. " +
-        "FY26 Azure revenue crossed $100B for the first time; CFO Amy Hood guided Q1 FY27 Azure growth to ~45% constant currency — accelerating further. " +
-        "The Microsoft–OpenAI partnership evolved this cycle: OpenAI has committed to an incremental $250B of Azure purchases, with Microsoft holding exclusive IP rights and Azure API exclusivity " +
-        "until AGI; Nadella confirmed early enterprise customers are already using OpenAI's new GPT-6 Astra model on Azure. Copilot monetisation adds per-seat revenue on top. Shipped a major " +
-        "Copilot upgrade this cycle unifying chat/coding/agents and raised its dividend 8%, but Raymond James issued a rare 'Strong Sell' while Oppenheimer flagged 2027 IT-spend pull-forward risk — " +
-        "calendar-2026 capex is running past $175B and quarterly FCF fell 23.2%, a real split in how the Street reads the same capex story. " +
-        "GARP check: forward earnings multiple remains reasonable for a business growing Azure at an accelerating rate with high revenue visibility.",
-      color: "#00a4ef",
+        "The core. ~8% off its high at ~22x trailing earnings, it owns the whole market — including the healthcare, financial and " +
+        "defensive sectors money is rotating into — so a broad recovery is captured even if the AI names stay volatile. In a Roth, " +
+        "low-turnover index exposure bought during a correction is about as efficient as tax-free compounding gets.",
+      color: "#22c55e",
       risk: "Low",
-    },
-    {
-      ticker: "GOOGL",
-      name: "Alphabet Inc.",
-      type: "stock",
-      sector: "Internet & AI",
-      allocation: 11,
-      rationale:
-        "7 Powers score: 6/7. 92% search moat + YouTube flywheel + Google Cloud, whose customers (per Cloud CEO Kurian) now spend ~50% above original commitments. " +
-        "Gemini 3.8 Flash launched Sep 2 — the third Flash model in six weeks, plus a Cyber variant for enterprise/government use — keeping Gemini competitive at the frontier. " +
-        "A federal judge rejected the DOJ's push to force divestiture of Google's ad exchange (Sep), removing a standing antitrust overhang; the stock is recovering in September after its longest " +
-        "monthly losing streak in over a decade — a contrarian setup, though the stock has stayed rangebound $330–350 this cycle. Launched Gemini 3.8 Live + Extended Thinking for real-time, " +
-        "voice-first AI and committed €13B to a Finland AI-datacenter buildout for 2027–28. Waymo robotaxi commercially deployed in multiple cities. " +
-        "Greenblatt screen: highest ROIC (~28%) among mega-cap internet at a discount to MSFT/META multiples.",
-      color: "#4285f4",
-      risk: "Medium",
-    },
-    {
-      ticker: "META",
-      name: "Meta Platforms Inc.",
-      type: "stock",
-      sector: "Social Media & AI",
-      allocation: 9,
-      rationale:
-        "7 Powers score: 5/7. Network effects on 3.58B DAU = strongest consumer tech moat. " +
-        "Prompt #18 (Behavioral Finance): In Jan 2023, META had 55% sell ratings → returned +194%. " +
-        "Agreed Aug 26 to pay ~$18B (a $10B Q3 charge, paid over 10 years) settling a 29-state youth-safety lawsuit; Morgan Stanley (Sep 2) called it a net positive that removes a legal overhang " +
-        "and clears the way for new AI product launches — the network-effect moat itself is unaffected. CapEx guidance keeps climbing toward $135–145B for FY2026 as new external compute deals " +
-        "(Google Cloud, CoreWeave, talks with Oracle) stack on top of in-house buildout. Since then, Muse — Meta's new AI assistant — became a viral hit, with shares +36% in September and nearing a " +
-        "$2T market cap; a New Mexico jury separately found Meta misled users on data-safety rules, a fresh legal matter distinct from the Aug settlement. Llama open-source cuts inference costs " +
-        "$3B+/yr. Roth ideal: no dividend, pure capital appreciation.",
-      color: "#0866ff",
-      risk: "Medium",
-    },
-    {
-      ticker: "AMZN",
-      name: "Amazon.com Inc.",
-      type: "stock",
-      sector: "Cloud & E-Commerce",
-      allocation: 9,
-      rationale:
-        "7 Powers score: 6/7. AWS scale leader with 32%+ cloud share; advertising at $60B+ run-rate. " +
-        "AWS committed to buy 2M NVIDIA GPUs plus NVDA's new 'Vera' CPU — the largest disclosed hyperscaler AI-compute order this cycle — and rolled out new Graviton5-powered EC2 instances (up " +
-        "to 25% better compute than the prior generation), extending its custom-silicon cost edge. AWS backlog has since swelled to ~$496B (from ~$195B a year ago); Wells Fargo upgraded to " +
-        "Overweight (Sep 24, $280 target) on Project Rainier capacity — yet the stock sits ~12% below its August high, a real disconnect between fundamentals and price. Operating margin expanding " +
-        "as high-margin AWS/Ads become dominant. Roth is ideal for AMZN: zero dividends (no tax drag) and all return expected via capital appreciation.",
-      color: "#ff9900",
-      risk: "Medium",
     },
     {
       ticker: "QQQ",
       name: "Invesco QQQ Trust",
       type: "etf",
       sector: "ETF — Nasdaq 100",
-      allocation: 12,
+      allocation: 14,
       rationale:
-        "Broad Nasdaq-100 exposure captures tech beta without single-stock risk. " +
-        "Trimmed to 12% (was 15%) — freed allocation moved to AVGO and CRWD " +
-        "where moat analysis gives higher conviction than broad-index exposure.",
+        "Growth-tilted index exposure ~17% off its high — a larger discount than the S&P because the correction is concentrated in tech. " +
+        "It does overlap with the single-name holdings below (MSFT, NVDA, GOOGL, AMZN, AVGO are top weights), which is intentional: it " +
+        "spreads the AI bet across 100 names instead of relying on picking the right three.",
       color: "#8884d8",
       risk: "Medium",
     },
     {
-      ticker: "VGT",
-      name: "Vanguard Info Technology ETF",
-      type: "etf",
-      sector: "ETF — Technology",
-      allocation: 7,
+      ticker: "MSFT",
+      name: "Microsoft Corporation",
+      type: "stock",
+      sector: "Cloud & AI",
+      allocation: 12,
       rationale:
-        "Pure-play technology sector ETF at 0.10% fee. Provides exposure to mid-cap tech " +
-        "names not fully represented in QQQ. Trimmed to 8% (was 10%) — same rationale as QQQ trim; " +
-        "backtesting shows concentrated moat-quality names outperform broad-tech ETFs.",
-      color: "#a78bfa",
+        "7 Powers 7/7 and the only major AI spender still free-cash-flow positive ($18.6B last quarter; expects to stay positive for FY27). " +
+        "Azure +48%, guided to 49–50%. Only ~12% off its high at ~20x forward, so it is the quality anchor rather than a bargain — the " +
+        "name most likely to keep compounding through a long, credit-tight AI cycle.",
+      color: "#00a4ef",
+      risk: "Low",
+    },
+    {
+      ticker: "TSM",
+      name: "Taiwan Semiconductor (ADR)",
+      type: "stock",
+      sector: "Semiconductor Foundry",
+      allocation: 10,
+      rationale:
+        "7 Powers 6/7. Makes the leading-edge chips for NVDA, AMD, Broadcom's custom ASICs and Apple, so it wins whichever AI chip design " +
+        "wins, and it is reportedly raising prices ~10% next year. ~30% off its high at ~14.6x forward. A 5–10 year Roth horizon is the " +
+        "right place to hold through its main risk (Taiwan geopolitics) and through any capex digestion phase.",
+      color: "#9333ea",
       risk: "Medium",
     },
     {
-      ticker: "CRWD",
-      name: "CrowdStrike Holdings",
+      ticker: "GOOGL",
+      name: "Alphabet Inc.",
       type: "stock",
-      sector: "Cybersecurity",
+      sector: "Internet & AI",
       allocation: 10,
       rationale:
-        "7 Powers score: 5/7. Falcon platform = switching cost (single-agent consolidation) + " +
-        "process power (3T+ events/week threat graph). Q2 FY2027 actual (reported Aug 26): $1.47B revenue +26% YoY beat; non-GAAP EPS $0.31 beat; net-new ARR $333M accelerating to +51% YoY on " +
-        "AI-security demand. CEO called it the best quarter in company history; stock popped more than 11% after hours. 130%+ net revenue retention confirms customers expand rather than churn. " +
-        "Baird has since raised its target to $235 but kept a Neutral rating — the stock has run further than the rating has. " +
-        "Held at 10% — cybersecurity + platform consolidation thesis is durable regardless of macro regime. Strongest moat score in cybersecurity sector.",
-      color: "#f97316",
+        "7 Powers 6/7 at ~14x trailing earnings, ~33% off its high. Google Cloud roughly doubled to $30.7B with a ~$561B backlog, and TPUs " +
+        "are becoming a product line. The trade-off is real: Q3 free cash flow was −$9.1B and debt has grown ~6x in a year to fund capex. " +
+        "Over ten years the moat should matter more than the cash-burn phase; that is why it fits the Roth.",
+      color: "#4285f4",
+      risk: "Medium",
+    },
+    {
+      ticker: "NVDA",
+      name: "NVIDIA Corporation",
+      type: "stock",
+      sector: "AI Semiconductors",
+      allocation: 8,
+      rationale:
+        "7 Powers 6/7. Record Q3 FY27 ($115.8B, +103%) and a $130B Q4 guide, yet ~39% off its high at ~9x forward because of the Huang " +
+        "resignation/reinstatement, an open board investigation and S&P CreditWatch Negative. A long horizon can absorb that governance " +
+        "noise better than a taxable account can, but it is still sized well below its old 18% weight.",
+      color: "#76b900",
+      risk: "High",
+    },
+    {
+      ticker: "AMZN",
+      name: "Amazon.com Inc.",
+      type: "stock",
+      sector: "Cloud & E-Commerce",
+      allocation: 8,
+      rationale:
+        "7 Powers 6/7. AWS ~+39% and accelerating for six quarters, ~$578B backlog, 40%+ growth guided for 2027 and 2028. ~15% off its " +
+        "high. Trailing free cash flow is about −$42B on ~$220B of capex — a known cost of the buildout, sized accordingly. No dividend, " +
+        "so all of the return compounds inside the Roth.",
+      color: "#ff9900",
       risk: "Medium",
     },
     {
@@ -223,29 +213,49 @@ export const PORTFOLIO_ROTH_IRA: PortfolioDefinition = {
       name: "Broadcom Inc.",
       type: "stock",
       sector: "Semiconductors & Software",
-      allocation: 7,
+      allocation: 6,
       rationale:
-        "7 Powers score: 5/7. Custom AI ASIC chips (Google TPU, Meta MTIA) = multi-year switching cost. " +
-        "Q3 FY2026 actual (reported Sep 2): $29.6B revenue +86% YoY beat; AI semiconductor revenue $16.7B +221% YoY; record FCF $13.7B. Management now projects FY2027/28 AI semi revenue of " +
-        "~$115B/~$230B. Stock reaction was muted — up +51% YTD already, this quarter's strength looks largely priced in. VMware acquisition adds high-margin recurring software revenue (50%+ EBITDA). " +
-        "Cantor Fitzgerald has since raised its target to $600 (from $525); the board approved a $0.65/share dividend, though the Roth thesis here isn't about income. " +
-        "ASIC demand remains the biggest AI chip story beyond NVDA, and Broadcom is the only scaled competitor.",
+        "7 Powers 5/7. ~39% off its high (bear-market territory) at ~15.5x forward after AI semiconductor revenue grew 221% last quarter. " +
+        "Earnings on Dec 9 coincide with the Fed decision, so this is a position to build in stages, not in one buy.",
       color: "#cc0000",
+      risk: "High",
+    },
+    {
+      ticker: "ETN",
+      name: "Eaton Corporation",
+      type: "stock",
+      sector: "Electrical & Power Infrastructure",
+      allocation: 6,
+      rationale:
+        "7 Powers 4/7. The electricity bottleneck is a decade-long theme, and Eaton is the diversified way to own it: ~33% off its high at " +
+        "~19x forward after a midterm-driven sell-off, while Q3 beat and raised with orders +39% and backlog +33%. Sells to utilities, " +
+        "aerospace and industry as well as data centers.",
+      color: "#14b8a6",
       risk: "Medium",
     },
     {
-      ticker: "PLTR",
-      name: "Palantir Technologies",
+      ticker: "NFLX",
+      name: "Netflix Inc.",
       type: "stock",
-      sector: "AI & Government Analytics",
-      allocation: 3,
+      sector: "Streaming & Media",
+      allocation: 5,
       rationale:
-        "7 Powers score: 4/7. Cornered resource in government intelligence data + AIP switching cost. " +
-        "Q2 2026 actual (reported Aug 3): $1.935B revenue +93% YoY, fastest since IPO; raised FY2026 guidance to $8.15B. Since then, an expanded PwC collaboration (Sep 3, stock +~9%) and the " +
-        "Army's TITAN ground-station contract extend the growth story, but the stock has also touched ~150x trailing earnings against a ~40x software-sector median — a valuation risk worth " +
-        "watching even at this account's smaller 3% sizing. AIP is now a production revenue engine — not a proof of concept. GAAP profitable 8+ consecutive quarters. UBS has since raised its target " +
-        "to $250 (from $220) on a record $2.1B in US commercial bookings — the valuation flag stands unchanged, not resolved. " +
-        "Roth ideal for PLTR: no dividend, and outsized capital gain potential in a tax-free account.",
+        "7 Powers 5/7, and uncorrelated with AI capex. ~46% off its high at ~16x forward — its cheapest in years — after a cut to its " +
+        "2026 ad-revenue forecast. Management bought back a record ~$4.8B of stock in Q3. A long holding period gives the ad business " +
+        "time to mature.",
+      color: "#f43f5e",
+      risk: "Medium",
+    },
+    {
+      ticker: "UNH",
+      name: "UnitedHealth Group",
+      type: "stock",
+      sector: "Managed Healthcare",
+      allocation: 5,
+      rationale:
+        "7 Powers 4/7. ~25% off its high at ~14.7x forward after CMS proposed the CRUSH Medicare Advantage audit rule (Nov 16). The rule " +
+        "is a proposal with a Jan 19 comment deadline and real litigation risk for CMS; healthcare is also where defensive money is " +
+        "rotating. Smaller than in Aggressive Growth because the 2027 guidance (due before year-end) is a binary event.",
       color: "#6366f1",
       risk: "High",
     },

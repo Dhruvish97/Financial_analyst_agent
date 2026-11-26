@@ -23,6 +23,27 @@ export interface ResearchLogEntry {
 // Newest first.
 export const RESEARCH_LOG: ResearchLogEntry[] = [
   {
+    date: "2026-11-25",
+    scope: "multi",
+    title: "From-scratch rebuild after the AI correction",
+    summary:
+      "At the user's request, the existing lists were set aside and all four US portfolios were rebuilt from new research. " +
+      "The AI sell-off is being driven by the buyers of AI chips — three of the four biggest spenders are now free-cash-flow " +
+      "negative and funding capex with debt and equity, AI credit spreads are at records, and a December Fed hike is ~95% " +
+      "priced — plus Nvidia's CEO resignation and reinstatement. Chip demand itself is still strong. Verdict: be cautious on " +
+      "memory, selective on chips, and diversify away from AI capex.",
+    highlights: [
+      "Aggressive Growth: MSFT 12 · TSM 12 · GOOGL 11 · NVDA 10 · AMZN 9 · JPM 9 · AVGO 7 · UNH 7 · META 6 · ETN 6 · NFLX 6 · CRM 5",
+      "Tax-Free Growth: 30% index core (VOO 16, QQQ 14) plus MSFT, TSM, GOOGL, NVDA, AMZN, AVGO, ETN, NFLX, UNH",
+      "Did not re-qualify: PLTR, TSLA, NET, CRWD (valuation), AAPL (no pullback), MELI (margins/FX), MU (peak-cycle memory), ORCL (credit)",
+      "NVDA cut from 20% to 10% on governance risk despite a ~9x forward P/E and a record $115.8B quarter",
+      "New diversifiers: JPM, UNH, NFLX, ETN; TSM added as the 'picks and shovels' way to own AI chips",
+      "Retirement Core adds TIPS (SCHP) and short Treasuries, trims gold (−36% from its high) and REITs for a hiking cycle",
+      "Medium-Term Savings moves to 50% Treasuries (new SGOV T-bills); swaps near-high PG/KO for pulled-back PEP",
+      "Watchlist rebuilt: VRT (STRONG WATCH), AMD, MU, ASML, LLY, V, CRWD; INTU, ORCL, ALAB on radar",
+    ],
+  },
+  {
     date: "2026-09-27",
     scope: "multi",
     title: "Fed hikes for first time since 2023; AMD crosses $1T on OpenAI/Meta warrant deals; NET's strongest cycle yet",

@@ -88,6 +88,7 @@ export const TICKER_SECTOR: Record<string, string> = {
   ZS: "Cybersecurity / Cloud",
   S: "Cybersecurity / Cloud",
   SNOW: "Cybersecurity / Cloud",
+  CRM: "Cybersecurity / Cloud",
 
   // Consumer Growth
   CMG: "Consumer Growth",
@@ -97,6 +98,7 @@ export const TICKER_SECTOR: Record<string, string> = {
   MCD: "Consumer Growth",
   MELI: "Consumer Growth",
   LULU: "Consumer Growth",
+  NFLX: "Consumer Growth",
   TSLA: "Consumer Growth",
 
   // Healthcare / Healthcare Innovation
@@ -165,6 +167,7 @@ export const TICKER_SECTOR: Record<string, string> = {
   TLT: "Bonds / Fixed Income",
   VGSH: "Bonds / Fixed Income",
   SGOV: "Bonds / Fixed Income",
+  SCHP: "Bonds / Fixed Income",
   IEF: "Bonds / Fixed Income",
   LQD: "Bonds / Fixed Income",
   SHY: "Bonds / Fixed Income",

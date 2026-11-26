@@ -98,21 +98,12 @@ export const AGGRESSIVE_TARGET: PortfolioTarget = {
   label: "Aggressive",
   tagline: "Maximum Growth · High Conviction",
   description:
-    "Concentrates in high-7-Powers moat companies and secular megatrends: " +
-    "AI infrastructure, cybersecurity, and digital payments. " +
-    "Accepts short-term volatility in exchange for outsized 5–10 year returns. " +
-    "September 5, 2026 update: NVDA (Q2 FY27: $96.2B revenue +106% YoY), AVGO (Q3 FY26: $29.6B +86% YoY, AI semi +221% YoY), and CRWD (Q2 FY27: best quarter in company history per CEO Kurtz) " +
-    "all beat and raised guidance. META agreed to an ~$18B settlement over youth-safety claims — Morgan Stanley called it a net positive that clears the way for new AI products — while capex keeps " +
-    "climbing on new CoreWeave and Google Cloud compute deals. GOOGL won an antitrust ruling on its ad exchange and is recovering from its longest monthly losing streak in over a decade. " +
-    "TSLA's Cybercab robotaxi launch underwhelmed investors and drew an NHTSA safety inquiry — a third straight soft catalyst. PLTR's fundamentals remain the portfolio's strongest, but its stock " +
-    "touched ~150x trailing earnings, now the dominant risk. Apple's John Ternus became CEO Sep 1, the company's first leadership change since 2011, days before unveiling the iPhone 18 Pro/Pro Max " +
-    "and its first foldable phone. Fed Chair Kevin Warsh has turned more hawkish since his Jackson Hole speech, lifting September rate-hike odds. " +
-    "Credo Technology (CRDO) — an AI-interconnect name complementing Astera Labs — was added to the watchlist this cycle. " +
-    "September 27, 2026 update: the Fed hiked for the first time since 2023 (25bp to 3.75–4.00%). AMD crossed $1T market cap after OpenAI and Meta each struck 6GW GPU deals with " +
-    "equity warrants tied to AMD's stock price — the strongest new watchlist candidate found yet, and a plausible swap-in for TSLA's flagged slot. NET had its best cycle to date " +
-    "(an OpenAI-powered security launch, a fresh all-time high), meaningfully weakening the case for swapping into ANET/PANW. Oracle (ORCL) joined the watchlist too — a $664B cloud " +
-    "backlog paired with a fresh S&P credit downgrade to BBB-. Meta's new Muse AI assistant went viral (+36% in September); Apple's first Ternus-era product event coincided with a " +
-    "record stock high. TSLA and PLTR's valuation/catalyst flags from last cycle remain open, and MELI picked up a new one.",
+    "Concentrates in high-7-Powers moat companies and secular megatrends, accepting short-term volatility for 5–10 year returns. " +
+    "November 25, 2026 rebuild: after the AI-led correction, suggestions were re-screened from scratch on moat, price reset, " +
+    "balance-sheet resilience and event risk. AI chips are still suggested but tilted to the companies that get paid and have " +
+    "pricing power (TSM, NVDA, AVGO) rather than memory or debt-funded AI infrastructure — three of the four biggest AI spenders " +
+    "are now free-cash-flow negative and AI credit spreads are at records. High-multiple software (PLTR, NET, CRWD) and names with " +
+    "no pullback were dropped; pulled-back quality outside AI (JPM, UNH, NFLX, ETN) was added. A December Fed hike is ~95% priced.",
   riskLevel: "Aggressive",
   timeHorizon: "5–10+ years",
   icon: "🚀",
@@ -121,50 +112,50 @@ export const AGGRESSIVE_TARGET: PortfolioTarget = {
     {
       sector: "Technology / AI",
       targetPct: 35,
-      description: "CUDA moat + scale economies — dominant AI infrastructure",
-      suggestedBuys: ["NVDA", "MSFT", "META", "GOOGL", "AVGO", "AAPL"],
+      description: "Platform moats at reset prices — MSFT is the only big AI spender still FCF-positive; GOOGL/AMZN/META are cheaper but burning cash on capex",
+      suggestedBuys: ["MSFT", "GOOGL", "NVDA", "AMZN", "META"],
       color: "#8b5cf6",
     },
     {
       sector: "Cybersecurity / Cloud",
       targetPct: 15,
-      description: "Switching-cost moats — Falcon platform lock-in; NET's OpenAI-security launch and fresh all-time high this cycle weakened the case for swapping into ANET/PANW; ORCL (Oracle, $664B cloud backlog, +62% YoY) added as a new cloud-infrastructure watch",
-      suggestedBuys: ["CRWD", "NET", "PLTR", "PANW", "ANET", "ORCL"],
+      description: "Switching-cost moats in enterprise software and security — favor the cheaper names (CRM ~12x forward) over premium multiples (CRWD ~127x, NET ~150x) while the Fed is hiking; ORCL dropped on credit risk",
+      suggestedBuys: ["CRM", "PANW", "ANET", "CRWD"],
       color: "#3b82f6",
     },
     {
       sector: "Semiconductors",
       targetPct: 12,
-      description: "Custom ASIC moat accelerating for hyperscalers; AMD crossed $1T market cap this cycle on OpenAI/Meta warrant-tied GPU deals — the strongest new candidate screened to date; MU (Micron HBM) added as AI memory watch; ALAB (Astera Labs, AI-fabric interconnect) and CRDO (Credo Technology, AI cables) both flagged as strong-watch/watch candidates",
-      suggestedBuys: ["NVDA", "AMD", "AVGO", "QCOM", "MU", "ALAB", "CRDO"],
+      description: "Own the chip companies that get paid and have pricing power (TSM, NVDA, AVGO); memory (MU) and small high-multiple AI names (ALAB, CRDO) left out as the most cyclical links if AI buyers slow spending",
+      suggestedBuys: ["TSM", "NVDA", "AVGO", "ASML", "AMD"],
       color: "#f59e0b",
     },
     {
       sector: "Consumer Growth",
       targetPct: 10,
-      description: "Brand moat + pricing power in high-margin categories; MELI (LatAm fintech+e-commerce flywheel, +39% rev 2025) flagged as strong new candidate",
-      suggestedBuys: ["AMZN", "CMG", "SHOP", "MELI"],
+      description: "Brand moat + pricing power; NFLX at its cheapest multiple in years is the pick outside the AI-capex trade, MELI dropped on margin and FX pressure",
+      suggestedBuys: ["NFLX", "AMZN", "MCD"],
       color: "#ec4899",
     },
     {
       sector: "Healthcare Innovation",
       targetPct: 10,
       description: "Process-power moats in high-growth specialty care",
-      suggestedBuys: ["UNH", "ISRG", "DXCM", "ABBV"],
+      suggestedBuys: ["UNH", "LLY", "ISRG", "ABBV"],
       color: "#14b8a6",
     },
     {
       sector: "Financials / Fintech",
       targetPct: 8,
-      description: "Network-effect moats in payments + crypto infrastructure",
-      suggestedBuys: ["COIN", "V", "MA", "HOOD"],
+      description: "Fortress-balance-sheet banking (JPM benefits from higher rates) and payment networks; crypto-exchange names (COIN, HOOD) dropped after ~55–65% drawdowns",
+      suggestedBuys: ["JPM", "V", "MA"],
       color: "#22c55e",
     },
     {
       sector: "Broad Market ETF",
       targetPct: 5,
       description: "Core diversification floor — reduce single-stock tail risk",
-      suggestedBuys: ["QQQ", "VGT", "VOO"],
+      suggestedBuys: ["VOO", "QQQ"],
       color: "#6366f1",
     },
     {

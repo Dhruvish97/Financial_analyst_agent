@@ -23,88 +23,117 @@ export interface CandidateScreening {
 }
 
 export const CANDIDATE_SCREENING: CandidateScreening[] = [
+  // ── Nov 25, 2026 from-scratch rebuild: names that were researched but did NOT make the
+  //    portfolios, with what would change the verdict. Replaces the prior US list.
+  {
+    ticker: "VRT",
+    name: "Vertiv Holdings",
+    market: "us",
+    label: "STRONG WATCH",
+    date: "2026-11-25",
+    rationale:
+      "Biggest gap between fundamentals and price in the screen: Q3 revenue +61% to ~$4.3B, adjusted operating margin 25.2%, " +
+      "guidance raised across the board — yet the stock is ~54% off its high at ~18x forward after the Nov 3 midterms brought " +
+      "state data-center moratorium proposals. Not owned (ETN was chosen instead) because Vertiv is far more concentrated in " +
+      "data centers, where Q3 project cancellations were reportedly the highest on record. Would move up if moratorium " +
+      "proposals stall at the state level.",
+  },
   {
     ticker: "AMD",
     name: "Advanced Micro Devices",
     market: "us",
-    label: "STRONG WATCH",
-    date: "2026-09-27",
-    rationale:
-      "New this cycle — the single biggest AI story of the month. OpenAI committed to deploying 6GW of AMD " +
-      "Instinct GPUs over multiple years (1GW starting 2026) and received a warrant for up to 160M AMD shares; " +
-      "Meta struck a parallel 6GW deal and warrant days later. Both vest as AMD's stock climbs toward $600. " +
-      "Oracle separately ordered 50,000 MI450 chips. AMD crossed $1T market cap Sep 21 on a five-session run; " +
-      "Raymond James upgraded to Strong Buy, $641 target. Strategically, the warrants financially incentivize " +
-      "the two largest AI labs to port models to AMD's ROCm stack — a structural first dent in NVDA's CUDA-" +
-      "exclusivity moat, not just a new competitor shipping more chips. The strongest new candidate screened in " +
-      "any cycle so far, and a plausible swap-in for the portfolio's flagged TSLA slot — though first GPU " +
-      "shipments aren't until late 2026 and most of the revenue lands later still.",
-  },
-  {
-    ticker: "ORCL",
-    name: "Oracle Corporation",
-    market: "us",
     label: "WATCH",
-    date: "2026-09-27",
+    date: "2026-11-25",
     rationale:
-      "New this cycle. Record Q1 FY27 cloud revenue +62% YoY to $11.6B, infrastructure revenue +121%, backlog " +
-      "swelled to $664B; raised FY27 guidance to $90B+ revenue. Real moat: hyperscaler-tier growth with multi-" +
-      "year contracted visibility. Real, freshly-emerged risk: a force-majeure notice tied to its Project " +
-      "Jupiter (NM) data-center campus raised execution questions, and S&P cut Oracle's credit rating to BBB- — " +
-      "just above junk — citing heavy debt reliance to fund the AI buildout. Strong moat, real balance-sheet " +
-      "risk that wasn't there last cycle; watch rather than chase.",
-  },
-  {
-    ticker: "ALAB",
-    name: "Astera Labs",
-    market: "us",
-    label: "STRONG WATCH",
-    date: "2026-09-27",
-    rationale:
-      "AI-fabric connectivity chips (Scorpio-X switches, Aries retimers). Q2 2026 revenue $392.4M +104% YoY, " +
-      "beat by $31M; non-GAAP EPS $0.80 beat by 15.6%, 8th consecutive beat; Q2 net income $153.1M +199% YoY, EPS " +
-      "beat estimates by 82%. Cornered-resource + switching-cost moat in the AI-rack interconnect layer that " +
-      "NVDA/AVGO/ANET all depend on. Momentum still accelerating: stock $364.62 as of Sep 26, up from $312 on " +
-      "Sep 4. Getting more expensive to initiate by the cycle, not less.",
-  },
-  {
-    ticker: "PANW",
-    name: "Palo Alto Networks",
-    market: "us",
-    label: "STRONG WATCH",
-    date: "2026-09-27",
-    rationale:
-      "7 Powers 5/7: platformization creates switching cost + network effects. Morningstar wide-moat. Fiscal " +
-      "Q4 FY26 actual (reported Sep 1) closed out the fiscal year: $3.41B revenue +34% YoY beat $3.35B estimate; " +
-      "adjusted EPS $1.02 beat $0.98 estimate. Acquired Console Systems (Sep 1) to deepen agentic capabilities in " +
-      "its Cortex platform — part of CEO Arora's aggressive dealmaking run that already includes the $25B " +
-      "CyberArk and $3.4B Chronosphere acquisitions. The moat is now being extended by acquisition as much as by " +
-      "organic growth, but a swap into NET's slot still needs a NET-side catalyst, not just a PANW-side one — " +
-      "and NET itself had its strongest cycle yet (see research log).",
-  },
-  {
-    ticker: "CRDO",
-    name: "Credo Technology",
-    market: "us",
-    label: "WATCH",
-    date: "2026-09-27",
-    rationale:
-      "FY2026 revenue $1.3B, +206% YoY; Q4 FY26 revenue $437.0M +157% YoY; non-GAAP net income +5x YoY to $662M. " +
-      "Active Electrical Cables (AECs) have become the intra-rack AI-connectivity standard for hyperscalers/" +
-      "neoclouds, and PILOT diagnostic software embeds Credo into customers' network architecture — a " +
-      "telemetry-first switching-cost moat similar in shape to ALAB's. First negative signal since being added: " +
-      "Mizuho cut its price target to $245 (from $290) on Sep 21. Still a legitimate AI-interconnect name, just " +
-      "cooling off relative to ALAB this cycle.",
+      "Executing well: Q3 revenue $13.4B (+45%), data center $8.5B (+97%) on the MI450/Helios ramp, Q4 guided to ~$17B. " +
+      "~38% off its high. Left out because at ~23x forward it is still more than twice NVDA's ~9x, and the OpenAI/Meta " +
+      "warrants (up to ~320M shares) mean real dilution plus a growing non-cash GAAP charge. Would qualify on a lower price " +
+      "or if NVDA's governance problem worsens.",
   },
   {
     ticker: "MU",
     name: "Micron Technology",
     market: "us",
     label: "WATCH",
-    date: "2026-08-01",
+    date: "2026-11-25",
     rationale:
-      "Sold-out HBM supply through 2026, $100B+ binding multi-year contracts. Morgan Stanley's top 2026 semis " +
-      "pick. Moat remains supply-lock rather than a durable platform — memory stays a cyclical business.",
+      "The memory caution case. ~52% off its high at ~3x forward earnings — a P/E that low on a cyclical usually means the " +
+      "market expects peak earnings. Bulls: 2027 HBM is largely sold out and JPMorgan sees shortages through 2028. Bears: " +
+      "Chinese capacity (CXMT), slowing DRAM contract increases, and the fact that memory is the first link cut when AI " +
+      "buyers slow spending. Revisit after earnings (~Dec 17) and Q1 2027 DRAM contract prices.",
+  },
+  {
+    ticker: "ASML",
+    name: "ASML Holding",
+    market: "us",
+    label: "WATCH",
+    date: "2026-11-25",
+    rationale:
+      "Monopoly on EUV lithography, ~35% off its high at ~21x forward. Left out to avoid stacking more semiconductor-capex " +
+      "exposure on top of TSM/NVDA/AVGO, and because chip-equipment spending is cyclical and export-control sensitive (BIS " +
+      "proposed new remote-access chip rules Nov 16). Would qualify as a replacement if a chip holding is trimmed.",
+  },
+  {
+    ticker: "LLY",
+    name: "Eli Lilly",
+    market: "us",
+    label: "WATCH",
+    date: "2026-11-25",
+    rationale:
+      "Arguably the highest-quality growth company outside tech, and a defensive-rotation favorite. Not owned only because it " +
+      "never pulled back — ~6% off its high at ~27x forward. A 15%+ pullback without a pipeline problem would make it a buy.",
+  },
+  {
+    ticker: "V",
+    name: "Visa Inc.",
+    market: "us",
+    label: "WATCH",
+    date: "2026-11-25",
+    rationale:
+      "Wide-moat payments network with US purchase volume still growing ~10%. Like LLY, it failed only the price test — ~4% " +
+      "off its high at ~25x forward. A candidate for any portfolio that wants more defense if it corrects.",
+  },
+  {
+    ticker: "CRWD",
+    name: "CrowdStrike",
+    market: "us",
+    label: "WATCH",
+    date: "2026-11-25",
+    rationale:
+      "Removed from the portfolios in the rebuild. Best-in-class security platform with record net-new ARR, but ~127x forward " +
+      "earnings is too much multiple to carry while the Fed is hiking. A buy at a meaningfully lower multiple.",
+  },
+  {
+    ticker: "INTU",
+    name: "Intuit",
+    market: "us",
+    label: "ON RADAR",
+    date: "2026-11-25",
+    rationale:
+      "~60% off its high at ~10x forward — cheap, but the business is visibly being hit: FY27 growth guided down to 9–10% and " +
+      "another revenue-forecast cut Nov 20, with management citing a faster shift to AI tools. Peers H&R Block and ADP are up " +
+      "this year, so this looks company-specific. Needs a guidance stabilization before it qualifies.",
+  },
+  {
+    ticker: "ORCL",
+    name: "Oracle",
+    market: "us",
+    label: "ON RADAR",
+    date: "2026-11-25",
+    rationale:
+      "~58% off its high at ~9x forward, with a ~$638B backlog — but S&P has it at BBB-, one notch above junk, its 5-year CDS " +
+      "is ~316bp, and roughly half the backlog depends on OpenAI. In a credit-led sell-off this is the riskiest way to own AI " +
+      "infrastructure. Watching for a stabilized rating outlook.",
+  },
+  {
+    ticker: "ALAB",
+    name: "Astera Labs",
+    market: "us",
+    label: "ON RADAR",
+    date: "2026-11-25",
+    rationale:
+      "Removed from STRONG WATCH. ~62% off its high — small, high-multiple AI names fell hardest in the risk-off move, as " +
+      "expected. Still ~26x forward. Fundamentals were strong as of Q2; revisit once AI credit spreads stop widening.",
   },
   {
     ticker: "ITC",
